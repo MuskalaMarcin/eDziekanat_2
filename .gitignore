@@ -46,6 +46,8 @@ Temporary Items
 *.class
 bin/
 bin
+target
+target/
 
 *.class
 
