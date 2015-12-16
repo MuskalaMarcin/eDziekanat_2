@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,10 +31,12 @@ public class OcenaCzastkowa implements Serializable {
 	@Column(name = "semestr")
 	private Integer semestr;
 
-	@Column(name = "Przedmiot_idPrzedmiotu")
+	@ManyToOne
+	@JoinColumn(name = "Przedmiot_idPrzedmiotu", referencedColumnName="idPrzedmiotu", nullable = false)
 	private Przedmiot przedmiotIdPrzedmiotu;
 
-	@Column(name = "Indeks_idIndeksu")
+	@ManyToOne
+	@JoinColumn(name = "Indeks_idIndeksu", referencedColumnName="idIndeksu", nullable = false)
 	private Indeks indeksIdIndeksu;
 
 	public Integer getIdOceny() {

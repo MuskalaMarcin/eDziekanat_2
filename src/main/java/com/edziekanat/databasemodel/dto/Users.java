@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,13 +24,16 @@ public class Users implements Serializable {
 	@Column(name = "password")
 	private String password;
 
-	@Column(name = "administrator_id")
+	@ManyToOne
+	@JoinColumn(name = "administrator_id", referencedColumnName = "idAdministratora", nullable = true)
 	private Administrator administratorId;
 
-	@Column(name = "student_id")
+	@ManyToOne
+	@JoinColumn(name = "student_id", referencedColumnName = "idStudenta", nullable = true)
 	private Student StudentId;
 
-	@Column(name = "pracowniknaukowodydaktyczny_id")
+	@ManyToOne
+	@JoinColumn(name = "pracowniknaukowodydaktyczny_id", referencedColumnName = "idPracownika", nullable = true)
 	private PracownikNaukowoDydaktyczny pracownikNaukowoDydaktycznyId;
 
 	@Column(name = "enabled")

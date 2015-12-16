@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,7 +21,8 @@ public class UserRoles implements Serializable {
 	@GeneratedValue
 	private Integer user_role_id;
 
-	@Column(name = "username")
+	@ManyToOne
+	@JoinColumn(name = "username", nullable = false)
 	private String username;
 
 	@Column(name = "role")

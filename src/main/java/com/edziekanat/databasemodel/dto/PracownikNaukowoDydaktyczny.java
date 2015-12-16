@@ -1,11 +1,16 @@
 package com.edziekanat.databasemodel.dto;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,7 +20,7 @@ public class PracownikNaukowoDydaktyczny implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "id")
+	@Column(name = "idPracownika")
 	@GeneratedValue
 	private Integer id;
 
@@ -31,9 +36,19 @@ public class PracownikNaukowoDydaktyczny implements Serializable {
 	@Column(name = "stanowisko")
 	private String stanowisko;
 
-	@Column(name = "Uczelnia_idUczelni")
-	private Uczelnia uczelniaIdUczelni;
-
+	@OneToMany(mappedBy = "pracownikNaukowoDydaktycznyId")
+	private Set<Przedmiot> przedmioty;
+	
+	@OneToMany(mappedBy = "pracownikNaukowoDydaktycznyId")
+	private Set<Komunikat> komunikaty;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "wydzial_pracowniknaukowodydaktyczny",
+            joinColumns = @JoinColumn(name="idPracownika", referencedColumnName = "Pracowniknaukowodydaktyczny_id"),
+            inverseJoinColumns = @JoinColumn(name = "idWydzialu")
+    )
+	
 	public Integer getId() {
 		return id;
 	}
@@ -74,12 +89,20 @@ public class PracownikNaukowoDydaktyczny implements Serializable {
 		this.stanowisko = stanowisko;
 	}
 
-	public Uczelnia getUczelniaIdUczelni() {
-		return uczelniaIdUczelni;
+	public Set<Przedmiot> getPrzedmioty() {
+		return przedmioty;
 	}
 
-	public void setUczelniaIdUczelni(Uczelnia uczelniaIdUczelni) {
-		this.uczelniaIdUczelni = uczelniaIdUczelni;
+	public void setPrzedmioty(Set<Przedmiot> przedmioty) {
+		this.przedmioty = przedmioty;
+	}
+
+	public Set<Komunikat> getKomunikaty() {
+		return komunikaty;
+	}
+
+	public void setKomunikaty(Set<Komunikat> komunikaty) {
+		this.komunikaty = komunikaty;
 	}
 
 }

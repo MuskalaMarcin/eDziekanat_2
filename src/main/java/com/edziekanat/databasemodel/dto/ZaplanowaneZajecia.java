@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,10 +25,12 @@ public class ZaplanowaneZajecia implements Serializable {
 	@Column(name = "data")
 	private Date data;
 
-	@Column(name = "Salazajeciowa_numerSali")
+	@ManyToOne
+	@JoinColumn(name = "Salazajeciowa_numerSali", referencedColumnName = "numerSali", nullable = false)
 	private SalaZajeciowa salaZajeciowaNumerSali;
 
-	@Column(name = "Przedmiot_idPrzedmiotu")
+	@ManyToOne
+	@JoinColumn(name = "Przedmiot_idPrzedmiotu", referencedColumnName = "idPrzedmiotu", nullable = false)
 	private Przedmiot przedmiotIdPzedmiotu;
 
 	public Integer getIdZajec() {

@@ -1,11 +1,13 @@
 package com.edziekanat.databasemodel.dto;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +31,12 @@ public class Uczelnia implements Serializable {
 		return idUczelni;
 	}
 
+	@OneToMany(mappedBy = "uczelniaIdUczelni")
+	private Set<Wydzial> wydzialy;
+
+	@OneToMany(mappedBy = "uczelniaIdUczelni")
+	private Set<Administrator> administratorzy;
+
 	public void setIdUczelni(Integer idUczelni) {
 		this.idUczelni = idUczelni;
 	}
@@ -47,6 +55,22 @@ public class Uczelnia implements Serializable {
 
 	public void setAdres(String adres) {
 		this.adres = adres;
+	}
+
+	public Set<Wydzial> getWydzialy() {
+		return wydzialy;
+	}
+
+	public void setWydzialy(Set<Wydzial> wydzialy) {
+		this.wydzialy = wydzialy;
+	}
+
+	public Set<Administrator> getAdministratorzy() {
+		return administratorzy;
+	}
+
+	public void setAdministratorzy(Set<Administrator> administratorzy) {
+		this.administratorzy = administratorzy;
 	}
 
 }

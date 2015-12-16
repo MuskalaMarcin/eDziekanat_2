@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,13 +31,16 @@ public class Komunikat implements Serializable {
 	@Column(name = "dataNadania")
 	private Date dataNadania;
 
-	@Column(name = "Student_id")
+	@ManyToOne
+	@JoinColumn(name = "Student_id", referencedColumnName="idStudenta", nullable = true)
 	private Student studentId;
 
-	@Column(name = "Pracowniknaukowodydaktyczny_id")
+	@ManyToOne
+	@JoinColumn(name = "Pracowniknaukowodydaktyczny_id", referencedColumnName="idPracownika", nullable = true)
 	private PracownikNaukowoDydaktyczny pracownikNaukowoDydaktycznyId;
 
-	@Column(name = "Administrator_id")
+	@ManyToOne
+	@JoinColumn(name = "Administrator_id", referencedColumnName="idAdministratora", nullable = true)
 	private Administrator administratorId;
 
 	public Integer getIdKomunikatu() {

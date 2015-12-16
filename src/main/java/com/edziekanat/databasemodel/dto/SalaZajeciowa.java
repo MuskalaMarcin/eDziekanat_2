@@ -1,11 +1,15 @@
 package com.edziekanat.databasemodel.dto;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,9 +29,13 @@ public class SalaZajeciowa implements Serializable {
 	@Column(name = "typ")
 	private String typ;
 
-	@Column(name = "Wydzial_idWydzialu")
+	@ManyToOne
+	@JoinColumn(name = "Wydzial_idWydzialu", referencedColumnName="idWydzialu", nullable = false)
 	private Wydzial wydzialIdWydzialu;
 
+	@OneToMany(mappedBy = "salaZajeciowaNumerSali")
+	private Set<ZaplanowaneZajecia> zaplanowaneZajecia;
+	
 	public Integer getNumerSali() {
 		return numerSali;
 	}
@@ -59,4 +67,13 @@ public class SalaZajeciowa implements Serializable {
 	public void setWydzialIdWydzialu(Wydzial wydzialIdWydzialu) {
 		this.wydzialIdWydzialu = wydzialIdWydzialu;
 	}
+
+	public Set<ZaplanowaneZajecia> getZaplanowaneZajecia() {
+		return zaplanowaneZajecia;
+	}
+
+	public void setZaplanowaneZajecia(Set<ZaplanowaneZajecia> zaplanowaneZajecia) {
+		this.zaplanowaneZajecia = zaplanowaneZajecia;
+	}
+	
 }

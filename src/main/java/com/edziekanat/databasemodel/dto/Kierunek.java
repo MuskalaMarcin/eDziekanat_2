@@ -1,11 +1,15 @@
 package com.edziekanat.databasemodel.dto;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,9 +29,13 @@ public class Kierunek implements Serializable {
 	@Column(name = "stacjonarne")
 	private boolean stacjonarne;
 
-	@Column(name = "Wydzial_idWydzialu")
+	@ManyToOne
+	@JoinColumn(name = "Wydzial_idWydzialu", referencedColumnName="idWydzialu", nullable = false)
 	private Wydzial wydzialIdWydzialu;
 
+	@OneToMany(mappedBy = "idKierunku")
+	private Set<GrupaStudencka> grupyStudenckie;
+	
 	public Integer getIdKierunku() {
 		return idKierunku;
 	}
@@ -59,4 +67,13 @@ public class Kierunek implements Serializable {
 	public void setWydzialIdWydzialu(Wydzial wydzialIdWydzialu) {
 		this.wydzialIdWydzialu = wydzialIdWydzialu;
 	}
+
+	public Set<GrupaStudencka> getGrupyStudenckie() {
+		return grupyStudenckie;
+	}
+
+	public void setGrupyStudenckie(Set<GrupaStudencka> grupyStudenckie) {
+		this.grupyStudenckie = grupyStudenckie;
+	}
+	
 }

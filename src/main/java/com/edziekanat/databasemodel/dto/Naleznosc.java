@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -32,7 +34,8 @@ public class Naleznosc implements Serializable {
 	@Column(name = "dataWplaty")
 	private Date dataWplaty;
 
-	@Column(name = "Student_id")
+	@ManyToOne
+	@JoinColumn(name = "Student_id", referencedColumnName="idStudenta", nullable = false)
 	private Student studentId;
 
 	public Integer getIdNaleznosci() {

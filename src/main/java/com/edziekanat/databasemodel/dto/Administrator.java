@@ -1,6 +1,7 @@
 package com.edziekanat.databasemodel.dto;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,7 +19,7 @@ public class Administrator implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "id")
+	@Column(name = "idAdministratora")
 	@GeneratedValue
 	private Integer id;
 
@@ -33,6 +35,9 @@ public class Administrator implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "Uczelnia_idUczelni", referencedColumnName="idUczelni", nullable = false)
 	private Uczelnia uczelniaIdUczelni;
+	
+	@OneToMany(mappedBy = "administratorId")
+	private Set<Komunikat> komunikaty;
 	
 	public Integer getId() {
 		return id;
@@ -73,4 +78,13 @@ public class Administrator implements Serializable {
 	public void setUczelniaIdUczelni(Uczelnia uczelniaIdUczelni) {
 		this.uczelniaIdUczelni = uczelniaIdUczelni;
 	}
+
+	public Set<Komunikat> getKomunikaty() {
+		return komunikaty;
+	}
+
+	public void setKomunikaty(Set<Komunikat> komunikaty) {
+		this.komunikaty = komunikaty;
+	}
+	
 }

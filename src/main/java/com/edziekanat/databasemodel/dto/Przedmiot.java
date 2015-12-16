@@ -1,11 +1,15 @@
 package com.edziekanat.databasemodel.dto;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -28,9 +32,22 @@ public class Przedmiot implements Serializable {
 	@Column(name = "ects")
 	private Integer ects;
 
-	@Column(name = "Pracowniknaukowodydaktyczny_id")
+	@ManyToOne
+	@JoinColumn(name = "Pracowniknaukowodydaktyczny_id", referencedColumnName="idPracownika", nullable = false)
 	private PracownikNaukowoDydaktyczny pracownikNaukowoDydaktycznyId;
 
+	@OneToMany(mappedBy = "przedmiotIdPzedmiotu")
+	private Set<ZaplanowaneZajecia> zaplanowaneZajecia;
+	
+	@OneToMany(mappedBy = "przedmiotIdPrzedmiotu")
+	private Set<Wpis> wpisy;
+	
+	@OneToMany(mappedBy = "przedmiotIdPrzedmiotu")
+	private Set<OcenaCzastkowa> ocenyCzastkowe;
+	
+	@OneToMany(mappedBy = "przedmiotIdPrzedmiotu")
+	private Set<MaterialyDydaktyczne> materialyDydaktyczne;
+	
 	public Integer getIdPrzedmiotu() {
 		return idPrzedmiotu;
 	}
@@ -69,6 +86,38 @@ public class Przedmiot implements Serializable {
 
 	public void setPracownikNaukowoDydaktycznyId(PracownikNaukowoDydaktyczny pracownikNaukowoDydaktycznyId) {
 		this.pracownikNaukowoDydaktycznyId = pracownikNaukowoDydaktycznyId;
+	}
+
+	public Set<ZaplanowaneZajecia> getZaplanowaneZajecia() {
+		return zaplanowaneZajecia;
+	}
+
+	public void setZaplanowaneZajecia(Set<ZaplanowaneZajecia> zaplanowaneZajecia) {
+		this.zaplanowaneZajecia = zaplanowaneZajecia;
+	}
+
+	public Set<Wpis> getWpisy() {
+		return wpisy;
+	}
+
+	public void setWpisy(Set<Wpis> wpisy) {
+		this.wpisy = wpisy;
+	}
+
+	public Set<OcenaCzastkowa> getOcenyCzastkowe() {
+		return ocenyCzastkowe;
+	}
+
+	public void setOcenyCzastkowe(Set<OcenaCzastkowa> ocenyCzastkowe) {
+		this.ocenyCzastkowe = ocenyCzastkowe;
+	}
+
+	public Set<MaterialyDydaktyczne> getMaterialyDydaktyczne() {
+		return materialyDydaktyczne;
+	}
+
+	public void setMaterialyDydaktyczne(Set<MaterialyDydaktyczne> materialyDydaktyczne) {
+		this.materialyDydaktyczne = materialyDydaktyczne;
 	}
 
 }
