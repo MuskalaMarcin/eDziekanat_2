@@ -2,8 +2,8 @@
 <%@page session="true"%>
 <html>
 <body>
-	<h1>Tytul : ${title}</h1>
-	<h1>Wiadomosc : ${message}</h1>
+	<h1>Title : ${title}</h1>
+	<h1>Message : ${message}</h1>
 
 	<c:url value="/logout" var="logoutUrl" />
 	<form action="${logoutUrl}" method="post" id="logoutForm">
@@ -19,7 +19,7 @@
 	<c:if test="${pageContext.request.userPrincipal.name != null}">
 		<h2>
 			Welcome : ${pageContext.request.userPrincipal.name} | <a
-				href="javascript:formSubmit()"> Wyloguj</a>
+				href="javascript:formSubmit()"> Logout</a>
 		</h2>
 	</c:if>
 

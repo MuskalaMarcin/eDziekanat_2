@@ -2,7 +2,7 @@
 <%@page session="true"%>
 <html>
 <head>
-<title>Login Page</title>
+<title>eDziekanat - logowanie</title>
 <style>
 .error {
 	padding: 15px;

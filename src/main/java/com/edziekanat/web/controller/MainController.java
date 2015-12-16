@@ -17,8 +17,8 @@ public class MainController {
 	public ModelAndView defaultPage() {
 
 		ModelAndView model = new ModelAndView();
-		model.addObject("title", "Spring Security Login Form - Database Authentication");
-		model.addObject("message", "This is default page!");
+		model.addObject("title", "eDziekanat");
+		model.addObject("message", "Strona domyslna!");
 		model.setViewName("hello");
 		return model;
 
@@ -28,9 +28,33 @@ public class MainController {
 	public ModelAndView adminPage() {
 
 		ModelAndView model = new ModelAndView();
-		model.addObject("title", "Spring Security Login Form - Database Authentication");
-		model.addObject("message", "This page is for ROLE_ADMIN only!");
+		model.addObject("title", "eDziekanat - administrator strona glowna");
+		model.addObject("message", "Strona tylko dla administratorow!");
 		model.setViewName("admin");
+
+		return model;
+
+	}
+	
+	@RequestMapping(value = "/student**", method = RequestMethod.GET)
+	public ModelAndView studentPage() {
+
+		ModelAndView model = new ModelAndView();
+		model.addObject("title", "eDziekanat - student strona glowna");
+		model.addObject("message", "Strona tylko dla studentow");
+		model.setViewName("student");
+
+		return model;
+
+	}
+	
+	@RequestMapping(value = "/lecturer**", method = RequestMethod.GET)
+	public ModelAndView lecturerPage() {
+
+		ModelAndView model = new ModelAndView();
+		model.addObject("title", "eDziekanat - wykladowca strona glowna");
+		model.addObject("message", "Strona tylko dla wykladowcow");
+		model.setViewName("lecturer");
 
 		return model;
 
@@ -42,11 +66,11 @@ public class MainController {
 
 		ModelAndView model = new ModelAndView();
 		if (error != null) {
-			model.addObject("error", "Invalid username and password!");
+			model.addObject("error", "Bledny login lub haslo!");
 		}
 
 		if (logout != null) {
-			model.addObject("msg", "You've been logged out successfully.");
+			model.addObject("msg", "Zostales wylogowany.");
 		}
 		model.setViewName("login");
 
