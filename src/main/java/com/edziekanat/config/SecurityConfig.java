@@ -25,9 +25,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/student/**").access("hasRole('student')").and().formLogin()
-				.successHandler(new MyAuthenticationSuccessHandler()).loginPage("/login").failureUrl("/login?error")
-				.usernameParameter("username").passwordParameter("password").and().logout()
-				.logoutSuccessUrl("/login?logout").and().exceptionHandling().accessDeniedPage("/403").and().csrf();
+		http.authorizeRequests().antMatchers("/student/**").access("hasRole('student')").antMatchers("/lecturer/**")
+				.access("hasRole('lecturer')").antMatchers("/admin/**").access("hasRole('administrator')").and()
+				.formLogin().successHandler(new EDziekanatAuthenticationSuccessHandler()).loginPage("/login")
+				.failureUrl("/?error").usernameParameter("username").passwordParameter("password").and().logout()
+				.logoutSuccessUrl("/?logout").and().exceptionHandling().accessDeniedPage("/403").and().csrf();
 	}
 }
