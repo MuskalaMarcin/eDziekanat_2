@@ -51,5 +51,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot/1.1.6.RELEASE/spring-boot-1.1.6.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-parent/1.1.6.RELEASE/spring-boot-parent-1.1.6.RELEASE.pom"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
