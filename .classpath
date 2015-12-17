@@ -45,14 +45,18 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot/1.1.6.RELEASE/spring-boot-1.1.6.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-parent/1.1.6.RELEASE/spring-boot-parent-1.1.6.RELEASE.pom"/>
+	<classpathentry kind="var" path="M2_REPO/javax/inject/javax.inject/1/javax.inject-1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot/1.1.6.RELEASE/spring-boot-1.1.6.RELEASE.jar"/>
-	<classpathentry kind="var" path="M2_REPO/org/springframework/boot/spring-boot-parent/1.1.6.RELEASE/spring-boot-parent-1.1.6.RELEASE.pom"/>
-	<classpathentry kind="var" path="M2_REPO/javax/inject/javax.inject/1/javax.inject-1.jar"/>
+	<classpathentry kind="var" path="JUNIT_HOME/junit.jar"/>
+	<classpathentry kind="var" path="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/junit/junit/4.8.2/junit-4.8.2.jar.lastUpdated"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
