@@ -7,15 +7,14 @@
 <title>eDziekanat - Zaloguj siê</title>
 </head>
 <body>
-Zaloguj siê
+Witamy w systemie eDziekanat, zaloguj siê do swojego konta.
 	<form action="j_security_check" method=post>
-    	<p><strong>Please Enter Your User Name: </strong>
+    	<p><strong>Login:: </strong>
     	<input type="text" name="j_username" size="25">
-    	<p><p><strong>Please Enter Your Password: </strong>
+    	<p><p><strong>Has³o: </strong>
     	<input type="password" size="15" name="j_password">
     	<p><p>
-    	<input type="submit" value="Submit">
-    <input type="reset" value="Reset">
-</form>
+    	<input type="submit" value="Zaloguj">
+	</form>
 </body>
 </html>
