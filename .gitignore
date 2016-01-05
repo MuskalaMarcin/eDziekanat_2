@@ -44,6 +44,7 @@ Temporary Items
 
 # Java Class files
 *.class
+build/
 bin/
 bin
 target

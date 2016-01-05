@@ -8,10 +8,12 @@
 </head>
 <body>
 	<center>
-	<font face="verdana" size = "5">
+	<font face="verdana" size = "3">
 		<p><img src="images/androiddev101.jpg"/></p>
-		<p><a href="/eDziekanat/home">Powrót do strony g³ównej.</a></p>
-		<p><font size="1" color="gray">Obrazek pobrano ze strony: <a href="http://www.404notfound.fr/">http://www.404notfound.fr/</a></font></p>
+		<p><b>Kod b³êdu:</b> ${pageContext.errorData.statusCode}
+   		<br><b>Poszukiwany URI:</b> ${pageContext.request.scheme}://${header.host}${pageContext.errorData.requestURI}</p>
+   		<p><br><br><font size="5"><a href="/eDziekanat/home">Powrót do strony g³ównej.</a></font></p>
+		<p><br><br><font size="1" color="gray">Obrazek pobrano ze strony: <a href="http://www.404notfound.fr/">http://www.404notfound.fr/</a></font></p>
 	</font>
 	</center>
 </body>

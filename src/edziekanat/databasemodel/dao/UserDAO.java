@@ -1,8 +1,9 @@
 package edziekanat.databasemodel.dao;
 
-public class UserDAO
+/**
+ * Data access object used to perform operations on users.
+ */
+public class UserDAO extends DAOParentClass
 {
-    String login;
-    String password;
-    
+   
 }
