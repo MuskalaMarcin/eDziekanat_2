@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/eDziekanat">
+
+  <Resource name="jdbc/edziekanat"
+            type="javax.sql.DataSource"
+            factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+            driverClassName="oracle.jdbc.driver.OracleDriver"
+            url="jdbc:oracle:thin:@localhost:1521:edziekanat"
+            username="user"
+            password="Haslo123"
+            maxActive="8" 
+            maxIdle="4" 
+            maxWait="10000"
+            auth="Container"
+          />
+
+  <Realm className="org.apache.catalina.realm.DataSourceRealm"
+         dataSourceName="jdbc/edziekanat"
+         userTable="users" 
+         userNameCol="login" 
+         userCredCol="password"
+         userRoleTable="users" 
+         roleNameCol="user_role"
+		 localDataSource="true"/>
+</Context>
