@@ -13,23 +13,25 @@ import edziekanat.databasemodel.dto.UserDTO;
  */
 public class UserDAO extends DAOParentClass
 {
+    public UserDAO()
+    {
+	super();
+    }
 
     public UserDTO getUser(String login)
     {
-	try
-	{
-	    Connection connection = dataSource.getConnection();
-	    ResultSet selectedUser = connection.createStatement()
-		    .executeQuery("select * from users where login='" + login + "'");
-	    connection.close();
-	    selectedUser.next();
-	    return getOneUserDTO(selectedUser);
-	}
-	catch (SQLException e)
-	{
-	    e.printStackTrace();
-	}
-	return null;
+	UserDTO user = entityManager.find(UserDTO.class, login);
+	entityManager.close();
+	return user;
+
+	/*
+	 * try { Connection connection = dataSource.getConnection(); ResultSet
+	 * selectedUser = connection.createStatement() .executeQuery(
+	 * "select * from users where login='" + login + "'");
+	 * connection.close(); selectedUser.next(); return
+	 * getOneUserDTO(selectedUser); } catch (SQLException e) {
+	 * e.printStackTrace(); } return null;
+	 */
     }
 
     public List<UserDTO> getMultipleUsers(String whereStmnt)
@@ -39,8 +41,7 @@ public class UserDAO extends DAOParentClass
 	try
 	{
 	    Connection connection = dataSource.getConnection();
-	    selectedUser = connection.createStatement()
-		    .executeQuery("select * from users where " + whereStmnt);
+	    selectedUser = connection.createStatement().executeQuery("select * from users where " + whereStmnt);
 	    connection.close();
 	    while (selectedUser.next())
 	    {

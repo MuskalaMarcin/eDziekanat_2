@@ -1,19 +1,40 @@
 package edziekanat.databasemodel.dto;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * UserDTO class represents one user from users table.
  */
+@Entity
+@Table(name="users")
 public class UserDTO
 {
+    @Id
+    @Column(name="login")
     private String login;
+    @Column(name="password")
     private String password;
+    @Column(name="e_mail")
     private String eMail;
+    @Column(name="is_active")
     private Integer isActive;
+    @Column(name="user_role")
     private String userRole;
+    @Column(name="lecturer_id")
     private Integer lecturerId;
+    @Column(name="student_id")
     private Integer studentId;
+    @Column(name="administrator_id")
     private Integer administratorId;
 
+    public UserDTO()
+    {
+	
+    }
+    
     public UserDTO(String login, String password, String eMail, Integer isActive, String userRole, Integer lecturerId,
 	    Integer studentId, Integer administratorId)
     {
