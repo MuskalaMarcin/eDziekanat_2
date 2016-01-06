@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-2"
-    pageEncoding="ISO-8859-2"%>
+	pageEncoding="ISO-8859-2"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,14 +7,28 @@
 <title>eDziekanat - Zaloguj siê</title>
 </head>
 <body>
-Witamy w systemie eDziekanat, zaloguj siê do swojego konta.
-	<form action="j_security_check" method=post>
-    	<p><strong>Login: </strong>
-    	<input type="text" name="j_username" size="25">
-    	<p><p><strong>Has³o: </strong>
-    	<input type="password" size="15" name="j_password">
-    	<p><p>
-    	<input type="submit" value="Zaloguj">
+	Witamy w systemie eDziekanat, zaloguj siê do swojego konta.
+	<form action="loginaction" method=post>
+		<p>
+			<strong>Login: </strong> <input type="text" name="username" size="25">
+		<p>
+		<p>
+			<strong>Has³o: </strong> <input type="password" size="15"
+				name="password">
+			<%
+			    if (request.getSession().getAttribute("loginError") != null
+					    && request.getSession().getAttribute("loginError").equals("true"))
+			    {
+					out.print("<p>\n<p>\nB³êdny login lub has³o, spróbuj ponownie.");
+					request.setAttribute("loginError", "false");
+			    }
+			%>
+		<p>
+		<p>
+			<input type="submit" value="Zaloguj">
 	</form>
+	<%
+	    request.getSession().setAttribute("backURL", request.getAttribute("javax.servlet.forward.request_uri"));
+	%>
 </body>
 </html>

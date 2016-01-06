@@ -2,13 +2,8 @@ package edziekanat.bean;
 
 import java.io.Serializable;
 
-import javax.annotation.ManagedBean;
-import javax.enterprise.context.SessionScoped;
-
 import edziekanat.databasemodel.dto.UserDTO;
 
-@ManagedBean
-@SessionScoped
 public class LoginBean implements Serializable
 {
     private static final long serialVersionUID = 1L;

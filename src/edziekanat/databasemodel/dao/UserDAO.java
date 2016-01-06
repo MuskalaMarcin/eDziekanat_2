@@ -1,5 +1,6 @@
 package edziekanat.databasemodel.dao;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -12,12 +13,15 @@ import edziekanat.databasemodel.dto.UserDTO;
  */
 public class UserDAO extends DAOParentClass
 {
+
     public UserDTO getUser(String login)
     {
 	try
 	{
-	    ResultSet selectedUser = dataSource.getConnection().createStatement()
+	    Connection connection = dataSource.getConnection();
+	    ResultSet selectedUser = connection.createStatement()
 		    .executeQuery("select * from users where login='" + login + "'");
+	    connection.close();
 	    selectedUser.next();
 	    return getOneUserDTO(selectedUser);
 	}
@@ -34,8 +38,10 @@ public class UserDAO extends DAOParentClass
 	ResultSet selectedUser;
 	try
 	{
-	    selectedUser = dataSource.getConnection().createStatement()
+	    Connection connection = dataSource.getConnection();
+	    selectedUser = connection.createStatement()
 		    .executeQuery("select * from users where " + whereStmnt);
+	    connection.close();
 	    while (selectedUser.next())
 	    {
 		result.add(getOneUserDTO(selectedUser));
