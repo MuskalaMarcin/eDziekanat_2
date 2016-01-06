@@ -32,6 +32,7 @@ public class LoginController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	request.getSession().setMaxInactiveInterval(3600);
 	try
 	{
 	    request.login((String) request.getParameter("username"), (String) request.getParameter("password"));

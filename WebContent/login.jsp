@@ -20,7 +20,7 @@
 					    && request.getSession().getAttribute("loginError").equals("true"))
 			    {
 					out.print("<p>\n<p>\nB³êdny login lub has³o, spróbuj ponownie.");
-					request.setAttribute("loginError", "false");
+					request.getSession().invalidate();
 			    }
 			%>
 		<p>
