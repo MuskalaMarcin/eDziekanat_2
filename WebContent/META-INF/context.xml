@@ -22,4 +22,8 @@
          userRoleTable="users" 
          roleNameCol="user_role"
 		 localDataSource="true"/>
+		 
+	<ResourceLink name="jdbc/edziekanat"
+             global="jdbc/edziekanat"
+              type="javax.sql.DataSource" />
 </Context>

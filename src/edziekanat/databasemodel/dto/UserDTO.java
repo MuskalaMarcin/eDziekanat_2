@@ -34,6 +34,7 @@ public class UserDTO
 	this.eMail = eMail;
 	this.isActive = isActive;
 	this.userRole = userRole;
+	this.lecturerId = this.studentId = this.administratorId = -1;
 	switch (userRole)
 	{
 	case "admin":
