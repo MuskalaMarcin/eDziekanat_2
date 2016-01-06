@@ -9,66 +9,26 @@ import javax.persistence.Table;
  * UserDTO class represents one user from users table.
  */
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class UserDTO
 {
     @Id
-    @Column(name="login")
+    @Column(name = "login")
     private String login;
-    @Column(name="password")
+    @Column(name = "password")
     private String password;
-    @Column(name="e_mail")
+    @Column(name = "e_mail")
     private String eMail;
-    @Column(name="is_active")
+    @Column(name = "is_active")
     private Integer isActive;
-    @Column(name="user_role")
+    @Column(name = "user_role")
     private String userRole;
-    @Column(name="lecturer_id")
+    @Column(name = "lecturer_id")
     private Integer lecturerId;
-    @Column(name="student_id")
+    @Column(name = "student_id")
     private Integer studentId;
-    @Column(name="administrator_id")
+    @Column(name = "administrator_id")
     private Integer administratorId;
-
-    public UserDTO()
-    {
-	
-    }
-    
-    public UserDTO(String login, String password, String eMail, Integer isActive, String userRole, Integer lecturerId,
-	    Integer studentId, Integer administratorId)
-    {
-	this.login = login;
-	this.password = password;
-	this.eMail = eMail;
-	this.isActive = isActive;
-	this.userRole = userRole;
-	this.lecturerId = lecturerId;
-	this.studentId = studentId;
-	this.administratorId = administratorId;
-    }
-
-    public UserDTO(String login, String password, String eMail, Integer isActive, String userRole, Integer personId)
-    {
-	this.login = login;
-	this.password = password;
-	this.eMail = eMail;
-	this.isActive = isActive;
-	this.userRole = userRole;
-	this.lecturerId = this.studentId = this.administratorId = -1;
-	switch (userRole)
-	{
-	case "admin":
-	    this.administratorId = personId;
-	    break;
-	case "student":
-	    this.studentId = personId;
-	    break;
-	case "lecturer":
-	    this.lecturerId = personId;
-	    break;
-	}
-    }
 
     public String getLogin()
     {
