@@ -9,7 +9,7 @@
 <body>
 Witamy w systemie eDziekanat, zaloguj siê do swojego konta.
 	<form action="j_security_check" method=post>
-    	<p><strong>Login:: </strong>
+    	<p><strong>Login: </strong>
     	<input type="text" name="j_username" size="25">
     	<p><p><strong>Has³o: </strong>
     	<input type="password" size="15" name="j_password">

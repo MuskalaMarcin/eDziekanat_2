@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
-<title>eDziekanat - Wykładowca - strona główna</title>
+<title>eDziekanat - ${errorshort}</title>
 </head>
 <body>
-	Strona główna studenta.
-	<a href="logout">Wyloguj</a>
+${errorlong}
+
+	<p><br><br><font size="5"><a href="/eDziekanat/home">Powrót do strony głównej.</a></font></p>
 </body>
 </html>

@@ -8,5 +8,7 @@
 </head>
 <body>
 Odmowa dostêpu. Nie posiadasz wystarczaj±cych uprawnieñ.
+
+	<p><br><br><font size="5"><a href="/eDziekanat/home">Powrót do strony g³ównej.</a></font></p>
 </body>
 </html>

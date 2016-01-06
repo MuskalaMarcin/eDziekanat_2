@@ -8,13 +8,13 @@ public class UserDTO
     private String login;
     private String password;
     private String eMail;
-    private boolean isActive;
+    private Integer isActive;
     private String userRole;
     private Integer lecturerId;
     private Integer studentId;
     private Integer administratorId;
 
-    public UserDTO(String login, String password, String eMail, boolean isActive, String userRole, Integer lecturerId,
+    public UserDTO(String login, String password, String eMail, Integer isActive, String userRole, Integer lecturerId,
 	    Integer studentId, Integer administratorId)
     {
 	this.login = login;
@@ -27,7 +27,7 @@ public class UserDTO
 	this.administratorId = administratorId;
     }
 
-    public UserDTO(String login, String password, String eMail, boolean isActive, String userRole, Integer personId)
+    public UserDTO(String login, String password, String eMail, Integer isActive, String userRole, Integer personId)
     {
 	this.login = login;
 	this.password = password;
@@ -78,12 +78,12 @@ public class UserDTO
 	this.eMail = eMail;
     }
 
-    public boolean isActive()
+    public Integer isActive()
     {
 	return isActive;
     }
 
-    public void setActive(boolean isActive)
+    public void setActive(Integer isActive)
     {
 	this.isActive = isActive;
     }

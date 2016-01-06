@@ -8,5 +8,6 @@
 </head>
 <body>
 	Strona g³ówna wyk³adowcy.
+		<a href="logout">Wyloguj</a>
 </body>
 </html>

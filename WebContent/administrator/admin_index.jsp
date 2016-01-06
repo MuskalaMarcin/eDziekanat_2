@@ -8,5 +8,6 @@
 </head>
 <body>
 	Strona g³ówna administratora.
+		<a href="logout">Wyloguj</a>
 </body>
 </html>
