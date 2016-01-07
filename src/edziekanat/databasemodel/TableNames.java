@@ -5,7 +5,7 @@ package edziekanat.databasemodel;
  */
 public final class TableNames
 {
-    public static final String USER = "user";
+    public static final String USER = "app_user";
     public static final String ADMINISTRATOR = "administrator";
     public static final String APPLICATION = "application";
     public static final String CLASSROOM = "classroom";

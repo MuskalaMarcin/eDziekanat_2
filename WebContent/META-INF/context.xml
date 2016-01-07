@@ -16,10 +16,10 @@
 
   <Realm className="org.apache.catalina.realm.DataSourceRealm"
          dataSourceName="jdbc/edziekanat"
-         userTable="users" 
+         userTable="app_user" 
          userNameCol="login" 
          userCredCol="password"
-         userRoleTable="users" 
+         userRoleTable="app_user" 
          roleNameCol="user_role"
 		 localDataSource="true"/>
 		 

@@ -14,12 +14,12 @@ import javax.persistence.Persistence;
 public abstract class DAOParentClass<T>
 {
     protected EntityManager entityManager;
-    protected String daoClassName;
+    protected String dtoClassName;
 
     protected DAOParentClass()
     {
 	this.entityManager = createEntityManager();
-	this.daoClassName = this.getClass().getName().replace("DAO", "DTO");
+	this.dtoClassName = this.getClass().getName().replace("DAO", "DTO");
     }
 
     protected EntityManager createEntityManager()
@@ -44,16 +44,16 @@ public abstract class DAOParentClass<T>
 
     public long getNumberOfAllEntities()
     {
-	return (long) entityManager.createQuery("SELECT count(*) FROM " + daoClassName).getSingleResult();
+	return (long) entityManager.createQuery("SELECT count(*) FROM " + dtoClassName).getSingleResult();
     }
 
     public List<T> getMultipleEntities(String whereStmnt)
     {
-	return executeMultiResultQuery("SELECT u FROM " + daoClassName + " u WHERE u." + whereStmnt);
+	return executeMultiResultQuery("SELECT u FROM " + dtoClassName + " u WHERE u." + whereStmnt);
     }
 
     public List<T> getAllEntities()
     {
-	return executeMultiResultQuery("SELECT u FROM " + daoClassName + " u");
+	return executeMultiResultQuery("SELECT u FROM " + dtoClassName + " u");
     }
 }

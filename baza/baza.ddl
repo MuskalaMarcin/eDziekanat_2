@@ -237,7 +237,7 @@ ALTER TABLE university ADD CONSTRAINT university_PK PRIMARY KEY ( id ) ;
 ALTER TABLE university ADD CONSTRAINT university__UN UNIQUE ( name ) ;
 
 
-CREATE TABLE "USER"
+CREATE TABLE app_user
   (
     login            VARCHAR2 (128 CHAR) NOT NULL ,
     password         VARCHAR2 (128 CHAR) NOT NULL ,
@@ -337,13 +337,13 @@ DELETE CASCADE ;
 ALTER TABLE transcript ADD CONSTRAINT transcript_students_group_FK FOREIGN KEY ( students_group_id ) REFERENCES students_group ( id ) ON
 DELETE CASCADE ;
 
-ALTER TABLE "USER" ADD CONSTRAINT user_administrator_FK FOREIGN KEY ( administrator_id ) REFERENCES administrator ( id ) ON
+ALTER TABLE "app_user" ADD CONSTRAINT user_administrator_FK FOREIGN KEY ( administrator_id ) REFERENCES administrator ( id ) ON
 DELETE CASCADE ;
 
-ALTER TABLE "USER" ADD CONSTRAINT user_lecturer_FK FOREIGN KEY ( lecturer_id ) REFERENCES lecturer ( id ) ON
+ALTER TABLE "app_user" ADD CONSTRAINT user_lecturer_FK FOREIGN KEY ( lecturer_id ) REFERENCES lecturer ( id ) ON
 DELETE CASCADE ;
 
-ALTER TABLE "USER" ADD CONSTRAINT user_student_FK FOREIGN KEY ( student_id ) REFERENCES student ( id ) ON
+ALTER TABLE "app_user" ADD CONSTRAINT user_student_FK FOREIGN KEY ( student_id ) REFERENCES student ( id ) ON
 DELETE CASCADE ;
 
 

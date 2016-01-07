@@ -97,42 +97,42 @@ Insert into ADMINISTRATOR (ID,NAME,SURNAME,ADDRESS,ACADEMIC_DEGREE,POSITION,UNIV
 Insert into ADMINISTRATOR (ID,NAME,SURNAME,ADDRESS,ACADEMIC_DEGREE,POSITION,UNIVERSITY_ID) values (administrator_id_seq.nextval,'Jadwiga','Odpowiedzialna','Kraków', 'Magister','admin','1');
 Insert into ADMINISTRATOR (ID,NAME,SURNAME,ADDRESS,ACADEMIC_DEGREE,POSITION,UNIVERSITY_ID) values (administrator_id_seq.nextval,'Norbert','Bielecki','Kraków', 'Magister','admin','1');
 
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('admin','admin','Stefan@Administratorski.com','1','admin',null,null,'1');
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Jadwiga','Odpowiedzialna','Jadwiga@Odpowiedzialna.com','1','admin',null,null,'1');
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Norbert','Bielecki','Norbert@Bielecki.com','1','admin',null,null,'1');
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('admin','admin','Stefan@Administratorski.com','1','admin',null,null,'1');
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Jadwiga','Odpowiedzialna','Jadwiga@Odpowiedzialna.com','1','admin',null,null,'1');
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Norbert','Bielecki','Norbert@Bielecki.com','1','admin',null,null,'1');
 
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('student','student','Konrad@Studencki.com','1','student',null,'1',null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Adam','Ambitny','Adam@Ambitny.com','1','student',null,'1',null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Bartosz','Mi³y','Bartosz@Mi³y.com','1','student',null,'1',null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Cezary','Kowalski','Cezary@Kowalski.com','1','student',null,'1',null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Dominik','W³och','Dominik@W³och.com','1','student',null,'1',null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Ryszard','Pachulski','Ryszard@Pachulski.com','1','student',null,'1',null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Anna','Jêdrusik','Anna@Jêdrusik.com','1','student',null,'1',null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Bogdan','Wicha','Bogdan@Wicha.com','1','student',null,'1',null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Rafa³','Szota','Rafa³@Szota.com','1','student',null,'1',null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Euzebiusz','Gucwa','Euzebiusz@Gucwa.com','1','student',null,'1',null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Natalia','Abramczyk','Natalia@Abramczyk.com','1','student',null,'1',null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Piotr','Burak','Piotr@Burak.com','1','student',null,'1',null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Krzysztof','Gryz','Krzysztof@Gryz.com','1','student',null,'1',null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Mi³osz','Stodulski','Mi³osz@Stodulski.com','1','student',null,'1',null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Artur','Sobiech','Artur@Sobiech.com','1','student',null,'1',null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Pawe³','Tobolski','Pawe³@Tobolski.com','1','student',null,'1',null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Wojciech','£yczkowski','Wojciech@£yczkowski.com','1','student',null,'1',null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Kamila','Komosa','Kamila@Komosa.com','1','student',null,'1',null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Barbara','Szczêsna','Barbara@Szczêsna.com','1','student',null,'1',null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Janusz','P³aczek','Janusz@P³aczek.com','1','student',null,'1',null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('student','student','Konrad@Studencki.com','1','student',null,'1',null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Adam','Ambitny','Adam@Ambitny.com','1','student',null,'1',null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Bartosz','Mi³y','Bartosz@Mi³y.com','1','student',null,'1',null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Cezary','Kowalski','Cezary@Kowalski.com','1','student',null,'1',null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Dominik','W³och','Dominik@W³och.com','1','student',null,'1',null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Ryszard','Pachulski','Ryszard@Pachulski.com','1','student',null,'1',null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Anna','Jêdrusik','Anna@Jêdrusik.com','1','student',null,'1',null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Bogdan','Wicha','Bogdan@Wicha.com','1','student',null,'1',null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Rafa³','Szota','Rafa³@Szota.com','1','student',null,'1',null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Euzebiusz','Gucwa','Euzebiusz@Gucwa.com','1','student',null,'1',null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Natalia','Abramczyk','Natalia@Abramczyk.com','1','student',null,'1',null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Piotr','Burak','Piotr@Burak.com','1','student',null,'1',null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Krzysztof','Gryz','Krzysztof@Gryz.com','1','student',null,'1',null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Mi³osz','Stodulski','Mi³osz@Stodulski.com','1','student',null,'1',null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Artur','Sobiech','Artur@Sobiech.com','1','student',null,'1',null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Pawe³','Tobolski','Pawe³@Tobolski.com','1','student',null,'1',null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Wojciech','£yczkowski','Wojciech@£yczkowski.com','1','student',null,'1',null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Kamila','Komosa','Kamila@Komosa.com','1','student',null,'1',null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Barbara','Szczêsna','Barbara@Szczêsna.com','1','student',null,'1',null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Janusz','P³aczek','Janusz@P³aczek.com','1','student',null,'1',null);
 
 
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('wykladowca','wykladowca','Zbigniew@Wykladowczy.com','1','lecturer','1',null,null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Maja','Koz³owska','Maja@Koz³owska.com','1','lecturer','1',null,null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Filip','Kamiñski','Filip@Kamiñski.com','1','lecturer','1',null,null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Julia','Klimek','Julia@Klimek.com','1','lecturer','1',null,null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Kacper','Baran','Kacper@Baran.com','1','lecturer','1',null,null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Jan','Czy¿','Jan@Czy¿.com','1','lecturer','1',null,null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Ernest','Jakubowski','Ernest@Jakubowski.com','1','lecturer','1',null,null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Stefan','Olszewski','Stefan@Olszewski.com','1','lecturer','1',null,null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Ignacy','Jasiñski','Ignacy@Jasiñski.com','1','lecturer','1',null,null);
-Insert into "USER" (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Jakub','Stêpieñ','Jakub@Stêpieñ.com','1','lecturer','1',null,null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('wykladowca','wykladowca','Zbigniew@Wykladowczy.com','1','lecturer','1',null,null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Maja','Koz³owska','Maja@Koz³owska.com','1','lecturer','1',null,null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Filip','Kamiñski','Filip@Kamiñski.com','1','lecturer','1',null,null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Julia','Klimek','Julia@Klimek.com','1','lecturer','1',null,null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Kacper','Baran','Kacper@Baran.com','1','lecturer','1',null,null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Jan','Czy¿','Jan@Czy¿.com','1','lecturer','1',null,null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Ernest','Jakubowski','Ernest@Jakubowski.com','1','lecturer','1',null,null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Stefan','Olszewski','Stefan@Olszewski.com','1','lecturer','1',null,null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Ignacy','Jasiñski','Ignacy@Jasiñski.com','1','lecturer','1',null,null);
+Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('Jakub','Stêpieñ','Jakub@Stêpieñ.com','1','lecturer','1',null,null);
 
 
 Insert into CLASSROOM (ID,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval, '100', 'Aula wykladowa','1');
@@ -148,7 +148,7 @@ Insert into CLASSROOM (ID,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nex
 
 Insert into SUBJECT (ID,NAME,SEMESTER,ECTS,LECTURER_ID,STUDENTS_GROUP_ID) values (subject_id_seq.nextval, 'Analiza matematyczna', '1', '6', '1','1');
 
-Insert into TRANSCRIPT (ID,ISSUE_DATE,STUDENT_ID,STUDENTS_GROUP_ID) values (transcript_id_seq.nextval, '2013-09-25'), '1', '1'); 
+Insert into TRANSCRIPT (ID,ISSUE_DATE,STUDENT_ID,STUDENTS_GROUP_ID) values (transcript_id_seq.nextval, '2013-09-25', '1', '1'); 
 
 Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (enrollment_id_seq.nextval, '4','2014-11-10', '1', '1');
 
