@@ -1,31 +1,20 @@
 package edziekanat.databasemodel.dao;
 
-import java.util.List;
-
 import edziekanat.databasemodel.dto.UserDTO;
 
 /**
- * Data access object used to perform operations on users.
+ * Data access class used to perform operations on user entities.
  */
-public class UserDAO extends DAOParentClass
+public class UserDAO extends DAOParentClass<UserDTO>
 {
-    public UserDTO getUser(String login)
+    /**
+     * Method getting one object of user entity.
+     * 
+     * @param login String login value
+     * @return UserDTO object
+     */
+    public UserDTO getEntity(String login)
     {
 	return entityManager.find(UserDTO.class, login);
-    }
-
-    public List<UserDTO> getMultipleUsers(String whereStmnt)
-    {
-	return executeMultiResultQuery("SELECT u FROM UserDTO u WHERE u." + whereStmnt);
-    }
-
-    public List<UserDTO> getAllUsers()
-    {
-	return executeMultiResultQuery("SELECT u FROM UserDTO u");
-    }
-
-    public long getNumberOfAllUsers()
-    {
-	return getNumberOfEntities("users");
     }
 }

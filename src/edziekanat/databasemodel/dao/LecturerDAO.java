@@ -1,23 +1,20 @@
 package edziekanat.databasemodel.dao;
 
-import java.util.List;
-
 import edziekanat.databasemodel.dto.LecturerDTO;
 
-public class LecturerDAO extends DAOParentClass
+/**
+ * Data access class used to perform operations on lecturer entities.
+ */
+public class LecturerDAO extends DAOParentClass<LecturerDTO>
 {
-    public LecturerDTO getLecturer(Integer id)
+    /**
+     * Method getting one object of Lecturer entity.
+     * 
+     * @param id Integer id value
+     * @return LecturerDTO object
+     */
+    public LecturerDTO getEntity(Integer id)
     {
 	return entityManager.find(LecturerDTO.class, id);
-    }
-
-    public List<LecturerDTO> getMultipleLecturers(String whereStmnt)
-    {
-	return executeMultiResultQuery("SELECT l FROM LecturerDTO l WHERE l." + whereStmnt);
-    }
-
-    public List<LecturerDTO> getAllLecturers()
-    {
-	return executeMultiResultQuery("SELECT l FROM LecturerDTO l");
     }
 }

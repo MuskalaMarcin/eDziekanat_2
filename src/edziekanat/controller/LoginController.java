@@ -56,21 +56,21 @@ public class LoginController extends HttpServlet
 
     private LoginBean getLoginBean(HttpServletRequest request)
     {
-	UserDTO user = new UserDAO().getUser(request.getUserPrincipal().getName());
+	UserDTO user = new UserDAO().getEntity(request.getUserPrincipal().getName());
 	switch (user.getUserRole())
 	{
 	case "admin":
-	    AdministratorDTO admin = new AdministratorDAO().getAdministrator(user.getAdministratorId());
+	    AdministratorDTO admin = new AdministratorDAO().getEntity(user.getAdministratorId());
 	    return new LoginBean(user.getLogin(), user.geteMail(), user.isActive(), user.getUserRole(),
 		    user.getAdministratorId(), admin.getName(), admin.getSurname(), admin.getAddress(),
 		    admin.getAcademicDegree());
 	case "student":
-	    StudentDTO student = new StudentDAO().getStudent(user.getStudentId());
+	    StudentDTO student = new StudentDAO().getEntity(user.getStudentId());
 	    return new LoginBean(user.getLogin(), user.geteMail(), user.isActive(), user.getUserRole(),
 		    user.getStudentId(), student.getName(), student.getSurname(), student.getAddress(),
 		    student.getAcademicDegree());
 	case "lecturer":
-	    LecturerDTO lecturer = new LecturerDAO().getLecturer(user.getLecturerId());
+	    LecturerDTO lecturer = new LecturerDAO().getEntity(user.getLecturerId());
 	    return new LoginBean(user.getLogin(), user.geteMail(), user.isActive(), user.getUserRole(),
 		    user.getLecturerId(), lecturer.getName(), lecturer.getSurname(), lecturer.getAddress(),
 		    lecturer.getAcademicDegree());

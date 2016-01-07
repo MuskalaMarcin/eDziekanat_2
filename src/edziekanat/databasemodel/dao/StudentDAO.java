@@ -1,23 +1,20 @@
 package edziekanat.databasemodel.dao;
 
-import java.util.List;
-
 import edziekanat.databasemodel.dto.StudentDTO;
 
-public class StudentDAO extends DAOParentClass
+/**
+ * Data access class used to perform operations on student entities.
+ */
+public class StudentDAO extends DAOParentClass<StudentDTO>
 {
-    public StudentDTO getStudent(Integer id)
+    /**
+     * Method getting one object of student entity.
+     * 
+     * @param id Integer id value
+     * @return StudentDTO object
+     */
+    public StudentDTO getEntity(Integer id)
     {
 	return entityManager.find(StudentDTO.class, id);
-    }
-
-    public List<StudentDTO> getMultipleStudents(String whereStmnt)
-    {
-	return executeMultiResultQuery("SELECT s FROM StudentDTO s WHERE s." + whereStmnt);
-    }
-
-    public List<StudentDTO> getAllStudents()
-    {
-	return executeMultiResultQuery("SELECT s FROM StudentDTO s");
     }
 }

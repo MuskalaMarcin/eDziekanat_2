@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.catalina.connector.OutputBuffer;
-
 import edziekanat.databasemodel.dao.AdministratorDAO;
 import edziekanat.databasemodel.dao.UserDAO;
 import edziekanat.databasemodel.dto.AdministratorDTO;
@@ -39,7 +37,7 @@ public class DatabaseTest extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	System.out.println("ONE USER");
-	UserDTO user = new UserDAO().getUser(request.getUserPrincipal().getName());
+	UserDTO user = new UserDAO().getEntity(request.getUserPrincipal().getName());
 	System.out.println("\t" + user.getLogin());
 	System.out.println("\t" + user.getPassword());
 	System.out.println("\t" + user.geteMail());
@@ -49,7 +47,7 @@ public class DatabaseTest extends HttpServlet
 	System.out.println("\t" + user.getStudentId());
 
 	System.out.println("ALL USERS");
-	new UserDAO().getAllUsers().forEach(item -> {
+	new UserDAO().getAllEntities().forEach(item -> {
 	    System.out.println("\t" + item.getLogin());
 	    System.out.println("\t" + item.getPassword());
 	    System.out.println("\t" + item.geteMail());
@@ -60,7 +58,7 @@ public class DatabaseTest extends HttpServlet
 	});
 
 	System.out.println("ONE ADMIN");
-	AdministratorDTO admin = new AdministratorDAO().getAdministrator(1);
+	AdministratorDTO admin = new AdministratorDAO().getEntity(1);
 	System.out.println("\t" + admin.getName());
 	System.out.println("\t" + admin.getPosition());
 	System.out.println("\t" + admin.getAddress());
@@ -69,7 +67,7 @@ public class DatabaseTest extends HttpServlet
 	System.out.println("\t" + admin.getUniversityId());
 
 	System.out.println("ALL ADMINS");
-	new AdministratorDAO().getAllAdministrators().forEach(item -> {
+	new AdministratorDAO().getAllEntities().forEach(item -> {
 	    System.out.println("\t" + item.getName());
 	    System.out.println("\t" + item.getPosition());
 	    System.out.println("\t" + item.getAddress());

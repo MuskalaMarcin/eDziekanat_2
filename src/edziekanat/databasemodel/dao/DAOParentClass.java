@@ -5,38 +5,55 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
+/**
+ * Abstract class containing common methods and fields for DAO classes.
+ * 
+ * @param <T> referenced DTO class
+ */
 @SuppressWarnings("unchecked")
-public abstract class DAOParentClass
+public abstract class DAOParentClass<T>
 {
     protected EntityManager entityManager;
+    protected String daoClassName;
 
-    public DAOParentClass()
+    protected DAOParentClass()
     {
 	this.entityManager = createEntityManager();
+	this.daoClassName = this.getClass().getName().replace("DAO", "DTO");
     }
 
     protected EntityManager createEntityManager()
     {
 	return Persistence.createEntityManagerFactory("dbper").createEntityManager();
     }
-    
-    protected <T> T executeSingleResultQuery(String query)
+
+    protected T executeSingleResultQuery(String query)
     {
 	return (T) entityManager.createQuery(query).getSingleResult();
     }
 
-    protected <T> List<T> executeMultiResultQuery(String query)
+    protected List<T> executeMultiResultQuery(String query)
     {
 	return entityManager.createQuery(query).getResultList();
     }
-    
+
     protected void closeEntityManager()
     {
 	entityManager.close();
     }
 
-    protected long getNumberOfEntities(String entityName)
+    public long getNumberOfAllEntities()
     {
-	return (long) entityManager.createQuery("select count(*) from " + entityName).getSingleResult();
+	return (long) entityManager.createQuery("SELECT count(*) FROM " + daoClassName).getSingleResult();
+    }
+
+    public List<T> getMultipleEntities(String whereStmnt)
+    {
+	return executeMultiResultQuery("SELECT u FROM " + daoClassName + " u WHERE u." + whereStmnt);
+    }
+
+    public List<T> getAllEntities()
+    {
+	return executeMultiResultQuery("SELECT u FROM " + daoClassName + " u");
     }
 }

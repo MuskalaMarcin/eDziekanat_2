@@ -1,23 +1,20 @@
 package edziekanat.databasemodel.dao;
 
-import java.util.List;
-
 import edziekanat.databasemodel.dto.AdministratorDTO;
 
-public class AdministratorDAO extends DAOParentClass
+/**
+ * Data access class used to perform operations on administrator entities.
+ */
+public class AdministratorDAO extends DAOParentClass<AdministratorDTO>
 {
-    public AdministratorDTO getAdministrator(int id)
+    /**
+     * Method getting one object of administrator entity.
+     * 
+     * @param id Integer id value
+     * @return AdministratorDTO object
+     */
+    public AdministratorDTO getEntity(Integer id)
     {
 	return entityManager.find(AdministratorDTO.class, id);
-    }
-
-    public List<AdministratorDTO> getMultipleAdministrators(String whereStmnt)
-    {
-	return executeMultiResultQuery("SELECT a FROM AdministratorDTO a WHERE a." + whereStmnt);
-    }
-
-    public List<AdministratorDTO> getAllAdministrators()
-    {
-	return executeMultiResultQuery("SELECT a FROM AdministratorDTO a");
     }
 }
