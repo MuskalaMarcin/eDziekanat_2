@@ -135,7 +135,7 @@ CREATE TABLE payment
     id    NUMBER NOT NULL ,
     title VARCHAR2 (256) NOT NULL ,
     description CLOB NOT NULL ,
-    amount           NUMBER (2,6) NOT NULL ,
+    amount           NUMBER (6,2) NOT NULL ,
     issue_date       DATE NOT NULL ,
     payment_date     DATE ,
     student_id       NUMBER NOT NULL ,
@@ -147,7 +147,7 @@ ALTER TABLE payment ADD CONSTRAINT payment_PK PRIMARY KEY ( id ) ;
 CREATE TABLE scheduled_classes
   (
     id           NUMBER NOT NULL ,
-    "date"       DATE NOT NULL ,
+    "DATE"       DATE NOT NULL ,
     TIME         DATE NOT NULL ,
     duration     NUMBER NOT NULL ,
     classroom_id NUMBER NOT NULL ,
@@ -172,7 +172,7 @@ CREATE TABLE scholarship_type
   (
     type VARCHAR2 (256 CHAR) NOT NULL ,
     requirements CLOB NOT NULL ,
-    amount NUMBER (2,6) NOT NULL
+    amount NUMBER (6,2) NOT NULL
   ) ;
 ALTER TABLE scholarship_type ADD CONSTRAINT scholarship_type_PK PRIMARY KEY ( type ) ;
 
