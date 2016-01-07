@@ -10,8 +10,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import edziekanat.databasemodel.TableNames;
+
 @Entity
-@Table(name = "application")
+@Table(name = TableNames.APPLICATION)
 public class ApplicationDTO implements Serializable
 {
     private static final long serialVersionUID = 1L;
@@ -64,42 +66,42 @@ public class ApplicationDTO implements Serializable
 	this.content = content;
     }
 
-    public Date getDispatch_date()
+    public Date getDispatchDate()
     {
 	return dispatchDate;
     }
 
-    public void setDispatch_date(Date dispatch_date)
+    public void setDispatchDate(Date dispatch_date)
     {
 	this.dispatchDate = dispatch_date;
     }
 
-    public Date getReceive_date()
+    public Date getReceiveDate()
     {
 	return receiveDate;
     }
 
-    public void setReceive_date(Date receive_date)
+    public void setReceiveDate(Date receive_date)
     {
 	this.receiveDate = receive_date;
     }
 
-    public Integer getStudent_id()
+    public Integer getStudentId()
     {
 	return studentId;
     }
 
-    public void setStudent_id(Integer student_id)
+    public void setStudentId(Integer student_id)
     {
 	this.studentId = student_id;
     }
 
-    public Integer getAdministrator_id()
+    public Integer getAdministratorId()
     {
 	return administratorId;
     }
 
-    public void setAdministrator_id(Integer administrator_id)
+    public void setAdministratorId(Integer administrator_id)
     {
 	this.administratorId = administrator_id;
     }

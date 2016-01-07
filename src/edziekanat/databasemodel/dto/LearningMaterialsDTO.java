@@ -8,8 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import edziekanat.databasemodel.TableNames;
+
 @Entity
-@Table(name = "learning_materials")
+@Table(name = TableNames.LEARNING_MATERIALS)
 public class LearningMaterialsDTO implements Serializable
 {
     private static final long serialVersionUID = 1L;
@@ -66,12 +68,12 @@ public class LearningMaterialsDTO implements Serializable
 	this.file = file;
     }
 
-    public Integer getSubject_id()
+    public Integer getSubjectId()
     {
 	return subjectId;
     }
 
-    public void setSubject_id(Integer subject_id)
+    public void setSubjectId(Integer subject_id)
     {
 	this.subjectId = subject_id;
     }

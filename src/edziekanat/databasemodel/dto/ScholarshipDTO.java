@@ -10,8 +10,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import edziekanat.databasemodel.TableNames;
+
 @Entity
-@Table(name = "schollarship")
+@Table(name = TableNames.SCHOLARSHIP)
 public class ScholarshipDTO implements Serializable
 {
     private static final long serialVersionUID = 1L;
@@ -42,53 +44,53 @@ public class ScholarshipDTO implements Serializable
 	this.id = id;
     }
 
-    public Date getGrant_date()
+    public Date getGrantDate()
     {
 	return grantDate;
     }
 
-    public void setGrant_date(Date grant_date)
+    public void setGrantDate(Date grantDate)
     {
-	this.grantDate = grant_date;
+	this.grantDate = grantDate;
     }
 
-    public Date getEnd_date()
+    public Date getEndDate()
     {
 	return endDate;
     }
 
-    public void setEnd_date(Date end_date)
+    public void setEndDate(Date endDate)
     {
-	this.endDate = end_date;
+	this.endDate = endDate;
     }
 
-    public String getScholarship_type()
+    public String getScholarshipType()
     {
 	return scholarshipType;
     }
 
-    public void setScholarship_type(String scholarship_type)
+    public void setScholarshipType(String scholarshipType)
     {
-	this.scholarshipType = scholarship_type;
+	this.scholarshipType = scholarshipType;
     }
 
-    public Integer getStudent_id()
+    public Integer getStudentId()
     {
 	return studentId;
     }
 
-    public void setStudent_id(Integer student_id)
+    public void setStudentId(Integer studentId)
     {
-	this.studentId = student_id;
+	this.studentId = studentId;
     }
 
-    public Integer getAdministrator_id()
+    public Integer getAdministratorId()
     {
 	return administratorId;
     }
 
-    public void setAdministrator_id(Integer administrator_id)
+    public void setAdministratorId(Integer administratorId)
     {
-	this.administratorId = administrator_id;
+	this.administratorId = administratorId;
     }
 }

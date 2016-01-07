@@ -10,12 +10,14 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import edziekanat.databasemodel.TableNames;
+
 @Entity
-@Table(name = "message")
-public class MessageDTO  implements Serializable
+@Table(name = TableNames.MESSAGE)
+public class MessageDTO implements Serializable
 {
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @Column(name = "id")
     private Integer id;
@@ -64,43 +66,43 @@ public class MessageDTO  implements Serializable
 	this.content = content;
     }
 
-    public Date getDispatch_date()
+    public Date getDispatchDate()
     {
 	return dispatchDate;
     }
 
-    public void setDispatch_date(Date dispatch_date)
+    public void setDispatchDate(Date dispatchDate)
     {
-	this.dispatchDate = dispatch_date;
+	this.dispatchDate = dispatchDate;
     }
 
-    public Date getReceive_date()
+    public Date getReceiveDate()
     {
 	return receiveDate;
     }
 
-    public void setReceive_date(Date receive_date)
+    public void setReceiveDate(Date receiveDate)
     {
-	this.receiveDate = receive_date;
+	this.receiveDate = receiveDate;
     }
 
-    public String getSender_id()
+    public String getSenderId()
     {
 	return senderId;
     }
 
-    public void setSender_id(String sender_id)
+    public void setSenderId(String senderId)
     {
-	this.senderId = sender_id;
+	this.senderId = senderId;
     }
 
-    public String getReceiver_id()
+    public String getReceiverId()
     {
 	return receiverId;
     }
 
-    public void setReceiver_id(String receiver_id)
+    public void setReceiverId(String receiverId)
     {
-	this.receiverId = receiver_id;
+	this.receiverId = receiverId;
     }
 }

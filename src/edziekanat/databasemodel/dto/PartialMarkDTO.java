@@ -10,12 +10,14 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import edziekanat.databasemodel.TableNames;
+
 @Entity
-@Table(name = "partial_mark")
+@Table(name = TableNames.PARTIAL_MARK)
 public class PartialMarkDTO implements Serializable
 {
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @Column(name = "id")
     private Integer id;
@@ -49,33 +51,33 @@ public class PartialMarkDTO implements Serializable
 	this.mark = mark;
     }
 
-    public Date getIssue_date()
+    public Date getIssueDate()
     {
 	return issueDate;
     }
 
-    public void setIssue_date(Date issue_date)
+    public void setIssueDate(Date issueDate)
     {
-	this.issueDate = issue_date;
+	this.issueDate = issueDate;
     }
 
-    public Integer getSubject_id()
+    public Integer getSubjectId()
     {
 	return subjectId;
     }
 
-    public void setSubject_id(Integer subject_id)
+    public void setSubjectId(Integer subjectId)
     {
-	this.subjectId = subject_id;
+	this.subjectId = subjectId;
     }
 
-    public Integer getTranscript_id()
+    public Integer getTranscriptId()
     {
 	return transcriptId;
     }
 
-    public void setTranscript_id(Integer transcript_id)
+    public void setTranscriptId(Integer transcriptId)
     {
-	this.transcriptId = transcript_id;
+	this.transcriptId = transcriptId;
     }
 }

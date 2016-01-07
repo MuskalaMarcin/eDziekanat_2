@@ -7,12 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import edziekanat.databasemodel.TableNames;
+
 @Entity
-@Table(name = "subject")
+@Table(name = TableNames.SUBJECT)
 public class SubjectDTO implements Serializable
 {
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @Column(name = "id")
     private Integer id;
@@ -24,6 +26,8 @@ public class SubjectDTO implements Serializable
     private Integer ECTS;
     @Column(name = "lecturer_id")
     private Integer lecturerId;
+    @Column(name = "students_group_id")
+    private Integer studentsGroupId;
 
     public Integer getId()
     {
@@ -65,13 +69,25 @@ public class SubjectDTO implements Serializable
 	ECTS = eCTS;
     }
 
-    public Integer getLecturer_id()
+    public Integer getLecturerId()
     {
-	return lecturerId;
+        return lecturerId;
     }
 
-    public void setLecturer_id(Integer lecturer_id)
+    public void setLecturerId(Integer lecturerId)
     {
-	this.lecturerId = lecturer_id;
+        this.lecturerId = lecturerId;
     }
+
+    public Integer getStudentsGroupId()
+    {
+        return studentsGroupId;
+    }
+
+    public void setStudentsGroupId(Integer studentsGroupId)
+    {
+        this.studentsGroupId = studentsGroupId;
+    }
+    
+    
 }

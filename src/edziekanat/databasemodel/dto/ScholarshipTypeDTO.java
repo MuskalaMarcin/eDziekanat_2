@@ -7,12 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import edziekanat.databasemodel.TableNames;
+
 @Entity
-@Table(name = "schollarship_type")
-public class Scholarship_TypeDTO implements Serializable
+@Table(name = TableNames.SCHOLARSHIP_TYPE)
+public class ScholarshipTypeDTO implements Serializable
 {
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @Column(name = "id")
     private String type;

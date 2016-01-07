@@ -5,7 +5,30 @@
 	<persistence-unit name="dbper" transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<non-jta-data-source>java:/comp/env/jdbc/edziekanat</non-jta-data-source>
-		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+		
+		<class>edziekanat.databasemodel.dto.AdministratorDTO</class>
+		<class>edziekanat.databasemodel.dto.ApplicationDTO</class>
+		<class>edziekanat.databasemodel.dto.ClassroomDTO</class>
+		<class>edziekanat.databasemodel.dto.CourseDTO</class>
+		<class>edziekanat.databasemodel.dto.EnrollmentDTO</class>
+		<class>edziekanat.databasemodel.dto.FacultyDTO</class>
+		<class>edziekanat.databasemodel.dto.FacultyLecturerDTO</class>
+		<class>edziekanat.databasemodel.dto.LearningMaterialsDTO</class>
+		<class>edziekanat.databasemodel.dto.LecturerDTO</class>
+		<class>edziekanat.databasemodel.dto.MessageDTO</class>
+		<class>edziekanat.databasemodel.dto.PartialMarkDTO</class>
+		<class>edziekanat.databasemodel.dto.PaymentDTO</class>
+		<class>edziekanat.databasemodel.dto.ScheduledClassesDTO</class>
+		<class>edziekanat.databasemodel.dto.ScholarshipDTO</class>
+		<class>edziekanat.databasemodel.dto.ScholarshipTypeDTO</class>
+		<class>edziekanat.databasemodel.dto.StudentDTO</class>
+		<class>edziekanat.databasemodel.dto.StudentsGroupDTO</class>
+		<class>edziekanat.databasemodel.dto.StudentsGroupStudentDTO</class>
+		<class>edziekanat.databasemodel.dto.SubjectDTO</class>
+		<class>edziekanat.databasemodel.dto.TranscriptDTO</class>
+		<class>edziekanat.databasemodel.dto.UniversityDTO</class>
+		<class>edziekanat.databasemodel.dto.UserDTO</class>
+		
 		<properties>
 
 		</properties>

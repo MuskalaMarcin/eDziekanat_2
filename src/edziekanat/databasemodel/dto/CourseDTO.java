@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import edziekanat.databasemodel.TableNames;
+
 @Entity
-@Table(name = "course")
+@Table(name = TableNames.COURSE)
 public class CourseDTO implements Serializable
 {
     private static final long serialVersionUID = 1L;
@@ -53,12 +55,12 @@ public class CourseDTO implements Serializable
 	this.stationary = stationary;
     }
 
-    public Integer getFaculty_id()
+    public Integer getFacultyId()
     {
 	return facultyId;
     }
 
-    public void setFaculty_id(Integer faculty_id)
+    public void setFacultyId(Integer faculty_id)
     {
 	this.facultyId = faculty_id;
     }

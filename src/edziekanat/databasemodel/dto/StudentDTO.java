@@ -7,12 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import edziekanat.databasemodel.TableNames;
+
 @Entity
-@Table(name = "student")
+@Table(name = TableNames.STUDENT)
 public class StudentDTO implements Serializable
 {
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @Column(name = "id")
     private Integer id;
@@ -55,12 +57,12 @@ public class StudentDTO implements Serializable
 	this.surname = surname;
     }
 
-    public String getAcademic_degree()
+    public String getAcademicDegree()
     {
 	return academicDegree;
     }
 
-    public void setAcademic_degree(String academic_degree)
+    public void setAcademicDegree(String academic_degree)
     {
 	this.academicDegree = academic_degree;
     }

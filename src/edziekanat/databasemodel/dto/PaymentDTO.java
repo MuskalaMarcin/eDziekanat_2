@@ -10,8 +10,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import edziekanat.databasemodel.TableNames;
+
 @Entity
-@Table(name = "payment")
+@Table(name = TableNames.PAYMENT)
 public class PaymentDTO implements Serializable
 {
     private static final long serialVersionUID = 1L;
@@ -76,43 +78,43 @@ public class PaymentDTO implements Serializable
 	this.amount = amount;
     }
 
-    public Date getIssue_date()
+    public Date getIssueDate()
     {
 	return issueDate;
     }
 
-    public void setIssue_date(Date issue_date)
+    public void setIssueDate(Date issueDate)
     {
-	this.issueDate = issue_date;
+	this.issueDate = issueDate;
     }
 
-    public Date getPayment_date()
+    public Date getPaymentDate()
     {
 	return paymentDate;
     }
 
-    public void setPayment_date(Date payment_date)
+    public void setPaymentDate(Date paymentDate)
     {
-	this.paymentDate = payment_date;
+	this.paymentDate = paymentDate;
     }
 
-    public Integer getStudent_id()
+    public Integer getStudentId()
     {
 	return studentId;
     }
 
-    public void setStudent_id(Integer student_id)
+    public void setStudentId(Integer studentId)
     {
-	this.studentId = student_id;
+	this.studentId = studentId;
     }
 
-    public Integer getAdministrator_id()
+    public Integer getAdministratorId()
     {
 	return administratorId;
     }
 
-    public void setAdministrator_id(Integer administrator_id)
+    public void setAdministratorId(Integer administratorId)
     {
-	this.administratorId = administrator_id;
+	this.administratorId = administratorId;
     }
 }
