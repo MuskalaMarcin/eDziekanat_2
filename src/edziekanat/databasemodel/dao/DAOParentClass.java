@@ -19,7 +19,7 @@ public abstract class DAOParentClass<T>
     protected DAOParentClass()
     {
 	this.entityManager = createEntityManager();
-	this.dtoClassName = this.getClass().getName().replace("DAO", "DTO");
+	this.dtoClassName = this.getClass().getName().substring(29).replace("DAO", "DTO");
     }
 
     protected EntityManager createEntityManager()
@@ -49,11 +49,11 @@ public abstract class DAOParentClass<T>
 
     public List<T> getMultipleEntities(String whereStmnt)
     {
-	return executeMultiResultQuery("SELECT u FROM " + dtoClassName + " u WHERE u." + whereStmnt);
+	return executeMultiResultQuery("SELECT e FROM " + dtoClassName + " e WHERE e." + whereStmnt);
     }
 
     public List<T> getAllEntities()
     {
-	return executeMultiResultQuery("SELECT u FROM " + dtoClassName + " u");
+	return executeMultiResultQuery("SELECT e FROM " + dtoClassName + " e");
     }
 }
