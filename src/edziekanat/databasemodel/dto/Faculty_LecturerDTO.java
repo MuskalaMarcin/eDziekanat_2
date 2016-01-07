@@ -1,17 +1,38 @@
 package edziekanat.databasemodel.dto;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="faculty_lecturer")
-public class Faculty_LecturerDTO {
-	private Integer faculty_id;
-	private Integer lecturer_id;
-	
-	public Faculty_LecturerDTO(Integer faculty_id, Integer lecturer_id) {
-		this.faculty_id = faculty_id;
-		this.lecturer_id = lecturer_id;
-	}
+@Table(name = "faculty_lecturer")
+public class Faculty_LecturerDTO
+{
+    @Id
+    @Column(name = "faculty_id")
+    private Integer facultyId;
+    @Id
+    @Column(name = "lecturer_id")
+    private Integer lecturerId;
 
+    public Integer getFaculty_id()
+    {
+	return facultyId;
+    }
+
+    public void setFaculty_id(Integer faculty_id)
+    {
+	this.facultyId = faculty_id;
+    }
+
+    public Integer getLecturer_id()
+    {
+	return lecturerId;
+    }
+
+    public void setLecturer_id(Integer lecturer_id)
+    {
+	this.lecturerId = lecturer_id;
+    }
 }

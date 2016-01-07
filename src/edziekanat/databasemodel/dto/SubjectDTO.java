@@ -6,26 +6,68 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="subject")
-public class SubjectDTO {
-	@Id
-    @Column(name="id")
-	private Integer id;
-	@Column(name="name")
-	private String name;
-	@Column(name="semester")
-	private Integer semester;
-	@Column(name="ects")
-	private Integer ECTS;
-	@Column(name="lecturer_id")
-	private Integer lecturer_id;
-	
-	public SubjectDTO(Integer id, String name, Integer semester, Integer eCTS, Integer lecturer_id) {
-		this.id = id;
-		this.name = name;
-		this.semester = semester;
-		ECTS = eCTS;
-		this.lecturer_id = lecturer_id;
-	}
+@Table(name = "subject")
+public class SubjectDTO
+{
+    @Id
+    @Column(name = "id")
+    private Integer id;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "semester")
+    private Integer semester;
+    @Column(name = "ects")
+    private Integer ECTS;
+    @Column(name = "lecturer_id")
+    private Integer lecturer_id;
 
+    public Integer getId()
+    {
+	return id;
+    }
+
+    public void setId(Integer id)
+    {
+	this.id = id;
+    }
+
+    public String getName()
+    {
+	return name;
+    }
+
+    public void setName(String name)
+    {
+	this.name = name;
+    }
+
+    public Integer getSemester()
+    {
+	return semester;
+    }
+
+    public void setSemester(Integer semester)
+    {
+	this.semester = semester;
+    }
+
+    public Integer getECTS()
+    {
+	return ECTS;
+    }
+
+    public void setECTS(Integer eCTS)
+    {
+	ECTS = eCTS;
+    }
+
+    public Integer getLecturer_id()
+    {
+	return lecturer_id;
+    }
+
+    public void setLecturer_id(Integer lecturer_id)
+    {
+	this.lecturer_id = lecturer_id;
+    }
 }

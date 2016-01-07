@@ -6,20 +6,44 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="schollarship_type")
-public class Scholarship_TypeDTO {
-	@Id
-    @Column(name="id")
-	private String type;
-	@Column(name="requirements")
-	private String requirements;
-	@Column(name="amount")
-	private Float amount;
-	
-	public Scholarship_TypeDTO(String type, String requirements, Float amount) {
-		this.type = type;
-		this.requirements = requirements;
-		this.amount = amount;
-	}
+@Table(name = "schollarship_type")
+public class Scholarship_TypeDTO
+{
+    @Id
+    @Column(name = "id")
+    private String type;
+    @Column(name = "requirements")
+    private String requirements;
+    @Column(name = "amount")
+    private Float amount;
 
+    public String getType()
+    {
+	return type;
+    }
+
+    public void setType(String type)
+    {
+	this.type = type;
+    }
+
+    public String getRequirements()
+    {
+	return requirements;
+    }
+
+    public void setRequirements(String requirements)
+    {
+	this.requirements = requirements;
+    }
+
+    public Float getAmount()
+    {
+	return amount;
+    }
+
+    public void setAmount(Float amount)
+    {
+	this.amount = amount;
+    }
 }
