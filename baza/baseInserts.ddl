@@ -145,7 +145,6 @@ Insert into CLASSROOM (ID,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nex
 Insert into CLASSROOM (ID,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval, '30', 'Sala dydaktyczna','2');
 Insert into CLASSROOM (ID,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval, '15', 'Laboratorium komputerowe','3');
 
-
 Insert into SUBJECT (ID,NAME,SEMESTER,ECTS,LECTURER_ID,STUDENTS_GROUP_ID) values (subject_id_seq.nextval, 'Analiza matematyczna', '1', '6', '1','1');
 
 Insert into TRANSCRIPT (ID,ISSUE_DATE,STUDENT_ID,STUDENTS_GROUP_ID) values (transcript_id_seq.nextval, '2013-09-25', '1', '1'); 
@@ -160,9 +159,11 @@ Insert into SCHOLARSHIP (ID, GRANT_DATE, END_DATE, SCHOLARSHIP_TYPE, STUDENT_ID,
 
 Insert into PAYMENT (ID, TITLE, DESCRIPTION, AMOUNT, ISSUE_DATE, PAYMENT_DATE, STUDENT_ID, ADMINISTRATOR_ID) values (payment_id_seq.nextval, 'Legitymacja studencka', 'P³atnoœæ za legitymacjê studenck¹', '50', '2013-08-25', '2013-09-10', '1', '1');
 
-Insert into MESSAGE (ID, TITLE, CONTENT, DISPATCH_DATE, RECEIVE_DATE, SENDER_ID, RECEIVER_ID) values (message_id_seq.nextval, 'Termin poprawy', 'Szanowny Panie Profesorze...', '2015-12-09', '2015-12-09', );
+Insert into MESSAGE (ID, TITLE, CONTENT, DISPATCH_DATE, RECEIVE_DATE, SENDER_ID, RECEIVER_ID) values (message_id_seq.nextval, 'Termin poprawy', 'Szanowny Panie Profesorze...', '2015-12-09', '2015-12-09', 'student','wykladowca');
 
 Insert into APPLICATION (ID, TITLE, CONTENT, DISPATCH_DATE, RECEIVE_DATE, STUDENT_ID, ADMINISTRATOR_ID) values (application_id_seq.nextval, 'Wniosek o urlop dziekañski', 'Szanowna...', '2015-09-09', '2015-09-09', '1', '1');
+
+
 
 -------------------
 TO FIX:
