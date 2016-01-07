@@ -1,5 +1,7 @@
 package edziekanat.databasemodel.dto;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,8 +9,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "classroom")
-public class ClassroomDTO
+public class ClassroomDTO implements Serializable
 {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(name = "id")
     private Integer id;
@@ -17,7 +21,7 @@ public class ClassroomDTO
     @Column(name = "type")
     private String type;
     @Column(name = "faculty_id")
-    private Integer faculty_id;
+    private Integer facultyId;
 
     public Integer getId()
     {
@@ -51,11 +55,11 @@ public class ClassroomDTO
 
     public Integer getFaculty_id()
     {
-	return faculty_id;
+	return facultyId;
     }
 
     public void setFaculty_id(Integer faculty_id)
     {
-	this.faculty_id = faculty_id;
+	this.facultyId = faculty_id;
     }
 }

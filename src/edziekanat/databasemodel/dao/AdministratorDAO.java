@@ -11,8 +11,13 @@ public class AdministratorDAO extends DAOParentClass
 	return entityManager.find(AdministratorDTO.class, id);
     }
 
-    public List<AdministratorDTO> getMultipleUsers(String whereStmnt)
+    public List<AdministratorDTO> getMultipleAdministrators(String whereStmnt)
     {
 	return executeMultiResultQuery("select * from administrator where " + whereStmnt);
+    }
+
+    public List<AdministratorDTO> getAllAdministrators()
+    {
+	return executeMultiResultQuery("select * from administrator");
     }
 }

@@ -1,5 +1,6 @@
 package edziekanat.databasemodel.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,8 +12,10 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "message")
-public class MessageDTO
+public class MessageDTO  implements Serializable
 {
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @Column(name = "id")
     private Integer id;
@@ -22,14 +25,14 @@ public class MessageDTO
     private String content;
     @Temporal(TemporalType.DATE)
     @Column(name = "dispatch_date")
-    private Date dispatch_date;
+    private Date dispatchDate;
     @Temporal(TemporalType.DATE)
     @Column(name = "receive_date")
-    private Date receive_date;
+    private Date receiveDate;
     @Column(name = "sender_id")
-    private String sender_id;
+    private String senderId;
     @Column(name = "receiver_id")
-    private String receiver_id;
+    private String receiverId;
 
     public Integer getId()
     {
@@ -63,41 +66,41 @@ public class MessageDTO
 
     public Date getDispatch_date()
     {
-	return dispatch_date;
+	return dispatchDate;
     }
 
     public void setDispatch_date(Date dispatch_date)
     {
-	this.dispatch_date = dispatch_date;
+	this.dispatchDate = dispatch_date;
     }
 
     public Date getReceive_date()
     {
-	return receive_date;
+	return receiveDate;
     }
 
     public void setReceive_date(Date receive_date)
     {
-	this.receive_date = receive_date;
+	this.receiveDate = receive_date;
     }
 
     public String getSender_id()
     {
-	return sender_id;
+	return senderId;
     }
 
     public void setSender_id(String sender_id)
     {
-	this.sender_id = sender_id;
+	this.senderId = sender_id;
     }
 
     public String getReceiver_id()
     {
-	return receiver_id;
+	return receiverId;
     }
 
     public void setReceiver_id(String receiver_id)
     {
-	this.receiver_id = receiver_id;
+	this.receiverId = receiver_id;
     }
 }

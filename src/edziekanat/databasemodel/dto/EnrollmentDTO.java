@@ -1,5 +1,6 @@
 package edziekanat.databasemodel.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,8 +12,10 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "enrollment")
-public class EnrollmentDTO
+public class EnrollmentDTO implements Serializable
 {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(name = "id")
     private Integer id;
@@ -20,11 +23,11 @@ public class EnrollmentDTO
     private Float mark;
     @Temporal(TemporalType.DATE)
     @Column(name = "issue_date")
-    private Date issue_date;
+    private Date issueDate;
     @Column(name = "subject_id")
-    private Integer subject_id;
+    private Integer subjectId;
     @Column(name = "transcript_id")
-    private Integer transcript_id;
+    private Integer transcriptId;
 
     public Integer getId()
     {
@@ -48,31 +51,31 @@ public class EnrollmentDTO
 
     public Date getIssue_date()
     {
-	return issue_date;
+	return issueDate;
     }
 
     public void setIssue_date(Date issue_date)
     {
-	this.issue_date = issue_date;
+	this.issueDate = issue_date;
     }
 
     public Integer getSubject_id()
     {
-	return subject_id;
+	return subjectId;
     }
 
     public void setSubject_id(Integer subject_id)
     {
-	this.subject_id = subject_id;
+	this.subjectId = subject_id;
     }
 
     public Integer getTranscript_id()
     {
-	return transcript_id;
+	return transcriptId;
     }
 
     public void setTranscript_id(Integer transcript_id)
     {
-	this.transcript_id = transcript_id;
+	this.transcriptId = transcript_id;
     }
 }

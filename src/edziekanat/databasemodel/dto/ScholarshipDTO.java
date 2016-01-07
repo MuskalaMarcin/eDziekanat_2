@@ -1,5 +1,6 @@
 package edziekanat.databasemodel.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,23 +12,25 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "schollarship")
-public class ScholarshipDTO
+public class ScholarshipDTO implements Serializable
 {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(name = "id")
     private Integer id;
     @Temporal(TemporalType.DATE)
     @Column(name = "grant_date")
-    private Date grant_date;
+    private Date grantDate;
     @Temporal(TemporalType.DATE)
     @Column(name = "end_date")
-    private Date end_date;
+    private Date endDate;
     @Column(name = "schollarship_type")
-    private String scholarship_type;
+    private String scholarshipType;
     @Column(name = "student_id")
-    private Integer student_id;
+    private Integer studentId;
     @Column(name = "administrator_id")
-    private Integer administrator_id;
+    private Integer administratorId;
 
     public Integer getId()
     {
@@ -41,51 +44,51 @@ public class ScholarshipDTO
 
     public Date getGrant_date()
     {
-	return grant_date;
+	return grantDate;
     }
 
     public void setGrant_date(Date grant_date)
     {
-	this.grant_date = grant_date;
+	this.grantDate = grant_date;
     }
 
     public Date getEnd_date()
     {
-	return end_date;
+	return endDate;
     }
 
     public void setEnd_date(Date end_date)
     {
-	this.end_date = end_date;
+	this.endDate = end_date;
     }
 
     public String getScholarship_type()
     {
-	return scholarship_type;
+	return scholarshipType;
     }
 
     public void setScholarship_type(String scholarship_type)
     {
-	this.scholarship_type = scholarship_type;
+	this.scholarshipType = scholarship_type;
     }
 
     public Integer getStudent_id()
     {
-	return student_id;
+	return studentId;
     }
 
     public void setStudent_id(Integer student_id)
     {
-	this.student_id = student_id;
+	this.studentId = student_id;
     }
 
     public Integer getAdministrator_id()
     {
-	return administrator_id;
+	return administratorId;
     }
 
     public void setAdministrator_id(Integer administrator_id)
     {
-	this.administrator_id = administrator_id;
+	this.administratorId = administrator_id;
     }
 }
