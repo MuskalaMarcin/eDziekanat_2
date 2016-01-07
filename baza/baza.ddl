@@ -12,7 +12,7 @@ CREATE TABLE administrator
     name            VARCHAR2 (256 CHAR) NOT NULL ,
     surname         VARCHAR2 (256 CHAR) NOT NULL ,
     address         VARCHAR2 (512 CHAR) NOT NULL ,
-    academic_degree VARCHAR2 (256 CHAR) ,
+    academic_degree VARCHAR2 (256 CHAR) NOT NULL,
     position        VARCHAR2 (256 CHAR) NOT NULL ,
     university_id   NUMBER NOT NULL
   ) ;
@@ -100,7 +100,7 @@ CREATE TABLE lecturer
     name            VARCHAR2 (256 CHAR) NOT NULL ,
     surname         VARCHAR2 (256 CHAR) NOT NULL ,
     address         VARCHAR2 (512 CHAR) NOT NULL ,
-    academic_degree VARCHAR2 (256 CHAR) ,
+    academic_degree VARCHAR2 (256 CHAR) NOT NULL,
     position        VARCHAR2 (256 CHAR) NOT NULL
   ) ;
 ALTER TABLE lecturer ADD CONSTRAINT lecturer_PK PRIMARY KEY ( id ) ;
