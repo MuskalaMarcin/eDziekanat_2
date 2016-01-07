@@ -22,23 +22,23 @@ public class FacultyLecturerDTO implements Serializable
     @Column(name = "lecturer_id")
     private Integer lecturerId;
 
-    public Integer getFaculty_id()
+    public Integer getFacultyId()
     {
 	return facultyId;
     }
 
-    public void setFaculty_id(Integer faculty_id)
+    public void setFacultyId(Integer facultyId)
     {
-	this.facultyId = faculty_id;
+	this.facultyId = facultyId;
     }
 
-    public Integer getLecturer_id()
+    public Integer getLecturerId()
     {
 	return lecturerId;
     }
 
-    public void setLecturer_id(Integer lecturer_id)
+    public void setLecturerId(Integer lecturerId)
     {
-	this.lecturerId = lecturer_id;
+	this.lecturerId = lecturerId;
     }
 }

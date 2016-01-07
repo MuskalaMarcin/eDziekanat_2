@@ -26,6 +26,8 @@ public class LecturerDTO implements Serializable
     private String address;
     @Column(name = "position")
     private String position;
+    @Column(name = "academic_degree")
+    private String academicDegree;
 
     public Integer getId()
     {
@@ -75,5 +77,15 @@ public class LecturerDTO implements Serializable
     public void setPosition(String position)
     {
 	this.position = position;
+    }
+
+    public String getAcademicDegree()
+    {
+	return academicDegree;
+    }
+
+    public void setAcademicDegree(String academicDegree)
+    {
+	this.academicDegree = academicDegree;
     }
 }

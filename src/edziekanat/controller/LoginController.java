@@ -1,13 +1,22 @@
 package edziekanat.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edziekanat.bean.LoginBean;
+import edziekanat.databasemodel.dao.AdministratorDAO;
+import edziekanat.databasemodel.dao.LecturerDAO;
+import edziekanat.databasemodel.dao.StudentDAO;
 import edziekanat.databasemodel.dao.UserDAO;
+import edziekanat.databasemodel.dto.AdministratorDTO;
+import edziekanat.databasemodel.dto.LecturerDTO;
+import edziekanat.databasemodel.dto.StudentDTO;
+import edziekanat.databasemodel.dto.UserDTO;
 
 /**
  * Servlet implementation class LoginController
@@ -36,7 +45,7 @@ public class LoginController extends HttpServlet
 	try
 	{
 	    request.login((String) request.getParameter("username"), (String) request.getParameter("password"));
-	    request.getSession().setAttribute("loginBean", new UserDAO().getUser(request.getUserPrincipal().getName()));
+	    request.getSession().setAttribute("loginBean", getLoginBean(request));
 	}
 	catch (ServletException e)
 	{
@@ -45,4 +54,28 @@ public class LoginController extends HttpServlet
 	response.sendRedirect((String) request.getSession().getAttribute("backURL"));
     }
 
+    private LoginBean getLoginBean(HttpServletRequest request)
+    {
+	UserDTO user = new UserDAO().getUser(request.getUserPrincipal().getName());
+	switch (user.getUserRole())
+	{
+	case "admin":
+	    AdministratorDTO admin = new AdministratorDAO().getAdministrator(user.getAdministratorId());
+	    return new LoginBean(user.getLogin(), user.geteMail(), user.isActive(), user.getUserRole(),
+		    user.getAdministratorId(), admin.getName(), admin.getSurname(), admin.getAddress(),
+		    admin.getAcademicDegree());
+	case "student":
+	    StudentDTO student = new StudentDAO().getStudent(user.getStudentId());
+	    return new LoginBean(user.getLogin(), user.geteMail(), user.isActive(), user.getUserRole(),
+		    user.getStudentId(), student.getName(), student.getSurname(), student.getAddress(),
+		    student.getAcademicDegree());
+	case "lecturer":
+	    LecturerDTO lecturer = new LecturerDAO().getLecturer(user.getLecturerId());
+	    return new LoginBean(user.getLogin(), user.geteMail(), user.isActive(), user.getUserRole(),
+		    user.getLecturerId(), lecturer.getName(), lecturer.getSurname(), lecturer.getAddress(),
+		    lecturer.getAcademicDegree());
+	default:
+	    return null;
+	}
+    }
 }

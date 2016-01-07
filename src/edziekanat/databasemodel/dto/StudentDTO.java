@@ -57,12 +57,12 @@ public class StudentDTO implements Serializable
 	this.surname = surname;
     }
 
-    public String getAcademic_degree()
+    public String getAcademicDegree()
     {
 	return academicDegree;
     }
 
-    public void setAcademic_degree(String academic_degree)
+    public void setAcademicDegree(String academic_degree)
     {
 	this.academicDegree = academic_degree;
     }

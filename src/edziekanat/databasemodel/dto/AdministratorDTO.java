@@ -14,7 +14,7 @@ import edziekanat.databasemodel.TableNames;
 public class AdministratorDTO implements Serializable
 {
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @Column(name = "id")
     private Integer id;
@@ -26,6 +26,8 @@ public class AdministratorDTO implements Serializable
     private String address;
     @Column(name = "position")
     private String position;
+    @Column(name = "academic_degree")
+    private String academicDegree;
     @Column(name = "university_id")
     private Integer universityId;
 
@@ -79,12 +81,22 @@ public class AdministratorDTO implements Serializable
 	this.position = position;
     }
 
-    public Integer getUniversity_id()
+    public String getAcademicDegree()
+    {
+	return academicDegree;
+    }
+
+    public void setAcademicDegree(String academicDegree)
+    {
+	this.academicDegree = academicDegree;
+    }
+
+    public Integer getUniversityId()
     {
 	return universityId;
     }
 
-    public void setUniversity_id(Integer university_id)
+    public void setUniversityId(Integer university_id)
     {
 	this.universityId = university_id;
     }

@@ -5,7 +5,7 @@ package edziekanat.databasemodel;
  */
 public final class TableNames
 {
-    public static final String USER = "users";
+    public static final String USER = "user";
     public static final String ADMINISTRATOR = "administrator";
     public static final String APPLICATION = "application";
     public static final String CLASSROOM = "classroom";
@@ -19,8 +19,8 @@ public final class TableNames
     public static final String PARTIAL_MARK = "partial_mark";
     public static final String PAYMENT = "payment";
     public static final String SCHEDULED_CLASSES = "scheduled_classes";
-    public static final String SCHOLARSHIP = "schollarship";
-    public static final String SCHOLARSHIP_TYPE = "schollarship_type";
+    public static final String SCHOLARSHIP = "scholarship";
+    public static final String SCHOLARSHIP_TYPE = "scholarship_type";
     public static final String STUDENT = "student";
     public static final String STUDENTS_GROUP = "students_group";
     public static final String STUDENTS_GROUP_STUDENT = "students_group_student";

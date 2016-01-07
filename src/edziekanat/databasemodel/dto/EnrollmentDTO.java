@@ -51,32 +51,32 @@ public class EnrollmentDTO implements Serializable
 	this.mark = mark;
     }
 
-    public Date getIssue_date()
+    public Date getIssueDate()
     {
 	return issueDate;
     }
 
-    public void setIssue_date(Date issue_date)
+    public void setIssueDate(Date issue_date)
     {
 	this.issueDate = issue_date;
     }
 
-    public Integer getSubject_id()
+    public Integer getSubjectId()
     {
 	return subjectId;
     }
 
-    public void setSubject_id(Integer subject_id)
+    public void setSubjectId(Integer subject_id)
     {
 	this.subjectId = subject_id;
     }
 
-    public Integer getTranscript_id()
+    public Integer getTranscriptId()
     {
 	return transcriptId;
     }
 
-    public void setTranscript_id(Integer transcript_id)
+    public void setTranscriptId(Integer transcript_id)
     {
 	this.transcriptId = transcript_id;
     }

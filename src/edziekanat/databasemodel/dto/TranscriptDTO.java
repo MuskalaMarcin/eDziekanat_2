@@ -39,32 +39,32 @@ public class TranscriptDTO implements Serializable
 	this.id = id;
     }
 
-    public Date getIssue_date()
+    public Date getIssueDate()
     {
 	return issueDate;
     }
 
-    public void setIssue_date(Date issue_date)
+    public void setIssueDate(Date issue_date)
     {
 	this.issueDate = issue_date;
     }
 
-    public Integer getStudent_id()
+    public Integer getStudentId()
     {
 	return studentId;
     }
 
-    public void setStudent_id(Integer student_id)
+    public void setStudentId(Integer student_id)
     {
 	this.studentId = student_id;
     }
 
-    public Integer getStudents_group_id()
+    public Integer getStudentsGroupId()
     {
 	return studentsGroupId;
     }
 
-    public void setStudents_group_id(Integer students_group_id)
+    public void setStudentsGroupId(Integer students_group_id)
     {
 	this.studentsGroupId = students_group_id;
     }

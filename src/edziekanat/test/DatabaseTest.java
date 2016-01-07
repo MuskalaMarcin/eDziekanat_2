@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.catalina.connector.OutputBuffer;
+
 import edziekanat.databasemodel.dao.AdministratorDAO;
 import edziekanat.databasemodel.dao.UserDAO;
 import edziekanat.databasemodel.dto.AdministratorDTO;
@@ -64,7 +66,7 @@ public class DatabaseTest extends HttpServlet
 	System.out.println("\t" + admin.getAddress());
 	System.out.println("\t" + admin.getSurname());
 	System.out.println("\t" + admin.getId());
-	System.out.println("\t" + admin.getUniversity_id());
+	System.out.println("\t" + admin.getUniversityId());
 
 	System.out.println("ALL ADMINS");
 	new AdministratorDAO().getAllAdministrators().forEach(item -> {
@@ -73,7 +75,7 @@ public class DatabaseTest extends HttpServlet
 	    System.out.println("\t" + item.getAddress());
 	    System.out.println("\t" + item.getSurname());
 	    System.out.println("\t" + item.getId());
-	    System.out.println("\t" + item.getUniversity_id());
+	    System.out.println("\t" + item.getUniversityId());
 	});
 
     }

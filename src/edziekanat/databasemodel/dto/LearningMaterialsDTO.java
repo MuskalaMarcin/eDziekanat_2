@@ -68,12 +68,12 @@ public class LearningMaterialsDTO implements Serializable
 	this.file = file;
     }
 
-    public Integer getSubject_id()
+    public Integer getSubjectId()
     {
 	return subjectId;
     }
 
-    public void setSubject_id(Integer subject_id)
+    public void setSubjectId(Integer subject_id)
     {
 	this.subjectId = subject_id;
     }

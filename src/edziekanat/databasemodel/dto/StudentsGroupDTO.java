@@ -43,12 +43,12 @@ public class StudentsGroupDTO implements Serializable
 	this.year = year;
     }
 
-    public Integer getCourse_id()
+    public Integer getCourseId()
     {
 	return courseId;
     }
 
-    public void setCourse_id(Integer course_id)
+    public void setCourseId(Integer course_id)
     {
 	this.courseId = course_id;
     }

@@ -55,12 +55,12 @@ public class ClassroomDTO implements Serializable
 	this.type = type;
     }
 
-    public Integer getFaculty_id()
+    public Integer getFacultyId()
     {
 	return facultyId;
     }
 
-    public void setFaculty_id(Integer faculty_id)
+    public void setFacultyId(Integer faculty_id)
     {
 	this.facultyId = faculty_id;
     }

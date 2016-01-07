@@ -55,12 +55,12 @@ public class FacultyDTO implements Serializable
 	this.address = address;
     }
 
-    public Integer getUniversity_id()
+    public Integer getUniversityId()
     {
 	return universityId;
     }
 
-    public void setUniversity_id(Integer university_id)
+    public void setUniversityId(Integer university_id)
     {
 	this.universityId = university_id;
     }

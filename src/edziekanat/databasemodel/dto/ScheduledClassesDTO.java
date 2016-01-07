@@ -74,23 +74,23 @@ public class ScheduledClassesDTO implements Serializable
 	this.duration = duration;
     }
 
-    public Integer getClassroom_id()
+    public Integer getClassroomId()
     {
 	return classroomId;
     }
 
-    public void setClassroom_id(Integer classroom_id)
+    public void setClassroomId(Integer classroomId)
     {
-	this.classroomId = classroom_id;
+	this.classroomId = classroomId;
     }
 
-    public Integer getSubject_id()
+    public Integer getSubjectId()
     {
 	return subjectId;
     }
 
-    public void setSubject_id(Integer subject_id)
+    public void setSubjectId(Integer subjectId)
     {
-	this.subjectId = subject_id;
+	this.subjectId = subjectId;
     }
 }
