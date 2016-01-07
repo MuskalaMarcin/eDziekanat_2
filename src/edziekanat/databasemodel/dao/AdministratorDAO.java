@@ -13,11 +13,11 @@ public class AdministratorDAO extends DAOParentClass
 
     public List<AdministratorDTO> getMultipleAdministrators(String whereStmnt)
     {
-	return executeMultiResultQuery("select * from administrator where " + whereStmnt);
+	return executeMultiResultQuery("SELECT a FROM AdministratorDTO a WHERE a." + whereStmnt);
     }
 
     public List<AdministratorDTO> getAllAdministrators()
     {
-	return executeMultiResultQuery("select * from administrator");
+	return executeMultiResultQuery("SELECT a FROM AdministratorDTO a");
     }
 }

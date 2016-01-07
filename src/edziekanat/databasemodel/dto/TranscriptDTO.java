@@ -10,12 +10,14 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import edziekanat.databasemodel.TableNames;
+
 @Entity
-@Table(name = "transcript")
+@Table(name = TableNames.TRANSCRIPT)
 public class TranscriptDTO implements Serializable
 {
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @Column(name = "id")
     private Integer id;

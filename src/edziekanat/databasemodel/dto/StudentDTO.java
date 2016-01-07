@@ -7,12 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import edziekanat.databasemodel.TableNames;
+
 @Entity
-@Table(name = "student")
+@Table(name = TableNames.STUDENT)
 public class StudentDTO implements Serializable
 {
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @Column(name = "id")
     private Integer id;

@@ -36,49 +36,44 @@ public class DatabaseTest extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	System.out.println("LOGIN BEAN");
-	UserDTO loginBean = (UserDTO) request.getSession().getAttribute("loginBean");
-	System.out.println(loginBean.getLogin());
-	System.out.println(loginBean.geteMail());
-
 	System.out.println("ONE USER");
 	UserDTO user = new UserDAO().getUser(request.getUserPrincipal().getName());
-	System.out.println(user.getLogin());
-	System.out.println(user.getPassword());
-	System.out.println(user.geteMail());
-	System.out.println(user.getUserRole());
-	System.out.println(user.getAdministratorId());
-	System.out.println(user.getLecturerId());
-	System.out.println(user.getStudentId());
+	System.out.println("\t" + user.getLogin());
+	System.out.println("\t" + user.getPassword());
+	System.out.println("\t" + user.geteMail());
+	System.out.println("\t" + user.getUserRole());
+	System.out.println("\t" + user.getAdministratorId());
+	System.out.println("\t" + user.getLecturerId());
+	System.out.println("\t" + user.getStudentId());
 
-	System.out.println("MULTIPLE USERS");
+	System.out.println("ALL USERS");
 	new UserDAO().getAllUsers().forEach(item -> {
-	    System.out.println(item.getLogin());
-	    System.out.println(item.getPassword());
-	    System.out.println(item.geteMail());
-	    System.out.println(item.getUserRole());
-	    System.out.println(item.getAdministratorId());
-	    System.out.println(item.getLecturerId());
-	    System.out.println(item.getStudentId());
+	    System.out.println("\t" + item.getLogin());
+	    System.out.println("\t" + item.getPassword());
+	    System.out.println("\t" + item.geteMail());
+	    System.out.println("\t" + item.getUserRole());
+	    System.out.println("\t" + item.getAdministratorId());
+	    System.out.println("\t" + item.getLecturerId());
+	    System.out.println("\t" + item.getStudentId());
 	});
 
 	System.out.println("ONE ADMIN");
 	AdministratorDTO admin = new AdministratorDAO().getAdministrator(1);
-	System.out.println(admin.getName());
-	System.out.println(admin.getPosition());
-	System.out.println(admin.getAddress());
-	System.out.println(admin.getSurname());
-	System.out.println(admin.getId());
-	System.out.println(admin.getUniversity_id());
+	System.out.println("\t" + admin.getName());
+	System.out.println("\t" + admin.getPosition());
+	System.out.println("\t" + admin.getAddress());
+	System.out.println("\t" + admin.getSurname());
+	System.out.println("\t" + admin.getId());
+	System.out.println("\t" + admin.getUniversity_id());
 
-	System.out.println("MULTIPLE ADMINS");
+	System.out.println("ALL ADMINS");
 	new AdministratorDAO().getAllAdministrators().forEach(item -> {
-	    System.out.println(admin.getName());
-	    System.out.println(item.getPosition());
-	    System.out.println(item.getAddress());
-	    System.out.println(item.getSurname());
-	    System.out.println(item.getId());
-	    System.out.println(item.getUniversity_id());
+	    System.out.println("\t" + item.getName());
+	    System.out.println("\t" + item.getPosition());
+	    System.out.println("\t" + item.getAddress());
+	    System.out.println("\t" + item.getSurname());
+	    System.out.println("\t" + item.getId());
+	    System.out.println("\t" + item.getUniversity_id());
 	});
 
     }

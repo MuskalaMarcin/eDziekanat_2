@@ -10,8 +10,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import edziekanat.databasemodel.TableNames;
+
 @Entity
-@Table(name = "schollarship")
+@Table(name = TableNames.SCHOLARSHIP)
 public class ScholarshipDTO implements Serializable
 {
     private static final long serialVersionUID = 1L;

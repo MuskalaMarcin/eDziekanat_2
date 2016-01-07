@@ -5,11 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import edziekanat.databasemodel.TableNames;
+
 /**
  * UserDTO class represents one user from users table.
  */
 @Entity
-@Table(name = "users")
+@Table(name = TableNames.USER)
 public class UserDTO
 {
     @Id

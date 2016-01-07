@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import edziekanat.databasemodel.TableNames;
+
 @Entity
-@Table(name = "faculty_lecturer")
+@Table(name = TableNames.FACULTY_LECTURER)
 public class FacultyLecturerDTO implements Serializable
 {
     private static final long serialVersionUID = 1L;

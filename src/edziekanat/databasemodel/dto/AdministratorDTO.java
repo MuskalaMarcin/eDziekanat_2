@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import edziekanat.databasemodel.TableNames;
+
 @Entity
-@Table(name = "administrator")
+@Table(name = TableNames.ADMINISTRATOR)
 public class AdministratorDTO implements Serializable
 {
     private static final long serialVersionUID = 1L;

@@ -16,12 +16,12 @@ public class UserDAO extends DAOParentClass
 
     public List<UserDTO> getMultipleUsers(String whereStmnt)
     {
-	return executeMultiResultQuery("select * from users where " + whereStmnt);
+	return executeMultiResultQuery("SELECT u FROM UserDTO u WHERE u." + whereStmnt);
     }
 
     public List<UserDTO> getAllUsers()
     {
-	return executeMultiResultQuery("select * from users");
+	return executeMultiResultQuery("SELECT u FROM UserDTO u");
     }
 
     public long getNumberOfAllUsers()
