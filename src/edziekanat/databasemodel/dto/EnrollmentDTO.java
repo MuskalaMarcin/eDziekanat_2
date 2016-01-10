@@ -3,9 +3,13 @@ package edziekanat.databasemodel.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,10 +30,12 @@ public class EnrollmentDTO implements Serializable
     @Temporal(TemporalType.DATE)
     @Column(name = "issue_date")
     private Date issueDate;
-    @Column(name = "subject_id")
-    private Integer subjectId;
-    @Column(name = "transcript_id")
-    private Integer transcriptId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "subject_id")
+    private SubjectDTO subjectId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "transcript_id")
+    private TranscriptDTO transcriptId;
 
     public Integer getId()
     {
@@ -61,23 +67,23 @@ public class EnrollmentDTO implements Serializable
 	this.issueDate = issue_date;
     }
 
-    public Integer getSubjectId()
+    public SubjectDTO getSubjectId()
     {
-	return subjectId;
+        return subjectId;
     }
 
-    public void setSubjectId(Integer subject_id)
+    public void setSubjectId(SubjectDTO subjectId)
     {
-	this.subjectId = subject_id;
+        this.subjectId = subjectId;
     }
 
-    public Integer getTranscriptId()
+    public TranscriptDTO getTranscriptId()
     {
-	return transcriptId;
+        return transcriptId;
     }
 
-    public void setTranscriptId(Integer transcript_id)
+    public void setTranscriptId(TranscriptDTO transcriptId)
     {
-	this.transcriptId = transcript_id;
+        this.transcriptId = transcriptId;
     }
 }

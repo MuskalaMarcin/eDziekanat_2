@@ -38,14 +38,14 @@ public class FacultyDAOTest extends HttpServlet
 	out.println("<br>" + faculty.getAddress());
 	out.println("<br>" + faculty.getName());
 	out.println("<br>" + faculty.getId());
-	out.println("<br>" + faculty.getUniversityId());
+	out.println("<br>" + faculty.getUniversity().getName());
 
 	out.println("<p>ALL Facultys");
 	new FacultyDAO().getAllEntities().forEach(item -> {
 	    out.println("<br>" + item.getAddress());
 	    out.println("<br>" + item.getName());
 	    out.println("<br>" + item.getId());
-	    out.println("<br>" + item.getUniversityId());
+	    out.println("<br>" + item.getUniversity().getName());
 	    out.println("<br> nastepny");
 	});
     }

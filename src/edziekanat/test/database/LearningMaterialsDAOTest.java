@@ -38,7 +38,7 @@ public class LearningMaterialsDAOTest extends HttpServlet
 	out.println("<br>" + learningMaterials.getDescription());
 	out.println("<br>" + learningMaterials.getName());
 	out.println("<br>" + learningMaterials.getId());
-	out.println("<br>" + learningMaterials.getSubjectId());
+	out.println("<br>" + learningMaterials.getSubject().getName());
 	out.println("<br>" + learningMaterials.getFile());
 
 	out.println("<p>ALL LearningMaterialss");
@@ -46,7 +46,7 @@ public class LearningMaterialsDAOTest extends HttpServlet
 	    out.println("<br>" + item.getDescription());
 	    out.println("<br>" + item.getName());
 	    out.println("<br>" + item.getId());
-	    out.println("<br>" + item.getSubjectId());
+	    out.println("<br>" + item.getSubject().getName());
 	    out.println("<br>" + item.getFile());
 	    out.println("<br> nastepny");
 	});

@@ -38,18 +38,18 @@ public class SubjectDAOTest extends HttpServlet
 	out.println("<br>" + subject.getName());
 	out.println("<br>" + subject.getECTS());
 	out.println("<br>" + subject.getId());
-	out.println("<br>" + subject.getLecturerId());
+	out.println("<br>" + subject.getLecturer().getName());
 	out.println("<br>" + subject.getSemester());
-	out.println("<br>" + subject.getStudentsGroupId());
+	out.println("<br>" + subject.getStudentsGroup().getId());
 
 	out.println("<p>ALL Subjects");
 	new SubjectDAO().getAllEntities().forEach(item -> {
 	    out.println("<br>" + item.getName());
 	    out.println("<br>" + item.getECTS());
 	    out.println("<br>" + item.getId());
-	    out.println("<br>" + item.getLecturerId());
+	    out.println("<br>" + item.getLecturer().getName());
 	    out.println("<br>" + item.getSemester());
-	    out.println("<br>" + item.getStudentsGroupId());
+	    out.println("<br>" + item.getStudentsGroup().getId());
 	    out.println("<br> nastepny");
 	});
     }

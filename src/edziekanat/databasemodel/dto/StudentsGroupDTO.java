@@ -2,9 +2,13 @@ package edziekanat.databasemodel.dto;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
@@ -20,8 +24,9 @@ public class StudentsGroupDTO implements Serializable
     private Integer id;
     @Column(name = "year")
     private Integer year;
-    @Column(name = "course_id")
-    private Integer courseId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "course_id")
+    private CourseDTO course;
 
     public Integer getId()
     {
@@ -43,13 +48,13 @@ public class StudentsGroupDTO implements Serializable
 	this.year = year;
     }
 
-    public Integer getCourseId()
+    public CourseDTO getCourse()
     {
-	return courseId;
+        return course;
     }
 
-    public void setCourseId(Integer course_id)
+    public void setCourse(CourseDTO course)
     {
-	this.courseId = course_id;
+        this.course = course;
     }
 }

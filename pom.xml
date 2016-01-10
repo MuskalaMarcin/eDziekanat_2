@@ -15,7 +15,7 @@
 	<dependency>
 		<groupId>javax.servlet</groupId>
 		<artifactId>servlet-api</artifactId>
-		<version>2.5</version>
+		<version>3.0-alpha-1</version>
 	</dependency>
 	<dependency>
 		<groupId>javax.persistence</groupId>
@@ -31,7 +31,32 @@
   
   <build>
     <sourceDirectory>src</sourceDirectory>
+    <pluginManagement>
     <plugins>
+     	<plugin>
+               <groupId>de.empulse.eclipselink</groupId>
+               <artifactId>staticweave-maven-plugin</artifactId>
+               <version>1.0.0</version>
+               <executions>
+                   <execution>
+                       <phase>process-classes</phase>
+                       <goals>
+                           <goal>weave</goal>
+                       </goals>
+                       <configuration>
+                           <persistenceXMLLocation>META-INF/persistence.xml</persistenceXMLLocation>
+                           <logLevel>FINE</logLevel>
+                       </configuration>
+                   </execution>
+               </executions>
+               <dependencies>
+                   <dependency>
+                       <groupId>org.eclipse.persistence</groupId>
+                       <artifactId>org.eclipse.persistence.jpa</artifactId>
+                       <version>2.5.0</version>
+                   </dependency>
+               </dependencies>
+      </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.3</version>
@@ -49,5 +74,6 @@
         </configuration>
       </plugin>
     </plugins>
+    </pluginManagement>
   </build>
 </project>

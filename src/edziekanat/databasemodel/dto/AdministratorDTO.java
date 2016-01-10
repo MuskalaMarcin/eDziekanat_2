@@ -2,9 +2,13 @@ package edziekanat.databasemodel.dto;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
@@ -28,8 +32,9 @@ public class AdministratorDTO implements Serializable
     private String position;
     @Column(name = "academic_degree")
     private String academicDegree;
-    @Column(name = "university_id")
-    private Integer universityId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "university_id")
+    private UniversityDTO university;
 
     public Integer getId()
     {
@@ -91,13 +96,13 @@ public class AdministratorDTO implements Serializable
 	this.academicDegree = academicDegree;
     }
 
-    public Integer getUniversityId()
+    public UniversityDTO getUniversity()
     {
-	return universityId;
+        return university;
     }
 
-    public void setUniversityId(Integer university_id)
+    public void setUniversity(UniversityDTO university)
     {
-	this.universityId = university_id;
+        this.university = university;
     }
 }

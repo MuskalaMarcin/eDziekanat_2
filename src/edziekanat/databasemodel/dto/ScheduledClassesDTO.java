@@ -4,9 +4,13 @@ import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,10 +33,12 @@ public class ScheduledClassesDTO implements Serializable
     private Time time;
     @Column(name = "duration")
     private Integer duration;
-    @Column(name = "classroom_id")
-    private Integer classroomId;
-    @Column(name = "subject_id")
-    private Integer subjectId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "classroom_id")
+    private ClassroomDTO classroom;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "subject_id")
+    private SubjectDTO subject;
 
     public Integer getId()
     {
@@ -74,23 +80,23 @@ public class ScheduledClassesDTO implements Serializable
 	this.duration = duration;
     }
 
-    public Integer getClassroomId()
+    public ClassroomDTO getClassroom()
     {
-	return classroomId;
+        return classroom;
     }
 
-    public void setClassroomId(Integer classroomId)
+    public void setClassroom(ClassroomDTO classroom)
     {
-	this.classroomId = classroomId;
+        this.classroom = classroom;
     }
 
-    public Integer getSubjectId()
+    public SubjectDTO getSubject()
     {
-	return subjectId;
+        return subject;
     }
 
-    public void setSubjectId(Integer subjectId)
+    public void setSubject(SubjectDTO subject)
     {
-	this.subjectId = subjectId;
+        this.subject = subject;
     }
 }

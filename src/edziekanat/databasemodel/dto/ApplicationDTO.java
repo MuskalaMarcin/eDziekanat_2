@@ -3,9 +3,13 @@ package edziekanat.databasemodel.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,10 +35,12 @@ public class ApplicationDTO implements Serializable
     @Temporal(TemporalType.DATE)
     @Column(name = "receive_date")
     private Date receiveDate;
-    @Column(name = "student_id")
-    private Integer studentId;
-    @Column(name = "administrator_id")
-    private Integer administratorId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_id")
+    private StudentDTO student;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "administrator_id")
+    private AdministratorDTO administrator;
 
     public Integer getId()
     {
@@ -86,23 +92,23 @@ public class ApplicationDTO implements Serializable
 	this.receiveDate = receive_date;
     }
 
-    public Integer getStudentId()
+    public StudentDTO getStudent()
     {
-	return studentId;
+        return student;
     }
 
-    public void setStudentId(Integer student_id)
+    public void setStudent(StudentDTO student)
     {
-	this.studentId = student_id;
+        this.student = student;
     }
 
-    public Integer getAdministratorId()
+    public AdministratorDTO getAdministrator()
     {
-	return administratorId;
+        return administrator;
     }
 
-    public void setAdministratorId(Integer administrator_id)
+    public void setAdministrator(AdministratorDTO administrator)
     {
-	this.administratorId = administrator_id;
+        this.administrator = administrator;
     }
 }

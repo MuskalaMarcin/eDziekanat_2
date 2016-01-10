@@ -30,7 +30,7 @@
 		<class>edziekanat.databasemodel.dto.UserDTO</class>
 		
 		<properties>
-
+			 <property name="eclipselink.weaving" value="static" />
 		</properties>
 	</persistence-unit>
 </persistence>

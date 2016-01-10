@@ -2,9 +2,13 @@ package edziekanat.databasemodel.dto;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
@@ -22,8 +26,9 @@ public class ClassroomDTO implements Serializable
     private Integer capacity;
     @Column(name = "type")
     private String type;
-    @Column(name = "faculty_id")
-    private Integer facultyId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "faculty_id")
+    private FacultyDTO faculty;
 
     public Integer getId()
     {
@@ -55,13 +60,13 @@ public class ClassroomDTO implements Serializable
 	this.type = type;
     }
 
-    public Integer getFacultyId()
+    public FacultyDTO getFaculty()
     {
-	return facultyId;
+        return faculty;
     }
 
-    public void setFacultyId(Integer faculty_id)
+    public void setFaculty(FacultyDTO faculty)
     {
-	this.facultyId = faculty_id;
+        this.faculty = faculty;
     }
 }

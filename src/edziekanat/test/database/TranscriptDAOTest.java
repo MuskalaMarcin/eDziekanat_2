@@ -36,15 +36,15 @@ public class TranscriptDAOTest extends HttpServlet
 	out.println("ONE Transcript");
 	TranscriptDTO transcript = new TranscriptDAO().getEntity(1);
 	out.println("<br>" + transcript.getId());
-	out.println("<br>" + transcript.getStudentId());
-	out.println("<br>" + transcript.getStudentsGroupId());
+	out.println("<br>" + transcript.getStudent().getName());
+	out.println("<br>" + transcript.getStudentsGroup().getId());
 	out.println("<br>" + transcript.getIssueDate());
 
 	out.println("<p>ALL Transcripts");
 	new TranscriptDAO().getAllEntities().forEach(item -> {
 	    out.println("<br>" + item.getId());
-	    out.println("<br>" + item.getStudentId());
-	    out.println("<br>" + item.getStudentsGroupId());
+	    out.println("<br>" + item.getStudent().getName());
+	    out.println("<br>" + item.getStudentsGroup().getId());
 	    out.println("<br>" + item.getIssueDate());
 	    out.println("<br> nastepny");
 	});

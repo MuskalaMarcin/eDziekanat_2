@@ -34,9 +34,9 @@ public class MessageDAOTest extends HttpServlet
 	MessageDTO message = new MessageDAO().getEntity(1);
 	out.println("<br>" + message.getContent());
 	out.println("<br>" + message.getTitle());
-	out.println("<br>" + message.getReceiverId());
+	out.println("<br>" + message.getReceiver().getLogin());
 	out.println("<br>" + message.getId());
-	out.println("<br>" + message.getSenderId());
+	out.println("<br>" + message.getSender().getLogin());
 	out.println("<br>" + message.getDispatchDate());
 	out.println("<br>" + message.getReceiveDate());
 
@@ -44,9 +44,9 @@ public class MessageDAOTest extends HttpServlet
 	new MessageDAO().getAllEntities().forEach(item -> {
 	    out.println("<br>" + item.getContent());
 	    out.println("<br>" + item.getTitle());
-	    out.println("<br>" + item.getReceiverId());
+	    out.println("<br>" + item.getReceiver().getLogin());
 	    out.println("<br>" + item.getId());
-	    out.println("<br>" + item.getSenderId());
+	    out.println("<br>" + item.getSender().getLogin());
 	    out.println("<br>" + item.getDispatchDate());
 	    out.println("<br>" + item.getReceiveDate());
 	    out.println("<br> nastepny");

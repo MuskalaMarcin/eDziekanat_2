@@ -35,19 +35,19 @@ public class ScheduledClassesDAOTest extends HttpServlet
 
 	out.println("ONE ScheduledClasses");
 	ScheduledClassesDTO scheduledClasses = new ScheduledClassesDAO().getEntity(1);
-	out.println("<br>" + scheduledClasses.getClassroomId());
+	out.println("<br>" + scheduledClasses.getClassroom().getId());
 	out.println("<br>" + scheduledClasses.getDuration());
 	out.println("<br>" + scheduledClasses.getId());
-	out.println("<br>" + scheduledClasses.getSubjectId());
+	out.println("<br>" + scheduledClasses.getSubject().getName());
 	out.println("<br>" + scheduledClasses.getDate());
 	out.println("<br>" + scheduledClasses.getTime());
 
 	out.println("<p>ALL ScheduledClassess");
 	new ScheduledClassesDAO().getAllEntities().forEach(item -> {
-	    out.println("<br>" + item.getClassroomId());
+	    out.println("<br>" + item.getClassroom().getId());
 	    out.println("<br>" + item.getDuration());
 	    out.println("<br>" + item.getId());
-	    out.println("<br>" + item.getSubjectId());
+	    out.println("<br>" + item.getSubject().getName());
 	    out.println("<br>" + item.getDate());
 	    out.println("<br>" + item.getTime());
 	    out.println("<br> nastepny");

@@ -37,9 +37,9 @@ public class ApplicationDAOTest extends HttpServlet
 	ApplicationDTO app = new ApplicationDAO().getEntity(1);
 	out.println("<br>" + app.getContent());
 	out.println("<br>" + app.getTitle());
-	out.println("<br>" + app.getAdministratorId());
+	out.println("<br>" + app.getAdministrator().getName());
 	out.println("<br>" + app.getId());
-	out.println("<br>" + app.getStudentId());
+	out.println("<br>" + app.getStudent().getName());
 	out.println("<br>" + app.getDispatchDate());
 	out.println("<br>" + app.getReceiveDate());
 
@@ -47,9 +47,9 @@ public class ApplicationDAOTest extends HttpServlet
 	new ApplicationDAO().getAllEntities().forEach(item -> {
 	    out.println("<br>" + item.getContent());
 	    out.println("<br>" + item.getTitle());
-	    out.println("<br>" + item.getAdministratorId());
+	    out.println("<br>" + item.getAdministrator().getName());
 	    out.println("<br>" + item.getId());
-	    out.println("<br>" + item.getStudentId());
+	    out.println("<br>" + item.getStudent().getName());
 	    out.println("<br>" + item.getDispatchDate());
 	    out.println("<br>" + item.getReceiveDate());
 	    out.println("<br> nastepny");

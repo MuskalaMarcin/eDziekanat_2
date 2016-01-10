@@ -3,9 +3,13 @@ package edziekanat.databasemodel.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,10 +28,12 @@ public class TranscriptDTO implements Serializable
     @Temporal(TemporalType.DATE)
     @Column(name = "issue_date")
     private Date issueDate;
-    @Column(name = "student_id")
-    private Integer studentId;
-    @Column(name = "students_group_id")
-    private Integer studentsGroupId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_id")
+    private StudentDTO student;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "students_group_id")
+    private StudentsGroupDTO studentsGroup;
 
     public Integer getId()
     {
@@ -49,23 +55,23 @@ public class TranscriptDTO implements Serializable
 	this.issueDate = issue_date;
     }
 
-    public Integer getStudentId()
+    public StudentDTO getStudent()
     {
-	return studentId;
+	return student;
     }
 
-    public void setStudentId(Integer student_id)
+    public void setStudent(StudentDTO student)
     {
-	this.studentId = student_id;
+	this.student = student;
     }
 
-    public Integer getStudentsGroupId()
+    public StudentsGroupDTO getStudentsGroup()
     {
-	return studentsGroupId;
+	return studentsGroup;
     }
 
-    public void setStudentsGroupId(Integer students_group_id)
+    public void setStudentsGroup(StudentsGroupDTO studentsGroup)
     {
-	this.studentsGroupId = students_group_id;
+	this.studentsGroup = studentsGroup;
     }
 }

@@ -37,14 +37,14 @@ public class ClassroomDAOTest extends HttpServlet
 	ClassroomDTO classroom = new ClassroomDAO().getEntity(1);
 	out.println("<br>" + classroom.getType());
 	out.println("<br>" + classroom.getCapacity());
-	out.println("<br>" + classroom.getFacultyId());
+	out.println("<br>" + classroom.getFaculty().getName());
 	out.println("<br>" + classroom.getId());
 
 	out.println("<p>ALL Classrooms");
 	new ClassroomDAO().getAllEntities().forEach(item -> {
 	    out.println("<br>" + item.getType());
 	    out.println("<br>" + item.getCapacity());
-	    out.println("<br>" + item.getFacultyId());
+	    out.println("<br>" + item.getFaculty().getName());
 	    out.println("<br>" + item.getId());
 	    out.println("<br> nastepny");
 	});

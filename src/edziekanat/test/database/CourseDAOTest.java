@@ -33,14 +33,14 @@ public class CourseDAOTest extends HttpServlet
 	out.println("ONE Course");
 	CourseDTO course = new CourseDAO().getEntity(1);
 	out.println("<br>" + course.getName());
-	out.println("<br>" + course.getFacultyId());
+	out.println("<br>" + course.getFaculty().getName());
 	out.println("<br>" + course.getId());
 	out.println("<br>" + course.getStationary());
 
 	out.println("<p>ALL Courses");
 	new CourseDAO().getAllEntities().forEach(item -> {
 	    out.println("<br>" + item.getName());
-	    out.println("<br>" + item.getFacultyId());
+	    out.println("<br>" + item.getFaculty().getName());
 	    out.println("<br>" + item.getId());
 	    out.println("<br>" + item.getStationary());
 	    out.println("<br> nastepny");

@@ -2,9 +2,13 @@ package edziekanat.databasemodel.dto;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
@@ -24,10 +28,12 @@ public class SubjectDTO implements Serializable
     private Integer semester;
     @Column(name = "ects")
     private Integer ECTS;
-    @Column(name = "lecturer_id")
-    private Integer lecturerId;
-    @Column(name = "students_group_id")
-    private Integer studentsGroupId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "lecturer_id")
+    private LecturerDTO lecturer;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "students_group_id")
+    private StudentsGroupDTO studentsGroup;
 
     public Integer getId()
     {
@@ -69,25 +75,23 @@ public class SubjectDTO implements Serializable
 	ECTS = eCTS;
     }
 
-    public Integer getLecturerId()
+    public LecturerDTO getLecturer()
     {
-        return lecturerId;
+	return lecturer;
     }
 
-    public void setLecturerId(Integer lecturerId)
+    public void setLecturer(LecturerDTO lecturer)
     {
-        this.lecturerId = lecturerId;
+	this.lecturer = lecturer;
     }
 
-    public Integer getStudentsGroupId()
+    public StudentsGroupDTO getStudentsGroup()
     {
-        return studentsGroupId;
+	return studentsGroup;
     }
 
-    public void setStudentsGroupId(Integer studentsGroupId)
+    public void setStudentsGroup(StudentsGroupDTO studentsGroup)
     {
-        this.studentsGroupId = studentsGroupId;
+	this.studentsGroup = studentsGroup;
     }
-    
-    
 }

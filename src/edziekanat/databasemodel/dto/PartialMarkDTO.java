@@ -3,9 +3,13 @@ package edziekanat.databasemodel.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,10 +30,12 @@ public class PartialMarkDTO implements Serializable
     @Temporal(TemporalType.DATE)
     @Column(name = "issue_date")
     private Date issueDate;
-    @Column(name = "subject_id")
-    private Integer subjectId;
-    @Column(name = "transcript_id")
-    private Integer transcriptId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "subject_id")
+    private SubjectDTO subject;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "transcript_id")
+    private TranscriptDTO transcript;
 
     public Integer getId()
     {
@@ -61,23 +67,23 @@ public class PartialMarkDTO implements Serializable
 	this.issueDate = issueDate;
     }
 
-    public Integer getSubjectId()
+    public SubjectDTO getSubject()
     {
-	return subjectId;
+        return subject;
     }
 
-    public void setSubjectId(Integer subjectId)
+    public void setSubject(SubjectDTO subject)
     {
-	this.subjectId = subjectId;
+        this.subject = subject;
     }
 
-    public Integer getTranscriptId()
+    public TranscriptDTO getTranscript()
     {
-	return transcriptId;
+        return transcript;
     }
 
-    public void setTranscriptId(Integer transcriptId)
+    public void setTranscript(TranscriptDTO transcript)
     {
-	this.transcriptId = transcriptId;
+        this.transcript = transcript;
     }
 }

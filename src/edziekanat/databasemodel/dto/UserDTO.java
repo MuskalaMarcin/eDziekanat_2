@@ -1,8 +1,12 @@
 package edziekanat.databasemodel.dto;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
@@ -25,12 +29,15 @@ public class UserDTO
     private Integer isActive;
     @Column(name = "user_role")
     private String userRole;
-    @Column(name = "lecturer_id")
-    private Integer lecturerId;
-    @Column(name = "student_id")
-    private Integer studentId;
-    @Column(name = "administrator_id")
-    private Integer administratorId;
+    @OneToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "lecturer_id", nullable=true)
+    private LecturerDTO lecturer;
+    @OneToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_id", nullable=true)
+    private StudentDTO student;
+    @OneToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "administrator_id", nullable=true)
+    private AdministratorDTO administrator;
 
     public String getLogin()
     {
@@ -82,34 +89,43 @@ public class UserDTO
 	this.userRole = userRole;
     }
 
-    public Integer getLecturerId()
+    public Integer getIsActive()
     {
-	return lecturerId;
+        return isActive;
     }
 
-    public void setLecturerId(Integer lecturerId)
+    public void setIsActive(Integer isActive)
     {
-	this.lecturerId = lecturerId;
+        this.isActive = isActive;
     }
 
-    public Integer getStudentId()
+    public LecturerDTO getLecturer()
     {
-	return studentId;
+        return lecturer;
     }
 
-    public void setStudentId(Integer studentId)
+    public void setLecturer(LecturerDTO lecturer)
     {
-	this.studentId = studentId;
+        this.lecturer = lecturer;
     }
 
-    public Integer getAdministratorId()
+    public StudentDTO getStudent()
     {
-	return administratorId;
+        return student;
     }
 
-    public void setAdministratorId(Integer administratorId)
+    public void setStudent(StudentDTO student)
     {
-	this.administratorId = administratorId;
+        this.student = student;
     }
 
+    public AdministratorDTO getAdministrator()
+    {
+        return administrator;
+    }
+
+    public void setAdministrator(AdministratorDTO administrator)
+    {
+        this.administrator = administrator;
+    }
 }

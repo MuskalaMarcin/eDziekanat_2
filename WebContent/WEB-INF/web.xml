@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
   <display-name>edziekanat</display-name>
-  
+    <servlet>
+    <servlet-name>MessagesAdmin</servlet-name>
+    <jsp-file>/administrator/messages.jsp</jsp-file>
+  </servlet>
   <servlet>
     <servlet-name>AdminIndex</servlet-name>
     <jsp-file>/administrator/admin_index.jsp</jsp-file>
@@ -31,6 +34,10 @@
     <jsp-file>/test.jsp</jsp-file>
   </servlet>
   
+   <servlet-mapping>
+    <servlet-name>MessagesAdmin</servlet-name>
+    <url-pattern>/admin/messages</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Test</servlet-name>
     <url-pattern>/testindex</url-pattern>

@@ -3,9 +3,13 @@ package edziekanat.databasemodel.dto;
 import java.io.File;
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
@@ -25,8 +29,9 @@ public class LearningMaterialsDTO implements Serializable
     private String description;
     @Column(name = "file")
     private File file;
-    @Column(name = "subject_id")
-    private Integer subjectId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "subject_id")
+    private SubjectDTO subject;
 
     public Integer getId()
     {
@@ -68,13 +73,13 @@ public class LearningMaterialsDTO implements Serializable
 	this.file = file;
     }
 
-    public Integer getSubjectId()
+    public SubjectDTO getSubject()
     {
-	return subjectId;
+        return subject;
     }
 
-    public void setSubjectId(Integer subject_id)
+    public void setSubject(SubjectDTO subject)
     {
-	this.subjectId = subject_id;
+        this.subject = subject;
     }
 }

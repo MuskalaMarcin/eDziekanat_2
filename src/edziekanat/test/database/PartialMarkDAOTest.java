@@ -37,16 +37,16 @@ public class PartialMarkDAOTest extends HttpServlet
 	PartialMarkDTO partialMark = new PartialMarkDAO().getEntity(1);
 	out.println("<br>" + partialMark.getId());
 	out.println("<br>" + partialMark.getMark());
-	out.println("<br>" + partialMark.getSubjectId());
-	out.println("<br>" + partialMark.getTranscriptId());
+	out.println("<br>" + partialMark.getSubject().getName());
+	out.println("<br>" + partialMark.getTranscript().getId());
 	out.println("<br>" + partialMark.getIssueDate());
 
 	out.println("<p>ALL PartialMarks");
 	new PartialMarkDAO().getAllEntities().forEach(item -> {
 	    out.println("<br>" + item.getId());
 	    out.println("<br>" + item.getMark());
-	    out.println("<br>" + item.getSubjectId());
-	    out.println("<br>" + item.getTranscriptId());
+	    out.println("<br>" + item.getSubject().getName());
+	    out.println("<br>" + item.getTranscript().getId());
 	    out.println("<br>" + item.getIssueDate());
 	    out.println("<br> nastepny");
 	});

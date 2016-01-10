@@ -36,9 +36,16 @@ public class UserDAOTest extends HttpServlet
 	out.println("<br>" + user.getPassword());
 	out.println("<br>" + user.geteMail());
 	out.println("<br>" + user.getUserRole());
-	out.println("<br>" + user.getAdministratorId());
-	out.println("<br>" + user.getLecturerId());
-	out.println("<br>" + user.getStudentId());
+	try
+	{
+	    if (user.getAdministrator().getName() != null) out.println("<br>" + user.getAdministrator().getName());
+	    if (user.getLecturer().getName() != null) out.println("<br>" + user.getLecturer().getName());
+	    if (user.getStudent().getName() != null) out.println("<br>" + user.getStudent().getName());
+	}
+	catch (NullPointerException e)
+	{
+
+	}
 
 	out.println("<p>ALL USERS");
 	new UserDAO().getAllEntities().forEach(item -> {
@@ -46,9 +53,16 @@ public class UserDAOTest extends HttpServlet
 	    out.println("<br>" + item.getPassword());
 	    out.println("<br>" + item.geteMail());
 	    out.println("<br>" + item.getUserRole());
-	    out.println("<br>" + item.getAdministratorId());
-	    out.println("<br>" + item.getLecturerId());
-	    out.println("<br>" + item.getStudentId());
+	    try
+	    {
+		if (user.getAdministrator().getName() != null) out.println("<br>" + item.getAdministrator().getName());
+		if (user.getLecturer().getName() != null) out.println("<br>" + item.getLecturer().getName());
+		if (user.getStudent().getName() != null) out.println("<br>" + item.getStudent().getName());
+	    }
+	    catch (NullPointerException e)
+	    {
+
+	    }
 	    out.println("<br> nastepny");
 	});
     }

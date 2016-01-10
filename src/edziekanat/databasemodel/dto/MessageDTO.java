@@ -3,9 +3,13 @@ package edziekanat.databasemodel.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,10 +35,12 @@ public class MessageDTO implements Serializable
     @Temporal(TemporalType.DATE)
     @Column(name = "receive_date")
     private Date receiveDate;
-    @Column(name = "sender_id")
-    private String senderId;
-    @Column(name = "receiver_id")
-    private String receiverId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "sender_id")
+    private UserDTO sender;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "receiver_id")
+    private UserDTO receiver;
 
     public Integer getId()
     {
@@ -86,23 +92,23 @@ public class MessageDTO implements Serializable
 	this.receiveDate = receiveDate;
     }
 
-    public String getSenderId()
+    public UserDTO getSender()
     {
-	return senderId;
+        return sender;
     }
 
-    public void setSenderId(String senderId)
+    public void setSender(UserDTO sender)
     {
-	this.senderId = senderId;
+        this.sender = sender;
     }
 
-    public String getReceiverId()
+    public UserDTO getReceiver()
     {
-	return receiverId;
+        return receiver;
     }
 
-    public void setReceiverId(String receiverId)
+    public void setReceiver(UserDTO receiver)
     {
-	this.receiverId = receiverId;
+        this.receiver = receiver;
     }
 }

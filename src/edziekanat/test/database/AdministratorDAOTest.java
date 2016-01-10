@@ -40,7 +40,7 @@ public class AdministratorDAOTest extends HttpServlet
 	out.println("<br>" + admin.getAddress());
 	out.println("<br>" + admin.getSurname());
 	out.println("<br>" + admin.getId());
-	out.println("<br>" + admin.getUniversityId());
+	out.println("<br>" + admin.getUniversity().getName());
 
 	out.println("<p>ALL ADMINS");
 	new AdministratorDAO().getAllEntities().forEach(item -> {
@@ -49,7 +49,7 @@ public class AdministratorDAOTest extends HttpServlet
 	    out.println("<br>" + item.getAddress());
 	    out.println("<br>" + item.getSurname());
 	    out.println("<br>" + item.getId());
-	    out.println("<br>" + item.getUniversityId());
+	    out.println("<br>" + item.getUniversity().getName());
 	    out.println("<br> nastepny");
 	});
     }

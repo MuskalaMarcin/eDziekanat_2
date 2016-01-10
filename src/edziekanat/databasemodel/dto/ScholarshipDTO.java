@@ -3,9 +3,13 @@ package edziekanat.databasemodel.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,12 +31,15 @@ public class ScholarshipDTO implements Serializable
     @Temporal(TemporalType.DATE)
     @Column(name = "end_date")
     private Date endDate;
-    @Column(name = "schollarship_type")
-    private String scholarshipType;
-    @Column(name = "student_id")
-    private Integer studentId;
-    @Column(name = "administrator_id")
-    private Integer administratorId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "schollarship_type")
+    private ScholarshipTypeDTO scholarshipType;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_id")
+    private StudentDTO studentId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "administrator_id")
+    private AdministratorDTO administratorId;
 
     public Integer getId()
     {
@@ -64,33 +71,33 @@ public class ScholarshipDTO implements Serializable
 	this.endDate = endDate;
     }
 
-    public String getScholarshipType()
+    public ScholarshipTypeDTO getScholarshipType()
     {
-	return scholarshipType;
+        return scholarshipType;
     }
 
-    public void setScholarshipType(String scholarshipType)
+    public void setScholarshipType(ScholarshipTypeDTO scholarshipType)
     {
-	this.scholarshipType = scholarshipType;
+        this.scholarshipType = scholarshipType;
     }
 
-    public Integer getStudentId()
+    public StudentDTO getStudentId()
     {
-	return studentId;
+        return studentId;
     }
 
-    public void setStudentId(Integer studentId)
+    public void setStudentId(StudentDTO studentId)
     {
-	this.studentId = studentId;
+        this.studentId = studentId;
     }
 
-    public Integer getAdministratorId()
+    public AdministratorDTO getAdministratorId()
     {
-	return administratorId;
+        return administratorId;
     }
 
-    public void setAdministratorId(Integer administratorId)
+    public void setAdministratorId(AdministratorDTO administratorId)
     {
-	this.administratorId = administratorId;
+        this.administratorId = administratorId;
     }
 }
