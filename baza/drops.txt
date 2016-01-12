@@ -1,0 +1,43 @@
+DROP SEQUENCE administrator_id_seq; 
+DROP SEQUENCE application_id_seq; 
+DROP SEQUENCE classroom_id_seq;
+DROP SEQUENCE course_id_seq; 
+DROP SEQUENCE enrollment_id_seq; 
+DROP SEQUENCE faculty_id_seq;
+DROP SEQUENCE learning_materials_id_seq; 
+DROP SEQUENCE lecturer_id_seq;  
+DROP SEQUENCE message_id_seq; 
+DROP SEQUENCE partial_mark_id_seq; 
+DROP SEQUENCE payment_id_seq; 
+DROP SEQUENCE scheduled_classes_id_seq; 
+DROP SEQUENCE scholarship_id_seq; 
+DROP SEQUENCE student_id_seq; 
+DROP SEQUENCE students_group_id_seq; 
+DROP SEQUENCE subject_id_seq; 
+DROP SEQUENCE transcript_id_seq; 
+DROP SEQUENCE university_id_seq; 
+
+DROP TABLE "UNIVERSITY" CASCADE CONSTRAINTS;                                                                                                                       
+DROP TABLE "TRANSCRIPT" CASCADE CONSTRAINTS;                                                                                                                       
+DROP TABLE "SUBJECT" CASCADE CONSTRAINTS;                                                                                                                          
+DROP TABLE "STUDENTS_GROUP_STUDENT" CASCADE CONSTRAINTS;                                                                                                           
+DROP TABLE "STUDENTS_GROUP" CASCADE CONSTRAINTS;                                                                                                                   
+DROP TABLE "STUDENT" CASCADE CONSTRAINTS;                                                                                                                          
+DROP TABLE "SCHOLARSHIP_TYPE" CASCADE CONSTRAINTS;                                                                                                                 
+DROP TABLE "SCHOLARSHIP" CASCADE CONSTRAINTS;                                                                                                                      
+DROP TABLE "SCHEDULED_CLASSES" CASCADE CONSTRAINTS;                                                                                                                
+DROP TABLE "PAYMENT" CASCADE CONSTRAINTS;                                                                                                                          
+DROP TABLE "PARTIAL_MARK" CASCADE CONSTRAINTS;                                                                                                                     
+DROP TABLE "MESSAGE" CASCADE CONSTRAINTS;                                                                                                                          
+DROP TABLE "LECTURER" CASCADE CONSTRAINTS;                                                                                                                         
+DROP TABLE "LEARNING_MATERIALS" CASCADE CONSTRAINTS;                                                                                                               
+DROP TABLE "FACULTY_LECTURER" CASCADE CONSTRAINTS;                                                                                                                 
+DROP TABLE "FACULTY" CASCADE CONSTRAINTS;                                                                                                                          
+DROP TABLE "ENROLLMENT" CASCADE CONSTRAINTS;                                                                                                                       
+DROP TABLE "COURSE" CASCADE CONSTRAINTS;                                                                                                                           
+DROP TABLE "CLASSROOM" CASCADE CONSTRAINTS;                                                                                                                        
+DROP TABLE "APPLICATION" CASCADE CONSTRAINTS;                                                                                                                      
+DROP TABLE "ADMINISTRATOR" CASCADE CONSTRAINTS; 
+DROP TABLE "APP_USER" CASCADE CONSTRAINTS; 
+
+
