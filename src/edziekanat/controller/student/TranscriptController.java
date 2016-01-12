@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class TranscriptController
  */
-@WebServlet("/studentgettranscript/")
+@WebServlet("/studenttranscript")
 public class TranscriptController extends HttpServlet
 {
     private static final long serialVersionUID = 1L;

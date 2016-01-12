@@ -13,14 +13,14 @@
 		<table border="1" cellspacing="5" cellpadding="5">
 			<tr>
 				<td><a href="student">Strona g³ówna</a></td>
-				<td><a href="studentgettranscript">Indeks</a></td>
-				<td><a href="studentgettimetable">Plan zajêæ</a></td>
-				<td><a href="studentgetsubjects">Moje przedmioty</a></td>
-				<td><a href="studentgetscholarships">Stypendia</a></td>
-				<td><a href="studentgetpayments">P³atno¶ci</a></td>
-				<td><a href="studentgetapplications">Wnioski</a></td>
-				<td  bgcolor="silver"><a href="studentgetlecturers">Wyk³adowcy</a></td>
-				<td><a href="studentgetmessages">Historia komunikatów</a></td>
+				<td><a href="studenttranscript">Indeks</a></td>
+				<td><a href="studenttimetable">Plan zajêæ</a></td>
+				<td><a href="studentsubjects">Moje przedmioty</a></td>
+				<td><a href="studentscholarships">Stypendia</a></td>
+				<td><a href="studentpayments">P³atno¶ci</a></td>
+				<td><a href="studentapplications">Wnioski</a></td>
+				<td  bgcolor="silver"><a href="studentlecturers">Wyk³adowcy</a></td>
+				<td><a href="studentmessages">Historia komunikatów</a></td>
 				<td><a href="logout">Wyloguj</a></td>
 			</tr>
 		</table>

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class MessageHistoryController
  */
-@WebServlet("/studentgetmessages")
+@WebServlet("/studentmessages")
 public class MessageHistoryController extends HttpServlet
 {
     private static final long serialVersionUID = 1L;

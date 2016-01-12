@@ -28,10 +28,6 @@
 		<jsp-file>/404.jsp</jsp-file>
 	</servlet>
 	<!-- Student -->
-	    <servlet>
-          <servlet-name>StudentGetApplications</servlet-name>
-          <servlet-class>edziekanat.controller.student.ApplicationsController</servlet-class>
-      </servlet>
 	<servlet>
 		<servlet-name>StudentApplications</servlet-name>
 		<jsp-file>/student/applications.jsp</jsp-file>
@@ -164,6 +160,14 @@
 		<web-resource-collection>
 			<web-resource-name>StudentsPages</web-resource-name>
 			<url-pattern>/student/*</url-pattern>
+			<url-pattern>/studenttimetable/*</url-pattern>
+			<url-pattern>/studenttranscript/*</url-pattern>
+			<url-pattern>/studentsubjects/*</url-pattern>
+			<url-pattern>/studentscholarships/*</url-pattern>
+			<url-pattern>/studentpayments/*</url-pattern>
+			<url-pattern>/studentapplications/*</url-pattern>
+			<url-pattern>/studentlecturers/*</url-pattern>
+			<url-pattern>/studentmessages/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>student</role-name>
