@@ -7,8 +7,14 @@
 <title>eDziekanat - ${msgshort}</title>
 </head>
 <body>
-${msglong}
-
-	<p><br><br><font size="5"><a href="/eDziekanat/home">Powrót do strony g³ównej.</a></font></p>
+	<center>
+	<font face="verdana" size = "3">
+		<p><font size="7"><b>eDziekanat - Twój wirtualny dziekanat</b></font><br><br><br><br></p>
+		<p><img width="400" src="http://localhost:8080/eDziekanat/images/Infobox_info_icon.svg.png"/></p>
+		<p>${msglong}</p>
+   		<p><br><br><font size="5"><a href="/eDziekanat/home">Powrót do strony g³ównej.</a></font></p>
+		<p><br><br><font size="1" color="gray">Obrazek pobrano ze strony: <a href="https://upload.wikimedia.org/">https://upload.wikimedia.org/</a></font></p>
+	</font>
+	</center>
 </body>
 </html>

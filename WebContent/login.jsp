@@ -7,26 +7,26 @@
 <title>eDziekanat - Zaloguj siê</title>
 </head>
 <body>
-	Witamy w systemie eDziekanat, zaloguj siê do swojego konta.
+	<center><font size="3px" face="Verdana">
+	<p><font size="7"><b>eDziekanat - Twój wirtualny dziekanat</b></font><br><br><br><br><br><br></p>
+	<p>Zaloguj siê do systemu, aby uzyskaæ dostêp do swoich danych.<br><br></p>
 	<form action="loginaction" method=post>
-		<p>
-			<strong>Login: </strong> <input type="text" name="username" size="25">
-		<p>
-		<p>
-			<strong>Has³o: </strong> <input type="password" size="15"
+		<p><b>Login: </b> <input type="text" name="username" size="25"></p>
+		<p><b>Has³o: </b> <input type="password" size="25"
 				name="password">
 			<%
 			    if (request.getSession().getAttribute("loginError") != null
 					    && request.getSession().getAttribute("loginError").equals("true"))
 			    {
-					out.print("<p>\n<p>\nB³êdny login lub has³o, spróbuj ponownie.");
+					out.print("<p><font color='red'><b>B³êdny login lub has³o, spróbuj ponownie.</b></font></p>");
 					request.getSession().invalidate();
 			    }
 			%>
-		<p>
-		<p>
-			<input type="submit" value="Zaloguj">
+		</p>
+		<p><input type="submit" value="Zaloguj"></p>
 	</form>
+	</font>
+	</center>
 	<%
 	    request.getSession().setAttribute("backURL", request.getAttribute("javax.servlet.forward.request_uri"));
 	%>

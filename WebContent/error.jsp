@@ -7,8 +7,14 @@
 <title>eDziekanat - ${errorshort}</title>
 </head>
 <body>
-${errorlong}
-
-	<p><br><br><font size="5"><a href="/eDziekanat/home">Powrót do strony g³ównej.</a></font></p>
+	<center>
+	<font face="verdana" size = "3">
+		<p><font size="7"><b>eDziekanat - Twój wirtualny dziekanat</b></font><br><br><br><br></p>
+		<p><img src="http://localhost:8080/eDziekanat/images/error.png"/></p>
+		<p>${errorlong}</p>
+   		<p><br><br><font size="5"><a href="/eDziekanat/home">Powrót do strony g³ównej.</a></font></p>
+		<p><br><br><font size="1" color="gray">Obrazek pobrano ze strony: <a href="http://valleytechnologies.net/">http://valleytechnologies.net/</a></font></p>
+	</font>
+	</center>
 </body>
 </html>

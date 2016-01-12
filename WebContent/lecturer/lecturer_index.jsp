@@ -7,19 +7,27 @@
 <title>eDziekanat - Wyk³adowca - strona g³ówna</title>
 </head>
 <body>
-	Strona g³ówna wyk³adowcy.
-	<a href="logout">Wyloguj</a>
-	<%
-	    LoginBean loginBean = (LoginBean) request.getSession().getAttribute("loginBean");
-	    System.out.println(loginBean.getLogin());
-	    System.out.println(loginBean.getName());
-	    System.out.println(loginBean.getAcademicDegree());
-	    System.out.println(loginBean.getAddress());
-	    System.out.println(loginBean.geteMail());
-	    System.out.println(loginBean.getSurname());
-	    System.out.println(loginBean.getUserRole());
-	    System.out.println(loginBean.getIsActive());
-	    System.out.println(loginBean.getPersonId());
-	%>
+	<font face="Verdana"><center>
+		<font size="7"><b>eDziekanat - Twój wirtualny dziekanat</b></font><br><br><br><br>
+	
+		<table border="1" cellspacing="5" cellpadding="5">
+			<tr>
+				<td bgcolor="silver"><a href="lecturer">Strona g³ówna</a></td>
+				<td><a href="adminmessages">Historia komunikatów</a></td>
+				<td><a href="logout">Wyloguj</a></td>
+			</tr>
+		</table>
+		
+		<%LoginBean loginBean = (LoginBean) request.getSession().getAttribute("loginBean");%>
+		<p>
+			<br><br><br>Zalogowany jako:<br><br>
+			Login: <b><%out.print(loginBean.getLogin()); %></b><br>
+			Imiê i nazwisko: <b><%out.print(loginBean.getName());%> <% out.print(loginBean.getSurname()); %></b><br>
+			Stopieñ naukowy: <b><%out.print(loginBean.getAcademicDegree()); %></b><br>
+			E-mail: <b><%out.print(loginBean.geteMail()); %></b><br>
+			Poziom uprawnieñ: <b><%out.print(loginBean.getUserRole()); %></b><br>
+			Adres: <b><%out.print(loginBean.getAddress()); %></b><br>
+		</p>
+	</center></font>
 </body>
 </html>

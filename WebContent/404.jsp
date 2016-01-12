@@ -9,6 +9,7 @@
 <body>
 	<center>
 	<font face="verdana" size = "3">
+		<p><font size="7"><b>eDziekanat - Twój wirtualny dziekanat</b></font><br><br><br><br></p>
 		<p><img src="http://localhost:8080/eDziekanat/images/androiddev101.jpg"/></p>
 		<p><b>Kod b³êdu:</b> ${pageContext.errorData.statusCode}
    		<br><b>Poszukiwany URI:</b> ${pageContext.request.scheme}://${header.host}${pageContext.errorData.requestURI}</p>
