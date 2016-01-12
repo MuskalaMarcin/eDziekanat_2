@@ -1,10 +1,13 @@
 package edziekanat.databasemodel.dao;
 
+import java.util.List;
+
 import edziekanat.databasemodel.dto.LecturerDTO;
 
 /**
  * Data access class used to perform operations on lecturer entities.
  */
+@SuppressWarnings("unchecked")
 public class LecturerDAO extends DAOParentClass<LecturerDTO>
 {
     /**
@@ -16,5 +19,10 @@ public class LecturerDAO extends DAOParentClass<LecturerDTO>
     public LecturerDTO getEntity(Integer id)
     {
 	return entityManager.find(LecturerDTO.class, id);
+    }
+    
+    public List<LecturerDTO> getLecturersByStudentId(Integer studentId)
+    {
+	return entityManager.createNativeQuery("", LecturerDTO.class).getResultList();
     }
 }

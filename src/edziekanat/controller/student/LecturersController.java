@@ -1,24 +1,27 @@
-package edziekanat.controller;
+package edziekanat.controller.student;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edziekanat.bean.LoginBean;
-import edziekanat.databasemodel.dao.MessageDAO;
-
 /**
- * Servlet implementation class MessageController
+ * Servlet implementation class LecturersController
  */
-@WebServlet("/newMessage")
-public class MessageController extends HttpServlet
+@WebServlet("/studentgetlecturers")
+public class LecturersController extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
+
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public LecturersController()
+    {
+	super();
+    }
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -33,16 +36,7 @@ public class MessageController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	LoginBean loginBean = (LoginBean) request.getSession().getAttribute("loginBean");
-	String messagesURL = "/" + loginBean.getUserRole() + "messages";
-
-	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(messagesURL);
-	request.setAttribute("sentMessages",
-		new MessageDAO().getUserMessages(loginBean.getLogin()));
-	request.setAttribute("receivedMessages",
-		new MessageDAO().getMultipleEntities("receiver = '" + loginBean.getLogin() + "'"));
-
-	dispatcher.forward(request, response);
+	request.getRequestDispatcher("student/lecturers").forward(request, response);
     }
 
 }

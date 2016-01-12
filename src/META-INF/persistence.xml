@@ -31,6 +31,8 @@
 		
 		<properties>
 			 <property name="eclipselink.weaving" value="static" />
+			 <property name="eclipselink.logging.level.sql" value="ALL"/>
+			<property name="eclipselink.logging.parameters" value="true"/>
 		</properties>
 	</persistence-unit>
 </persistence>

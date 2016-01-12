@@ -9,6 +9,7 @@
 <body>
 	Strona g³ówna administratora.
 	<a href="logout">Wyloguj</a>
+	<a href="admin/messages">Wiadomo¶ci</a>
 	<%
 	    LoginBean loginBean = (LoginBean) request.getSession().getAttribute("loginBean");
 	    System.out.println(loginBean.getLogin());

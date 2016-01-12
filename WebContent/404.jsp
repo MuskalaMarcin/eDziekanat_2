@@ -9,7 +9,7 @@
 <body>
 	<center>
 	<font face="verdana" size = "3">
-		<p><img src="images/androiddev101.jpg"/></p>
+		<p><img src="http://localhost:8080/eDziekanat/images/androiddev101.jpg"/></p>
 		<p><b>Kod b³êdu:</b> ${pageContext.errorData.statusCode}
    		<br><b>Poszukiwany URI:</b> ${pageContext.request.scheme}://${header.host}${pageContext.errorData.requestURI}</p>
    		<p><br><br><font size="5"><a href="/eDziekanat/home">Powrót do strony g³ównej.</a></font></p>

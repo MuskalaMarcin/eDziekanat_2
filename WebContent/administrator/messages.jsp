@@ -7,6 +7,26 @@
 <title>eDziekanat - Wiadomo¶ci</title>
 </head>
 <body>
-
+	<form action="newMessage" method=post>
+		<p>
+			<strong>Adresat: </strong> <input type="text" value="adresat" size="25" disabled>
+		<p>
+		<p>
+		<select name="cars">
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="fiat">Fiat</option>
+  <option value="audi">Audi</option>
+</select>
+		<p>
+		<p>
+			<strong>Tytu³: </strong> <input type="password" size="15" name="title">
+		<p>
+		<p>
+			<strong>Tre¶æ: </strong> <input type="password" size="15" name="title">
+		<p>
+		<p>
+			<input type="submit" value="Zaloguj">
+	</form>
 </body>
 </html>

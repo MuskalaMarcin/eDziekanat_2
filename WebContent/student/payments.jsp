@@ -1,10 +1,10 @@
-<%@ page language="java" import="edziekanat.bean.LoginBean" contentType="text/html; charset=ISO-8859-2"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-2"
     pageEncoding="ISO-8859-2"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
-<title>eDziekanat - Student - strona główna</title>
+<title>eDziekanat - Student - Płatności</title>
 </head>
 <body>
 	<font face="Verdana"><center>
@@ -12,12 +12,12 @@
 	
 		<table border="1" cellspacing="5" cellpadding="5">
 			<tr>
-				<td bgcolor="silver"><a href="student">Strona główna</a></td>
+				<td><a href="student">Strona główna</a></td>
 				<td><a href="studentgettranscript">Indeks</a></td>
 				<td><a href="studentgettimetable">Plan zajęć</a></td>
 				<td><a href="studentgetsubjects">Moje przedmioty</a></td>
 				<td><a href="studentgetscholarships">Stypendia</a></td>
-				<td><a href="studentgetpayments">Płatności</a></td>
+				<td bgcolor="silver"><a href="studentgetpayments">Płatności</a></td>
 				<td><a href="studentgetapplications">Wnioski</a></td>
 				<td><a href="studentgetlecturers">Wykładowcy</a></td>
 				<td><a href="studentgetmessages">Historia komunikatów</a></td>
@@ -25,15 +25,13 @@
 			</tr>
 		</table>
 		
-		<%LoginBean loginBean = (LoginBean) request.getSession().getAttribute("loginBean");%>
 		<p>
-			<br><br><br>Zalogowany jako:<br><br>
-			Login: <b><%out.print(loginBean.getLogin()); %></b><br>
-			Imię i nazwisko: <b><%out.print(loginBean.getName());%> <% out.print(loginBean.getSurname()); %></b><br>
-			Stopień naukowy: <b><%out.print(loginBean.getAcademicDegree()); %></b><br>
-			E-mail: <b><%out.print(loginBean.geteMail()); %></b><br>
-			Poziom uprawnień: <b><%out.print(loginBean.getUserRole()); %></b><br>
-			Adres: <b><%out.print(loginBean.getAddress()); %></b><br>
+			<font color="red">
+				TODO: <br>
+				1. Wyświetlanie historii płatności<br>
+				2. Wyświetlanie aktualnie oczekujących na płatności<br>
+				3. W przypadku oczekujących możliwość kontaktu z administratorem.
+			</font>
 		</p>
 	</center></font>
 </body>
