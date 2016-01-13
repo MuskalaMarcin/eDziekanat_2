@@ -127,6 +127,7 @@
       <web-resource-name>HomePage</web-resource-name>
       <url-pattern>/home</url-pattern>
       <url-pattern>/sendmessage</url-pattern>
+      <url-pattern>/messages</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>*</role-name>
@@ -141,6 +142,7 @@
       <web-resource-name>AdminsPages</web-resource-name>
       <url-pattern>/admin/*</url-pattern>
       <url-pattern>/admintimetable/*</url-pattern>
+      <url-pattern>/adminmessages/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>admin</role-name>
@@ -176,6 +178,7 @@
       <web-resource-name>LecturersPages</web-resource-name>
       <url-pattern>/lecturer/*</url-pattern>
       <url-pattern>/lecturertimetable/*</url-pattern>
+      <url-pattern>/lecturermessages/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>lecturer</role-name>

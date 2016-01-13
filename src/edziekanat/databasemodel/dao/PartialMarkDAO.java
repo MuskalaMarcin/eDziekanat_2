@@ -1,5 +1,6 @@
 package edziekanat.databasemodel.dao;
 
+import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.PartialMarkDTO;
 
 /**
@@ -7,6 +8,11 @@ import edziekanat.databasemodel.dto.PartialMarkDTO;
  */
 public class PartialMarkDAO extends DAOParentClass<PartialMarkDTO>
 {
+    public PartialMarkDAO()
+    {
+	super(PartialMarkDTO.class, TableNames.PARTIAL_MARK);
+    }
+
     /**
      * Method getting one object of PartialMark entity.
      * 

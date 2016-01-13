@@ -1,5 +1,6 @@
 package edziekanat.databasemodel.dao;
 
+import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.ScheduledClassesDTO;
 
 /**
@@ -7,6 +8,11 @@ import edziekanat.databasemodel.dto.ScheduledClassesDTO;
  */
 public class ScheduledClassesDAO extends DAOParentClass<ScheduledClassesDTO>
 {
+    public ScheduledClassesDAO()
+    {
+	super(ScheduledClassesDTO.class, TableNames.SCHEDULED_CLASSES);
+    }
+
     /**
      * Method getting one object of ScheduledClasses entity.
      * 

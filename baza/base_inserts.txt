@@ -183,6 +183,7 @@ Insert into PAYMENT (ID, TITLE, DESCRIPTION, AMOUNT, ISSUE_DATE, PAYMENT_DATE, S
 
 
 Insert into MESSAGE (ID, TITLE, CONTENT, DISPATCH_DATE, RECEIVE_DATE, SENDER_ID, RECEIVER_ID) values (message_id_seq.nextval, 'Termin poprawy', 'Szanowny Panie Profesorze. Na kiedy przewidział Pan termin poprawy 1szego kolwokwium?', '2015-12-09', '2015-12-09', 'student','wykladowca');
+Insert into MESSAGE (ID, TITLE, CONTENT, DISPATCH_DATE, RECEIVE_DATE, SENDER_ID, RECEIVER_ID) values (message_id_seq.nextval, 'RE: Termin poprawy', 'Na jutro.', '2015-12-10', '2015-12-10', 'wykladowca','student');
 Insert into MESSAGE (ID, TITLE, CONTENT, DISPATCH_DATE, RECEIVE_DATE, SENDER_ID, RECEIVER_ID) values (message_id_seq.nextval, 'Drugi termin egzaminu', 'Szanowna Pani Magister...', '2014-01-30', '2014-01-30', 'SAdamAmbitny','WMajaKozłowska');
 Insert into MESSAGE (ID, TITLE, CONTENT, DISPATCH_DATE, RECEIVE_DATE, SENDER_ID, RECEIVER_ID) values (message_id_seq.nextval, 'Godziny przyjęć dziekanatu', 'Szanowna Pani Magister...', '2013-12-09', '2013-12-09', 'SBartoszMiły','AJadwigaOdpowiedzialna');
 

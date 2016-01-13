@@ -1,5 +1,6 @@
 package edziekanat.databasemodel.dao;
 
+import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.TranscriptDTO;
 
 /**
@@ -7,6 +8,11 @@ import edziekanat.databasemodel.dto.TranscriptDTO;
  */
 public class TranscriptDAO extends DAOParentClass<TranscriptDTO>
 {
+    public TranscriptDAO()
+    {
+	super(TranscriptDTO.class, TableNames.TRANSCRIPT);
+    }
+
     /**
      * Method getting one object of Transcript entity.
      * 

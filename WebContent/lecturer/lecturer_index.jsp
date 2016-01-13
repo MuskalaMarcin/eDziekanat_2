@@ -13,7 +13,13 @@
 		<table border="1" cellspacing="5" cellpadding="5">
 			<tr>
 				<td bgcolor="silver"><a href="lecturer">Strona g³ówna</a></td>
-				<td><a href="adminmessages">Historia komunikatów</a></td>
+				<td><a href="lecturerlearningmaterials">Materia³y dydaktyczne</a></td>
+				<td><a href="lecturerseestudents">Studenci</a></td>
+				<td><a href="lecturerseelecturers">Wyk³adowcy</a></td>
+				<td><a href="lecturerclassrooms">Dostêpno¶æ sal</a></td>
+				<td><a href="lecturertimetable">Plan zajêæ</a></td>
+				<td><a href="lecturersubjects">Moje przedmioty</a></td>
+				<td><a href="lecturermessages">Historia komunikatów</a></td>
 				<td><a href="logout">Wyloguj</a></td>
 			</tr>
 		</table>

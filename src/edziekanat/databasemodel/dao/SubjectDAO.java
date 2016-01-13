@@ -1,5 +1,6 @@
 package edziekanat.databasemodel.dao;
 
+import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.SubjectDTO;
 
 /**
@@ -7,6 +8,11 @@ import edziekanat.databasemodel.dto.SubjectDTO;
  */
 public class SubjectDAO extends DAOParentClass<SubjectDTO>
 {
+    public SubjectDAO()
+    {
+	super(SubjectDTO.class, TableNames.SUBJECT);
+    }
+
     /**
      * Method getting one object of Subject entity.
      * 

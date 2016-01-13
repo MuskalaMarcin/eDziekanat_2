@@ -1,5 +1,6 @@
 package edziekanat.databasemodel.dao;
 
+import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.EnrollmentDTO;
 
 /**
@@ -7,6 +8,11 @@ import edziekanat.databasemodel.dto.EnrollmentDTO;
  */
 public class EnrollmentDAO extends DAOParentClass<EnrollmentDTO>
 {
+    public EnrollmentDAO()
+    {
+	super(EnrollmentDTO.class, TableNames.ENROLLMENT);
+    }
+
     /**
      * Method getting one object of Enrollment entity.
      * 

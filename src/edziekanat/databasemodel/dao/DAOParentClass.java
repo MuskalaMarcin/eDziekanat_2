@@ -15,9 +15,13 @@ public abstract class DAOParentClass<T>
 {
     protected EntityManager entityManager;
     protected String dtoClassName;
+    protected String tableName;
+    protected Class<T> entityClass;
 
-    protected DAOParentClass()
+    protected DAOParentClass(Class<T> clazz, String tableName)
     {
+	this.entityClass = clazz;
+	this.tableName = tableName;
 	this.entityManager = createEntityManager();
 	this.dtoClassName = this.getClass().getName().substring(29).replace("DAO", "DTO");
     }
@@ -29,12 +33,12 @@ public abstract class DAOParentClass<T>
 
     protected T executeSingleResultQuery(String query)
     {
-	return (T) entityManager.createQuery(query).getSingleResult();
+	return (T) entityManager.createNativeQuery(query, entityClass).getSingleResult();
     }
 
     protected List<T> executeMultiResultQuery(String query)
     {
-	return entityManager.createQuery(query).getResultList();
+	return entityManager.createNativeQuery(query, entityClass).getResultList();
     }
 
     protected void closeEntityManager()
@@ -46,19 +50,19 @@ public abstract class DAOParentClass<T>
     {
 	entityManager.persist(newEntity);
     }
-    
+
     public long getNumberOfAllEntities()
     {
-	return (long) entityManager.createQuery("SELECT count(*) FROM " + dtoClassName).getSingleResult();
+	return (long) entityManager.createQuery("SELECT count(*) FROM " + tableName).getSingleResult();
     }
 
     public List<T> getMultipleEntities(String whereStmnt)
     {
-	return executeMultiResultQuery("SELECT e FROM " + dtoClassName + " e WHERE e." + whereStmnt);
+	return executeMultiResultQuery("SELECT * FROM " + tableName + " WHERE " + whereStmnt);
     }
 
     public List<T> getAllEntities()
     {
-	return executeMultiResultQuery("SELECT e FROM " + dtoClassName + " e");
+	return executeMultiResultQuery("SELECT * FROM " + tableName);
     }
 }

@@ -1,5 +1,6 @@
 package edziekanat.databasemodel.dao;
 
+import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.ApplicationDTO;
 
 /**
@@ -7,6 +8,11 @@ import edziekanat.databasemodel.dto.ApplicationDTO;
  */
 public class ApplicationDAO extends DAOParentClass<ApplicationDTO>
 {
+    public ApplicationDAO()
+    {
+	super(ApplicationDTO.class, TableNames.APPLICATION);
+    }
+    
     /**
      * Method getting one object of Application entity.
      * 

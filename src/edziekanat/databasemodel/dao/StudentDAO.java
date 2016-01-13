@@ -1,5 +1,6 @@
 package edziekanat.databasemodel.dao;
 
+import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.StudentDTO;
 
 /**
@@ -7,6 +8,11 @@ import edziekanat.databasemodel.dto.StudentDTO;
  */
 public class StudentDAO extends DAOParentClass<StudentDTO>
 {
+    public StudentDAO()
+    {
+	super(StudentDTO.class, TableNames.STUDENT);
+    }
+
     /**
      * Method getting one object of student entity.
      * 

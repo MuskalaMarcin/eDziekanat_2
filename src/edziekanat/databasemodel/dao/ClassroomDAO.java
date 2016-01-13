@@ -1,5 +1,6 @@
 package edziekanat.databasemodel.dao;
 
+import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.ClassroomDTO;
 
 /**
@@ -7,6 +8,12 @@ import edziekanat.databasemodel.dto.ClassroomDTO;
  */
 public class ClassroomDAO extends DAOParentClass<ClassroomDTO>
 {
+    
+    public ClassroomDAO()
+    {
+	super(ClassroomDTO.class, TableNames.CLASSROOM);
+    }
+
     /**
      * Method getting one object of Classroom entity.
      * 

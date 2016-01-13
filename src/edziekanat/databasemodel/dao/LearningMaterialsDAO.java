@@ -1,5 +1,6 @@
 package edziekanat.databasemodel.dao;
 
+import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.LearningMaterialsDTO;
 
 /**
@@ -7,6 +8,11 @@ import edziekanat.databasemodel.dto.LearningMaterialsDTO;
  */
 public class LearningMaterialsDAO extends DAOParentClass<LearningMaterialsDTO>
 {
+    public LearningMaterialsDAO()
+    {
+	super(LearningMaterialsDTO.class, TableNames.LEARNING_MATERIALS);
+    }
+
     /**
      * Method getting one object of LearningMaterials entity.
      * 

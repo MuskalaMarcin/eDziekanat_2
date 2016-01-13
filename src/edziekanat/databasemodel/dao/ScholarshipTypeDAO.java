@@ -1,5 +1,6 @@
 package edziekanat.databasemodel.dao;
 
+import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.ScholarshipTypeDTO;
 
 /**
@@ -7,6 +8,11 @@ import edziekanat.databasemodel.dto.ScholarshipTypeDTO;
  */
 public class ScholarshipTypeDAO extends DAOParentClass<ScholarshipTypeDTO>
 {
+    public ScholarshipTypeDAO()
+    {
+	super(ScholarshipTypeDTO.class, TableNames.SCHOLARSHIP_TYPE);
+    }
+
     /**
      * Method getting one object of ScholarshipType entity.
      * 

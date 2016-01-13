@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-2"
-    pageEncoding="ISO-8859-2"%>
+<%@ page language="java"
+	import="edziekanat.databasemodel.dto.MessageDTO, java.util.List"
+	contentType="text/html; charset=ISO-8859-2" pageEncoding="ISO-8859-2"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,31 +9,150 @@
 </head>
 <body>
 	<font face="Verdana"><center>
-		<font size="7"><b>eDziekanat - Twój wirtualny dziekanat</b></font><br><br><br><br>
-	
-		<table border="1" cellspacing="5" cellpadding="5">
-			<tr>
-				<td><a href="student">Strona g³ówna</a></td>
-				<td><a href="studenttranscript">Indeks</a></td>
-				<td><a href="studenttimetable">Plan zajêæ</a></td>
-				<td><a href="studentsubjects">Moje przedmioty</a></td>
-				<td><a href="studentscholarships">Stypendia</a></td>
-				<td><a href="studentpayments">P³atno¶ci</a></td>
-				<td><a href="studentapplications">Wnioski</a></td>
-				<td><a href="studentlecturers">Wyk³adowcy</a></td>
-				<td bgcolor="silver"><a href="studentmessages">Historia komunikatów</a></td>
-				<td><a href="logout">Wyloguj</a></td>
-			</tr>
-		</table>
-		
-		<p>
-			<font color="red">
-				TODO: <br>
-				1. Wy¶wietlanie historii wys³anych komunikatów.<br>
-				2. Wy¶wietlanie historii przychodz±cych komunikatów.<br>
-				3. Mo¿liwo¶æ odpisania na przychodz±c± wiadomo¶æ.
-			</font>
-		</p>
-	</center></font>
+			<font size="7"><b>eDziekanat - Twój wirtualny dziekanat</b></font><br>
+			<br> <br> <br>
+
+			<table border="1" cellspacing="5" cellpadding="5">
+				<tr>
+					<td><a href="student">Strona g³ówna</a></td>
+					<td><a href="studenttranscript">Indeks</a></td>
+					<td><a href="studenttimetable">Plan zajêæ</a></td>
+					<td><a href="studentsubjects">Moje przedmioty</a></td>
+					<td><a href="studentscholarships">Stypendia</a></td>
+					<td><a href="studentpayments">P³atno¶ci</a></td>
+					<td><a href="studentapplications">Wnioski</a></td>
+					<td><a href="studentlecturers">Wyk³adowcy</a></td>
+					<td bgcolor="silver"><a href="studentmessages">Historia
+							komunikatów</a></td>
+					<td><a href="logout">Wyloguj</a></td>
+				</tr>
+			</table>
+
+			<p>
+				<font color="red"> TODO: <br> 1. Wy¶wietlanie historii
+					wys³anych komunikatów.<br> 2. Wy¶wietlanie historii
+					przychodz±cych komunikatów.<br> 3. Mo¿liwo¶æ odpisania na
+					przychodz±c± wiadomo¶æ.
+				</font>
+			</p>
+			<%
+			    List<MessageDTO> received = (List<MessageDTO>) request.getAttribute("receivedMessages");
+			    if (received != null)
+			    {
+					List<String> receiverNames = (List<String>) request.getAttribute("senderNames");
+			%>
+			<p>
+			<table border="1">
+				<tr>
+					<td>Wiadomo¶ci przychodz±ce</td>
+				</tr>
+				<%
+				    for (int i = 0; i < received.size(); i++)
+						{
+						    MessageDTO rcvd = received.get(i);
+				%>
+				<tr>
+					<td>Tytu³:</td>
+					<td>
+						<%
+						    out.print(rcvd.getTitle());
+						%>
+					</td>
+				</tr>
+				<tr>
+					<td>Nadawca:</td>
+					<td>
+						<%
+						    out.print(receiverNames.get(i));
+						%>
+					</td>
+				</tr>
+				<tr>
+					<td>Data nadania:</td>
+					<td>
+						<%
+						    out.print(rcvd.getDispatchDate());
+						%>
+					</td>
+				</tr>
+				<tr>
+					<td>Tre¶æ:</td>
+					<td>
+						<%
+						    out.print(rcvd.getContent());
+						%>
+					</td>
+				</tr>
+				<%
+				    }
+				%>
+			</table>
+			<%
+			    }
+			    List<MessageDTO> sent = (List<MessageDTO>) request.getAttribute("sentMessages");
+			    if (sent != null)
+			    {
+					List<String> senderNames = (List<String>) request.getAttribute("receiverNames");
+			%>
+			<p>
+
+				<table border="1"><tr>
+					<td>Wiadomo¶ci wychodz±ce</td>
+				</tr>
+				<%
+				    for (int i = 0; i < received.size(); i++)
+						{
+						    MessageDTO snd = sent.get(i);
+				%>
+				<tr>
+					<td>Tytu³:</td>
+					<td>
+						<%
+						    out.print(snd.getTitle());
+						%>
+					</td>
+				</tr>
+				<tr>
+					<td>Nadawca:</td>
+					<td>
+						<%
+						    out.print(senderNames.get(i));
+						%>
+					</td>
+				</tr>
+				<tr>
+					<td>Data nadania:</td>
+					<td>
+						<%
+						    out.print(snd.getDispatchDate());
+						%>
+					</td>
+				</tr>
+				<tr>
+					<td>Data Odczytu:</td>
+					<td>
+						<%
+						    out.print(snd.getReceiveDate() != null ? snd.getReceiveDate() : "Nie odczytano.");
+						%>
+					</td>
+				</tr>
+				<tr>
+					<td>Tre¶æ:</td>
+					<td>
+						<%
+						    out.print(snd.getContent());
+						%>
+					</td>
+				</tr>
+				<%
+				    }
+				%>
+
+
+			</table>
+			<%
+			    }
+			%>
+		</center></font>
 </body>
 </html>

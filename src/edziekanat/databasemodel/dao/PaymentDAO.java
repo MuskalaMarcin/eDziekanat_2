@@ -1,5 +1,6 @@
 package edziekanat.databasemodel.dao;
 
+import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.PaymentDTO;
 
 /**
@@ -7,6 +8,11 @@ import edziekanat.databasemodel.dto.PaymentDTO;
  */
 public class PaymentDAO extends DAOParentClass<PaymentDTO>
 {
+    public PaymentDAO()
+    {
+	super(PaymentDTO.class, TableNames.PAYMENT);
+    }
+
     /**
      * Method getting one object of Payment entity.
      * 

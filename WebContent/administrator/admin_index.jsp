@@ -13,6 +13,16 @@
 		<table border="1" cellspacing="5" cellpadding="5">
 			<tr>
 				<td bgcolor="silver"><a href="admin">Strona g³ówna</a></td>
+				<td><a href="admintimetable">Plan zajêæ</a></td>
+				<td><a href="adminusers">U¿ytkownicy</a></td>
+				<td><a href="adminlecturers">Wyk³adowcy</a></td>
+				<td><a href="adminsubjects">Przedmioty</a></td>
+				<td><a href="adminstudents">Studenci</a></td>
+				<td><a href="adminbackup">Kopia zapasowa</a></td>
+				<td><a href="adminstatistics">Statystyki</a></td>
+				<td><a href="adminscholarships">Stypendia</a></td>
+				<td><a href="admipayments">Nale¿no¶ci</a></td>
+				<td><a href="adminapplications">Wnioski</a></td>
 				<td><a href="adminmessages">Historia komunikatów</a></td>
 				<td><a href="logout">Wyloguj</a></td>
 			</tr>

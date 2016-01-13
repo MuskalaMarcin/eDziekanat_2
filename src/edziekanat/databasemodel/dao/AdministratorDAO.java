@@ -1,5 +1,6 @@
 package edziekanat.databasemodel.dao;
 
+import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.AdministratorDTO;
 
 /**
@@ -7,6 +8,11 @@ import edziekanat.databasemodel.dto.AdministratorDTO;
  */
 public class AdministratorDAO extends DAOParentClass<AdministratorDTO>
 {
+    public AdministratorDAO()
+    {
+	super(AdministratorDTO.class, TableNames.ADMINISTRATOR);
+    }
+    
     /**
      * Method getting one object of administrator entity.
      * 
