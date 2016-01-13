@@ -35,9 +35,8 @@ public class ApplicationDTO implements Serializable
     @Temporal(TemporalType.DATE)
     @Column(name = "dispatch_date")
     private Date dispatchDate;
-    @Temporal(TemporalType.DATE)
-    @Column(name = "receive_date")
-    private Date receiveDate;
+    @Column(name = "status")
+    private String status;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
     private StudentDTO student;
@@ -85,14 +84,14 @@ public class ApplicationDTO implements Serializable
 	this.dispatchDate = dispatch_date;
     }
 
-    public Date getReceiveDate()
+    public String getStatus()
     {
-	return receiveDate;
+	return status;
     }
 
-    public void setReceiveDate(Date receive_date)
+    public void setStatus(String status)
     {
-	this.receiveDate = receive_date;
+	this.status = status;
     }
 
     public StudentDTO getStudent()

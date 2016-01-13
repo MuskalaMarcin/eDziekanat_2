@@ -41,7 +41,7 @@ public class ApplicationDAOTest extends HttpServlet
 	out.println("<br>" + app.getId());
 	out.println("<br>" + app.getStudent().getName());
 	out.println("<br>" + app.getDispatchDate());
-	out.println("<br>" + app.getReceiveDate());
+	out.println("<br>" + app.getStatus());
 
 	out.println("<p>ALL APPLICATIONS");
 	new ApplicationDAO().getAllEntities().forEach(item -> {
@@ -51,7 +51,7 @@ public class ApplicationDAOTest extends HttpServlet
 	    out.println("<br>" + item.getId());
 	    out.println("<br>" + item.getStudent().getName());
 	    out.println("<br>" + item.getDispatchDate());
-	    out.println("<br>" + item.getReceiveDate());
+	    out.println("<br>" + item.getStatus());
 	    out.println("<br> nastepny");
 	});
     }
