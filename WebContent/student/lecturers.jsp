@@ -20,7 +20,7 @@
 				<td><a href="studentpayments">P³atno¶ci</a></td>
 				<td><a href="studentapplications">Wnioski</a></td>
 				<td  bgcolor="silver"><a href="studentlecturers">Wyk³adowcy</a></td>
-				<td><a href="studentmessages">Historia komunikatów</a></td>
+				<td><a href="messages">Historia komunikatów</a></td>
 				<td><a href="logout">Wyloguj</a></td>
 			</tr>
 		</table>

@@ -22,7 +22,7 @@
 					<td><a href="studentpayments">P³atno¶ci</a></td>
 					<td><a href="studentapplications">Wnioski</a></td>
 					<td><a href="studentlecturers">Wyk³adowcy</a></td>
-					<td bgcolor="silver"><a href="studentmessages">Historia
+					<td bgcolor="silver"><a href="messages">Historia
 							komunikatów</a></td>
 					<td><a href="logout">Wyloguj</a></td>
 				</tr>
@@ -42,15 +42,18 @@
 					List<String> receiverNames = (List<String>) request.getAttribute("senderNames");
 			%>
 			<p>
+			Skrzynka odbiorcza:
 			<table border="1">
-				<tr>
-					<td>Wiadomo¶ci przychodz±ce</td>
-				</tr>
 				<%
 				    for (int i = 0; i < received.size(); i++)
 						{
 						    MessageDTO rcvd = received.get(i);
 				%>
+				<tr>
+					<td colspan="2">Wiadomo¶æ numer: <%
+					    out.print(i + 1);
+					%></td>
+				</tr>
 				<tr>
 					<td>Tytu³:</td>
 					<td>
@@ -95,15 +98,18 @@
 					List<String> senderNames = (List<String>) request.getAttribute("receiverNames");
 			%>
 			<p>
-
-				<table border="1"><tr>
-					<td>Wiadomo¶ci wychodz±ce</td>
-				</tr>
+			Skrzynka nadawcza:
+			<table border="1">
 				<%
 				    for (int i = 0; i < received.size(); i++)
 						{
 						    MessageDTO snd = sent.get(i);
 				%>
+				<tr>
+					<td colspan="2">Wiadomo¶æ numer: <%
+					    out.print(i + 1);
+					%></td>
+				</tr>
 				<tr>
 					<td>Tytu³:</td>
 					<td>
