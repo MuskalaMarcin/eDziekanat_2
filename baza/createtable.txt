@@ -25,7 +25,7 @@ CREATE TABLE application
     title VARCHAR2 (256 CHAR) NOT NULL ,
     content CLOB NOT NULL ,
     dispatch_date    DATE NOT NULL ,
-    receive_date     DATE ,
+    status VARCHAR2 (256 CHAR) NOT NULL ,
     student_id       NUMBER NOT NULL ,
     administrator_id NUMBER NOT NULL
   ) ;
