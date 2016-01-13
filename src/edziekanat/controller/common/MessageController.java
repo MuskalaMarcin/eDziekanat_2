@@ -43,7 +43,6 @@ public class MessageController extends HttpServlet
 	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(messagesURL);
 
 	List<MessageDTO> sentMsg = new MessageDAO().getMultipleEntities("sender_id = '" + loginBean.getLogin() + "'");
-	System.out.println(sentMsg.get(0).getTitle());
 	if (!sentMsg.isEmpty())
 	{
 	    List<String> senderNames = getUserNames(sentMsg, true);
@@ -58,7 +57,6 @@ public class MessageController extends HttpServlet
 	    request.setAttribute("receiverNames", receiverNames);
 	    request.setAttribute("receivedMessages", receivedMsg);
 	}
-	System.out.println(receivedMsg.get(0).getTitle());
 	
 	dispatcher.forward(request, response);
     }
