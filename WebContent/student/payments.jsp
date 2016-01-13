@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-2"
-    pageEncoding="ISO-8859-2"%>
+<%@ page language="java" 
+	import="edziekanat.databasemodel.dto.PaymentDTO, java.util.List"
+	contentType="text/html; charset=ISO-8859-2" pageEncoding="ISO-8859-2"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -33,6 +34,72 @@
 				3. W przypadku oczekuj±cych mo¿liwo¶æ kontaktu z administratorem.
 			</font>
 		</p>
+		<%
+			    List<PaymentDTO> payments = (List<PaymentDTO>) request.getAttribute("ownpayments");
+			    
+				if (payments != null)
+			    {
+			%>
+			<p>P³atno¶ci:
+			<table border="1">
+				<%
+				    for (int i = 0; i < payments.size(); i++)
+						{
+							PaymentDTO pmnts = payments.get(i);
+				%>
+				<tr>
+					<td colspan="2">Nr: <%
+					    out.print(i + 1);
+					%></td>
+				</tr>
+				<tr>
+					<td>Tytu³:</td>
+					<td>
+						<%
+						    out.print(pmnts.getTitle());
+						%>
+					</td>
+				</tr>
+				<tr>
+					<td>Opis:</td>
+					<td>
+						<%
+						    out.print(pmnts.getDescription());
+						%>
+					</td>
+				</tr>
+				<tr>
+					<td>Kwota:</td>
+					<td>
+						<%
+						    out.print(pmnts.getAmount());
+						%>
+					</td>
+				</tr>
+				<tr>
+					<td>Data polecenia zap³aty:</td>
+					<td>
+						<%
+						    out.print(pmnts.getIssueDate());
+						%>
+					</td>
+				</tr>
+				<tr>
+					<td>Data p³atno¶ci:</td>
+					<td>
+						<%
+						    out.print(pmnts.getPaymentDate());
+						%>
+					</td>
+				</tr>
+				<%
+				    }
+				%>
+			</table>
+
+			<%
+			    }
+			%>
 	</center></font>
 </body>
 </html>

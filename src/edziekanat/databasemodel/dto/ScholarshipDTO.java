@@ -32,7 +32,7 @@ public class ScholarshipDTO implements Serializable
     @Column(name = "end_date")
     private Date endDate;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "schollarship_type")
+    @JoinColumn(name = "scholarship_type")
     private ScholarshipTypeDTO scholarshipType;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")

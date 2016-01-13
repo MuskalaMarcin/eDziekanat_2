@@ -16,7 +16,7 @@ public class ScholarshipTypeDTO implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "type")
     private String type;
     @Column(name = "requirements")
     private String requirements;
