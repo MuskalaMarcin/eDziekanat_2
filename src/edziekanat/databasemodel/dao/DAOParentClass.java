@@ -65,4 +65,19 @@ public abstract class DAOParentClass<T>
     {
 	return executeMultiResultQuery("SELECT * FROM " + tableName);
     }
+    
+    public void insert(T entity)
+    {
+	entityManager.persist(entity);
+    }
+    
+    public void update(T entity)
+    {
+	entityManager.merge(entity);
+    }
+    
+    public void remove(T entity)
+    {
+	entityManager.remove(entity);
+    }
 }

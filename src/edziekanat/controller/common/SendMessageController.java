@@ -13,29 +13,25 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/sendmessage")
 public class SendMessageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SendMessageController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		System.out.println(request.getParameter("msgreceiver"));
+		System.out.println(request.getParameter("msgtitle"));
+		System.out.println(request.getParameter("content"));
+		
+		//request.setAttribute("msgshort", "Wylogowano");
+		//request.setAttribute("msglong", "Zosta³eœ wylogowany z systemu.");
+		//request.getRequestDispatcher("/info.jsp").forward(request, response);
 	}
 
 }

@@ -1,10 +1,10 @@
 package edziekanat.controller.common;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,28 +37,41 @@ public class MessageController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	// TODO: podzial na strony
 	LoginBean loginBean = (LoginBean) request.getSession().getAttribute("loginBean");
-	String messagesURL = "/" + loginBean.getUserRole() + "messages";
-
-	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(messagesURL);
+	String messagesURL = "/" + loginBean.getUserRole() + "/messages.jsp";
 
 	List<MessageDTO> sentMsg = new MessageDAO().getMultipleEntities("sender_id = '" + loginBean.getLogin() + "'");
 	if (!sentMsg.isEmpty())
 	{
-	    List<String> senderNames = getUserNames(sentMsg, false);
-	    request.setAttribute("senderNames", senderNames);
+	    Collections.sort(sentMsg, (x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()));
+	    List<String> receiverNames = getUserNames(sentMsg, false);
+	    request.setAttribute("receiverNames", receiverNames);
 	    request.setAttribute("sentMessages", sentMsg);
 	}
 	List<MessageDTO> receivedMsg = new MessageDAO()
 		.getMultipleEntities("receiver_id = '" + loginBean.getLogin() + "'");
+
 	if (!receivedMsg.isEmpty())
 	{
-	    List<String> receiverNames = getUserNames(receivedMsg, true);
-	    request.setAttribute("receiverNames", receiverNames);
+	    Collections.sort(receivedMsg, (x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()));
+	    setReceivedDate(receivedMsg);
+	    List<String> senderNames = getUserNames(receivedMsg, true);
+	    request.setAttribute("senderNames", senderNames);
 	    request.setAttribute("receivedMessages", receivedMsg);
 	}
-	
-	dispatcher.forward(request, response);
+
+	getServletContext().getRequestDispatcher(messagesURL).forward(request, response);
+    }
+
+    private void setReceivedDate(List<MessageDTO> receivedMsg)
+    {
+	receivedMsg.forEach(msg -> {
+	    if (msg.getReceiveDate() == null)
+	    {	
+		// TODO : ustawiæ datê odbioru wiadomoœci
+	    }
+	});
     }
 
     private List<String> getUserNames(List<MessageDTO> allMessage, boolean isSender)
