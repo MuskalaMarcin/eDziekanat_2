@@ -45,7 +45,7 @@ public class MessageController extends HttpServlet
 	List<MessageDTO> sentMsg = new MessageDAO().getMultipleEntities("sender_id = '" + loginBean.getLogin() + "'");
 	if (!sentMsg.isEmpty())
 	{
-	    List<String> senderNames = getUserNames(sentMsg, true);
+	    List<String> senderNames = getUserNames(sentMsg, false);
 	    request.setAttribute("senderNames", senderNames);
 	    request.setAttribute("sentMessages", sentMsg);
 	}
@@ -53,7 +53,7 @@ public class MessageController extends HttpServlet
 		.getMultipleEntities("receiver_id = '" + loginBean.getLogin() + "'");
 	if (!receivedMsg.isEmpty())
 	{
-	    List<String> receiverNames = getUserNames(receivedMsg, false);
+	    List<String> receiverNames = getUserNames(receivedMsg, true);
 	    request.setAttribute("receiverNames", receiverNames);
 	    request.setAttribute("receivedMessages", receivedMsg);
 	}
