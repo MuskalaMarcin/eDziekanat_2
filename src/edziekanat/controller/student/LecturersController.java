@@ -40,17 +40,16 @@ public class LecturersController extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	List<LecturerBean> lecturers = new LinkedList<LecturerBean>();
-	for(StudentsGroupDTO group: new StudentDAO().getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId())
+	for (StudentsGroupDTO group : new StudentDAO()
+		.getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId())
 		.getStudentsGroup())
 	{
-	    for(SubjectDTO subject: group.getSubject())
+	    for (SubjectDTO subject : group.getSubject())
 	    {
 		LecturerDTO lecturer = subject.getLecturer();
-		    List<String> subjects = new LinkedList<String>();
-		    subjects.add(subject.getName());
-		    lecturers.add(new LecturerBean(lecturer.getUser().getLogin(), subjects,
-			    lecturer.getName(), lecturer.getSurname(), lecturer.getUser().geteMail(),
-			    lecturer.getPosition(), lecturer.getAcademicDegree()));
+		lecturers.add(new LecturerBean(lecturer.getUser().getLogin(), subject.getName(),
+			lecturer.getName(), lecturer.getSurname(), lecturer.getUser().geteMail(),
+			lecturer.getPosition(), lecturer.getAcademicDegree()));
 	    }
 	}
 	request.setAttribute("lecturers", removeDuplicates(lecturers));
@@ -59,6 +58,7 @@ public class LecturersController extends HttpServlet
 
     /**
      * Removes duplicated lecturers and adds subjects to list, then sorts them by surname.
+     * 
      * @param lecturers
      * @return
      */
@@ -71,7 +71,8 @@ public class LecturersController extends HttpServlet
 	    LecturerBean next = lecturers.get(i);
 	    if (previous.getLogin().equals(next.getLogin()))
 	    {
-		next.getSubject().addAll(previous.getSubject());
+		String subject = lecturers.get(i).getSubject();
+		next.setSubject(subject.concat(", " + previous.getSubject()));
 		lecturers.remove(previous);
 		i--;
 	    }

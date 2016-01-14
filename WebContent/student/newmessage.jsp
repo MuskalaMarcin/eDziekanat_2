@@ -82,7 +82,7 @@
 						<fieldset class="pure-group">
 							<input type="text" name="msgtitle" class="pure-input-1-2"
 								placeholder="Tytu³"
-								value="RE: <%out.print(request.getParameter("title"));%>"
+								value="<%out.print(request.getParameter("title") == null ? "" : "RE:" + request.getParameter("title"));%>"
 								required> <input type="text" name="receivername"
 								class="pure-input-1-2" placeholder="Odbiorca"
 								value="<%out.print(name);%>" disabled>

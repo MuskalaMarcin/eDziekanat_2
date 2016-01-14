@@ -1,14 +1,13 @@
 package edziekanat.bean.student;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class LecturerBean implements Serializable
 {
     private static final long serialVersionUID = 1L;
     
     private String login;
-    private List<String> subject;
+    private String subject;
     private String name;
     private String surname;
     private String eMail;
@@ -19,7 +18,7 @@ public class LecturerBean implements Serializable
 	super();
     }
     
-    public LecturerBean(String login, List<String> subject, String name, String surname, String eMail, String position,
+    public LecturerBean(String login, String subject, String name, String surname, String eMail, String position,
 	    String academicDegree)
     {
 	super();
@@ -42,12 +41,12 @@ public class LecturerBean implements Serializable
         this.login = login;
     }
 
-    public List<String> getSubject()
+    public String getSubject()
     {
         return subject;
     }
 
-    public void setSubject(List<String> subject)
+    public void setSubject(String subject)
     {
         this.subject = subject;
     }

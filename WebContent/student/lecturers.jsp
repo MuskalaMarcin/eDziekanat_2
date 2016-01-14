@@ -45,13 +45,15 @@
 			</div>
 			<div class="content">
 				<h2 class="content-subhead">Wyk³adowcy:</h2>
-				<p>
-					<font color="red"> TODO: <br> 1. Wy¶wietlanie aktualnie
-						ucz±cych wyk³adowców.<br> 2. Przy ka¿dym link do wys³ania
-						wiadomo¶ci.
-					</font>
-				<table border="1">
-
+				<table class="responseTable">
+					<tr class="grayRow">
+						<td>Imiê</td>
+						<td>Nazwisko</td>
+						<td>Stopieñ naukowy</td>
+						<td>Stanowisko</td>
+						<td>e-Mail</td>
+						<td>Przedmiot(y)</td>
+					</tr>
 					<c:forEach items="${lecturers}" var="lecturer">
 						<tr>
 							<td>${lecturer.name}</td>
@@ -59,9 +61,15 @@
 							<td>${lecturer.academicDegree}</td>
 							<td>${lecturer.position}</td>
 							<td>${lecturer.eMail}</td>
-							<td><c:forEach items="${lecturer.subject}" var="subject">
-								${subject}
-							</c:forEach></td>
+							<td>${lecturer.subject}</td>
+							<td id="respond">
+								<form action="student/newmessage" method=post>
+									<input type="hidden" name="receiverLogin"
+										value="${lecturer.login}">  <input
+										class="pure-button pure-input-1-2 pure-button-primary"
+										type="submit" value="Kontakt">
+							</td>
+							</form>
 						</tr>
 					</c:forEach>
 				</table>

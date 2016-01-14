@@ -105,3 +105,23 @@ body {
     height: auto;
     padding: 2.1em 1.6em;
 }
+
+.grayRow td{
+	background-color: lightgray;
+	color: black;
+}
+
+.responseTable{
+	padding: 1px;
+	width: 100%;
+}
+
+td#respond{
+	padding: 2px;
+}
+
+.responseTable td{
+	vertical-align: center;
+	text-align: center;
+	border: 1px solid black;
+}
