@@ -20,8 +20,8 @@
 						class="pure-menu-link">Indeks</a></li>
 					<li class="pure-menu-item"><a href="studenttimetable"
 						class="pure-menu-link">Plan zajêæ</a></li>
-					<li class="pure-menu-item"><a href="studentsubjects"
-						class="pure-menu-link  pure-menu-selected">Moje przedmioty</a></li>
+					<li class="pure-menu-item pure-menu-selected"><a href="studentsubjects"
+						class="pure-menu-link">Moje przedmioty</a></li>
 					<li class="pure-menu-item"><a href="studentscholarships"
 						class="pure-menu-link">Stypendia</a></li>
 					<li class="pure-menu-item"><a href="studentpayments"
@@ -43,7 +43,7 @@
 				<h2>Twój wirtualny dziekanat.</h2>
 			</div>
 			<div class="content">
-				<h2 class="content-subhead">Zalogowano jako:</h2>
+				<h2 class="content-subhead">Moje przedmioty:</h2>
 				<p>
 					<font color="red"> TODO: <br> 1. Wy¶wietlanie
 						informacji o przedmiotach<br> 2. Przy ka¿dym przedmiocie

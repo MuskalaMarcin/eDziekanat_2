@@ -4,31 +4,50 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+<link rel="stylesheet" href="resources/pure-min.css">
+<link rel="stylesheet" href="resources/styles2.css">
 <title>eDziekanat - Zaloguj się</title>
 </head>
 <body>
-	<center><font size="3px" face="Verdana">
-	<p><font size="7"><b>eDziekanat - Twój wirtualny dziekanat</b></font><br><br><br><br><br><br></p>
-	<p>Zaloguj się do systemu, aby uzyskać dostęp do swoich danych.<br><br></p>
-	<form action="loginaction" method=post>
-		<p><b>Login: </b> <input type="text" name="username" size="25"></p>
-		<p><b>Hasło: </b> <input type="password" size="25"
-				name="password">
-			<%
-			    if (request.getSession().getAttribute("loginError") != null
-					    && request.getSession().getAttribute("loginError").equals("true"))
-			    {
-					out.print("<p><font color='red'><b>Błędny login lub hasło, spróbuj ponownie.</b></font></p>");
-					request.getSession().invalidate();
-			    }
-			%>
-		</p>
-		<p><input type="submit" value="Zaloguj"></p>
-	</form>
-	</font>
-	</center>
-	<%
-	    request.getSession().setAttribute("backURL", request.getAttribute("javax.servlet.forward.request_uri"));
-	%>
+	<div id="layout">
+		<div id="main">
+			<div class="header">
+				<h1>eDziekanat</h1>
+				<h2>Twój wirtualny dziekanat.</h2>
+			</div>
+			<div class="content">
+				<h2 class="content-subhead">Zaloguj się do systemu, aby uzyskać
+					dostęp do swoich danych</h2>
+				<p>
+				<center>
+					<form action="loginaction" method=post class="pure-form">
+						<fieldset class="pure-group">
+							<input type="text" name="username" class="pure-input-1-2"
+								placeholder="Login" required> <input type="password"
+								name="password" class="pure-input-1-2" placeholder="Hasło"
+								required>
+						</fieldset>
+
+						<fieldset class="pure-group">
+							<%
+							    if (request.getSession().getAttribute("loginError") != null
+									    && request.getSession().getAttribute("loginError").equals("true"))
+							    {
+									out.print("<font color='red'><b>Błędny login lub hasło, spróbuj ponownie.</b></font>");
+									request.getSession().invalidate();
+							    }
+							%>
+						</fieldset>
+
+						<button type="submit"
+							class="pure-button pure-input-1-2 pure-button-primary">Zaloguj</button>
+					</form>
+					<%
+					    request.getSession().setAttribute("backURL", request.getAttribute("javax.servlet.forward.request_uri"));
+					%>
+				</center>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

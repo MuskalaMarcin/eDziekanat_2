@@ -1,74 +1,107 @@
 <%@ page language="java"
 	import="edziekanat.databasemodel.dao.UserDAO, edziekanat.databasemodel.dto.UserDTO"
 	contentType="text/html; charset=ISO-8859-2" pageEncoding="ISO-8859-2"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
-<link rel="stylesheet" href="../resources/styles.css">
-<title>eDziekanat - Student - Nowa Wiadomości</title>
+<link rel="stylesheet"
+	href="http://localhost:8080/eDziekanat/resources/pure-min.css">
+<link rel="stylesheet"
+	href="http://localhost:8080/eDziekanat/resources/styles.css">
+<title>eDziekanat - Student - Nowa Wiadomość</title>
 </head>
 <body>
-	<p id="headertext">eDziekanat - Twój wirtualny dziekanat</p>
-	<table id="menu">
-		<tr>
-			<td><a href="http://localhost:8080/eDziekanat/student">Strona
-					główna</a></td>
-			<td><a href="http://localhost:8080/eDziekanat/studenttranscript">Indeks</a></td>
-			<td><a href="http://localhost:8080/eDziekanat/studenttimetable">Plan
-					zajęć</a></td>
-			<td><a href="http://localhost:8080/eDziekanat/studentsubjects">Moje
-					przedmioty</a></td>
-			<td><a
-				href="http://localhost:8080/eDziekanat/studentscholarships">Stypendia</a></td>
-			<td><a href="http://localhost:8080/eDziekanat/studentpayments">Płatności</a></td>
-			<td><a
-				href="http://localhost:8080/eDziekanat/studentapplications">Wnioski</a></td>
-			<td><a href="http://localhost:8080/eDziekanat/studentlecturers">Wykładowcy</a></td>
-			<td id="grayCell"><a
-				href="http://localhost:8080/eDziekanat/messages">Historia
-					komunikatów</a></td>
-			<td><a href="logout">Wyloguj</a></td>
-		</tr>
-	</table>
+	<div id="layout">
+		<div id="menu">
+			<div class="pure-menu">
+				<a class="pure-menu-heading" href="home">eDziekanat</a>
+				<ul class="pure-menu-list">
+					<li class="pure-menu-item"><a
+						href="http://localhost:8080/eDziekanat/student"
+						class="pure-menu-link">Strona główna</a></li>
+					<li class="pure-menu-item"><a
+						href="http://localhost:8080/eDziekanat/studenttranscript"
+						class="pure-menu-link">Indeks</a></li>
+					<li class="pure-menu-item"><a
+						href="http://localhost:8080/eDziekanat/studenttimetable"
+						class="pure-menu-link">Plan zajęć</a></li>
+					<li class="pure-menu-item"><a
+						href="http://localhost:8080/eDziekanat/studentsubjects"
+						class="pure-menu-link">Moje przedmioty</a></li>
+					<li class="pure-menu-item"><a
+						href="http://localhost:8080/eDziekanat/studentscholarships"
+						class="pure-menu-link">Stypendia</a></li>
+					<li class="pure-menu-item"><a
+						href="http://localhost:8080/eDziekanat/studentpayments"
+						class="pure-menu-link">Płatności</a></li>
+					<li class="pure-menu-item"><a
+						href="http://localhost:8080/eDziekanat/studentapplications"
+						class="pure-menu-link">Wnioski</a></li>
+					<li class="pure-menu-item"><a
+						href="http://localhost:8080/eDziekanat/studentlecturers"
+						class="pure-menu-link">Wykładowcy</a></li>
+					<li class="pure-menu-item  pure-menu-selected"><a
+						href="http://localhost:8080/eDziekanat/messages"
+						class="pure-menu-link">Historia komunikatów</a></li>
+					<li class="pure-menu-item"><a
+						href="http://localhost:8080/eDziekanat/logout"
+						class="pure-menu-link">Wyloguj</a>
+				</ul>
+			</div>
+		</div>
+		<div id="main">
+			<div class="header">
+				<h1>eDziekanat</h1>
+				<h2>Twój wirtualny dziekanat.</h2>
+			</div>
+			<div class="content">
+				<h2 class="content-subhead">Wyślij nową wiadomość:</h2>
+				<p>
+				<p>
+					<%
+					    String name = "Error";
+					    UserDTO receiver = new UserDAO().getEntity(request.getParameter("receiverLogin"));
+					    if (receiver.getUserRole().equals("admin"))
+					    {
+							name = receiver.getAdministrator().getName() + " " + receiver.getAdministrator().getSurname();
+					    }
+					    else if (receiver.getUserRole().equals("student"))
+					    {
+							name = receiver.getStudent().getName() + " " + receiver.getStudent().getSurname();
+					    }
+					    else if (receiver.getUserRole().equals("lecturer"))
+					    {
+							name = receiver.getLecturer().getName() + " " + receiver.getLecturer().getSurname();
+					    }
+					%>
+				
+				<center>
+					<form action="http://localhost:8080/eDziekanat/sendmessage"
+						method=post class="pure-form">
+						<fieldset class="pure-group">
+							<input type="text" name="msgtitle" class="pure-input-1-2"
+								placeholder="Tytuł"
+								value="RE: <%out.print(request.getParameter("title"));%>"
+								required> <input type="text" name="receivername"
+								class="pure-input-1-2" placeholder="Odbiorca"
+								value="<%out.print(name);%>" disabled>
+						</fieldset>
 
-	<p>
-		<%
-		    String name = "Error";
-		    UserDTO receiver = new UserDAO().getEntity(request.getParameter("receiverLogin"));
-		    if (receiver.getUserRole().equals("admin"))
-		    {
-				name = receiver.getAdministrator().getName() + " " + receiver.getAdministrator().getSurname();
-		    }
-		    else if (receiver.getUserRole().equals("student"))
-		    {
-				name = receiver.getStudent().getName() + " " + receiver.getStudent().getSurname();
-		    }
-		    else if (receiver.getUserRole().equals("lecturer"))
-		    {
-				name = receiver.getLecturer().getName() + " " + receiver.getLecturer().getSurname();
-		    }
-		%>
-	<br><br>Wyślij nową wiadomość<br><br>
-	<form action="http://localhost:8080/eDziekanat/sendmessage" method=post>
-		<p>
-			Tytuł: <input type="text" name="msgtitle" size="25"
-				value="RE: <%out.print(request.getParameter("title"));%>" required>
-		</p>
-		<p>
-			Odbiorca: <input type="text" size="25" name="receivername"
-				value="<%out.print(name);%>" disabled>
-		</p>
-		<p>
-			Treść: <input type="text" size="25" name="content" required>
-		</p>
-		<p>
-			<input type="hidden" name="msgreceiver"
-				value="<%out.print(receiver.getLogin());%>"> <input
-				type="submit" value="Wyślij">
-		</p>
-	</form>
-	</p>
+						<fieldset class="pure-group">
+							<textarea name="content" class="pure-input-1-2"
+								placeholder="Treść" required></textarea>
+						</fieldset>
+
+						<input type="hidden" name="msgreceiver"
+							value="<%out.print(receiver.getLogin());%>">
+						<button type="submit"
+							class="pure-button pure-input-1-2 pure-button-primary">Wyślij</button>
+					</form>
+				</center>
+				</p>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
