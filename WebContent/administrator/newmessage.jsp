@@ -1,35 +1,31 @@
 <%@ page language="java"
 	import="edziekanat.databasemodel.dao.UserDAO, edziekanat.databasemodel.dto.UserDTO"
 	contentType="text/html; charset=ISO-8859-2" pageEncoding="ISO-8859-2"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet" href="../resources/styles.css">
-<title>eDziekanat - Student - Nowa Wiadomości</title>
+<title>eDziekanat - Administrator - Nowa Wiadomości</title>
 </head>
 <body>
 	<p id="headertext">eDziekanat - Twój wirtualny dziekanat</p>
 	<table id="menu">
 		<tr>
-			<td><a href="http://localhost:8080/eDziekanat/student">Strona
-					główna</a></td>
-			<td><a href="http://localhost:8080/eDziekanat/studenttranscript">Indeks</a></td>
-			<td><a href="http://localhost:8080/eDziekanat/studenttimetable">Plan
-					zajęć</a></td>
-			<td><a href="http://localhost:8080/eDziekanat/studentsubjects">Moje
-					przedmioty</a></td>
-			<td><a
-				href="http://localhost:8080/eDziekanat/studentscholarships">Stypendia</a></td>
-			<td><a href="http://localhost:8080/eDziekanat/studentpayments">Płatności</a></td>
-			<td><a
-				href="http://localhost:8080/eDziekanat/studentapplications">Wnioski</a></td>
-			<td><a href="http://localhost:8080/eDziekanat/studentlecturers">Wykładowcy</a></td>
-			<td id="grayCell"><a
-				href="http://localhost:8080/eDziekanat/messages">Historia
-					komunikatów</a></td>
-			<td><a href="logout">Wyloguj</a></td>
+			<td bgcolor="silver"><a href="http://localhost:8080/eDziekanat/admin">Strona główna</a></td>
+			<td><a href="http://localhost:8080/eDziekanat/admintimetable">Plan zajęć</a></td>
+			<td><a href="http://localhost:8080/eDziekanat/adminusers">Użytkownicy</a></td>
+			<td><a href="http://localhost:8080/eDziekanat/adminlecturers">Wykładowcy</a></td>
+			<td><a href="http://localhost:8080/eDziekanat/adminsubjects">Przedmioty</a></td>
+			<td><a href="http://localhost:8080/eDziekanat/adminstudents">Studenci</a></td>
+			<td><a href="http://localhost:8080/eDziekanat/adminbackup">Kopia zapasowa</a></td>
+			<td><a href="http://localhost:8080/eDziekanat/adminstatistics">Statystyki</a></td>
+			<td><a href="http://localhost:8080/eDziekanat/adminscholarships">Stypendia</a></td>
+			<td><a href="http://localhost:8080/eDziekanat/admipayments">Należności</a></td>
+			<td><a href="http://localhost:8080/eDziekanat/adminapplications">Wnioski</a></td>
+			<td  id="grayCell"><a href="http://localhost:8080/eDziekanat/messages">Historia komunikatów</a></td>
+			<td><a href="http://localhost:8080/eDziekanat/logout">Wyloguj</a></td>
+
 		</tr>
 	</table>
 
@@ -50,7 +46,9 @@
 				name = receiver.getLecturer().getName() + " " + receiver.getLecturer().getSurname();
 		    }
 		%>
-	<br><br>Wyślij nową wiadomość<br><br>
+		<br>
+		<br>Wyślij nową wiadomość<br>
+		<br>
 	<form action="http://localhost:8080/eDziekanat/sendmessage" method=post>
 		<p>
 			Tytuł: <input type="text" name="msgtitle" size="25"

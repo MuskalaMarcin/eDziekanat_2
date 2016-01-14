@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.bean.LoginBean;
-import edziekanat.databasemodel.dao.ApplicationDAO;
 import edziekanat.databasemodel.dao.PaymentDAO;
-import edziekanat.databasemodel.dto.ApplicationDTO;
 import edziekanat.databasemodel.dto.PaymentDTO;
 
 /**

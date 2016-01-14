@@ -12,12 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.bean.LoginBean;
-import edziekanat.databasemodel.dao.MessageDAO;
 import edziekanat.databasemodel.dao.ScholarshipDAO;
 import edziekanat.databasemodel.dto.AdministratorDTO;
-import edziekanat.databasemodel.dto.MessageDTO;
 import edziekanat.databasemodel.dto.ScholarshipDTO;
-import edziekanat.databasemodel.dto.UserDTO;
 
 /**
  * Servlet implementation class ScholarshipController

@@ -2,7 +2,6 @@ package edziekanat.controller.student;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,12 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.ApplicationDAO;
-import edziekanat.databasemodel.dao.ScholarshipDAO;
-import edziekanat.databasemodel.dao.UserDAO;
-import edziekanat.databasemodel.dto.AdministratorDTO;
 import edziekanat.databasemodel.dto.ApplicationDTO;
-import edziekanat.databasemodel.dto.ScholarshipDTO;
-import edziekanat.databasemodel.dto.UserDTO;
 
 /**
  * Servlet implementation class ApplicationsController

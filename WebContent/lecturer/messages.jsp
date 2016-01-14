@@ -6,41 +6,40 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet" href="./resources/styles.css">
-<title>eDziekanat - Student - Wiadomości</title>
+<title>eDziekanat - Wykładowca - Wiadomości</title>
 </head>
 <body>
 	<p id="headertext">eDziekanat - Twój wirtualny dziekanat</p>
 	<table id="menu">
 		<tr>
-			<td><a href="student">Strona główna</a></td>
-			<td><a href="studenttranscript">Indeks</a></td>
-			<td><a href="studenttimetable">Plan zajęć</a></td>
-			<td><a href="studentsubjects">Moje przedmioty</a></td>
-			<td><a href="studentscholarships">Stypendia</a></td>
-			<td><a href="studentpayments">Płatności</a></td>
-			<td><a href="studentapplications">Wnioski</a></td>
-			<td><a href="studentlecturers">Wykładowcy</a></td>
-			<td id="grayCell"><a href="messages">Historia komunikatów</a></td>
+			<td><a href="lecturer">Strona główna</a></td>
+			<td><a href="lecturerlearningmaterials">Materiały
+					dydaktyczne</a></td>
+			<td><a href="lecturerseestudents">Studenci</a></td>
+			<td><a href="lecturerseelecturers">Wykładowcy</a></td>
+			<td><a href="lecturerclassrooms">Dostępność sal</a></td>
+			<td><a href="lecturertimetable">Plan zajęć</a></td>
+			<td><a href="lecturersubjects">Moje przedmioty</a></td>
+			<td  id="grayCell"><a href="messages">Historia komunikatów</a></td>
 			<td><a href="logout">Wyloguj</a></td>
 		</tr>
 	</table>
 
 	<p>
-		<font color="red"> TODO:  4. Podział na strony.
-		</font>
+		<font color="red"> TODO: 4. Podział na strony. </font>
 	</p>
 	<%
 	    List<MessageDTO> received = (List<MessageDTO>) request.getAttribute("receivedMessages");
-			if (received != null)
-			{
-			    List<String> senderNames = (List<String>) request.getAttribute("senderNames");
+	    if (received != null)
+	    {
+			List<String> senderNames = (List<String>) request.getAttribute("senderNames");
 	%>
 	<p>Skrzynka odbiorcza:
 	<table class="responseTable">
 		<%
 		    for (int i = 0; i < received.size(); i++)
-				    {
-					MessageDTO rcvd = received.get(i);
+				{
+				    MessageDTO rcvd = received.get(i);
 		%>
 		<tr>
 			<td id="grayCell" colspan="2">Wiadomość <%
@@ -68,7 +67,7 @@
 			<td>
 				<%
 				    Date date = rcvd.getDispatchDate();
-							out.print(date.getDate() + "." + (date.getMonth() + 1) + "." + (date.getYear() + 1900));
+						    out.print(date.getDate() + "." + (date.getMonth() + 1) + "." + (date.getYear() + 1900));
 				%>
 			</td>
 		</tr>
@@ -84,10 +83,12 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<form action="student/newmessage" method=post>
-				<input type="hidden" name="receiverLogin" value="<% out.print(rcvd.getSender().getLogin());%>">
-				<input type="hidden" name="title" value="<% out.print(rcvd.getTitle());%>">
-				<input type="submit" value="Odpowiedz">
+				<form action="lecturer/newmessage" method=post>
+					<input type="hidden" name="receiverLogin"
+						value="<%out.print(rcvd.getSender().getLogin());%>"> <input
+						type="hidden" name="title"
+						value="<%out.print(rcvd.getTitle());%>"> <input
+						type="submit" value="Odpowiedz">
 				</form>
 			</td>
 		</tr>
@@ -97,17 +98,17 @@
 	</table>
 	<%
 	    }
-			List<MessageDTO> sent = (List<MessageDTO>) request.getAttribute("sentMessages");
-			if (sent != null)
-			{
-			    List<String> receiverNames = (List<String>) request.getAttribute("receiverNames");
+	    List<MessageDTO> sent = (List<MessageDTO>) request.getAttribute("sentMessages");
+	    if (sent != null)
+	    {
+			List<String> receiverNames = (List<String>) request.getAttribute("receiverNames");
 	%>
 	<p>Skrzynka nadawcza:
 	<table class="responseTable">
 		<%
 		    for (int i = 0; i < sent.size(); i++)
-				    {
-					MessageDTO snd = sent.get(i);
+				{
+				    MessageDTO snd = sent.get(i);
 		%>
 		<tr>
 			<td id="grayCell" colspan="2">Wiadomość <%
@@ -135,8 +136,8 @@
 			<td>
 				<%
 				    Date dateSnd = snd.getDispatchDate();
-							out.print(
-								dateSnd.getDate() + "." + (dateSnd.getMonth() + 1) + "." + (dateSnd.getYear() + 1900));
+						    out.print(
+							    dateSnd.getDate() + "." + (dateSnd.getMonth() + 1) + "." + (dateSnd.getYear() + 1900));
 				%>
 			</td>
 		</tr>
@@ -145,15 +146,15 @@
 			<td>
 				<%
 				    if (snd.getReceiveDate() == null)
-							{
+						    {
 				%> Nie dostarczono. <%
 				    }
-							else
-							{
-							    Date dateRcv = snd.getReceiveDate();
-							    out.print(dateRcv.getDate() + "." + (dateRcv.getMonth() + 1) + "."
-								    + (dateRcv.getYear() + 1900));
-							}
+						    else
+						    {
+							Date dateRcv = snd.getReceiveDate();
+							out.print(dateRcv.getDate() + "." + (dateRcv.getMonth() + 1) + "."
+								+ (dateRcv.getYear() + 1900));
+						    }
 				%>
 			</td>
 		</tr>

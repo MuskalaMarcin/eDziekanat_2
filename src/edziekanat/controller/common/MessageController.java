@@ -1,6 +1,7 @@
 package edziekanat.controller.common;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -66,10 +67,13 @@ public class MessageController extends HttpServlet
 
     private void setReceivedDate(List<MessageDTO> receivedMsg)
     {
+	Calendar calendar = Calendar.getInstance();
+	MessageDAO messageDAO = new MessageDAO();
 	receivedMsg.forEach(msg -> {
 	    if (msg.getReceiveDate() == null)
 	    {	
-		// TODO : ustawiæ datê odbioru wiadomoœci
+		msg.setReceiveDate(calendar.getTime());
+		messageDAO.update(msg);
 	    }
 	});
     }

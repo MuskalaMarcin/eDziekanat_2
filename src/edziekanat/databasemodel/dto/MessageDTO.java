@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,7 +26,8 @@ public class MessageDTO implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="message_id_seq")
+    @SequenceGenerator(name="MESSAGESEQ",sequenceName="message_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="MESSAGESEQ")
     @Column(name = "id")
     private Integer id;
     @Column(name = "title")
@@ -38,10 +40,10 @@ public class MessageDTO implements Serializable
     @Temporal(TemporalType.DATE)
     @Column(name = "receive_date")
     private Date receiveDate;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "sender_id")
     private UserDTO sender;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "receiver_id")
     private UserDTO receiver;
 

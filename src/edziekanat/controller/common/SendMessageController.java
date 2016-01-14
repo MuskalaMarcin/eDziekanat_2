@@ -1,11 +1,18 @@
 package edziekanat.controller.common;
 
 import java.io.IOException;
+import java.util.Calendar;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import edziekanat.bean.LoginBean;
+import edziekanat.databasemodel.dao.MessageDAO;
+import edziekanat.databasemodel.dao.UserDAO;
+import edziekanat.databasemodel.dto.MessageDTO;
 
 /**
  * Servlet implementation class SendMessageController
@@ -24,14 +31,21 @@ public class SendMessageController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("msgreceiver"));
-		System.out.println(request.getParameter("msgtitle"));
-		System.out.println(request.getParameter("content"));
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 	
+		UserDAO userDAO = new UserDAO();
+		MessageDTO newMessage = new MessageDTO();
 		
-		//request.setAttribute("msgshort", "Wylogowano");
-		//request.setAttribute("msglong", "Zosta³eœ wylogowany z systemu.");
-		//request.getRequestDispatcher("/info.jsp").forward(request, response);
+		newMessage.setContent(request.getParameter("content"));
+		newMessage.setDispatchDate(Calendar.getInstance().getTime());
+		newMessage.setReceiver(userDAO.getEntity(request.getParameter("msgreceiver")));
+		newMessage.setSender(userDAO.getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getLogin()));
+		newMessage.setTitle(request.getParameter("msgtitle"));
+		
+		new MessageDAO().insert(newMessage);
+		
+		request.setAttribute("msgshort", "Wys³ano wiadomoœæ");
+		request.setAttribute("msglong", "Twoja wiadomoœæ zosta³a wys³ana.");
+		request.getRequestDispatcher("/info.jsp").forward(request, response);
 	}
 
 }

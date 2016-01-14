@@ -68,16 +68,22 @@ public abstract class DAOParentClass<T>
     
     public void insert(T entity)
     {
+	entityManager.getTransaction().begin();
 	entityManager.persist(entity);
+	entityManager.getTransaction().commit();
     }
     
     public void update(T entity)
     {
+	entityManager.getTransaction().begin();
 	entityManager.merge(entity);
+	entityManager.getTransaction().commit();
     }
     
     public void remove(T entity)
     {
+	entityManager.getTransaction().begin();
 	entityManager.remove(entity);
+	entityManager.getTransaction().commit();
     }
 }

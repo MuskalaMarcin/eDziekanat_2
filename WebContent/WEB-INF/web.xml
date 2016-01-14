@@ -101,6 +101,22 @@
     <servlet-name>StudentNewMessage</servlet-name>
     <url-pattern>/student/newmessage</url-pattern>
   </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>LecturerMessages</servlet-name>
+    <url-pattern>/lecturer/messages</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>LecturerNewMessage</servlet-name>
+    <url-pattern>/lecturer/newmessage</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>AdminMessages</servlet-name>
+    <url-pattern>/admin/messages</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>AdminNewMessage</servlet-name>
+    <url-pattern>/admin/newmessage</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>StudentPayments</servlet-name>
     <url-pattern>/student/payments</url-pattern>
@@ -149,8 +165,7 @@
     <web-resource-collection>
       <web-resource-name>AdminsPages</web-resource-name>
       <url-pattern>/admin/*</url-pattern>
-      <url-pattern>/admintimetable/*</url-pattern>
-      <url-pattern>/adminmessages/*</url-pattern>
+      <url-pattern>/admin/newmessage*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>admin</role-name>
@@ -171,7 +186,6 @@
       <url-pattern>/studentpayments/*</url-pattern>
       <url-pattern>/studentapplications/*</url-pattern>
       <url-pattern>/studentlecturers/*</url-pattern>
-      <url-pattern>/studentmessages/*</url-pattern>
       <url-pattern>/student/newmessage/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
@@ -186,8 +200,7 @@
     <web-resource-collection>
       <web-resource-name>LecturersPages</web-resource-name>
       <url-pattern>/lecturer/*</url-pattern>
-      <url-pattern>/lecturertimetable/*</url-pattern>
-      <url-pattern>/lecturermessages/*</url-pattern>
+      <url-pattern>/lecturer/newmessage/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>lecturer</role-name>

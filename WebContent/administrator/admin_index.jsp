@@ -23,7 +23,7 @@
 				<td><a href="adminscholarships">Stypendia</a></td>
 				<td><a href="admipayments">Nale¿no¶ci</a></td>
 				<td><a href="adminapplications">Wnioski</a></td>
-				<td><a href="adminmessages">Historia komunikatów</a></td>
+				<td><a href="messages">Historia komunikatów</a></td>
 				<td><a href="logout">Wyloguj</a></td>
 			</tr>
 		</table>
