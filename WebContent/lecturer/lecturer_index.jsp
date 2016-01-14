@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
-<link rel="stylesheet" href="../resources/styles.css">
+<link rel="stylesheet" href="./resources/styles.css">
 <title>eDziekanat - Wykładowca - Strona główna</title>
 </head>
 <body>

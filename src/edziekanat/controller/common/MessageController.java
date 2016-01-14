@@ -40,7 +40,7 @@ public class MessageController extends HttpServlet
     {
 	// TODO: podzial na strony
 	LoginBean loginBean = (LoginBean) request.getSession().getAttribute("loginBean");
-	String messagesURL = "/" + loginBean.getUserRole() + "/messages.jsp";
+	String messagesURL = "/" + loginBean.getUserRole() + "/messages";
 
 	List<MessageDTO> sentMsg = new MessageDAO().getMultipleEntities("sender_id = '" + loginBean.getLogin() + "'");
 	if (!sentMsg.isEmpty())
@@ -61,7 +61,6 @@ public class MessageController extends HttpServlet
 	    request.setAttribute("senderNames", senderNames);
 	    request.setAttribute("receivedMessages", receivedMsg);
 	}
-
 	getServletContext().getRequestDispatcher(messagesURL).forward(request, response);
     }
 

@@ -31,13 +31,21 @@
 	<p>
 		<font color="red"> TODO: 4. Podzia³ na strony. </font>
 	</p>
-	<%
+	<p>
+		Skrzynka odbiorcza:
+		<%
 	    List<MessageDTO> received = (List<MessageDTO>) request.getAttribute("receivedMessages");
-	    if (received != null)
+	    if (received == null)
+	    {
+	%>
+	
+	<P>Brak odebranych wiadomo¶ci</P>
+	<%
+	    }
+	    else
 	    {
 			List<String> senderNames = (List<String>) request.getAttribute("senderNames");
 	%>
-	<p>Skrzynka odbiorcza:
 	<table class="responseTable">
 		<%
 		    for (int i = 0; i < received.size(); i++)
@@ -100,12 +108,22 @@
 	</table>
 	<%
 	    }
+	%>
+	<p>
+		Skrzynka nadawcza:
+		<%
 	    List<MessageDTO> sent = (List<MessageDTO>) request.getAttribute("sentMessages");
-	    if (sent != null)
+	    if (sent == null)
+	    {
+	%>
+	
+	<P>Brak wys³anych wiadomo¶ci.</P>
+	<%
+	    }
+	    else
 	    {
 			List<String> receiverNames = (List<String>) request.getAttribute("receiverNames");
 	%>
-	<p>Skrzynka nadawcza:
 	<table class="responseTable">
 		<%
 		    for (int i = 0; i < sent.size(); i++)

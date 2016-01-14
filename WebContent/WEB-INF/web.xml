@@ -41,6 +41,22 @@
     <servlet-name>StudentNewMessage</servlet-name>
     <jsp-file>/student/newmessage.jsp</jsp-file>
   </servlet>
+    <servlet>
+    <servlet-name>LecturerMessages</servlet-name>
+    <jsp-file>/lecturer/messages.jsp</jsp-file>
+  </servlet>
+   <servlet>
+    <servlet-name>LecturerNewMessage</servlet-name>
+    <jsp-file>/lecturer/newmessage.jsp</jsp-file>
+  </servlet>
+    <servlet>
+    <servlet-name>AdminMessages</servlet-name>
+    <jsp-file>/administrator/messages.jsp</jsp-file>
+  </servlet>
+   <servlet>
+    <servlet-name>AdminNewMessage</servlet-name>
+    <jsp-file>/administrator/newmessage.jsp</jsp-file>
+  </servlet>
   <servlet>
     <servlet-name>StudentPayments</servlet-name>
     <jsp-file>/student/payments.jsp</jsp-file>
@@ -166,6 +182,7 @@
       <web-resource-name>AdminsPages</web-resource-name>
       <url-pattern>/admin/*</url-pattern>
       <url-pattern>/admin/newmessage*</url-pattern>
+      <url-pattern>/admin/messages/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>admin</role-name>
@@ -187,6 +204,7 @@
       <url-pattern>/studentapplications/*</url-pattern>
       <url-pattern>/studentlecturers/*</url-pattern>
       <url-pattern>/student/newmessage/*</url-pattern>
+      <url-pattern>/student/messages/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>student</role-name>
@@ -201,6 +219,7 @@
       <web-resource-name>LecturersPages</web-resource-name>
       <url-pattern>/lecturer/*</url-pattern>
       <url-pattern>/lecturer/newmessage/*</url-pattern>
+      <url-pattern>/lecturer/message/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>lecturer</role-name>
