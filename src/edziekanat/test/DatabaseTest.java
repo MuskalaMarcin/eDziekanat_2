@@ -15,7 +15,6 @@ import edziekanat.databasemodel.dao.ClassroomDAO;
 import edziekanat.databasemodel.dao.CourseDAO;
 import edziekanat.databasemodel.dao.EnrollmentDAO;
 import edziekanat.databasemodel.dao.FacultyDAO;
-import edziekanat.databasemodel.dao.FacultyLecturerDAO;
 import edziekanat.databasemodel.dao.LearningMaterialsDAO;
 import edziekanat.databasemodel.dao.LecturerDAO;
 import edziekanat.databasemodel.dao.MessageDAO;
@@ -25,7 +24,6 @@ import edziekanat.databasemodel.dao.ScheduledClassesDAO;
 import edziekanat.databasemodel.dao.ScholarshipDAO;
 import edziekanat.databasemodel.dao.ScholarshipTypeDAO;
 import edziekanat.databasemodel.dao.StudentDAO;
-import edziekanat.databasemodel.dao.StudentsGroupStudentDAO;
 import edziekanat.databasemodel.dao.SubjectDAO;
 import edziekanat.databasemodel.dao.TranscriptDAO;
 import edziekanat.databasemodel.dao.UniversityDAO;
@@ -36,7 +34,6 @@ import edziekanat.databasemodel.dto.ClassroomDTO;
 import edziekanat.databasemodel.dto.CourseDTO;
 import edziekanat.databasemodel.dto.EnrollmentDTO;
 import edziekanat.databasemodel.dto.FacultyDTO;
-import edziekanat.databasemodel.dto.FacultyLecturerDTO;
 import edziekanat.databasemodel.dto.LearningMaterialsDTO;
 import edziekanat.databasemodel.dto.LecturerDTO;
 import edziekanat.databasemodel.dto.MessageDTO;
@@ -46,7 +43,6 @@ import edziekanat.databasemodel.dto.ScheduledClassesDTO;
 import edziekanat.databasemodel.dto.ScholarshipDTO;
 import edziekanat.databasemodel.dto.ScholarshipTypeDTO;
 import edziekanat.databasemodel.dto.StudentDTO;
-import edziekanat.databasemodel.dto.StudentsGroupStudentDTO;
 import edziekanat.databasemodel.dto.SubjectDTO;
 import edziekanat.databasemodel.dto.TranscriptDTO;
 import edziekanat.databasemodel.dto.UniversityDTO;
@@ -177,18 +173,6 @@ public class DatabaseTest extends HttpServlet
 	    out.println("<br>" + item.getName());
 	    out.println("<br>" + item.getId());
 	    out.println("<br>" + item.getUniversity().getName());
-	    out.println("<br> nastepny");
-	});
-
-	out.println("ONE FacultyLecturer");
-	FacultyLecturerDTO facultyLecturer = new FacultyLecturerDAO().getEntity(1);
-	out.println("<br>" + facultyLecturer.getFacultyId());
-	out.println("<br>" + facultyLecturer.getLecturerId());
-
-	out.println("<p>ALL FacultyLecturers");
-	new FacultyLecturerDAO().getAllEntities().forEach(item -> {
-	    out.println("<br>" + item.getFacultyId());
-	    out.println("<br>" + item.getLecturerId());
 	    out.println("<br> nastepny");
 	});
 
@@ -360,18 +344,6 @@ public class DatabaseTest extends HttpServlet
 	    out.println("<br>" + item.getName());
 	    out.println("<br>" + item.getSurname());
 	    out.println("<br>" + item.getId());
-	    out.println("<br> nastepny");
-	});
-
-	out.println("ONE StudentsGroupStudent");
-	StudentsGroupStudentDTO studentsGroupStudent = new StudentsGroupStudentDAO().getEntity(1);
-	out.println("<br>" + studentsGroupStudent.getStudentId());
-	out.println("<br>" + studentsGroupStudent.getStudentsGroupId());
-
-	out.println("<p>ALL StudentsGroupStudents");
-	new StudentsGroupStudentDAO().getAllEntities().forEach(item -> {
-	    out.println("<br>" + item.getStudentId());
-	    out.println("<br>" + item.getStudentsGroupId());
 	    out.println("<br> nastepny");
 	});
 

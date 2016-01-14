@@ -37,7 +37,7 @@ public class ClassroomDTO implements Serializable
     @JoinColumn(name = "faculty_id")
     private FacultyDTO faculty;
     @OneToMany(mappedBy = "classroom", fetch = FetchType.LAZY)
-    private List<ScheduledClassesDTO> scheduledClasses;
+    private List<ScheduledClassesDTO> scheduled_classes;
 
     public Integer getId()
     {
@@ -81,11 +81,11 @@ public class ClassroomDTO implements Serializable
 
     public List<ScheduledClassesDTO> getScheduledClasses()
     {
-	return scheduledClasses;
+	return scheduled_classes;
     }
 
     public void setScheduledClasses(List<ScheduledClassesDTO> scheduledClasses)
     {
-	this.scheduledClasses = scheduledClasses;
+	this.scheduled_classes = scheduledClasses;
     }
 }

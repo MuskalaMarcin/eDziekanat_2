@@ -44,11 +44,11 @@ public class SubjectDTO implements Serializable
     @OneToMany(mappedBy = "subject", fetch = FetchType.LAZY)
     private List<EnrollmentDTO> enrollment;
     @OneToMany(mappedBy = "subject", fetch = FetchType.LAZY)
-    private List<LearningMaterialsDTO> learningMaterials;
+    private List<LearningMaterialsDTO> learning_materials;
     @OneToMany(mappedBy = "subject", fetch = FetchType.LAZY)
-    private List<PartialMarkDTO> partialMark;
+    private List<PartialMarkDTO> partial_mark;
     @OneToMany(mappedBy = "subject", fetch = FetchType.LAZY)
-    private List<ScheduledClassesDTO> scheduledClasses;
+    private List<ScheduledClassesDTO> scheduled_classes;
     
     public Integer getId()
     {
@@ -122,32 +122,32 @@ public class SubjectDTO implements Serializable
 
     public List<LearningMaterialsDTO> getLearningMaterials()
     {
-        return learningMaterials;
+        return learning_materials;
     }
 
     public void setLearningMaterials(List<LearningMaterialsDTO> learningMaterials)
     {
-        this.learningMaterials = learningMaterials;
+        this.learning_materials = learningMaterials;
     }
 
     public List<PartialMarkDTO> getPartialMark()
     {
-        return partialMark;
+        return partial_mark;
     }
 
     public void setPartialMark(List<PartialMarkDTO> partialMark)
     {
-        this.partialMark = partialMark;
+        this.partial_mark = partialMark;
     }
 
     public List<ScheduledClassesDTO> getScheduledClasses()
     {
-        return scheduledClasses;
+        return scheduled_classes;
     }
 
     public void setScheduledClasses(List<ScheduledClassesDTO> scheduledClasses)
     {
-        this.scheduledClasses = scheduledClasses;
+        this.scheduled_classes = scheduledClasses;
     }
 
 }

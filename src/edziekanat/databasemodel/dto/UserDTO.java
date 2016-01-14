@@ -42,9 +42,9 @@ public class UserDTO
     @JoinColumn(name = "administrator_id", nullable = true)
     private AdministratorDTO administrator;
     @OneToMany(mappedBy = "sender", fetch = FetchType.LAZY)
-    private List<MessageDTO> sendMessage;
+    private List<MessageDTO> send_message;
     @OneToMany(mappedBy = "receiver", fetch = FetchType.LAZY)
-    private List<MessageDTO> receivedMessage;
+    private List<MessageDTO> received_message;
 
     public String getLogin()
     {
@@ -138,22 +138,22 @@ public class UserDTO
 
     public List<MessageDTO> getSendMessage()
     {
-	return sendMessage;
+	return send_message;
     }
 
     public void setSendMessage(List<MessageDTO> sendMessage)
     {
-	this.sendMessage = sendMessage;
+	this.send_message = sendMessage;
     }
 
     public List<MessageDTO> getReceivedMessage()
     {
-	return receivedMessage;
+	return received_message;
     }
 
     public void setReceivedMessage(List<MessageDTO> receivedMessage)
     {
-	this.receivedMessage = receivedMessage;
+	this.received_message = receivedMessage;
     }
 
 }
