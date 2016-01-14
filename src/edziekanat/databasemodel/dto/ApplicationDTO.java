@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,7 +26,8 @@ public class ApplicationDTO implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="application_id_seq")
+    @SequenceGenerator(name="APPLICATIONSEQ",sequenceName="application_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="APPLICATIONSEQ")
     @Column(name = "id")
     private Integer id;
     @Column(name = "title")
@@ -37,10 +39,10 @@ public class ApplicationDTO implements Serializable
     private Date dispatchDate;
     @Column(name = "status")
     private String status;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
     private StudentDTO student;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "administrator_id")
     private AdministratorDTO administrator;
 

@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,7 +26,8 @@ public class ScholarshipDTO implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="scholarship_id_seq")
+    @SequenceGenerator(name="SCHOLARSHIPSEQ",sequenceName="scholarship_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="SCHOLARSHIPSEQ")
     @Column(name = "id")
     private Integer id;
     @Temporal(TemporalType.DATE)
@@ -34,13 +36,13 @@ public class ScholarshipDTO implements Serializable
     @Temporal(TemporalType.DATE)
     @Column(name = "end_date")
     private Date endDate;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "scholarship_type")
     private ScholarshipTypeDTO scholarshipType;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
     private StudentDTO studentId;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "administrator_id")
     private AdministratorDTO administratorId;
 

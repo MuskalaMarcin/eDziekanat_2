@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,7 +26,8 @@ public class PartialMarkDTO implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="partial_mark_id_seq")
+    @SequenceGenerator(name="PARTIALMARKSEQ",sequenceName="partial_mark_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="PARTIALMARKSEQ")
     @Column(name = "id")
     private Integer id;
     @Column(name = "mark")
@@ -33,10 +35,10 @@ public class PartialMarkDTO implements Serializable
     @Temporal(TemporalType.DATE)
     @Column(name = "issue_date")
     private Date issueDate;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "subject_id")
     private SubjectDTO subject;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "transcript_id")
     private TranscriptDTO transcript;
 

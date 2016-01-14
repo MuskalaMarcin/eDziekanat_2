@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
@@ -22,14 +23,15 @@ public class CourseDTO implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="course_id_seq")
+    @SequenceGenerator(name="COURSESEQ",sequenceName="course_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="COURSESEQ")
     @Column(name = "id")
     private Integer id;
     @Column(name = "name")
     private String name;
     @Column(name = "stationary")
     private Integer stationary;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "faculty_id")
     private FacultyDTO faculty;
 

@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
@@ -22,7 +23,8 @@ public class SubjectDTO implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="subject_id_seq")
+    @SequenceGenerator(name="SUBJECTSEQ",sequenceName="subject_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="SUBJECTSEQ")
     @Column(name = "id")
     private Integer id;
     @Column(name = "name")
@@ -31,10 +33,10 @@ public class SubjectDTO implements Serializable
     private Integer semester;
     @Column(name = "ects")
     private Integer ECTS;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "lecturer_id")
     private LecturerDTO lecturer;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "students_group_id")
     private StudentsGroupDTO studentsGroup;
 

@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
@@ -18,7 +19,8 @@ public class UniversityDTO implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="university_id_seq")
+    @SequenceGenerator(name="UNIVERSITYSEQ",sequenceName="university_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="UNIVERSITYSEQ")
     @Column(name = "id")
     private Integer id;
     @Column(name = "name")

@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,7 +27,8 @@ public class ScheduledClassesDTO implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="scheduled_classes_id_seq")
+    @SequenceGenerator(name="SCHEDULEDCLASSESSEQ",sequenceName="scheduled_classes_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="SCHEDULEDCLASSESSEQ")
     @Column(name = "id")
     private Integer id;
     @Temporal(TemporalType.DATE)
@@ -36,10 +38,10 @@ public class ScheduledClassesDTO implements Serializable
     private Time time;
     @Column(name = "duration")
     private Integer duration;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "classroom_id")
     private ClassroomDTO classroom;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "subject_id")
     private SubjectDTO subject;
 

@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
@@ -22,7 +23,8 @@ public class AdministratorDTO implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="administrator_id_seq")
+    @SequenceGenerator(name="ADMINISTRATORSEQ",sequenceName="administrator_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="ADMINISTRATORSEQ")
     @Column(name = "id")
     private Integer id;
     @Column(name = "name")
@@ -35,7 +37,7 @@ public class AdministratorDTO implements Serializable
     private String position;
     @Column(name = "academic_degree")
     private String academicDegree;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "university_id")
     private UniversityDTO university;
 
