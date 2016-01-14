@@ -1,6 +1,7 @@
 package edziekanat.databasemodel.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
@@ -23,8 +26,8 @@ public class AdministratorDTO implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name="ADMINISTRATORSEQ",sequenceName="administrator_id_seq", allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="ADMINISTRATORSEQ")
+    @SequenceGenerator(name = "ADMINISTRATORSEQ", sequenceName = "administrator_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "ADMINISTRATORSEQ")
     @Column(name = "id")
     private Integer id;
     @Column(name = "name")
@@ -40,6 +43,12 @@ public class AdministratorDTO implements Serializable
     @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "university_id")
     private UniversityDTO university;
+    @OneToMany(mappedBy = "administrator", fetch = FetchType.LAZY)
+    private List<ApplicationDTO> application;
+    @OneToMany(mappedBy = "administrator", fetch = FetchType.LAZY)
+    private List<ScholarshipDTO> scholarship;
+    @OneToOne(mappedBy = "administrator", fetch = FetchType.LAZY)
+    private UserDTO user;
 
     public Integer getId()
     {
@@ -103,11 +112,42 @@ public class AdministratorDTO implements Serializable
 
     public UniversityDTO getUniversity()
     {
-        return university;
+	return university;
     }
 
     public void setUniversity(UniversityDTO university)
     {
-        this.university = university;
+	this.university = university;
     }
+
+    public List<ApplicationDTO> getApplication()
+    {
+	return application;
+    }
+
+    public void setApplication(List<ApplicationDTO> application)
+    {
+	this.application = application;
+    }
+
+    public List<ScholarshipDTO> getScholarship()
+    {
+	return scholarship;
+    }
+
+    public void setScholarship(List<ScholarshipDTO> scholarship)
+    {
+	this.scholarship = scholarship;
+    }
+
+    public UserDTO getUser()
+    {
+	return user;
+    }
+
+    public void setUser(UserDTO user)
+    {
+	this.user = user;
+    }
+
 }

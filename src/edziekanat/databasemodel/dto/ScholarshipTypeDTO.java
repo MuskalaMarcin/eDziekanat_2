@@ -1,10 +1,13 @@
 package edziekanat.databasemodel.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
@@ -22,6 +25,8 @@ public class ScholarshipTypeDTO implements Serializable
     private String requirements;
     @Column(name = "amount")
     private Float amount;
+    @OneToMany(mappedBy = "scholarshipType", fetch = FetchType.LAZY)
+    private List<ScholarshipDTO> scholarship;
 
     public String getType()
     {
@@ -51,5 +56,15 @@ public class ScholarshipTypeDTO implements Serializable
     public void setAmount(Float amount)
     {
 	this.amount = amount;
+    }
+
+    public List<ScholarshipDTO> getScholarship()
+    {
+        return scholarship;
+    }
+
+    public void setScholarship(List<ScholarshipDTO> scholarship)
+    {
+        this.scholarship = scholarship;
     }
 }

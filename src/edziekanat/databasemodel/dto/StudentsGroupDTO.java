@@ -1,6 +1,7 @@
 package edziekanat.databasemodel.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,8 +11,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
@@ -32,6 +35,13 @@ public class StudentsGroupDTO implements Serializable
     @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
     private CourseDTO course;
+    @OneToMany(mappedBy = "studentsGroup", fetch = FetchType.LAZY)
+    private List<SubjectDTO> subject;
+    @OneToMany(mappedBy = "studentsGroup", fetch = FetchType.LAZY)
+    private List<TranscriptDTO> transcript;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_id")
+    private List<StudentDTO> student;
 
     public Integer getId()
     {
@@ -55,11 +65,41 @@ public class StudentsGroupDTO implements Serializable
 
     public CourseDTO getCourse()
     {
-        return course;
+	return course;
     }
 
     public void setCourse(CourseDTO course)
     {
-        this.course = course;
+	this.course = course;
+    }
+
+    public List<SubjectDTO> getSubject()
+    {
+	return subject;
+    }
+
+    public void setSubject(List<SubjectDTO> subject)
+    {
+	this.subject = subject;
+    }
+
+    public List<TranscriptDTO> getTranscript()
+    {
+	return transcript;
+    }
+
+    public void setTranscript(List<TranscriptDTO> transcript)
+    {
+	this.transcript = transcript;
+    }
+
+    public List<StudentDTO> getStudent()
+    {
+	return student;
+    }
+
+    public void setStudent(List<StudentDTO> student)
+    {
+	this.student = student;
     }
 }

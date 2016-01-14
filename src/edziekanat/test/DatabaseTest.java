@@ -150,16 +150,16 @@ public class DatabaseTest extends HttpServlet
 	EnrollmentDTO enrollment = new EnrollmentDAO().getEntity(1);
 	out.println("<br>" + enrollment.getId());
 	out.println("<br>" + enrollment.getMark());
-	out.println("<br>" + enrollment.getSubjectId());
-	out.println("<br>" + enrollment.getTranscriptId());
+	out.println("<br>" + enrollment.getSubject());
+	out.println("<br>" + enrollment.getTranscript());
 	out.println("<br>" + enrollment.getIssueDate());
 
 	out.println("<p>ALL Enrollments");
 	new EnrollmentDAO().getAllEntities().forEach(item -> {
 	    out.println("<br>" + item.getId());
 	    out.println("<br>" + item.getMark());
-	    out.println("<br>" + item.getSubjectId());
-	    out.println("<br>" + item.getTranscriptId());
+	    out.println("<br>" + item.getSubject());
+	    out.println("<br>" + item.getTranscript());
 	    out.println("<br>" + item.getIssueDate());
 	    out.println("<br> nastepny");
 	});
@@ -316,18 +316,18 @@ public class DatabaseTest extends HttpServlet
 	out.println("ONE Scholarship");
 	ScholarshipDTO scholarship = new ScholarshipDAO().getEntity(1);
 	out.println("<br>" + scholarship.getScholarshipType());
-	out.println("<br>" + scholarship.getAdministratorId());
+	out.println("<br>" + scholarship.getAdministrator());
 	out.println("<br>" + scholarship.getId());
-	out.println("<br>" + scholarship.getStudentId());
+	out.println("<br>" + scholarship.getStudent());
 	out.println("<br>" + scholarship.getEndDate());
 	out.println("<br>" + scholarship.getGrantDate());
 
 	out.println("<p>ALL Scholarships");
 	new ScholarshipDAO().getAllEntities().forEach(item -> {
 	    out.println("<br>" + item.getScholarshipType());
-	    out.println("<br>" + item.getAdministratorId());
+	    out.println("<br>" + item.getAdministrator());
 	    out.println("<br>" + item.getId());
-	    out.println("<br>" + item.getStudentId());
+	    out.println("<br>" + item.getStudent());
 	    out.println("<br>" + item.getEndDate());
 	    out.println("<br>" + item.getGrantDate());
 	    out.println("<br> nastepny");

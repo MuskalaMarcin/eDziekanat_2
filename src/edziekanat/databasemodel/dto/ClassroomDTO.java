@@ -1,6 +1,7 @@
 package edziekanat.databasemodel.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
@@ -34,6 +36,8 @@ public class ClassroomDTO implements Serializable
     @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "faculty_id")
     private FacultyDTO faculty;
+    @OneToMany(mappedBy = "classroom", fetch = FetchType.LAZY)
+    private List<ScheduledClassesDTO> scheduledClasses;
 
     public Integer getId()
     {
@@ -67,11 +71,21 @@ public class ClassroomDTO implements Serializable
 
     public FacultyDTO getFaculty()
     {
-        return faculty;
+	return faculty;
     }
 
     public void setFaculty(FacultyDTO faculty)
     {
-        this.faculty = faculty;
+	this.faculty = faculty;
+    }
+
+    public List<ScheduledClassesDTO> getScheduledClasses()
+    {
+	return scheduledClasses;
+    }
+
+    public void setScheduledClasses(List<ScheduledClassesDTO> scheduledClasses)
+    {
+	this.scheduledClasses = scheduledClasses;
     }
 }

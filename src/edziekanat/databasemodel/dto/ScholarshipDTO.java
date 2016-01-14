@@ -41,10 +41,10 @@ public class ScholarshipDTO implements Serializable
     private ScholarshipTypeDTO scholarshipType;
     @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
-    private StudentDTO studentId;
+    private StudentDTO student;
     @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "administrator_id")
-    private AdministratorDTO administratorId;
+    private AdministratorDTO administrator;
 
     public Integer getId()
     {
@@ -86,23 +86,23 @@ public class ScholarshipDTO implements Serializable
         this.scholarshipType = scholarshipType;
     }
 
-    public StudentDTO getStudentId()
+    public StudentDTO getStudent()
     {
-        return studentId;
+        return student;
     }
 
-    public void setStudentId(StudentDTO studentId)
+    public void setStudentId(StudentDTO student)
     {
-        this.studentId = studentId;
+        this.student = student;
     }
 
-    public AdministratorDTO getAdministratorId()
+    public AdministratorDTO getAdministrator()
     {
-        return administratorId;
+        return administrator;
     }
 
-    public void setAdministratorId(AdministratorDTO administratorId)
+    public void setAdministratorId(AdministratorDTO administrator)
     {
-        this.administratorId = administratorId;
+        this.administrator = administrator;
     }
 }

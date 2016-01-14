@@ -1,13 +1,18 @@
 package edziekanat.databasemodel.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
@@ -33,6 +38,12 @@ public class LecturerDTO implements Serializable
     private String position;
     @Column(name = "academic_degree")
     private String academicDegree;
+    @OneToMany(mappedBy = "lecturer", fetch = FetchType.LAZY)
+    private List<SubjectDTO> subject;
+    @OneToOne(mappedBy = "lecturer", fetch = FetchType.LAZY)
+    private UserDTO user;
+    @ManyToMany(mappedBy = "lecturer", fetch = FetchType.LAZY)
+    private List<FacultyDTO> faculty;
 
     public Integer getId()
     {
@@ -92,5 +103,35 @@ public class LecturerDTO implements Serializable
     public void setAcademicDegree(String academicDegree)
     {
 	this.academicDegree = academicDegree;
+    }
+
+    public List<SubjectDTO> getSubject()
+    {
+	return subject;
+    }
+
+    public void setSubject(List<SubjectDTO> subject)
+    {
+	this.subject = subject;
+    }
+
+    public UserDTO getUser()
+    {
+	return user;
+    }
+
+    public void setUser(UserDTO user)
+    {
+	this.user = user;
+    }
+
+    public List<FacultyDTO> getFaculty()
+    {
+	return faculty;
+    }
+
+    public void setFaculty(List<FacultyDTO> faculty)
+    {
+	this.faculty = faculty;
     }
 }

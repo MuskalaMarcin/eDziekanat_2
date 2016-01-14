@@ -1,6 +1,7 @@
 package edziekanat.databasemodel.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,8 +11,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
@@ -34,6 +37,13 @@ public class FacultyDTO implements Serializable
     @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "university_id")
     private UniversityDTO university;
+    @OneToMany(mappedBy = "faculty", fetch = FetchType.LAZY)
+    private List<ClassroomDTO> classroom;
+    @OneToMany(mappedBy = "faculty", fetch = FetchType.LAZY)
+    private List<CourseDTO> course;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "faculty_id")
+    private List<LecturerDTO> lecturer;
 
     public Integer getId()
     {
@@ -67,11 +77,42 @@ public class FacultyDTO implements Serializable
 
     public UniversityDTO getUniversity()
     {
-        return university;
+	return university;
     }
 
     public void setUniversity(UniversityDTO university)
     {
-        this.university = university;
+	this.university = university;
     }
+
+    public List<ClassroomDTO> getClassroom()
+    {
+	return classroom;
+    }
+
+    public void setClassroom(List<ClassroomDTO> classroom)
+    {
+	this.classroom = classroom;
+    }
+
+    public List<CourseDTO> getCourse()
+    {
+	return course;
+    }
+
+    public void setCourse(List<CourseDTO> course)
+    {
+	this.course = course;
+    }
+
+    public List<LecturerDTO> getLecturer()
+    {
+        return lecturer;
+    }
+
+    public void setLecturer(List<LecturerDTO> lecturer)
+    {
+        this.lecturer = lecturer;
+    }
+
 }
