@@ -1,5 +1,5 @@
 <%@ page language="java"
-	import="edziekanat.databasemodel.dto.ScholarshipDTO, java.util.List"
+	import="edziekanat.databasemodel.dto.ScholarshipDTO, java.util.List, java.util.Date"
 	contentType="text/html; charset=ISO-8859-2" pageEncoding="ISO-8859-2"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -23,8 +23,8 @@
 						class="pure-menu-link">Plan zajêæ</a></li>
 					<li class="pure-menu-item"><a href="studentsubjects"
 						class="pure-menu-link">Moje przedmioty</a></li>
-					<li class="pure-menu-item pure-menu-selected"><a href="studentscholarships"
-						class="pure-menu-link">Stypendia</a></li>
+					<li class="pure-menu-item pure-menu-selected"><a
+						href="studentscholarships" class="pure-menu-link">Stypendia</a></li>
 					<li class="pure-menu-item"><a href="studentpayments"
 						class="pure-menu-link">P³atno¶ci</a></li>
 					<li class="pure-menu-item"><a href="studentapplications"
@@ -44,13 +44,7 @@
 				<h2>Twój wirtualny dziekanat.</h2>
 			</div>
 			<div class="content">
-				<h2 class="content-subhead">Stypendia:</h2>
-				<p>
-				<p>
-					<font color="red"> TODO: <br> 1. Wy¶wietlanie
-						informacji o aktualnych stypendiach.<br>
-					</font>
-				</p>
+				<h2 class="content-subhead">Aktualne stypendia:</h2>
 				<%
 				    List<ScholarshipDTO> scholarships = (List<ScholarshipDTO>) request.getAttribute("ownscholarships");
 
@@ -58,15 +52,14 @@
 				    {
 						List<String> adminNames = (List<String>) request.getAttribute("adminNames");
 				%>
-				<p>Stypendia:
-				<table border="1">
+				<table class="responseTable">
 					<%
 					    for (int i = 0; i < scholarships.size(); i++)
 							{
 							    ScholarshipDTO schls = scholarships.get(i);
 					%>
-					<tr>
-						<td colspan="2">Nr: <%
+					<tr class="grayRow">
+						<td colspan="2">Nr. <%
 						    out.print(i + 1);
 						%></td>
 					</tr>
@@ -79,7 +72,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td>Typ:</td>
+						<td>Kwota:</td>
 						<td>
 							<%
 							    out.print(schls.getScholarshipType().getAmount() + " z³");
@@ -87,10 +80,12 @@
 						</td>
 					</tr>
 					<tr>
-						<td>Data otrzymania:</td>
+						<td>Data przyznania:</td>
 						<td>
 							<%
-							    out.print(schls.getGrantDate());
+							    Date grantDate = schls.getGrantDate();
+									    out.print(grantDate.getDate() + "." + (grantDate.getMonth() + 1) + "."
+										    + (grantDate.getYear() + 1900) + "r.");
 							%>
 						</td>
 					</tr>
@@ -98,7 +93,9 @@
 						<td>Data zakoñczenia:</td>
 						<td>
 							<%
-							    out.print(schls.getEndDate());
+							    Date endDate = schls.getEndDate();
+									    out.print(endDate.getDate() + "." + (endDate.getMonth() + 1) + "." + (endDate.getYear() + 1900)
+										    + "r.");
 							%>
 						</td>
 					</tr>

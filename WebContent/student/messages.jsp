@@ -31,9 +31,8 @@
 						class="pure-menu-link">Wnioski</a></li>
 					<li class="pure-menu-item"><a href="studentlecturers"
 						class="pure-menu-link">Wyk³adowcy</a></li>
-					<li class="pure-menu-item pure-menu-selected"><a href="messages"
-						class="pure-menu-link">Historia
-							komunikatów</a></li>
+					<li class="pure-menu-item pure-menu-selected"><a
+						href="messages" class="pure-menu-link">Historia komunikatów</a></li>
 					<li class="pure-menu-item"><a href="logout"
 						class="pure-menu-link">Wyloguj</a>
 				</ul>
@@ -45,19 +44,16 @@
 				<h2>Twój wirtualny dziekanat.</h2>
 			</div>
 			<div class="content">
-				<h2 class="content-subhead">Zalogowano jako:</h2>
-				<p>
 				<p>
 					<font color="red"> TODO: 4. Podzia³ na strony. </font>
 				</p>
-				<p>
-					Skrzynka odbiorcza:
-					<%
+				<h2 class="content-subhead">Skrzynka odbiorcza:</h2>
+				<%
 				    List<MessageDTO> received = (List<MessageDTO>) request.getAttribute("receivedMessages");
 				    if (received == null)
 				    {
 				%>
-				
+
 				<P>Brak odebranych wiadomo¶ci</P>
 				<%
 				    }
@@ -65,14 +61,24 @@
 				    {
 						List<String> senderNames = (List<String>) request.getAttribute("senderNames");
 				%>
-				<table border="1">
+				<table class="responseTable">
 					<%
 					    for (int i = 0; i < received.size(); i++)
 							{
 							    MessageDTO rcvd = received.get(i);
 					%>
-					<tr>
-						<td id="grayCell" colspan="2">Wiadomo¶æ <%
+					<tr class="grayRow">
+					<td id="respond">
+							<form action="student/newmessage" method=post>
+								<input type="hidden" name="receiverLogin"
+									value="<%out.print(rcvd.getSender().getLogin());%>"> <input
+									type="hidden" name="title"
+									value="<%out.print(rcvd.getTitle());%>"> <input
+									class="pure-button pure-input-1-2 pure-button-primary"
+									type="submit" value="Odpowiedz">
+							</form>
+						</td>
+						<td>Wiadomo¶æ <%
 						    out.print(i + 1);
 						%></td>
 					</tr>
@@ -102,24 +108,11 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2">Tre¶æ:</td>
-					</tr>
-					<tr>
+						<td>Tre¶æ:</td>
 						<td id="content" colspan="2">
 							<%
 							    out.print(rcvd.getContent());
 							%>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							<form action="student/newmessage" method=post>
-								<input type="hidden" name="receiverLogin"
-									value="<%out.print(rcvd.getSender().getLogin());%>"> <input
-									type="hidden" name="title"
-									value="<%out.print(rcvd.getTitle());%>"> <input class="pure-button pure-input-1-2 pure-button-primary"
-									type="submit" value="Odpowiedz">
-							</form>
 						</td>
 					</tr>
 					<%
@@ -129,14 +122,13 @@
 				<%
 				    }
 				%>
-				<p>
-					Skrzynka nadawcza:
-					<%
+				<h2 class="content-subhead">Skrzynka nadawcza:</h2>
+				<%
 				    List<MessageDTO> sent = (List<MessageDTO>) request.getAttribute("sentMessages");
 				    if (sent == null)
 				    {
 				%>
-				
+
 				<P>Brak wys³anych wiadomo¶ci.</P>
 				<%
 				    }
@@ -144,14 +136,14 @@
 				    {
 						List<String> receiverNames = (List<String>) request.getAttribute("receiverNames");
 				%>
-				<table border="1">
+				<table class="responseTable">
 					<%
 					    for (int i = 0; i < sent.size(); i++)
 							{
 							    MessageDTO snd = sent.get(i);
 					%>
-					<tr>
-						<td id="grayCell" colspan="2">Wiadomo¶æ <%
+					<tr class="grayRow">
+						<td colspan="2">Wiadomo¶æ <%
 						    out.print(i + 1);
 						%></td>
 					</tr>
@@ -177,7 +169,8 @@
 							<%
 							    Date dateSnd = snd.getDispatchDate();
 									    out.print(
-										    dateSnd.getDate() + "." + (dateSnd.getMonth() + 1) + "." + (dateSnd.getYear() + 1900));
+										    dateSnd.getDate() + "." + (dateSnd.getMonth() + 1) + "." + (dateSnd.getYear() + 1900)
+											    + "r.");
 							%>
 						</td>
 					</tr>
@@ -193,16 +186,14 @@
 									    {
 										Date dateRcv = snd.getReceiveDate();
 										out.print(dateRcv.getDate() + "." + (dateRcv.getMonth() + 1) + "."
-											+ (dateRcv.getYear() + 1900));
+											+ (dateRcv.getYear() + 1900) + "r.");
 									    }
 							%>
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2">Tre¶æ:</td>
-					</tr>
-					<tr>
-						<td id="content" colspan="2">
+					<td>Tre¶æ:</td>
+						<td id="content">
 							<%
 							    out.print(snd.getContent());
 							%>

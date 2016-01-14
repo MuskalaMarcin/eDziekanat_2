@@ -1,6 +1,8 @@
 package edziekanat.controller.student;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -33,8 +35,7 @@ public class ScholarshipsController extends HttpServlet
     }
 
     /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -42,8 +43,7 @@ public class ScholarshipsController extends HttpServlet
     }
 
     /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -51,6 +51,16 @@ public class ScholarshipsController extends HttpServlet
 
 	List<ScholarshipDTO> scholarships = new ScholarshipDAO()
 		.getMultipleEntities("student_id = '" + loginBean.getPersonId() + "'");
+
+	Date currentDate = Calendar.getInstance().getTime();
+	for (int i = 0; i < scholarships.size(); i++)
+	{
+	    if (scholarships.get(i).getEndDate().compareTo(currentDate) < 0)
+	    {
+		scholarships.remove(i);
+	    }
+	}
+	
 	Collections.sort(scholarships, (x, y) -> y.getEndDate().compareTo(x.getEndDate()));
 
 	if (!scholarships.isEmpty())
@@ -66,9 +76,10 @@ public class ScholarshipsController extends HttpServlet
     {
 	List<String> userNames = new LinkedList<String>();
 	allScholarships.forEach(scholarship -> {
-	AdministratorDTO admin = null;
-	admin = scholarship.getAdministrator();
-	userNames.add(admin.getName() + " " + admin.getSurname());
+	    AdministratorDTO admin = null;
+	    admin = scholarship.getAdministrator();
+	    userNames.add(admin.getName() + " " + admin.getSurname());
 	});
 	return userNames;
-}}
+    }
+}
