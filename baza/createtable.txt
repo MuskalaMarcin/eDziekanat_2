@@ -190,7 +190,7 @@ ALTER TABLE student ADD CONSTRAINT student_PK PRIMARY KEY ( id ) ;
 CREATE TABLE students_group
   (
     id        NUMBER NOT NULL ,
-    YEAR      NUMBER NOT NULL ,
+    semester  NUMBER NOT NULL ,
     course_id NUMBER NOT NULL
   ) ;
 ALTER TABLE students_group ADD CONSTRAINT students_group_PK PRIMARY KEY ( id ) ;

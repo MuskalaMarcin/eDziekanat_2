@@ -30,8 +30,8 @@ public class StudentsGroupDTO implements Serializable
     @GeneratedValue(strategy=GenerationType.AUTO, generator="STUDENTSGROUPSEQ")
     @Column(name = "id")
     private Integer id;
-    @Column(name = "year")
-    private Integer year;
+    @Column(name = "semester")
+    private Integer semester;
     @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
     private CourseDTO course;
@@ -53,14 +53,14 @@ public class StudentsGroupDTO implements Serializable
 	this.id = id;
     }
 
-    public Integer getYear()
+    public Integer getSemester()
     {
-	return year;
+	return semester;
     }
 
-    public void setYear(Integer year)
+    public void setSemester(Integer year)
     {
-	this.year = year;
+	this.semester = year;
     }
 
     public CourseDTO getCourse()

@@ -99,7 +99,6 @@
 							class="pure-button pure-input-1-2 pure-button-primary">Wy¶lij</button>
 					</form>
 				</center>
-				</p>
 			</div>
 		</div>
 	</div>

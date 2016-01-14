@@ -72,6 +72,5 @@
 				type="submit" value="Wy¶lij">
 		</p>
 	</form>
-	</p>
 </body>
 </html>

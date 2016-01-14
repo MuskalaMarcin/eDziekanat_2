@@ -14,15 +14,15 @@ Insert into COURSE (ID,NAME,STATIONARY,FACULTY_ID) values (course_id_seq.nextval
 Insert into COURSE (ID,NAME,STATIONARY,FACULTY_ID) values (course_id_seq.nextval,'Transport','1','3');
 
 
-Insert into STUDENTS_GROUP (ID,YEAR,COURSE_ID) values (students_group_id_seq.nextval,'2','1');
-Insert into STUDENTS_GROUP (ID,YEAR,COURSE_ID) values (students_group_id_seq.nextval,'3','2');
-Insert into STUDENTS_GROUP (ID,YEAR,COURSE_ID) values (students_group_id_seq.nextval,'1','3');
-Insert into STUDENTS_GROUP (ID,YEAR,COURSE_ID) values (students_group_id_seq.nextval,'5','4');
-Insert into STUDENTS_GROUP (ID,YEAR,COURSE_ID) values (students_group_id_seq.nextval,'3','5');
-Insert into STUDENTS_GROUP (ID,YEAR,COURSE_ID) values (students_group_id_seq.nextval,'2','6');
-Insert into STUDENTS_GROUP (ID,YEAR,COURSE_ID) values (students_group_id_seq.nextval,'1','7');
-Insert into STUDENTS_GROUP (ID,YEAR,COURSE_ID) values (students_group_id_seq.nextval,'3','2');
-Insert into STUDENTS_GROUP (ID,YEAR,COURSE_ID) values (students_group_id_seq.nextval,'2','4');
+Insert into STUDENTS_GROUP (ID,SEMESTER,COURSE_ID) values (students_group_id_seq.nextval,'2','1');
+Insert into STUDENTS_GROUP (ID,SEMESTER,COURSE_ID) values (students_group_id_seq.nextval,'3','2');
+Insert into STUDENTS_GROUP (ID,SEMESTER,COURSE_ID) values (students_group_id_seq.nextval,'1','3');
+Insert into STUDENTS_GROUP (ID,SEMESTER,COURSE_ID) values (students_group_id_seq.nextval,'5','4');
+Insert into STUDENTS_GROUP (ID,SEMESTER,COURSE_ID) values (students_group_id_seq.nextval,'3','5');
+Insert into STUDENTS_GROUP (ID,SEMESTER,COURSE_ID) values (students_group_id_seq.nextval,'2','6');
+Insert into STUDENTS_GROUP (ID,SEMESTER,COURSE_ID) values (students_group_id_seq.nextval,'1','7');
+Insert into STUDENTS_GROUP (ID,SEMESTER,COURSE_ID) values (students_group_id_seq.nextval,'3','2');
+Insert into STUDENTS_GROUP (ID,SEMESTER,COURSE_ID) values (students_group_id_seq.nextval,'2','4');
 
 
 Insert into STUDENT (ID,NAME,SURNAME,ACADEMIC_DEGREE,ADDRESS) values (student_id_seq.nextval,'Konrad','Studencki','inżynier','Poznań');

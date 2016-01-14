@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-2"
 	pageEncoding="ISO-8859-2"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,8 +29,8 @@
 						class="pure-menu-link">P³atno¶ci</a></li>
 					<li class="pure-menu-item"><a href="studentapplications"
 						class="pure-menu-link">Wnioski</a></li>
-					<li class="pure-menu-item  pure-menu-selected"><a href="studentlecturers"
-						class="pure-menu-link">Wyk³adowcy</a></li>
+					<li class="pure-menu-item  pure-menu-selected"><a
+						href="studentlecturers" class="pure-menu-link">Wyk³adowcy</a></li>
 					<li class="pure-menu-item"><a href="messages"
 						class="pure-menu-link">Historia komunikatów</a></li>
 					<li class="pure-menu-item"><a href="logout"
@@ -49,6 +50,21 @@
 						ucz±cych wyk³adowców.<br> 2. Przy ka¿dym link do wys³ania
 						wiadomo¶ci.
 					</font>
+				<table border="1">
+
+					<c:forEach items="${lecturers}" var="lecturer">
+						<tr>
+							<td>${lecturer.name}</td>
+							<td>${lecturer.surname}</td>
+							<td>${lecturer.academicDegree}</td>
+							<td>${lecturer.position}</td>
+							<td>${lecturer.eMail}</td>
+							<td><c:forEach items="${lecturer.subject}" var="subject">
+								${subject}
+							</c:forEach></td>
+						</tr>
+					</c:forEach>
+				</table>
 				</p>
 			</div>
 		</div>

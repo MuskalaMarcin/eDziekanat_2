@@ -117,7 +117,7 @@
 								<input type="hidden" name="receiverLogin"
 									value="<%out.print(rcvd.getSender().getLogin());%>"> <input
 									type="hidden" name="title"
-									value="<%out.print(rcvd.getTitle());%>"> <input
+									value="<%out.print(rcvd.getTitle());%>"> <input class="pure-button pure-input-1-2 pure-button-primary"
 									type="submit" value="Odpowiedz">
 							</form>
 						</td>
@@ -217,7 +217,6 @@
 				<%
 				    }
 				%>
-				</p>
 			</div>
 		</div>
 	</div>

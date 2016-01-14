@@ -34,13 +34,13 @@ public class StudentsGroupDAOTest extends HttpServlet
 	StudentsGroupDTO studentsGroup = new StudentsGroupDAO().getEntity(1);
 	out.println("<br>" + studentsGroup.getCourse().getName());
 	out.println("<br>" + studentsGroup.getId());
-	out.println("<br>" + studentsGroup.getYear());
+	out.println("<br>" + studentsGroup.getSemester());
 
 	out.println("<p>ALL StudentsGroups");
 	new StudentsGroupDAO().getAllEntities().forEach(item -> {
 	    out.println("<br>" + item.getCourse().getName());
 	    out.println("<br>" + item.getId());
-	    out.println("<br>" + item.getYear());
+	    out.println("<br>" + item.getSemester());
 	    out.println("<br> nastepny");
 	});
     }
