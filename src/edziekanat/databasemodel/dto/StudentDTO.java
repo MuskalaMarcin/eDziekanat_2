@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -47,7 +46,7 @@ public class StudentDTO implements Serializable
     @OneToOne(mappedBy = "student", fetch = FetchType.LAZY)
     private UserDTO user;
     @ManyToMany(mappedBy = "student", fetch = FetchType.LAZY)
-    private List<StudentsGroupDTO> studentsGroup;
+    private List<StudentsGroupDTO> students_group;
 
     public Integer getId()
     {
@@ -141,12 +140,12 @@ public class StudentDTO implements Serializable
 
     public List<StudentsGroupDTO> getStudentsGroup()
     {
-	return studentsGroup;
+	return students_group;
     }
 
     public void setStudentsGroup(List<StudentsGroupDTO> studentsGroup)
     {
-	this.studentsGroup = studentsGroup;
+	this.students_group = studentsGroup;
     }
 
 }

@@ -48,17 +48,17 @@ public class SubjectsController extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	LoginBean loginBean = (LoginBean) request.getSession().getAttribute("loginBean");
-	System.out.println(loginBean.getLogin());
 	StudentDTO student = new StudentDAO().getEntity(loginBean.getPersonId());
-	System.out.println(student.getName());
 	List<StudentsGroupDTO> studentsGroup = new LinkedList<StudentsGroupDTO>();
 	studentsGroup = student.getStudentsGroup();
-	System.out.println(studentsGroup.get(0).getCourse().getName());
+	System.out.println(studentsGroup.get(0).getId());
 	List<SubjectDTO> subjects = new LinkedList<SubjectDTO>();
-	studentsGroup.forEach(sgroup -> {
-	    subjects.addAll(sgroup.getSubject());
-	});
-
+	
+	for (int i = 0; i < studentsGroup.size(); i++)
+	{
+	    subjects.addAll(studentsGroup.get(i).getSubject());
+	}
+	
 	if (!subjects.isEmpty())
 	{
 	    request.setAttribute("ownsubjects", subjects);
