@@ -37,10 +37,10 @@ public class EnrollmentDTO implements Serializable
     private Date issueDate;
     @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "subject_id")
-    private SubjectDTO subjectId;
+    private SubjectDTO subject;
     @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "transcript_id")
-    private TranscriptDTO transcriptId;
+    private TranscriptDTO transcript;
 
     public Integer getId()
     {
@@ -72,23 +72,23 @@ public class EnrollmentDTO implements Serializable
 	this.issueDate = issue_date;
     }
 
-    public SubjectDTO getSubjectId()
+    public SubjectDTO getSubject()
     {
-        return subjectId;
+        return subject;
     }
 
-    public void setSubjectId(SubjectDTO subjectId)
+    public void setSubjectId(SubjectDTO subject)
     {
-        this.subjectId = subjectId;
+        this.subject = subject;
     }
 
-    public TranscriptDTO getTranscriptId()
+    public TranscriptDTO getTranscript()
     {
-        return transcriptId;
+        return transcript;
     }
 
-    public void setTranscriptId(TranscriptDTO transcriptId)
+    public void setTranscriptId(TranscriptDTO transcript)
     {
-        this.transcriptId = transcriptId;
+        this.transcript = transcript;
     }
 }

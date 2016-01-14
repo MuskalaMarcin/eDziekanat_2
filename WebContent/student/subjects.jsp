@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-2"
-	pageEncoding="ISO-8859-2"%>
+<%@ page language="java"
+	import="edziekanat.databasemodel.dto.SubjectDTO, java.util.List"
+	contentType="text/html; charset=ISO-8859-2" pageEncoding="ISO-8859-2"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,8 +15,8 @@
 			<div class="pure-menu">
 				<a class="pure-menu-heading" href="home">eDziekanat</a>
 				<ul class="pure-menu-list">
-					<li class="pure-menu-item"><a
-						href="student" class="pure-menu-link">Strona g³ówna</a></li>
+					<li class="pure-menu-item"><a href="student"
+						class="pure-menu-link">Strona g³ówna</a></li>
 					<li class="pure-menu-item"><a href="studenttranscript"
 						class="pure-menu-link">Indeks</a></li>
 					<li class="pure-menu-item"><a href="studenttimetable"
@@ -45,10 +46,72 @@
 			<div class="content">
 				<h2 class="content-subhead">Moje przedmioty:</h2>
 				<p>
+				<p>
 					<font color="red"> TODO: <br> 1. Wy¶wietlanie
 						informacji o przedmiotach<br> 2. Przy ka¿dym przedmiocie
 						odno¶nik do wy¶wietlenia materia³ów dydaktycznych.
 					</font>
+				</p>
+
+				<%
+				    List<SubjectDTO> subjects = (List<SubjectDTO>) request.getAttribute("ownsubjects");
+
+				    if (subjects != null)
+				    {
+				%>
+				<p>Przedmioty:
+				<table border="1">
+					<%
+					    for (int i = 0; i < subjects.size(); i++)
+							{
+							    SubjectDTO sbs = subjects.get(i);
+					%>
+					<tr>
+						<td colspan="2">Nr: <%
+						    out.print(i + 1);
+						%></td>
+					</tr>
+					<tr>
+						<td>Nazwa:</td>
+						<td>
+							<%
+							    out.print(sbs.getName());
+							%>
+						</td>
+					</tr>
+					<tr>
+						<td>Semestr:</td>
+						<td>
+							<%
+							    out.print(sbs.getSemester());
+							%>
+						</td>
+					</tr>
+					<tr>
+						<td>ECTS:</td>
+						<td>
+							<%
+							    out.print(sbs.getECTS());
+							%>
+						</td>
+					</tr>
+					<tr>
+						<td>Prowadz±cy:</td>
+						<td>
+							<%
+							    out.print(sbs.getLecturer().getName() + " " + sbs.getLecturer().getSurname());
+							%>
+						</td>
+					</tr>
+					<%
+					    }
+					%>
+				</table>
+
+				<%
+				    }
+				%>
+				</center>
 				</p>
 			</div>
 		</div>

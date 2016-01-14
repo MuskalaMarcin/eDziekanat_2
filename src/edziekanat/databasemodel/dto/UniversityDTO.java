@@ -1,13 +1,18 @@
 package edziekanat.databasemodel.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
@@ -27,6 +32,10 @@ public class UniversityDTO implements Serializable
     private String name;
     @Column(name = "address")
     private String address;
+    @OneToMany(mappedBy = "university", fetch = FetchType.LAZY)
+    private List<FacultyDTO> faculty;
+    @OneToMany(mappedBy = "university", fetch = FetchType.LAZY)
+    private List<AdministratorDTO> administrator;
 
     public Integer getId()
     {
@@ -57,4 +66,25 @@ public class UniversityDTO implements Serializable
     {
 	this.address = address;
     }
+
+    public List<FacultyDTO> getFaculty()
+    {
+        return faculty;
+    }
+
+    public void setFaculty(List<FacultyDTO> faculty)
+    {
+        this.faculty = faculty;
+    }
+
+    public List<AdministratorDTO> getAdministrator()
+    {
+        return administrator;
+    }
+
+    public void setAdministrator(List<AdministratorDTO> administrator)
+    {
+        this.administrator = administrator;
+    }
+
 }

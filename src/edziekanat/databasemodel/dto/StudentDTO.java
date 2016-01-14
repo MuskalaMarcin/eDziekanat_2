@@ -1,13 +1,20 @@
 package edziekanat.databasemodel.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
@@ -31,6 +38,16 @@ public class StudentDTO implements Serializable
     private String academicDegree;
     @Column(name = "address")
     private String address;
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
+    private List<ApplicationDTO> application;
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
+    private List<ScholarshipDTO> scholarship;
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
+    private List<TranscriptDTO> transcript;
+    @OneToOne(mappedBy = "student", fetch = FetchType.LAZY)
+    private UserDTO user;
+    @ManyToMany(mappedBy = "student", fetch = FetchType.LAZY)
+    private List<StudentsGroupDTO> studentsGroup;
 
     public Integer getId()
     {
@@ -81,4 +98,55 @@ public class StudentDTO implements Serializable
     {
 	this.address = address;
     }
+
+    public List<ApplicationDTO> getApplication()
+    {
+	return application;
+    }
+
+    public void setApplication(List<ApplicationDTO> application)
+    {
+	this.application = application;
+    }
+
+    public List<ScholarshipDTO> getScholarship()
+    {
+	return scholarship;
+    }
+
+    public void setScholarship(List<ScholarshipDTO> scholarship)
+    {
+	this.scholarship = scholarship;
+    }
+
+    public List<TranscriptDTO> getTranscript()
+    {
+	return transcript;
+    }
+
+    public void setTranscript(List<TranscriptDTO> transcript)
+    {
+	this.transcript = transcript;
+    }
+
+    public UserDTO getUser()
+    {
+	return user;
+    }
+
+    public void setUser(UserDTO user)
+    {
+	this.user = user;
+    }
+
+    public List<StudentsGroupDTO> getStudentsGroup()
+    {
+	return studentsGroup;
+    }
+
+    public void setStudentsGroup(List<StudentsGroupDTO> studentsGroup)
+    {
+	this.studentsGroup = studentsGroup;
+    }
+
 }

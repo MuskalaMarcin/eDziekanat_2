@@ -1,6 +1,7 @@
 package edziekanat.databasemodel.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
@@ -34,6 +36,8 @@ public class CourseDTO implements Serializable
     @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "faculty_id")
     private FacultyDTO faculty;
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    private List<StudentsGroupDTO> studentsGroup;
 
     public Integer getId()
     {
@@ -73,5 +77,15 @@ public class CourseDTO implements Serializable
     public void setFaculty(FacultyDTO faculty)
     {
 	this.faculty = faculty;
+    }
+
+    public List<StudentsGroupDTO> getStudentsGroup()
+    {
+	return studentsGroup;
+    }
+
+    public void setStudentsGroup(List<StudentsGroupDTO> studentsGroup)
+    {
+	this.studentsGroup = studentsGroup;
     }
 }

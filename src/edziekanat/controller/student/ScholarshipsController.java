@@ -67,7 +67,7 @@ public class ScholarshipsController extends HttpServlet
 	List<String> userNames = new LinkedList<String>();
 	allScholarships.forEach(scholarship -> {
 	AdministratorDTO admin = null;
-	admin = scholarship.getAdministratorId();
+	admin = scholarship.getAdministrator();
 	userNames.add(admin.getName() + " " + admin.getSurname());
 	});
 	return userNames;

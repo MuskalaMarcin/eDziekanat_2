@@ -1,6 +1,7 @@
 package edziekanat.databasemodel.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
@@ -39,7 +41,15 @@ public class SubjectDTO implements Serializable
     @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "students_group_id")
     private StudentsGroupDTO studentsGroup;
-
+    @OneToMany(mappedBy = "subject", fetch = FetchType.LAZY)
+    private List<EnrollmentDTO> enrollment;
+    @OneToMany(mappedBy = "subject", fetch = FetchType.LAZY)
+    private List<LearningMaterialsDTO> learningMaterials;
+    @OneToMany(mappedBy = "subject", fetch = FetchType.LAZY)
+    private List<PartialMarkDTO> partialMark;
+    @OneToMany(mappedBy = "subject", fetch = FetchType.LAZY)
+    private List<ScheduledClassesDTO> scheduledClasses;
+    
     public Integer getId()
     {
 	return id;
@@ -99,4 +109,45 @@ public class SubjectDTO implements Serializable
     {
 	this.studentsGroup = studentsGroup;
     }
+
+    public List<EnrollmentDTO> getEnrollment()
+    {
+        return enrollment;
+    }
+
+    public void setEnrollment(List<EnrollmentDTO> enrollment)
+    {
+        this.enrollment = enrollment;
+    }
+
+    public List<LearningMaterialsDTO> getLearningMaterials()
+    {
+        return learningMaterials;
+    }
+
+    public void setLearningMaterials(List<LearningMaterialsDTO> learningMaterials)
+    {
+        this.learningMaterials = learningMaterials;
+    }
+
+    public List<PartialMarkDTO> getPartialMark()
+    {
+        return partialMark;
+    }
+
+    public void setPartialMark(List<PartialMarkDTO> partialMark)
+    {
+        this.partialMark = partialMark;
+    }
+
+    public List<ScheduledClassesDTO> getScheduledClasses()
+    {
+        return scheduledClasses;
+    }
+
+    public void setScheduledClasses(List<ScheduledClassesDTO> scheduledClasses)
+    {
+        this.scheduledClasses = scheduledClasses;
+    }
+
 }
