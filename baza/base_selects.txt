@@ -1,0 +1,61 @@
+//Przedmioty danego studenta, kierunek i prowadzący
+SELECT subject.name, subject.semester, subject.ects, course.name, lecturer.name, lecturer.surname 
+FROM subject
+LEFT JOIN students_group ON subject.students_group_id = students_group.id
+LEFT JOIN students_group_student ON students_group_student.students_group_id = students_group.id
+LEFT JOIN student ON student.id = students_group_student.student_id
+LEFT JOIN course ON course.id = students_group.course_id
+LEFT JOIN lecturer ON lecturer.id = subject.lecturer_id
+WHERE student.id = '1';
+
+//Kierunki studenta
+SELECT course.name FROM course
+LEFT JOIN students_group ON course.id = students_group.course_id
+LEFT JOIN students_group_student ON students_group_student.students_group_id = students_group.id
+LEFT JOIN student ON student.id = students_group_student.student_id
+WHERE student.id = '1';
+
+//Wykładowcy studenta
+//Jeżeli nazwy przedmiotów, których uczą nie są istotne to jest źle, bo duplikaty//
+SELECT lecturer.name, lecturer.name, subject.name FROM lectuter
+LEFT JOIN students_group ON lecturer.id = subject.lecturer_id
+LEFT JOIN students_group ON subject.students_group_id = students_group.id
+LEFT JOIN students_group_student ON students_group_student.students_group_id = students_group.id
+LEFT JOIN student ON student.id = students_group_student.student_id
+WHERE student.id = '1';
+//
+
+//Wpisy studenta, data, przedmiot
+SELECT enrollment.mark, enrollment.issue_date, subject.name from enrollment
+LEFT JOIN transcript ON enrollment.transcript_id = transcript.id
+LEFT JOIN student ON transcript.student_id = student.id
+LEFT JOIN subject ON enrollment.subject_id = subject.id
+WHERE student.id = '1'
+
+//Oceny studenta, data, przedmiot
+SELECT partial_mark.mark, partial_mark.issue_date, subject.name from partial_mark
+LEFT JOIN transcript ON partial_mark.transcript_id = transcript.id
+LEFT JOIN student ON transcript.student_id = student.id
+LEFT JOIN subject ON partial_mark.subject_id = subject.id
+WHERE student.id = '1'
+
+//Zaplanowane zajęcia, data, przedmiot
+//zmienic baze + Dodać numer sali
+SELECT scheduled_classes.classes_date, subject.name from scheduled_classes
+LEFT JOIN classroom ON scheduled_classes.classroom_id = classroom.id
+LEFT JOIN subject ON scheduled_classes.subject_id = subject.id
+LEFT JOIN students_group ON subject.students_group_id = students_group.id
+LEFT JOIN students_group_student ON students_group_student.students_group_id = students_group.id
+LEFT JOIN student ON students_group_student.student_id = student.id
+WHERE student.id = '1'
+
+//Wszyscy studenci danego wykładowcy
+//Jeżeli nie ma znaczenia czego ich uczy, to wyrzucic duplikaty
+SELECT * FROM student
+LEFT JOIN students_group_student ON students_group_student.student_id = student.id
+LEFT JOIN students_group ON students_group_student.students_group_id = students_group.id
+LEFT JOIN subject ON subject.students_group_id = students_group.id
+LEFT JOIN lecturer ON subject.lecturer_id = lecturer.id
+WHERE lecturer.id = '2'
+
+
