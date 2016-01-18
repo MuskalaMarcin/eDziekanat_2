@@ -91,28 +91,38 @@ Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUD
 Insert into APP_USER (LOGIN,PASSWORD,E_MAIL,IS_ACTIVE,USER_ROLE,LECTURER_ID,STUDENT_ID,ADMINISTRATOR_ID) values ('WJakubStępień','Stępień','Jakub@Stępień.com','1','lecturer','1',null,null);
 
 
-Insert into CLASSROOM (ID,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval, '100', 'Aula wykladowa','1');
-Insert into CLASSROOM (ID,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval, '30', 'Sala dydaktyczna','2');
-Insert into CLASSROOM (ID,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval, '15', 'Laboratorium komputerowe','3');
-Insert into CLASSROOM (ID,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval, '100', 'Aula wykladowaa','1');
-Insert into CLASSROOM (ID,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval, '30', 'Sala dydaktyczna','2');
-Insert into CLASSROOM (ID,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval, '15', 'Laboratorium komputerowe','3');
-Insert into CLASSROOM (ID,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval, '100', 'Aula wykladowawa','1');
-Insert into CLASSROOM (ID,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval, '30', 'Sala dydaktyczna','2');
-Insert into CLASSROOM (ID,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval, '15', 'Laboratorium komputerowe','3');
+Insert into CLASSROOM (ID,NR,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval, '1','100', 'Aula wykladowa','1');
+Insert into CLASSROOM (ID,NR,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval,'2', '30', 'Sala dydaktyczna','2');
+Insert into CLASSROOM (ID,NR,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval,'3', '15', 'Laboratorium komputerowe','3');
+Insert into CLASSROOM (ID,NR,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval,'4', '100', 'Aula wykladowaa','1');
+Insert into CLASSROOM (ID,NR,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval,'5', '30', 'Sala dydaktyczna','2');
+Insert into CLASSROOM (ID,NR,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval,'6', '15', 'Laboratorium komputerowe','3');
+Insert into CLASSROOM (ID,NR,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval,'7', '100', 'Aula wykladowawa','1');
+Insert into CLASSROOM (ID,NR,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval,'8', '30', 'Sala dydaktyczna','2');
+Insert into CLASSROOM (ID,NR,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval,'9', '15', 'Laboratorium komputerowe','3');
 
 
-Insert into SUBJECT (ID,NAME,SEMESTER,ECTS,LECTURER_ID,STUDENTS_GROUP_ID) values (subject_id_seq.nextval, 'Analiza matematyczna', '1', '4', '1','1');
-Insert into SUBJECT (ID,NAME,SEMESTER,ECTS,LECTURER_ID,STUDENTS_GROUP_ID) values (subject_id_seq.nextval, 'Fizyka', '2', '6', '2', '2');
-Insert into SUBJECT (ID,NAME,SEMESTER,ECTS,LECTURER_ID,STUDENTS_GROUP_ID) values (subject_id_seq.nextval, 'Algebra liniowa', '1', '2', '3', '3');
-Insert into SUBJECT (ID,NAME,SEMESTER,ECTS,LECTURER_ID,STUDENTS_GROUP_ID) values (subject_id_seq.nextval, 'Elektrotechnika', '1', '9', '4', '4');
-Insert into SUBJECT (ID,NAME,SEMESTER,ECTS,LECTURER_ID,STUDENTS_GROUP_ID) values (subject_id_seq.nextval, 'Wytrzymałość materiałowa', '2', '5', '5', '5');
-Insert into SUBJECT (ID,NAME,SEMESTER,ECTS,LECTURER_ID,STUDENTS_GROUP_ID) values (subject_id_seq.nextval, 'Elektronika', '4', '3', '6', '6');
-Insert into SUBJECT (ID,NAME,SEMESTER,ECTS,LECTURER_ID,STUDENTS_GROUP_ID) values (subject_id_seq.nextval, 'Programowanie Obiektowe', '5', '1', '7', '7');
-Insert into SUBJECT (ID,NAME,SEMESTER,ECTS,LECTURER_ID,STUDENTS_GROUP_ID) values (subject_id_seq.nextval, 'Konstrukcje budowlane', '4', '5', '8', '8');
-Insert into SUBJECT (ID,NAME,SEMESTER,ECTS,LECTURER_ID,STUDENTS_GROUP_ID) values (subject_id_seq.nextval, 'Język angielski', '3', '3', '9', '9');
-Insert into SUBJECT (ID,NAME,SEMESTER,ECTS,LECTURER_ID,STUDENTS_GROUP_ID) values (subject_id_seq.nextval, 'Grafika', '2', '4', '1', '1');
+Insert into SUBJECT (ID,NAME,SEMESTER,ECTS,LECTURER_ID) values (subject_id_seq.nextval, 'Analiza matematyczna', '1', '4', '1');
+Insert into SUBJECT (ID,NAME,SEMESTER,ECTS,LECTURER_ID) values (subject_id_seq.nextval, 'Fizyka', '2', '6', '2');
+Insert into SUBJECT (ID,NAME,SEMESTER,ECTS,LECTURER_ID) values (subject_id_seq.nextval, 'Algebra liniowa', '1', '2', '3');
+Insert into SUBJECT (ID,NAME,SEMESTER,ECTS,LECTURER_ID) values (subject_id_seq.nextval, 'Elektrotechnika', '1', '9', '4');
+Insert into SUBJECT (ID,NAME,SEMESTER,ECTS,LECTURER_ID) values (subject_id_seq.nextval, 'Wytrzymałość materiałowa', '2', '5', '5');
+Insert into SUBJECT (ID,NAME,SEMESTER,ECTS,LECTURER_ID) values (subject_id_seq.nextval, 'Elektronika', '4', '3', '6');
+Insert into SUBJECT (ID,NAME,SEMESTER,ECTS,LECTURER_ID) values (subject_id_seq.nextval, 'Programowanie Obiektowe', '5', '1', '7');
+Insert into SUBJECT (ID,NAME,SEMESTER,ECTS,LECTURER_ID) values (subject_id_seq.nextval, 'Konstrukcje budowlane', '4', '5', '8');
+Insert into SUBJECT (ID,NAME,SEMESTER,ECTS,LECTURER_ID) values (subject_id_seq.nextval, 'Język angielski', '3', '3', '9');
+Insert into SUBJECT (ID,NAME,SEMESTER,ECTS,LECTURER_ID) values (subject_id_seq.nextval, 'Grafika', '2', '4', '1');
 
+Insert into STUDENTS_GROUP_SUBJECT (STUDENTS_GROUP_ID, SUBJECT_ID) values ('1','1');
+Insert into STUDENTS_GROUP_SUBJECT (STUDENTS_GROUP_ID, SUBJECT_ID) values ('2','2');
+Insert into STUDENTS_GROUP_SUBJECT (STUDENTS_GROUP_ID, SUBJECT_ID) values ('3','3');
+Insert into STUDENTS_GROUP_SUBJECT (STUDENTS_GROUP_ID, SUBJECT_ID) values ('4','4');
+Insert into STUDENTS_GROUP_SUBJECT (STUDENTS_GROUP_ID, SUBJECT_ID) values ('5','5');
+Insert into STUDENTS_GROUP_SUBJECT (STUDENTS_GROUP_ID, SUBJECT_ID) values ('6','6');
+Insert into STUDENTS_GROUP_SUBJECT (STUDENTS_GROUP_ID, SUBJECT_ID) values ('7','7');
+Insert into STUDENTS_GROUP_SUBJECT (STUDENTS_GROUP_ID, SUBJECT_ID) values ('8','8');
+Insert into STUDENTS_GROUP_SUBJECT (STUDENTS_GROUP_ID, SUBJECT_ID) values ('9','9');
+Insert into STUDENTS_GROUP_SUBJECT (STUDENTS_GROUP_ID, SUBJECT_ID) values ('10','1');
 
 Insert into TRANSCRIPT (ID,ISSUE_DATE,STUDENT_ID,STUDENTS_GROUP_ID) values (transcript_id_seq.nextval, '2013-09-25', '1', '1'); 
 Insert into TRANSCRIPT (ID,ISSUE_DATE,STUDENT_ID,STUDENTS_GROUP_ID) values (transcript_id_seq.nextval, '2011-09-25', '2', '2'); 
