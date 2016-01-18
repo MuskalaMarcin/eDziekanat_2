@@ -354,7 +354,7 @@ public class DatabaseTest extends HttpServlet
 	out.println("<br>" + subject.getId());
 	out.println("<br>" + subject.getLecturer().getName());
 	out.println("<br>" + subject.getSemester());
-	out.println("<br>" + subject.getStudentsGroup().getId());
+	out.println("<br>" + subject.getStudentsGroup().get(0).getId());
 
 	out.println("<p>ALL Subjects");
 	new SubjectDAO().getAllEntities().forEach(item -> {
@@ -363,7 +363,7 @@ public class DatabaseTest extends HttpServlet
 	    out.println("<br>" + item.getId());
 	    out.println("<br>" + item.getLecturer().getName());
 	    out.println("<br>" + item.getSemester());
-	    out.println("<br>" + item.getStudentsGroup().getId());
+	    out.println("<br>" + item.getStudentsGroup().get(0).getId());
 	    out.println("<br> nastepny");
 	});
 

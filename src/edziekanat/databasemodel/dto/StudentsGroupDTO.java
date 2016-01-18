@@ -36,13 +36,14 @@ public class StudentsGroupDTO implements Serializable
     @JoinColumn(name = "course_id")
     private CourseDTO course;
     @OneToMany(mappedBy = "studentsGroup", fetch = FetchType.LAZY)
-    private List<SubjectDTO> subject;
-    @OneToMany(mappedBy = "studentsGroup", fetch = FetchType.LAZY)
     private List<TranscriptDTO> transcript;
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
     private List<StudentDTO> student;
-
+    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JoinColumn(name = "subject_id")
+    private List<SubjectDTO> subject;
+    
     public Integer getId()
     {
 	return id;

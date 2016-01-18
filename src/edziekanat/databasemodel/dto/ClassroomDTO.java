@@ -29,6 +29,8 @@ public class ClassroomDTO implements Serializable
     @GeneratedValue(strategy=GenerationType.AUTO, generator="CLASSROOMSEQ")
     @Column(name = "id")
     private Integer id;
+    @Column(name = "nr")
+    private Integer number;
     @Column(name = "capacity")
     private Integer capacity;
     @Column(name = "type")
@@ -87,5 +89,15 @@ public class ClassroomDTO implements Serializable
     public void setScheduledClasses(List<ScheduledClassesDTO> scheduledClasses)
     {
 	this.scheduled_classes = scheduledClasses;
+    }
+
+    public Integer getNumber()
+    {
+        return number;
+    }
+
+    public void setNumber(Integer number)
+    {
+        this.number = number;
     }
 }
