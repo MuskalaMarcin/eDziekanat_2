@@ -20,8 +20,8 @@ import edziekanat.databasemodel.dto.UserDTO;
 /**
  * Servlet implementation class MessageController
  */
-@WebServlet("/messages")
-public class MessageController extends HttpServlet
+@WebServlet("/receivedmessages")
+public class ReceivedMessagesController extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
@@ -38,18 +38,9 @@ public class MessageController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	// TODO: podzial na strony
 	LoginBean loginBean = (LoginBean) request.getSession().getAttribute("loginBean");
-	String messagesURL = "/" + loginBean.getUserRole() + "/messages";
+	String messagesURL = "/" + loginBean.getUserRole() + "/receivedmessages";
 
-	List<MessageDTO> sentMsg = new MessageDAO().getMultipleEntities("sender_id = '" + loginBean.getLogin() + "'");
-	if (!sentMsg.isEmpty())
-	{
-	    Collections.sort(sentMsg, (x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()));
-	    List<String> receiverNames = getUserNames(sentMsg, false);
-	    request.setAttribute("receiverNames", receiverNames);
-	    request.setAttribute("sentMessages", sentMsg);
-	}
 	List<MessageDTO> receivedMsg = new MessageDAO()
 		.getMultipleEntities("receiver_id = '" + loginBean.getLogin() + "'");
 

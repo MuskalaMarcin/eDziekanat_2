@@ -41,10 +41,12 @@
 					<li class="pure-menu-item"><a
 						href="http://localhost:8080/eDziekanat/studentlecturers"
 						class="pure-menu-link">Wyk³adowcy</a></li>
-					<li class="pure-menu-item  pure-menu-selected"><a
-						href="http://localhost:8080/eDziekanat/messages"
+					<li class="pure-menu-item menu-item-divided"><a
+						href="http://localhost:8080/eDziekanat/receivedmessages"
 						class="pure-menu-link">Historia komunikatów</a></li>
-					<li class="pure-menu-item"><a
+					<li class="pure-menu-item  pure-menu-selected"><a href="#"
+						class="pure-menu-link">Nowa wiadomo¶æ</a></li>
+					<li class="pure-menu-item menu-item-divided"><a
 						href="http://localhost:8080/eDziekanat/logout"
 						class="pure-menu-link">Wyloguj</a>
 				</ul>

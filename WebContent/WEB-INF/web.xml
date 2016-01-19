@@ -34,24 +34,36 @@
     <jsp-file>/student/lecturers.jsp</jsp-file>
   </servlet>
   <servlet>
-    <servlet-name>StudentMessages</servlet-name>
-    <jsp-file>/student/messages.jsp</jsp-file>
+    <servlet-name>StudentReceivedMessages</servlet-name>
+    <jsp-file>/student/receivedmessages.jsp</jsp-file>
+  </servlet>
+    <servlet>
+    <servlet-name>StudentSentMessages</servlet-name>
+    <jsp-file>/student/sentmessages.jsp</jsp-file>
   </servlet>
    <servlet>
     <servlet-name>StudentNewMessage</servlet-name>
     <jsp-file>/student/newmessage.jsp</jsp-file>
   </servlet>
     <servlet>
-    <servlet-name>LecturerMessages</servlet-name>
-    <jsp-file>/lecturer/messages.jsp</jsp-file>
+    <servlet-name>LecturerReceivedMessages</servlet-name>
+    <jsp-file>/lecturer/receivedmessages.jsp</jsp-file>
+  </servlet>
+      <servlet>
+    <servlet-name>LecturerSentMessages</servlet-name>
+    <jsp-file>/lecturer/sentmessages.jsp</jsp-file>
   </servlet>
    <servlet>
     <servlet-name>LecturerNewMessage</servlet-name>
     <jsp-file>/lecturer/newmessage.jsp</jsp-file>
   </servlet>
     <servlet>
-    <servlet-name>AdminMessages</servlet-name>
-    <jsp-file>/administrator/messages.jsp</jsp-file>
+    <servlet-name>AdminReceivedMessages</servlet-name>
+    <jsp-file>/administrator/receivedmessages.jsp</jsp-file>
+  </servlet>
+      <servlet>
+    <servlet-name>AdminSentMessages</servlet-name>
+    <jsp-file>/administrator/sentmessages.jsp</jsp-file>
   </servlet>
    <servlet>
     <servlet-name>AdminNewMessage</servlet-name>
@@ -110,24 +122,36 @@
     <url-pattern>/student/lecturers</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>StudentMessages</servlet-name>
-    <url-pattern>/student/messages</url-pattern>
+    <servlet-name>StudentReceivedMessages</servlet-name>
+    <url-pattern>/student/receivedmessages</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>StudentSentMessages</servlet-name>
+    <url-pattern>/student/sentmessages</url-pattern>
   </servlet-mapping>
    <servlet-mapping>
     <servlet-name>StudentNewMessage</servlet-name>
     <url-pattern>/student/newmessage</url-pattern>
   </servlet-mapping>
     <servlet-mapping>
-    <servlet-name>LecturerMessages</servlet-name>
-    <url-pattern>/lecturer/messages</url-pattern>
+    <servlet-name>LecturerReceivedMessages</servlet-name>
+    <url-pattern>/lecturer/receivedmessages</url-pattern>
+  </servlet-mapping>
+      <servlet-mapping>
+    <servlet-name>LecturerSentMessages</servlet-name>
+    <url-pattern>/lecturer/sentmessages</url-pattern>
   </servlet-mapping>
    <servlet-mapping>
     <servlet-name>LecturerNewMessage</servlet-name>
     <url-pattern>/lecturer/newmessage</url-pattern>
   </servlet-mapping>
     <servlet-mapping>
-    <servlet-name>AdminMessages</servlet-name>
-    <url-pattern>/admin/messages</url-pattern>
+    <servlet-name>AdminReceivedMessages</servlet-name>
+    <url-pattern>/admin/receivedmessages</url-pattern>
+  </servlet-mapping>
+      <servlet-mapping>
+    <servlet-name>AdminSentMessages</servlet-name>
+    <url-pattern>/admin/sentmessages</url-pattern>
   </servlet-mapping>
    <servlet-mapping>
     <servlet-name>AdminNewMessage</servlet-name>
@@ -182,7 +206,8 @@
       <web-resource-name>AdminsPages</web-resource-name>
       <url-pattern>/admin/*</url-pattern>
       <url-pattern>/admin/newmessage/*</url-pattern>
-      <url-pattern>/admin/messages/*</url-pattern>
+      <url-pattern>/administrator/sentmessages/*</url-pattern>
+      <url-pattern>/administrator/receivedmessages/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>admin</role-name>
@@ -204,7 +229,8 @@
       <url-pattern>/studentapplications/*</url-pattern>
       <url-pattern>/studentlecturers/*</url-pattern>
       <url-pattern>/student/newmessage/*</url-pattern>
-      <url-pattern>/student/messages/*</url-pattern>
+      <url-pattern>/student/sentmessages/*</url-pattern>
+       <url-pattern>/student/receivedmessages/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>student</role-name>
@@ -219,7 +245,8 @@
       <web-resource-name>LecturersPages</web-resource-name>
       <url-pattern>/lecturer/*</url-pattern>
       <url-pattern>/lecturer/newmessage/*</url-pattern>
-      <url-pattern>/lecturer/message/*</url-pattern>
+      <url-pattern>/lecturer/sentmessages/*</url-pattern>
+      <url-pattern>/lecturer/receivedmessages/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>lecturer</role-name>
