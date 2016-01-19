@@ -1,0 +1,42 @@
+CREATE OR replace TYPE studentssubjects AS object(
+  subject_name     VARCHAR2 (256), 
+  semester         NUMBER (2), 
+  ects             NUMBER (2), 
+  course_name      VARCHAR2 (256), 
+  lecturer_name    VARCHAR2 (256), 
+  lecturer_surname VARCHAR2 (256)); 
+/
+CREATE TYPE studentssubjects_tab AS TABLE OF studentssubjects;
+  
+  
+/ 
+create or replace 
+FUNCTION select_student_subjects(studentId IN student.id%TYPE) 
+RETURN studentssubjects_tab
+IS 
+  v_studentssubjects_tab studentssubjects_tab := studentssubjects_tab(); 
+BEGIN 
+    SELECT studentssubjects(subject.name, subject.semester, subject.ects, course.name, lecturer.name , lecturer.surname)
+    bulk  collect      INTO v_studentssubjects_tab 
+    FROM   subject 
+           left join students_group_subject 
+                  ON students_group_subject.subject_id = subject.id 
+           left join students_group
+                  ON students_group_subject.students_group_id = 
+                     students_group.id 
+           left join students_group_student 
+                  ON students_group_student.students_group_id = 
+                     students_group.id 
+           left join student 
+                  ON student.id = students_group_student.student_id 
+           left join course 
+                  ON course.id = students_group.course_id 
+           left join lecturer 
+                  ON lecturer.id = subject.lecturer_id 
+    WHERE  student.id = studentId ; 
+
+    RETURN v_studentssubjects_tab; 
+END;
+/
+
+select select_student_subjects('1') from dual;

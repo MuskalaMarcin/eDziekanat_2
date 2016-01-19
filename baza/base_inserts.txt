@@ -1244,13 +1244,13 @@ Insert into MESSAGE (ID, TITLE, CONTENT, DISPATCH_DATE, RECEIVE_DATE, SENDER_ID,
 Insert into MESSAGE (ID, TITLE, CONTENT, DISPATCH_DATE, RECEIVE_DATE, SENDER_ID, RECEIVER_ID) values (message_id_seq.nextval, 'Godziny przyjęć dziekanatu', 'Szanowna Pani Magister...', '2013-12-09', '2013-12-09', 'SBartoszMiły','AJadwigaOdpowiedzialna');
 Insert into MESSAGE (ID, TITLE, CONTENT, DISPATCH_DATE, RECEIVE_DATE, SENDER_ID, RECEIVER_ID) values (message_id_seq.nextval, 'Podbicie legitymacji', 'Ostateczny termin podbicia legitymacji: 30.10.2015 r.', '2015-10-09', '2015-10-09', 'admin','student');
 
-Insert into APPLICATION (ID, TITLE, CONTENT, DISPATCH_DATE, STATUS, STUDENT_ID, ADMINISTRATOR_ID) values (application_id_seq.nextval, 'Wniosek o urlop dziekański', 'Szanowna...', '2012-09-09', 'Przyjęty', '2', '3');
+Insert into APPLICATION (ID, TITLE, CONTENT, DISPATCH_DATE, STATUS, STUDENT_ID, ADMINISTRATOR_ID) values (application_id_seq.nextval, 'Wniosek o urlop dziekański', 'Szanowna...', '2012-09-09', 'Przyjety', '2', '3');
 Insert into APPLICATION (ID, TITLE, CONTENT, DISPATCH_DATE, STATUS, STUDENT_ID, ADMINISTRATOR_ID) values (application_id_seq.nextval, 'Wniosek o stypendium socjalne', 'Szanowna...', '2013-08-20', 'Odrzucony', '2', '2');
 Insert into APPLICATION (ID, TITLE, CONTENT, DISPATCH_DATE, STATUS, STUDENT_ID, ADMINISTRATOR_ID) values (application_id_seq.nextval, 'Wniosek o stypendium socjalne', 'Szanowna...', '2014-08-11', 'Odrzucony', '3', '2');
-Insert into APPLICATION (ID, TITLE, CONTENT, DISPATCH_DATE, STATUS, STUDENT_ID, ADMINISTRATOR_ID) values (application_id_seq.nextval, 'Wniosek o miejsce w Domu Studenta', 'Szanowna...', '2011-09-09', 'Przyjęty', '3', '1');
+Insert into APPLICATION (ID, TITLE, CONTENT, DISPATCH_DATE, STATUS, STUDENT_ID, ADMINISTRATOR_ID) values (application_id_seq.nextval, 'Wniosek o miejsce w Domu Studenta', 'Szanowna...', '2011-09-09', 'Przyjety', '3', '1');
 Insert into APPLICATION (ID, TITLE, CONTENT, DISPATCH_DATE, STATUS, STUDENT_ID, ADMINISTRATOR_ID) values (application_id_seq.nextval, 'Wniosek o miejsce w Domu Studenta', 'Szanowna...', '2012-09-09', 'Odrzucony', '4', '1');
-Insert into APPLICATION (ID, TITLE, CONTENT, DISPATCH_DATE, STATUS, STUDENT_ID, ADMINISTRATOR_ID) values (application_id_seq.nextval, 'Wniosek o miejsce w Domu Studenta', 'Szanowna...', '2013-09-09', 'Przyjęty', '1', '1');
-Insert into APPLICATION (ID, TITLE, CONTENT, DISPATCH_DATE, STATUS, STUDENT_ID, ADMINISTRATOR_ID) values (application_id_seq.nextval, 'Wniosek o zapomogę', 'Szanowna...', '2015-09-09', 'Przyjęty', '4', '2');
+Insert into APPLICATION (ID, TITLE, CONTENT, DISPATCH_DATE, STATUS, STUDENT_ID, ADMINISTRATOR_ID) values (application_id_seq.nextval, 'Wniosek o miejsce w Domu Studenta', 'Szanowna...', '2013-09-09', 'Przyjety', '1', '1');
+Insert into APPLICATION (ID, TITLE, CONTENT, DISPATCH_DATE, STATUS, STUDENT_ID, ADMINISTRATOR_ID) values (application_id_seq.nextval, 'Wniosek o zapomogę', 'Szanowna...', '2015-09-09', 'Przyjety', '4', '2');
 
 Insert into SCHEDULED_CLASSES (ID, CLASSES_DATE, DURATION, CLASSROOM_ID, SUBJECT_ID) values (scheduled_classes_id_seq.nextval, TO_DATE('2016/05/03 11:00:00', 'yyyy/mm/dd hh24:mi:ss'), '90', '1', '1');
 Insert into SCHEDULED_CLASSES (ID, CLASSES_DATE, DURATION, CLASSROOM_ID, SUBJECT_ID) values (scheduled_classes_id_seq.nextval, TO_DATE('2016/04/01 07:30:00', 'yyyy/mm/dd hh24:mi:ss'), '90', '2', '2');
