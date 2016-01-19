@@ -30,7 +30,7 @@
 						class="pure-menu-link">Wnioski</a></li>
 					<li class="pure-menu-item"><a href="studentlecturers"
 						class="pure-menu-link">Wyk³adowcy</a></li>
-					<li class="pure-menu-item"><a href="messages"
+					<li class="pure-menu-item"><a href="receivedmessages"
 						class="pure-menu-link">Historia komunikatów</a></li>
 					<li class="pure-menu-item"><a href="logout"
 						class="pure-menu-link">Wyloguj</a>
