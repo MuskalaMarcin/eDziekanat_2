@@ -1,6 +1,6 @@
 STUDENT
 
-//Przedmioty danego studenta, kierunek i prowadzący
+v//Przedmioty danego studenta, kierunek i prowadzący
 SELECT subject.name, subject.semester, subject.ects, course.name, lecturer.name, lecturer.surname 
 FROM subject
 LEFT JOIN students_group_subject ON students_group_subject.subject_id = subject.id
@@ -11,14 +11,14 @@ LEFT JOIN course ON course.id = students_group.course_id
 LEFT JOIN lecturer ON lecturer.id = subject.lecturer_id
 WHERE student.id = '1';
 
-//Kierunki studenta
+v//Kierunki studenta
 SELECT course.name FROM course
 LEFT JOIN students_group ON course.id = students_group.course_id
 LEFT JOIN students_group_student ON students_group_student.students_group_id = students_group.id
 LEFT JOIN student ON student.id = students_group_student.student_id
 WHERE student.id = '1';
 
-//Wykładowcy studenta
+v//Wykładowcy studenta
 //Jeżeli nazwy przedmiotów, których uczą nie są istotne to jest źle, bo duplikaty//
 SELECT lecturer.name, lecturer.surname, subject.name 
 FROM lecturer
@@ -30,21 +30,21 @@ LEFT JOIN student ON student.id = students_group_student.student_id
 WHERE student.id = '1';
 //
 
-//Wpisy studenta, data, przedmiot
+v//Wpisy studenta, data, przedmiot
 SELECT enrollment.mark, enrollment.issue_date, subject.name from enrollment
 LEFT JOIN transcript ON enrollment.transcript_id = transcript.id
 LEFT JOIN student ON transcript.student_id = student.id
 LEFT JOIN subject ON enrollment.subject_id = subject.id
 WHERE student.id = '1'
 
-//Oceny studenta, data, przedmiot
+v//Oceny studenta, data, przedmiot
 SELECT partial_mark.mark, partial_mark.issue_date, subject.name from partial_mark
 LEFT JOIN transcript ON partial_mark.transcript_id = transcript.id
 LEFT JOIN student ON transcript.student_id = student.id
 LEFT JOIN subject ON partial_mark.subject_id = subject.id
 WHERE student.id = '1'
 
-//Zaplanowane zajęcia, data, przedmiot
+v//Zaplanowane zajęcia, data, przedmiot
 SELECT scheduled_classes.classes_date, subject.name, scheduled_classes.classroom_id from scheduled_classes
 LEFT JOIN classroom ON scheduled_classes.classroom_id = classroom.id
 LEFT JOIN subject ON scheduled_classes.subject_id = subject.id
@@ -54,7 +54,7 @@ LEFT JOIN students_group_student ON students_group_student.students_group_id = s
 LEFT JOIN student ON students_group_student.student_id = student.id
 WHERE student.id = '1'
 
-//Materiały dydaktyczne
+v//Materiały dydaktyczne
 SELECT learning_materials.name, learning_materials.description, learning_materials.file_link
 FROM learning_materials
 LEFT JOIN subject ON learning_materials.subject_id = subject.id
@@ -66,7 +66,7 @@ WHERE student.id = '1';
 
 
 WYKŁADOWCA
-//Wszyscy studenci danego wykładowcy
+v//Wszyscy studenci danego wykładowcy
 SELECT distinct student.name, student.surname FROM student
 LEFT JOIN students_group_student ON students_group_student.student_id = student.id
 LEFT JOIN students_group ON students_group_student.students_group_id = students_group.id
@@ -75,38 +75,51 @@ LEFT JOIN subject ON students_group_subject.subject_id = subject.id
 LEFT JOIN lecturer ON subject.lecturer_id = lecturer.id
 WHERE lecturer.id = '2'
 
-//Wpisy
+v//Wpisy
 SELECT enrollment.mark, enrollment.issue_date, subject.name FROM enrollment
 LEFT JOIN subject ON enrollment.subject_id = subject.id
 LEFT JOIN lecturer ON subject.lecturer_id = lecturer.id
 WHERE lecturer.id = '1'
 
-//Oceny
+v//Oceny
 SELECT partial_mark.mark, partial_mark.issue_date FROM partial_mark
 LEFT JOIN subject ON partial_mark.subject_id = subject.id
 LEFT JOIN lecturer ON subject.lecturer_id = lecturer.id
 WHERE lecturer.id = '1'
 
-//Zaplanowane zajęcia, data, przedmiot
+v//Zaplanowane zajęcia, data, przedmiot
 SELECT scheduled_classes.classes_date, subject.name, scheduled_classes.classroom_id from scheduled_classes
 LEFT JOIN classroom ON scheduled_classes.classroom_id = classroom.id
 LEFT JOIN subject ON scheduled_classes.subject_id = subject.id
 LEFT JOIN lecturer ON subject.lecturer_id = lecturer.id
 WHERE lecturer.id = '1'
 
-//Materiały dydaktyczne
+v//Materiały dydaktyczne
 SELECT learning_materials.name, learning_materials.description
 FROM learning_materials
 LEFT JOIN subject ON learning_materials.subject_id = subject.id
 LEFT JOIN lecturer ON subject.lecturer_id = lecturer.id
 WHERE lecturer.id = '1';
 
-ADMINISTRATOR
-//pobieranie stanu sali dydaktycznej
-//pobieranie oczekujących wniosków na stypendium
-//pobieranie użytkowników po nazwisku
-//pobieranie informacji o stypendiach
+v//Wiadomości wysłane, dla wszystkich
+SELECT message.title, message.content, message.dispatch_date, message.receiver_id FROM message
+LEFT JOIN app_user ON message.sender_id = app_user.login
+WHERE app_user.login = 'student'
 
-//Pobieranie wysłanych wiadomości
+v//Wiadomości odebrane, dla wszystkich
+SELECT message.title, message.content, message.dispatch_date, message.sender_id FROM message
+LEFT JOIN app_user ON message.receiver_id = app_user.login
+WHERE app_user.login = 'student'
 
-//Pobieranie odebranych wiadomości
+v//Oczekujace wnioski
+SELECT application.title, application.content, application.dispatch_date FROM application
+LEFT JOIN administrator ON application.administrator_id = administrator.id
+WHERE status = 'Nierozpatrzony' AND administrator.id = '1'
+
+
+
+//Stan sali, data psuje zycie
+SELECT * from scheduled_classes
+LEFT JOIN classroom ON scheduled_classes.classroom_id = classroom.id
+WHERE classroom.nr = 1 AND scheduled_classes.classes_date = TO_DATE('16/05/03', 'yy/mm/dd')
+
