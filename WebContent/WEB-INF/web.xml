@@ -37,35 +37,35 @@
     <servlet-name>StudentReceivedMessages</servlet-name>
     <jsp-file>/student/receivedmessages.jsp</jsp-file>
   </servlet>
-    <servlet>
+  <servlet>
     <servlet-name>StudentSentMessages</servlet-name>
     <jsp-file>/student/sentmessages.jsp</jsp-file>
   </servlet>
-   <servlet>
+  <servlet>
     <servlet-name>StudentNewMessage</servlet-name>
     <jsp-file>/student/newmessage.jsp</jsp-file>
   </servlet>
-    <servlet>
+  <servlet>
     <servlet-name>LecturerReceivedMessages</servlet-name>
     <jsp-file>/lecturer/receivedmessages.jsp</jsp-file>
   </servlet>
-      <servlet>
+  <servlet>
     <servlet-name>LecturerSentMessages</servlet-name>
     <jsp-file>/lecturer/sentmessages.jsp</jsp-file>
   </servlet>
-   <servlet>
+  <servlet>
     <servlet-name>LecturerNewMessage</servlet-name>
     <jsp-file>/lecturer/newmessage.jsp</jsp-file>
   </servlet>
-    <servlet>
+  <servlet>
     <servlet-name>AdminReceivedMessages</servlet-name>
     <jsp-file>/administrator/receivedmessages.jsp</jsp-file>
   </servlet>
-      <servlet>
+  <servlet>
     <servlet-name>AdminSentMessages</servlet-name>
     <jsp-file>/administrator/sentmessages.jsp</jsp-file>
   </servlet>
-   <servlet>
+  <servlet>
     <servlet-name>AdminNewMessage</servlet-name>
     <jsp-file>/administrator/newmessage.jsp</jsp-file>
   </servlet>
@@ -125,35 +125,35 @@
     <servlet-name>StudentReceivedMessages</servlet-name>
     <url-pattern>/student/receivedmessages</url-pattern>
   </servlet-mapping>
-    <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>StudentSentMessages</servlet-name>
     <url-pattern>/student/sentmessages</url-pattern>
   </servlet-mapping>
-   <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>StudentNewMessage</servlet-name>
     <url-pattern>/student/newmessage</url-pattern>
   </servlet-mapping>
-    <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>LecturerReceivedMessages</servlet-name>
     <url-pattern>/lecturer/receivedmessages</url-pattern>
   </servlet-mapping>
-      <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>LecturerSentMessages</servlet-name>
     <url-pattern>/lecturer/sentmessages</url-pattern>
   </servlet-mapping>
-   <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>LecturerNewMessage</servlet-name>
     <url-pattern>/lecturer/newmessage</url-pattern>
   </servlet-mapping>
-    <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>AdminReceivedMessages</servlet-name>
     <url-pattern>/admin/receivedmessages</url-pattern>
   </servlet-mapping>
-      <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>AdminSentMessages</servlet-name>
     <url-pattern>/admin/sentmessages</url-pattern>
   </servlet-mapping>
-   <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>AdminNewMessage</servlet-name>
     <url-pattern>/admin/newmessage</url-pattern>
   </servlet-mapping>
@@ -230,7 +230,7 @@
       <url-pattern>/studentlecturers/*</url-pattern>
       <url-pattern>/student/newmessage/*</url-pattern>
       <url-pattern>/student/sentmessages/*</url-pattern>
-       <url-pattern>/student/receivedmessages/*</url-pattern>
+      <url-pattern>/student/receivedmessages/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>student</role-name>

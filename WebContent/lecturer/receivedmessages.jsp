@@ -5,195 +5,123 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
-<link rel="stylesheet" href="./resources/styles.css">
-<title>eDziekanat - Wykładowca - Wiadomości</title>
+<link rel="stylesheet" href="resources/pure-min.css">
+<link rel="stylesheet" href="resources/styles.css">
+<title>eDziekanat - Wykładowca - Skrzynka odbiorcza</title>
 </head>
 <body>
-	<p id="headertext">eDziekanat - Twój wirtualny dziekanat</p>
-	<table id="menu">
-		<tr>
-			<td><a href="lecturer">Strona główna</a></td>
-			<td><a href="lecturerlearningmaterials">Materiały
-					dydaktyczne</a></td>
-			<td><a href="lecturerseestudents">Studenci</a></td>
-			<td><a href="lecturerseelecturers">Wykładowcy</a></td>
-			<td><a href="lecturerclassrooms">Dostępność sal</a></td>
-			<td><a href="lecturertimetable">Plan zajęć</a></td>
-			<td><a href="lecturersubjects">Moje przedmioty</a></td>
-			<td  id="grayCell"><a href="messages">Historia komunikatów</a></td>
-			<td><a href="logout">Wyloguj</a></td>
-		</tr>
-	</table>
+	<div id="layout">
+		<div id="menu">
+			<div class="pure-menu">
+				<a class="pure-menu-heading" href="home">eDziekanat</a>
+				<ul class="pure-menu-list">
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="lecturer">Strona główna</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="lecturerlearningmaterials">Materiały dydaktyczne</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="lecturerseestudents">Studenci</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="lecturerseelecturers">Wykładowcy</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="lecturerclassrooms">Dostępność sal</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="lecturertimetable">Plan zajęć</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="lecturersubjects">Moje przedmioty</a></li>
+					<li class="pure-menu-item menu-item-divided"><a href="#"
+						class="pure-menu-link">Historia komunikatów</a></li>
+					<li class="pure-menu-item pure-menu-selected"><a
+						href="receivedmessages" class="pure-menu-link">Skrzynka
+							odbiorcza</a></li>
+					<li class="pure-menu-item"><a href="sentmessages"
+						class="pure-menu-link">Skrzynka nadawcza</a></li>
+					<li class="pure-menu-item   menu-item-divided"><a
+						href="logout" class="pure-menu-link">Wyloguj</a>
+				</ul>
+			</div>
+		</div>
+		<div id="main">
+			<div class="header">
+				<h1>eDziekanat</h1>
+				<h2>Twój wirtualny dziekanat.</h2>
+			</div>
+			<div class="content">
+				<h2 class="content-subhead">Skrzynka odbiorcza:</h2>
+				<%
+				    List<MessageDTO> received = (List<MessageDTO>) request.getAttribute("receivedMessages");
+				    if (received == null)
+				    {
+				%>
 
-	<p>
-		<font color="red"> TODO: 4. Podział na strony. </font>
-	</p>
-	<p>
-		Skrzynka odbiorcza:
-		<%
-	    List<MessageDTO> received = (List<MessageDTO>) request.getAttribute("receivedMessages");
-	    if (received == null)
-	    {
-	%>
-	
-	<P>Brak odebranych wiadomości</P>
-	<%
-	    }
-	    else
-	    {
-			List<String> senderNames = (List<String>) request.getAttribute("senderNames");
-	%>
-	<table class="responseTable">
-		<%
-		    for (int i = 0; i < received.size(); i++)
-				{
-				    MessageDTO rcvd = received.get(i);
-		%>
-		<tr>
-			<td id="grayCell" colspan="2">Wiadomość <%
-			    out.print(i + 1);
-			%></td>
-		</tr>
-		<tr>
-			<td width="150px">Tytuł:</td>
-			<td>
+				<P>Brak odebranych wiadomości</P>
 				<%
-				    out.print(rcvd.getTitle());
-				%>
-			</td>
-		</tr>
-		<tr>
-			<td>Nadawca:</td>
-			<td>
-				<%
-				    out.print(senderNames.get(i));
-				%>
-			</td>
-		</tr>
-		<tr>
-			<td>Data nadania:</td>
-			<td>
-				<%
-				    Date date = rcvd.getDispatchDate();
-						    out.print(date.getDate() + "." + (date.getMonth() + 1) + "." + (date.getYear() + 1900));
-				%>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2">Treść:</td>
-		</tr>
-		<tr>
-			<td id="content" colspan="2">
-				<%
-				    out.print(rcvd.getContent());
-				%>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<form action="lecturer/newmessage" method=post>
-					<input type="hidden" name="receiverLogin"
-						value="<%out.print(rcvd.getSender().getLogin());%>"> <input
-						type="hidden" name="title"
-						value="<%out.print(rcvd.getTitle());%>"> <input
-						type="submit" value="Odpowiedz">
-				</form>
-			</td>
-		</tr>
-		<%
-		    }
-		%>
-	</table>
-	<%
-	    }
-	%>
-	<p>
-		Skrzynka nadawcza:
-		<%
-	    List<MessageDTO> sent = (List<MessageDTO>) request.getAttribute("sentMessages");
-	    if (sent == null)
-	    {
-	%>
-	
-	<P>Brak wysłanych wiadomości.</P>
-	<%
-	    }
-	    else
-	    {
-			List<String> receiverNames = (List<String>) request.getAttribute("receiverNames");
-	%>
-	<table class="responseTable">
-		<%
-		    for (int i = 0; i < sent.size(); i++)
-				{
-				    MessageDTO snd = sent.get(i);
-		%>
-		<tr>
-			<td id="grayCell" colspan="2">Wiadomość <%
-			    out.print(i + 1);
-			%></td>
-		</tr>
-		<tr>
-			<td width="150px">Tytuł:</td>
-			<td>
-				<%
-				    out.print(snd.getTitle());
-				%>
-			</td>
-		</tr>
-		<tr>
-			<td>Odbiorca:</td>
-			<td>
-				<%
-				    out.print(receiverNames.get(i));
-				%>
-			</td>
-		</tr>
-		<tr>
-			<td>Data wysłania:</td>
-			<td>
-				<%
-				    Date dateSnd = snd.getDispatchDate();
-						    out.print(
-							    dateSnd.getDate() + "." + (dateSnd.getMonth() + 1) + "." + (dateSnd.getYear() + 1900));
-				%>
-			</td>
-		</tr>
-		<tr>
-			<td>Data dostarczenia:</td>
-			<td>
-				<%
-				    if (snd.getReceiveDate() == null)
-						    {
-				%> Nie dostarczono. <%
 				    }
-						    else
-						    {
-							Date dateRcv = snd.getReceiveDate();
-							out.print(dateRcv.getDate() + "." + (dateRcv.getMonth() + 1) + "."
-								+ (dateRcv.getYear() + 1900));
-						    }
+				    else
+				    {
+						List<String> senderNames = (List<String>) request.getAttribute("senderNames");
 				%>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2">Treść:</td>
-		</tr>
-		<tr>
-			<td id="content" colspan="2">
+				<table class="responseTable">
+					<%
+					    for (int i = 0; i < received.size(); i++)
+							{
+							    MessageDTO rcvd = received.get(i);
+					%>
+					<tr class="grayRow">
+						<td id="respond">
+							<form action="lecturer/newmessage" method=post>
+								<input type="hidden" name="receiverLogin"
+									value="<%out.print(rcvd.getSender().getLogin());%>"> <input
+									type="hidden" name="title"
+									value="<%out.print(rcvd.getTitle());%>"> <input
+									class="pure-button pure-input-1-2 pure-button-primary"
+									type="submit" value="Odpowiedz">
+							</form>
+						</td>
+						<td colspan="3">Wiadomość <%
+						    out.print(i + 1);
+						%></td>
+					</tr>
+					<tr>
+						<td>Nadawca:</td>
+						<td>
+							<%
+							    out.print(senderNames.get(i));
+							%>
+						</td>
+						<td>Data nadania:</td>
+						<td>
+							<%
+							    Date date = rcvd.getDispatchDate();
+									    out.print(date.getDate() + "." + (date.getMonth() + 1) + "." + (date.getYear() + 1900));
+							%>
+						</td>
+					</tr>
+					<tr>
+						<td width="150px">Tytuł:</td>
+						<td colspan="3">
+							<%
+							    out.print(rcvd.getTitle());
+							%>
+						</td>
+					</tr>
+					<tr>
+						<td>Treść:</td>
+						<td id="content" colspan="3">
+							<%
+							    out.print(rcvd.getContent());
+							%>
+						</td>
+					</tr>
+					<%
+					    }
+					%>
+				</table>
 				<%
-				    out.print(snd.getContent());
+				    }
 				%>
-			</td>
-		</tr>
-		<%
-		    }
-		%>
-
-
-	</table>
-	<%
-	    }
-	%>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
