@@ -1,6 +1,7 @@
 package edziekanat.controller.student;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,20 +15,12 @@ import edziekanat.databasemodel.dao.PaymentDAO;
 import edziekanat.databasemodel.dto.PaymentDTO;
 
 /**
- * Servlet implementation class PaymentsController
+ * Servlet implementation class WaitingPaymentsController
  */
-@WebServlet("/studentpayments")
-public class PaymentsController extends HttpServlet
+@WebServlet("/studentwaitingpayments")
+public class WaitingPaymentsController extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
-
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public PaymentsController()
-    {
-	super();
-    }
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -42,13 +35,19 @@ public class PaymentsController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<PaymentDTO> historyPayments =  new PaymentDAO()
-		.getPaymentsHistory(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
-	if(!historyPayments.isEmpty())
+	List<PaymentDTO> waitingPayments = new PaymentDAO()
+		.getWaitingPayments(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
+	if (!waitingPayments.isEmpty())
 	{
-	    request.setAttribute("historyPayments",historyPayments);
+	    List<String> adminLogins = new LinkedList<String>();
+	    waitingPayments.forEach(pmnt -> {
+		adminLogins.add(pmnt.getAdministrator().getUser().getLogin());
+	    });
+	    request.setAttribute("waitingPayments", waitingPayments);
+	    request.setAttribute("adminLogins", adminLogins);
 	}
-	request.getRequestDispatcher("student/payments").forward(request, response);
+	
+	request.getRequestDispatcher("student/waiting_payments").forward(request, response);
     }
 
 }

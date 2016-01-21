@@ -25,7 +25,7 @@
 						class="pure-menu-link">Moje przedmioty</a></li>
 					<li class="pure-menu-item"><a href="studentscholarships"
 						class="pure-menu-link">Stypendia</a></li>
-					<li class="pure-menu-item"><a href="studentpayments"
+					<li class="pure-menu-item"><a href="studentwaitingpayments"
 						class="pure-menu-link">P³atno¶ci</a></li>
 					<li class="pure-menu-item"><a href="studentapplications"
 						class="pure-menu-link">Wnioski</a></li>

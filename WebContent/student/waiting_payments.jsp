@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet" href="resources/pure-min.css">
 <link rel="stylesheet" href="resources/styles.css">
-<title>eDziekanat - Historia płatności</title>
+<title>eDziekanat - Oczekujące płatności</title>
 </head>
 <body>
 	<div id="layout">
@@ -29,11 +29,11 @@
 						class="pure-menu-link">Stypendia</a></li>
 					<li class="pure-menu-item  menu-item-divided"><a href="#"
 						class="pure-menu-link ">Płatności</a></li>
-					<li class="pure-menu-item"><a href="studentwaitingpayments"
-						class="pure-menu-link ">Oczekujące płatności</a></li>
 					<li class="pure-menu-item pure-menu-selected"><a
-						href="studentpayments" class="pure-menu-link ">Historia
+						href="studentwaitingpayments" class="pure-menu-link ">Oczekujące
 							płatności</a></li>
+					<li class="pure-menu-item"><a href="studentpayments"
+						class="pure-menu-link ">Historia płatności</a></li>
 					<li class="pure-menu-item menu-item-divided"><a
 						href="studentapplications" class="pure-menu-link">Wnioski</a></li>
 					<li class="pure-menu-item"><a href="studentlecturers"
@@ -51,10 +51,10 @@
 				<h2>Twój wirtualny dziekanat.</h2>
 			</div>
 			<div class="content">
-				<h2 class="content-subhead">Historia płatności:</h2>
+				<h2 class="content-subhead">Oczekujące płatności:</h2>
 				<c:choose>
-					<c:when test="${empty historyPayments}">
-					Historia płatności jest pusta.
+					<c:when test="${empty waitingPayments}">
+					Brak oczekujących płatności.
 					</c:when>
 					<c:otherwise>
 						<table class="responseTable">
@@ -64,9 +64,9 @@
 								<td>Opis</td>
 								<td>Kwota</td>
 								<td>Data wystawienia</td>
-								<td>Data zapłaty</td>
 							</tr>
-							<c:forEach items="${historyPayments}" var="payment" varStatus="varStatus">
+							<c:forEach items="${waitingPayments}" var="payment"
+								varStatus="varStatus">
 								<tr>
 									<td>${varStatus.index + 1}</td>
 									<td>${payment.title}</td>
@@ -76,6 +76,16 @@
 											value="${payment.issueDate}" /></td>
 									<td><fmt:formatDate pattern="dd.MM.yyyy"
 											value="${payment.paymentDate}" /></td>
+									<td id="respond">
+										<form action="student/newmessage" method=post>
+											<input type="hidden" name="receiverLogin"
+												value="${adminLogins[varStatus.index]}">
+											<input type="hidden" name="title"
+												value="${payment.title}"> <input
+												class="pure-button pure-input-1-2 pure-button-primary"
+												type="submit" value="Kontakt">
+										</form>
+									</td>
 								</tr>
 							</c:forEach>
 						</table>

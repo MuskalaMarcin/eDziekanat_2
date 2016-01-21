@@ -74,6 +74,10 @@
     <jsp-file>/student/payments.jsp</jsp-file>
   </servlet>
   <servlet>
+    <servlet-name>StudentWaitingPayments</servlet-name>
+    <jsp-file>/student/waiting_payments.jsp</jsp-file>
+  </servlet>
+  <servlet>
     <servlet-name>StudentScholarships</servlet-name>
     <jsp-file>/student/scholarships.jsp</jsp-file>
   </servlet>
@@ -162,6 +166,10 @@
     <url-pattern>/student/payments</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
+    <servlet-name>StudentWaitingPayments</servlet-name>
+    <url-pattern>/student/waiting_payments</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
     <servlet-name>StudentScholarships</servlet-name>
     <url-pattern>/student/scholarships</url-pattern>
   </servlet-mapping>
@@ -226,6 +234,7 @@
       <url-pattern>/studentsubjects/*</url-pattern>
       <url-pattern>/studentscholarships/*</url-pattern>
       <url-pattern>/studentpayments/*</url-pattern>
+      <url-pattern>/studentwaitingpayments/*</url-pattern>
       <url-pattern>/studentapplications/*</url-pattern>
       <url-pattern>/studentlecturers/*</url-pattern>
       <url-pattern>/student/newmessage/*</url-pattern>

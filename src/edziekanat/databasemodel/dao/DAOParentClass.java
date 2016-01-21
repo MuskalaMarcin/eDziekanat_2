@@ -60,6 +60,11 @@ public abstract class DAOParentClass<T>
     {
 	return executeMultiResultQuery("SELECT * FROM " + tableName + " WHERE " + whereStmnt);
     }
+    
+    public T getSingleEntity(String whereStmnt)
+    {
+	return executeSingleResultQuery("SELECT * FROM " + tableName + " WHERE " + whereStmnt);
+    }
 
     public List<T> getAllEntities()
     {

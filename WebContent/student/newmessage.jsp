@@ -33,7 +33,7 @@
 						href="http://localhost:8080/eDziekanat/studentscholarships"
 						class="pure-menu-link">Stypendia</a></li>
 					<li class="pure-menu-item"><a
-						href="http://localhost:8080/eDziekanat/studentpayments"
+						href="http://localhost:8080/eDziekanat/studentwaitingpayments"
 						class="pure-menu-link">P³atno¶ci</a></li>
 					<li class="pure-menu-item"><a
 						href="http://localhost:8080/eDziekanat/studentapplications"
