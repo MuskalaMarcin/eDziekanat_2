@@ -9,7 +9,7 @@
 	href="http://localhost:8080/eDziekanat/resources/pure-min.css">
 <link rel="stylesheet"
 	href="http://localhost:8080/eDziekanat/resources/styles.css">
-<title>eDziekanat - Student - Nowa Wiadomo¶æ</title>
+<title>eDziekanat - Nowa Wiadomo¶æ</title>
 </head>
 <body>
 	<div id="layout">

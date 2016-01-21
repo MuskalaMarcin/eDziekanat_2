@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet" href="resources/pure-min.css">
 <link rel="stylesheet" href="resources/styles.css">
-<title>eDziekanat - Student - Skrzynka odbiorcza</title>
+<title>eDziekanat - Skrzynka odbiorcza</title>
 </head>
 <body>
 	<div id="layout">

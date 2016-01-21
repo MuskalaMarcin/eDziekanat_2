@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet" href="resources/pure-min.css">
 <link rel="stylesheet" href="resources/styles.css">
-<title>eDziekanat - Student - Indeks</title>
+<title>eDziekanat - Indeks</title>
 </head>
 <body>
 	<div id="layout">
