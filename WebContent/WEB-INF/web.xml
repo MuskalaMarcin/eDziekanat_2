@@ -204,14 +204,6 @@
 		<servlet-name>StudentTranscript</servlet-name>
 		<url-pattern>/student/transcript</url-pattern>
 	</servlet-mapping>
-	<servlet>
-		<servlet-name>Test</servlet-name>
-		<jsp-file>/test.jsp</jsp-file>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Test</servlet-name>
-		<url-pattern>/testindex</url-pattern>
-	</servlet-mapping>
 	<security-constraint>
 		<display-name>HomeSecurityConstraint</display-name>
 		<web-resource-collection>

@@ -1,7 +1,6 @@
 package edziekanat.databasemodel.dto;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -31,11 +30,9 @@ public class ScheduledClassesDTO implements Serializable
     @GeneratedValue(strategy=GenerationType.AUTO, generator="SCHEDULEDCLASSESSEQ")
     @Column(name = "id")
     private Integer id;
-    @Temporal(TemporalType.DATE)
-    @Column(name = "date")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "classes_date")
     private Date date;
-    @Column(name = "time")
-    private Time time;
     @Column(name = "duration")
     private Integer duration;
     @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
@@ -63,16 +60,6 @@ public class ScheduledClassesDTO implements Serializable
     public void setDate(Date date)
     {
 	this.date = date;
-    }
-
-    public Time getTime()
-    {
-	return time;
-    }
-
-    public void setTime(Time time)
-    {
-	this.time = time;
     }
 
     public Integer getDuration()

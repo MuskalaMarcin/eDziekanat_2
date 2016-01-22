@@ -113,6 +113,20 @@ body {
 	color: black;
 }
 
+.timetableTable{
+	width: 100%;
+}
+
+.timetableTable tbody{
+	font-size:14px;
+}
+
+.timetableTable td{
+	vertical-align: middle;
+	width :16.6%;
+	text-align: center;
+}
+
 .responseTable {
 	padding: 1px;
 	width: 100%;
@@ -127,6 +141,7 @@ td#respond {
 	text-align: center;
 	border: 1px solid black;
 }
+
 
 .linkButton {
 	display: block;
