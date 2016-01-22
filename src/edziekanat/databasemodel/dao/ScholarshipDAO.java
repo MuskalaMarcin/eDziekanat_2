@@ -1,5 +1,10 @@
 package edziekanat.databasemodel.dao;
 
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
 import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.ScholarshipDTO;
 
@@ -22,5 +27,21 @@ public class ScholarshipDAO extends DAOParentClass<ScholarshipDTO>
     public ScholarshipDTO getEntity(Integer id)
     {
 	return entityManager.find(ScholarshipDTO.class, id);
+    }
+
+    public List<ScholarshipDTO> getActiveStudentScholarships(Integer studentId)
+    {
+	List<ScholarshipDTO> scholarships = getMultipleEntities("student_id = '" + studentId + "'");
+	Date currentDate = Calendar.getInstance().getTime();
+	for (int i = 0; i < scholarships.size(); i++)
+	{
+	    if (scholarships.get(i).getEndDate().compareTo(currentDate) < 0)
+	    {
+		scholarships.remove(i);
+		i--;
+	    }
+	}
+	Collections.sort(scholarships, (x, y) -> y.getEndDate().compareTo(x.getEndDate()));
+	return scholarships;
     }
 }

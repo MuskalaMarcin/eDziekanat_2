@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.bean.LoginBean;
-import edziekanat.databasemodel.dao.StudentDAO;
-import edziekanat.databasemodel.dto.StudentDTO;
-import edziekanat.databasemodel.dto.StudentsGroupDTO;
+import edziekanat.databasemodel.dao.SubjectDAO;
 import edziekanat.databasemodel.dto.SubjectDTO;
 
 /**
@@ -33,8 +31,7 @@ public class SubjectsController extends HttpServlet
     }
 
     /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -42,26 +39,55 @@ public class SubjectsController extends HttpServlet
     }
 
     /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	LoginBean loginBean = (LoginBean) request.getSession().getAttribute("loginBean");
-	StudentDTO student = new StudentDAO().getEntity(loginBean.getPersonId());
-	List<StudentsGroupDTO> studentsGroup = new LinkedList<StudentsGroupDTO>();
-	studentsGroup = student.getStudentsGroup();
-	System.out.println(studentsGroup.get(0).getId());
-	List<SubjectDTO> subjects = new LinkedList<SubjectDTO>();
-	
-	for (int i = 0; i < studentsGroup.size(); i++)
-	{
-	    subjects.addAll(studentsGroup.get(i).getSubject());
-	}
-	
+
+	List<SubjectDTO> subjects = new SubjectDAO()
+		.getStudentSubjects(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
 	if (!subjects.isEmpty())
 	{
-	    request.setAttribute("ownsubjects", subjects);
+	    List<Integer> semesterList = new LinkedList<Integer>();
+	    for (SubjectDTO subject : subjects)
+	    {
+		if (!semesterList.contains(subject.getSemester()))
+		{
+		    semesterList.add(subject.getSemester());
+		}
+	    }
+	    if (request.getParameter("rqsemester") == null)
+	    {
+		for (int i = 0; i < subjects.size(); i++)
+		{
+		    if (subjects.get(i).getSemester().compareTo(semesterList.get(0)) != 0)
+		    {
+			subjects.remove(i);
+			i--;
+		    }
+		}
+		request.setAttribute("selectedSemester", semesterList.get(0));
+	    }
+	    else
+	    {
+		int selectedSemester = Integer.valueOf(request.getParameter("rqsemester"));
+		for (int i = 0; i < subjects.size(); i++)
+		{
+		    if (subjects.get(i).getSemester().compareTo(selectedSemester) != 0)
+		    {
+			subjects.remove(i);
+			i--;
+		    }
+		}
+		request.setAttribute("selectedSemester", selectedSemester);
+	    }
+	    request.setAttribute("subjects", subjects);
+	    request.setAttribute("semesterList", semesterList);
+	    request.setAttribute("noSubjects", false);
+	}
+	else
+	{
+	    request.setAttribute("noSubjects", true);
 	}
 	request.getRequestDispatcher("student/subjects").forward(request, response);
     }

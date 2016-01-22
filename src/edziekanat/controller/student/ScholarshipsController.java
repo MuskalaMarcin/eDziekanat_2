@@ -47,21 +47,8 @@ public class ScholarshipsController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	LoginBean loginBean = (LoginBean) request.getSession().getAttribute("loginBean");
-
-	List<ScholarshipDTO> scholarships = new ScholarshipDAO()
-		.getMultipleEntities("student_id = '" + loginBean.getPersonId() + "'");
-
-	Date currentDate = Calendar.getInstance().getTime();
-	for (int i = 0; i < scholarships.size(); i++)
-	{
-	    if (scholarships.get(i).getEndDate().compareTo(currentDate) < 0)
-	    {
-		scholarships.remove(i);
-	    }
-	}
-	
-	Collections.sort(scholarships, (x, y) -> y.getEndDate().compareTo(x.getEndDate()));
+	List<ScholarshipDTO> scholarships = new ScholarshipDAO().getActiveStudentScholarships(
+		((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
 
 	if (!scholarships.isEmpty())
 	{

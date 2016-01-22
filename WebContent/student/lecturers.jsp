@@ -65,15 +65,14 @@
 							<td id="respond">
 								<form action="student/newmessage" method=post>
 									<input type="hidden" name="receiverLogin"
-										value="${lecturer.login}">  <input
+										value="${lecturer.login}"> <input
 										class="pure-button pure-input-1-2 pure-button-primary"
 										type="submit" value="Kontakt">
+								</form>
 							</td>
-							</form>
 						</tr>
 					</c:forEach>
 				</table>
-				</p>
 			</div>
 		</div>
 	</div>

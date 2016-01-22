@@ -127,3 +127,24 @@ td#respond {
 	text-align: center;
 	border: 1px solid black;
 }
+
+.linkButton {
+	display: block;
+	text-decoration: none;
+	white-space: nowrap;
+	padding: .5em;
+	padding-left : 1em;
+	background: none !important;
+	border: none;
+	font: inherit;
+	width: 100%;
+	height: 100%;
+	color: #999;
+	background-color: #eee;
+	cursor: pointer;
+	background-color: #eee;
+}
+
+.linkButtonSelected {
+	color: #fff;
+}
