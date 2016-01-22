@@ -1,6 +1,7 @@
-<%@ page language="java"
-	import="edziekanat.databasemodel.dto.MessageDTO, java.util.List, java.util.Date"
-	contentType="text/html; charset=ISO-8859-2" pageEncoding="ISO-8859-2"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-2"
+	pageEncoding="ISO-8859-2"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -31,14 +32,15 @@
 						class="pure-menu-link">Wnioski</a></li>
 					<li class="pure-menu-item"><a href="studentlecturers"
 						class="pure-menu-link">Wyk³adowcy</a></li>
-					<li class="pure-menu-item menu-item-divided"><a
-						href="#" class="pure-menu-link">Historia komunikatów</a></li>
+					<li class="pure-menu-item menu-item-divided"><a href="#"
+						class="pure-menu-link">Historia komunikatów</a></li>
 					<li class="pure-menu-item pure-menu-selected"><a
-						href="receivedmessages" class="pure-menu-link">Skrzynka odbiorcza</a></li>
-					<li class="pure-menu-item"><a
-						href="sentmessages" class="pure-menu-link">Skrzynka nadawcza</a></li>
-					<li class="pure-menu-item   menu-item-divided"><a href="logout"
-						class="pure-menu-link">Wyloguj</a>
+						href="receivedmessages" class="pure-menu-link">Skrzynka
+							odbiorcza</a></li>
+					<li class="pure-menu-item"><a href="sentmessages"
+						class="pure-menu-link">Skrzynka nadawcza</a></li>
+					<li class="pure-menu-item   menu-item-divided"><a
+						href="logout" class="pure-menu-link">Wyloguj</a>
 				</ul>
 			</div>
 		</div>
@@ -49,78 +51,45 @@
 			</div>
 			<div class="content">
 				<h2 class="content-subhead">Skrzynka odbiorcza:</h2>
-				<%
-				    List<MessageDTO> received = (List<MessageDTO>) request.getAttribute("receivedMessages");
-				    if (received == null)
-				    {
-				%>
-
-				<P>Brak odebranych wiadomo¶ci</P>
-				<%
-				    }
-				    else
-				    {
-						List<String> senderNames = (List<String>) request.getAttribute("senderNames");
-				%>
-				<table class="responseTable">
-					<%
-					    for (int i = 0; i < received.size(); i++)
-							{
-							    MessageDTO rcvd = received.get(i);
-					%>
-					<tr class="grayRow">
-						<td id="respond">
-							<form action="student/newmessage" method=post>
-								<input type="hidden" name="receiverLogin"
-									value="<%out.print(rcvd.getSender().getLogin());%>"> <input
-									type="hidden" name="title"
-									value="<%out.print(rcvd.getTitle());%>"> <input
-									class="pure-button pure-input-1-2 pure-button-primary"
-									type="submit" value="Odpowiedz">
-							</form>
-						</td>
-						<td colspan="3">Wiadomo¶æ <%
-						    out.print(i + 1);
-						%></td>
-					</tr>
-					<tr>
-						<td>Nadawca:</td>
-						<td>
-							<%
-							    out.print(senderNames.get(i));
-							%>
-						</td>
-						<td>Data nadania:</td>
-						<td>
-							<%
-							    Date date = rcvd.getDispatchDate();
-									    out.print(date.getDate() + "." + (date.getMonth() + 1) + "." + (date.getYear() + 1900));
-							%>
-						</td>
-					</tr>
-					<tr>
-						<td width="150px">Tytu³:</td>
-						<td colspan="3">
-							<%
-							    out.print(rcvd.getTitle());
-							%>
-						</td>
-					</tr>
-					<tr>
-						<td>Tre¶æ:</td>
-						<td id="content" colspan="3">
-							<%
-							    out.print(rcvd.getContent());
-							%>
-						</td>
-					</tr>
-					<%
-					    }
-					%>
-				</table>
-				<%
-				    }
-				%>
+				<c:choose>
+					<c:when test="${empty receivedMessages}">
+						<p>Skrzynka odbiorcza jest pusta.</p>
+					</c:when>
+					<c:otherwise>
+						<table class="responseTable">
+							<c:forEach items="${receivedMessages}" var="msg"
+								varStatus="varStatus">
+								<tr class="grayRow">
+									<td id="respond">
+										<form action="student/newmessage" method=post>
+											<input type="hidden" name="receiverLogin"
+												value="${msg.sender.login}"> <input type="hidden"
+												name="title" value="${msg.title }"> <input
+												class="pure-button pure-input-1-2 pure-button-primary"
+												type="submit" value="Odpowiedz">
+										</form>
+									</td>
+									<td colspan="3">Wiadomo¶æ ${varStatus.index + 1}</td>
+								</tr>
+								<tr>
+									<td>Nadawca:</td>
+									<td>${senderNames[varStatus.index]}</td>
+									<td>Data nadania:</td>
+									<td><fmt:formatDate pattern="dd.MM.yyyy"
+											value="${msg.dispatchDate}" /></td>
+								</tr>
+								<tr>
+									<td width="150px">Tytu³:</td>
+									<td colspan="3">${msg.title}</td>
+								</tr>
+								<tr>
+									<td>Tre¶æ:</td>
+									<td id="content" colspan="3">${msg.content}</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>

@@ -1,6 +1,7 @@
-<%@ page language="java"
-	import="edziekanat.databasemodel.dto.ScholarshipDTO, java.util.List, java.util.Date"
-	contentType="text/html; charset=ISO-8859-2" pageEncoding="ISO-8859-2"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-2"
+	pageEncoding="ISO-8859-2"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -45,76 +46,43 @@
 			</div>
 			<div class="content">
 				<h2 class="content-subhead">Aktualne stypendia:</h2>
-				<%
-				    List<ScholarshipDTO> scholarships = (List<ScholarshipDTO>) request.getAttribute("ownscholarships");
-
-				    if (scholarships != null)
-				    {
-						List<String> adminNames = (List<String>) request.getAttribute("adminNames");
-				%>
-				<table class="responseTable">
-					<%
-					    for (int i = 0; i < scholarships.size(); i++)
-							{
-							    ScholarshipDTO schls = scholarships.get(i);
-					%>
-					<tr class="grayRow">
-						<td colspan="2">Nr. <%
-						    out.print(i + 1);
-						%></td>
-					</tr>
-					<tr>
-						<td>Typ:</td>
-						<td>
-							<%
-							    out.print(schls.getScholarshipType().getType());
-							%>
-						</td>
-					</tr>
-					<tr>
-						<td>Kwota:</td>
-						<td>
-							<%
-							    out.print(schls.getScholarshipType().getAmount() + " z³");
-							%>
-						</td>
-					</tr>
-					<tr>
-						<td>Data przyznania:</td>
-						<td>
-							<%
-							    Date grantDate = schls.getGrantDate();
-									    out.print(grantDate.getDate() + "." + (grantDate.getMonth() + 1) + "."
-										    + (grantDate.getYear() + 1900) + "r.");
-							%>
-						</td>
-					</tr>
-					<tr>
-						<td>Data zakoñczenia:</td>
-						<td>
-							<%
-							    Date endDate = schls.getEndDate();
-									    out.print(endDate.getDate() + "." + (endDate.getMonth() + 1) + "." + (endDate.getYear() + 1900)
-										    + "r.");
-							%>
-						</td>
-					</tr>
-					<tr>
-						<td>Przyznane przez:</td>
-						<td>
-							<%
-							    out.print(adminNames.get(i));
-							%>
-						</td>
-					</tr>
-					<%
-					    }
-					%>
-				</table>
-
-				<%
-				    }
-				%>
+				<c:choose>
+					<c:when test="${empty ownscholarships}">
+					Brak aktualnie przyznanych stypendiów.
+					</c:when>
+					<c:otherwise>
+						<table class="responseTable">
+							<c:forEach items="${ownscholarships}" var="scholarship"
+								varStatus="varStatus">
+								<tr class="grayRow">
+									<td colspan="2">${varStatus.index + 1}</td>
+								</tr>
+								<tr>
+									<td>Typ:</td>
+									<td>${scholarship.scholarshipType.type}</td>
+								</tr>
+								<tr>
+									<td>Kwota:</td>
+									<td>${scholarship.scholarshipType.amount}</td>
+								</tr>
+								<tr>
+									<td>Data przyznania:</td>
+									<td><fmt:formatDate pattern="dd.MM.yyyy"
+											value="${scholarship.grantDate}" /></td>
+								</tr>
+								<tr>
+									<td>Data zakoñczenia:</td>
+									<td><fmt:formatDate pattern="dd.MM.yyyy"
+											value="${scholarship.endDate}" /></td>
+								</tr>
+								<tr>
+									<td>Przyznane przez:</td>
+									<td>${adminNames[varStatus.index]}</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>
