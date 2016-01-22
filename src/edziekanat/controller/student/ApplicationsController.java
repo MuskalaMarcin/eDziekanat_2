@@ -31,7 +31,8 @@ public class ApplicationsController extends HttpServlet
     }
 
     /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     *      response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -39,14 +40,15 @@ public class ApplicationsController extends HttpServlet
     }
 
     /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     *      response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	LoginBean loginBean = (LoginBean) request.getSession().getAttribute("loginBean");
 
 	List<ApplicationDTO> applications = new ApplicationDAO()
-		.getMultipleEntities("student_id = '" + loginBean.getPersonId() + "'");
+		.getApplications(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
 	Collections.sort(applications, (x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()));
 
 	if (!applications.isEmpty())

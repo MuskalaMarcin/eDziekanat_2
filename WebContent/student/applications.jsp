@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet" href="resources/pure-min.css">
 <link rel="stylesheet" href="resources/styles.css">
-<title>eDziekanat - Wnioski</title>
+<title>eDziekanat - Student - Wnioski</title>
 </head>
 <body>
 	<div id="layout">
@@ -25,10 +25,18 @@
 						class="pure-menu-link">Moje przedmioty</a></li>
 					<li class="pure-menu-item"><a href="studentscholarships"
 						class="pure-menu-link">Stypendia</a></li>
-					<li class="pure-menu-item"><a href="studentwaitingpayments"
+					<li class="pure-menu-item"><a href="studentpayments"
 						class="pure-menu-link">Płatności</a></li>
+					<li class="pure-menu-item menu-item-divided"><a href="#"
+						class="pure-menu-link">Wnioski</a></li>
 					<li class="pure-menu-item pure-menu-selected"><a
-						href="studentapplications" class="pure-menu-link">Wnioski</a></li>
+						href="studentapplications" class="pure-menu-link">Wnioski
+							rozpatrzone </a></li>
+					<li class="pure-menu-item"><a href="studentwaitingapplications"
+						class="pure-menu-link">Wnioski nierozpatrzone</a></li>
+						<li class="pure-menu-item"><a href="studentnewapplication"
+						class="pure-menu-link">Nowy wniosek</a></li>
+					<li class="pure-menu-item   menu-item-divided">
 					<li class="pure-menu-item"><a href="studentlecturers"
 						class="pure-menu-link">Wykładowcy</a></li>
 					<li class="pure-menu-item"><a href="receivedmessages"
@@ -53,21 +61,23 @@
 						zajmował.
 					</font>
 				</p>
-
+				<p>
+					<%
+					    List<ApplicationDTO> applications = (List<ApplicationDTO>) request.getAttribute("ownapplications");
+					%>
+				</p>
 				<%
-				    List<ApplicationDTO> applications = (List<ApplicationDTO>) request.getAttribute("ownapplications");
-
 				    if (applications != null)
 				    {
 				%>
-				<p>Wnioski:
-				<table border="1">
+				<p>
+				<table class="responseTable">
 					<%
 					    for (int i = 0; i < applications.size(); i++)
 							{
 							    ApplicationDTO apps = applications.get(i);
 					%>
-					<tr>
+					<tr class="grayRow">
 						<td colspan="2">Nr: <%
 						    out.print(i + 1);
 						%></td>
@@ -105,8 +115,7 @@
 						</td>
 					</tr>
 					<%
-					    if (apps.getStatus().equalsIgnoreCase("Nierozpatrzony")
-								    || apps.getStatus().equalsIgnoreCase("Odrzucony"))
+					    if (apps.getStatus().equalsIgnoreCase("Odrzucony"))
 							    {
 					%>
 					<tr>
