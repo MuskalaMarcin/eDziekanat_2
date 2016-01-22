@@ -2,7 +2,6 @@ package edziekanat.controller.student;
 
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,15 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.AdministratorDAO;
 import edziekanat.databasemodel.dao.ApplicationDAO;
-import edziekanat.databasemodel.dao.MessageDAO;
 import edziekanat.databasemodel.dao.StudentDAO;
 import edziekanat.databasemodel.dao.UserDAO;
 import edziekanat.databasemodel.dto.AdministratorDTO;
 import edziekanat.databasemodel.dto.ApplicationDTO;
-import edziekanat.databasemodel.dto.MessageDTO;
-import edziekanat.databasemodel.dto.ScholarshipDTO;
-import edziekanat.databasemodel.dto.StudentDTO;
-import edziekanat.databasemodel.dto.UniversityDTO;
 
 /**
  * Servlet implementation class NewApplicationController
@@ -56,7 +50,7 @@ public class NewApplicationController extends HttpServlet
     {
 	UserDAO userDAO = new UserDAO();
 	StudentDAO studentDAO = new StudentDAO();
-	List<AdministratorDTO> adminList = (List) request.getAttribute("adminList");
+	List<AdministratorDTO> adminList = (List<AdministratorDTO>) request.getAttribute("adminList");
 	ApplicationDTO newApplication = new ApplicationDTO();
 	request.setAttribute("adminList", adminList);
 	newApplication.setTitle(request.getParameter("title"));

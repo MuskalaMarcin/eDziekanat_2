@@ -5,7 +5,6 @@ import java.util.List;
 
 import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.ApplicationDTO;
-import edziekanat.databasemodel.dto.PaymentDTO;
 
 /**
  * Data access class used to perform operations on application entities.

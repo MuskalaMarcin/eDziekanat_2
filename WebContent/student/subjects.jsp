@@ -32,7 +32,7 @@
 								<input type="hidden" name="rqsemester" value="${semester}">
 								<button
 									class="<c:if test="${selectedSemester==semester}">linkButtonSelected</c:if> linkButton "
-									type="submit">Semestr${semester}</button>
+									type="submit">Semestr ${semester}</button>
 							</form>
 						</li>
 					</c:forEach>
@@ -80,20 +80,20 @@
 										<td>${subject.lecturer.name} ${subject.lecturer.surname}</td>
 										<td width="75px" id="respond">
 											<form action="studentpartialmarks" method=post>
-												<input type="hidden" name="studentId"
-													value="${loginBean.personId}"> 
-													<input type="hidden" name="subjectId"
-													value="${subject.id}"><input
+												<input type="hidden" name="semesterList"
+													value="${semesterList}"> <input type="hidden"
+													name="subjectId" value="${subject.id}"><input
 													class="pure-button pure-input-1-2 pure-button-primary"
 													type="submit" value="Oceny">
 											</form>
 										</td>
-										<td width="190px" id="respond">
-											<form action="learningmaterials" method=post>
-												<input type="hidden" name="subjectId" value="${subject.id}">
-												<input
+										<td width="80px" id="respond">
+											<form action="studentlearningmaterials" method=post>
+												<input type="hidden" name="semesterList"
+													value="${semesterList}"> <input type="hidden"
+													name="subjectId" value="${subject.id}"> <input
 													class="pure-button pure-input-1-2 pure-button-primary"
-													type="submit" value="Materia³y dydaktyczne">
+													type="submit" value="Materia³y">
 											</form>
 										</td>
 									</tr>

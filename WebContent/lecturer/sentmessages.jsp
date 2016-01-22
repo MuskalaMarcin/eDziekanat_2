@@ -1,6 +1,7 @@
-<%@ page language="java"
-	import="edziekanat.databasemodel.dto.MessageDTO, java.util.List, java.util.Date"
-	contentType="text/html; charset=ISO-8859-2" pageEncoding="ISO-8859-2"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-2"
+	pageEncoding="ISO-8859-2"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -29,14 +30,14 @@
 						href="lecturertimetable">Plan zajêæ</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="lecturersubjects">Moje przedmioty</a></li>
-					<li class="pure-menu-item menu-item-divided"><a
-						href="#" class="pure-menu-link">Historia komunikatów</a></li>
-					<li class="pure-menu-item"><a
-						href="receivedmessages" class="pure-menu-link">Skrzynka odbiorcza</a></li>
+					<li class="pure-menu-item menu-item-divided"><a href="#"
+						class="pure-menu-link">Historia komunikatów</a></li>
+					<li class="pure-menu-item"><a href="receivedmessages"
+						class="pure-menu-link">Skrzynka odbiorcza</a></li>
 					<li class="pure-menu-item pure-menu-selected"><a
 						href="sentmessages" class="pure-menu-link">Skrzynka nadawcza</a></li>
-					<li class="pure-menu-item   menu-item-divided"><a href="logout"
-						class="pure-menu-link">Wyloguj</a>
+					<li class="pure-menu-item   menu-item-divided"><a
+						href="logout" class="pure-menu-link">Wyloguj</a></li>
 				</ul>
 			</div>
 		</div>
@@ -47,87 +48,44 @@
 			</div>
 			<div class="content">
 				<h2 class="content-subhead">Skrzynka nadawcza:</h2>
-				<%
-				    List<MessageDTO> sent = (List<MessageDTO>) request.getAttribute("sentMessages");
-				    if (sent == null)
-				    {
-				%>
-
-				<P>Brak wys³anych wiadomo¶ci.</P>
-				<%
-				    }
-				    else
-				    {
-						List<String> receiverNames = (List<String>) request.getAttribute("receiverNames");
-				%>
-				<table class="responseTable">
-					<%
-					    for (int i = 0; i < sent.size(); i++)
-							{
-							    MessageDTO snd = sent.get(i);
-					%>
-					<tr class="grayRow">
-						<td colspan="6">Wiadomo¶æ <%
-						    out.print(i + 1);
-						%></td>
-					</tr>
-					<tr>
-						<td>Odbiorca:</td>
-						<td>
-							<%
-							    out.print(receiverNames.get(i));
-							%>
-						</td>
-						<td>Data wys³ania:</td>
-						<td>
-							<%
-							    Date dateSnd = snd.getDispatchDate();
-									    out.print(
-										    dateSnd.getDate() + "." + (dateSnd.getMonth() + 1) + "." + (dateSnd.getYear() + 1900)
-											    + "r.");
-							%>
-						</td>
-						<td>Data dostarczenia:</td>
-						<td>
-							<%
-							    if (snd.getReceiveDate() == null)
-									    {
-							%> Nie dostarczono. <%
-							    }
-									    else
-									    {
-										Date dateRcv = snd.getReceiveDate();
-										out.print(dateRcv.getDate() + "." + (dateRcv.getMonth() + 1) + "."
-											+ (dateRcv.getYear() + 1900) + "r.");
-									    }
-							%>
-						</td>
-					</tr>
-					<tr>
-						<td width="150px">Tytu³:</td>
-						<td  colspan = "5">
-							<%
-							    out.print(snd.getTitle());
-							%>
-						</td>
-					</tr>
-					<tr>
-						<td>Tre¶æ:</td>
-						<td colspan = "5" id="content">
-							<%
-							    out.print(snd.getContent());
-							%>
-						</td>
-					</tr>
-					<%
-					    }
-					%>
-
-
-				</table>
-				<%
-				    }
-				%>
+				<c:choose>
+					<c:when test="${empty sentMessages}">
+						<p>Skrzynka nadawcza jest pusta.</p>
+					</c:when>
+					<c:otherwise>
+						<table class="responseTable">
+							<c:forEach items="${sentMessages}" var="msg"
+								varStatus="varStatus">
+								<tr class="grayRow">
+									<td colspan="6">Wiadomo¶æ ${varStatus.index + 1}</td>
+								</tr>
+								<tr>
+									<td>Odbiorca:</td>
+									<td>${receiverNames[varStatus.index]}</td>
+									<td>Data wys³ania:</td>
+									<td><fmt:formatDate pattern="dd.MM.yyyy"
+											value="${msg.dispatchDate}" /></td>
+									<td>Data dostarczenia:</td>
+									<td><c:choose>
+											<c:when test="${empty msg.receiveDate}">Nie dostarczono.</c:when>
+											<c:otherwise>
+												<fmt:formatDate pattern="dd.MM.yyyy"
+													value="${msg.receiveDate}" />
+											</c:otherwise>
+										</c:choose></td>
+								</tr>
+								<tr>
+									<td width="150px">Tytu³:</td>
+									<td colspan="5">${msg.title }</td>
+								</tr>
+								<tr>
+									<td>Tre¶æ:</td>
+									<td colspan="5" id="content">${msg.content }</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>
