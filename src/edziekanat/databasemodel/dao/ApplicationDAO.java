@@ -39,8 +39,7 @@ public class ApplicationDAO extends DAOParentClass<ApplicationDTO>
     public List<ApplicationDTO> getApplications(Integer studentId)
     {
 	List<ApplicationDTO> getApplications = getMultipleEntities(
-		"student_id = '" + studentId + "' and status = 'Odrzucony' or "
-			+ "student_id = '" + studentId + "' and status = 'Przyjêty'");
+		"student_id = '" + studentId + "' and status != 'Nierozpatrzony'");
 	Collections.sort(getApplications, (x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()));
 	return getApplications;
     }

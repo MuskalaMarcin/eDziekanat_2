@@ -2,6 +2,8 @@ package edziekanat.controller.student;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,8 +17,12 @@ import edziekanat.databasemodel.dao.ApplicationDAO;
 import edziekanat.databasemodel.dao.MessageDAO;
 import edziekanat.databasemodel.dao.StudentDAO;
 import edziekanat.databasemodel.dao.UserDAO;
+import edziekanat.databasemodel.dto.AdministratorDTO;
 import edziekanat.databasemodel.dto.ApplicationDTO;
 import edziekanat.databasemodel.dto.MessageDTO;
+import edziekanat.databasemodel.dto.ScholarshipDTO;
+import edziekanat.databasemodel.dto.StudentDTO;
+import edziekanat.databasemodel.dto.UniversityDTO;
 
 /**
  * Servlet implementation class NewApplicationController
@@ -26,6 +32,13 @@ public class NewApplicationController extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public NewApplicationController()
+    {
+	super();
+    }
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
      *      response)
@@ -43,14 +56,14 @@ public class NewApplicationController extends HttpServlet
     {
 	UserDAO userDAO = new UserDAO();
 	StudentDAO studentDAO = new StudentDAO();
-	AdministratorDAO adminDAO = new AdministratorDAO();
+	List<AdministratorDTO> adminList = (List) request.getAttribute("adminList");
 	ApplicationDTO newApplication = new ApplicationDTO();
-
+	request.setAttribute("adminList", adminList);
 	newApplication.setTitle(request.getParameter("title"));
 	newApplication.setContent(request.getParameter("content"));
 	newApplication.setDispatchDate(Calendar.getInstance().getTime());
-	newApplication.setStatus("Nierozstrzygniêty");
-	newApplication.setAdministrator(adminDAO.getEntity(userDAO.getEntity(request.getParameter("receiver")).getAdministrator().getId()));
+	newApplication.setStatus("Nierozpatrzony");
+	newApplication.setAdministrator(new AdministratorDAO().getEntity(Integer.parseInt(request.getParameter("id"))));
 	newApplication.setStudent(
 		studentDAO.getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
 	new ApplicationDAO().insert(newApplication);
@@ -60,5 +73,5 @@ public class NewApplicationController extends HttpServlet
 	request.getRequestDispatcher("/info.jsp").forward(request, response);
 	
     }
-
+    
 }

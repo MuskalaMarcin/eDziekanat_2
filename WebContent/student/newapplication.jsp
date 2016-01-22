@@ -1,6 +1,8 @@
 <%@ page language="java"
 	import="edziekanat.databasemodel.dao.UserDAO, edziekanat.databasemodel.dto.UserDTO"
 	contentType="text/html; charset=ISO-8859-2" pageEncoding="ISO-8859-2"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -35,13 +37,20 @@
 					<li class="pure-menu-item"><a
 						href="http://localhost:8080/eDziekanat/studentpayments"
 						class="pure-menu-link">P³atno¶ci</a></li>
+					<li class="pure-menu-item menu-item-divided"><a href="#"
+						class="pure-menu-link">Wnioski</a></li>
 					<li class="pure-menu-item"><a
 						href="http://localhost:8080/eDziekanat/studentapplications"
-						class="pure-menu-link">Wnioski</a></li>
+						class="pure-menu-link">Wnioski rozpatrzone </a></li>
+					<li class="pure-menu-item"><a
+						href="http://localhost:8080/eDziekanat/studentwaitingapplications"
+						class="pure-menu-link">Wnioski nierozpatrzone</a></li>
+					<li class="pure-menu-item  pure-menu-selected"><a
+						href="studentgetlecturers" class="pure-menu-link">Nowy wniosek</a></li>
 					<li class="pure-menu-item"><a
 						href="http://localhost:8080/eDziekanat/studentlecturers"
 						class="pure-menu-link">Wyk³adowcy</a></li>
-					<li class="pure-menu-item  pure-menu-selected"><a
+					<li class="pure-menu-item"><a
 						href="http://localhost:8080/eDziekanat/messages"
 						class="pure-menu-link">Historia komunikatów</a></li>
 					<li class="pure-menu-item"><a
@@ -59,25 +68,28 @@
 				<h2 class="content-subhead">Wy¶lij nowy wniosek:</h2>
 				<p>
 				<p>
-
 				<center>
-					<form action="http://localhost:8080/eDziekanat/studentnewapplication"
+					<form
+						action="http://localhost:8080/eDziekanat/studentnewapplication"
 						method=post class="pure-form">
+						<c:choose>
+							<c:when test="${!empty adminList}">
+								<select name="id">
+									<c:forEach items="${adminList}" var="admin"
+										varStatus="varStatus">
+										<option value="${admin.id}">${admin.id} ${admin.name}
+											${admin.surname}</option>
+									</c:forEach>
+								</select>
+							</c:when>
+						</c:choose>
 						<fieldset class="pure-group">
-							<textarea name="title" class="pure-input-1-2"
-								placeholder="Tytu³" required></textarea>
-						</fieldset>
-
-						<fieldset class="pure-group">
-							<textarea name="receiver" class="pure-input-1-2"
-								placeholder="Odbiorca" required></textarea>
-						</fieldset>
-						
-						<fieldset class="pure-group">
+							<input type="text" name="title" class="pure-input-1-2"
+								placeholder="Tytu³" required>
+							</textarea>
 							<textarea name="content" class="pure-input-1-2"
 								placeholder="Tre¶æ" required></textarea>
 						</fieldset>
-
 						<button type="submit"
 							class="pure-button pure-input-1-2 pure-button-primary">Wy¶lij</button>
 					</form>

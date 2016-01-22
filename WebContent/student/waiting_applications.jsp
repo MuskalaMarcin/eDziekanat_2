@@ -31,13 +31,12 @@
 						class="pure-menu-link">P³atno¶ci</a></li>
 					<li class="pure-menu-item menu-item-divided"><a href="#"
 						class="pure-menu-link">Wnioski</a></li>
-					<li class="pure-menu-item pure-menu-selected"><a
-						href="studentapplications" class="pure-menu-link">Wnioski
-							rozpatrzone </a></li>
-					<li class="pure-menu-item"><a
+					<li class="pure-menu-item"><a href="studentapplications"
+						class="pure-menu-link">Wnioski rozpatrzone </a></li>
+					<li class="pure-menu-item  pure-menu-selected"><a
 						href="studentwaitingapplications" class="pure-menu-link">Wnioski
 							nierozpatrzone</a></li>
-					<li class="pure-menu-item"><a href="studentnewapplication"
+					<li class="pure-menu-item"><a href="studentgetlecturers"
 						class="pure-menu-link">Nowy wniosek</a></li>
 					<li class="pure-menu-item   menu-item-divided">
 					<li class="pure-menu-item"><a href="studentlecturers"
@@ -58,25 +57,30 @@
 				<h2 class="content-subhead">Nierozpatrzone wnioski:</h2>
 				<c:choose>
 					<c:when test="${empty waitingApplications}">
-					Brak nierozpatrzonych wniosków.
+						<p>Brak rozpatrzonych wniosków.</p>
 					</c:when>
 					<c:otherwise>
 						<table class="responseTable">
-							<tr class="grayRow">
-								<td>Nr</td>
-								<td>Tytu³</td>
-								<td>Tre¶æ</td>
-								<td>Data z³o¿enia</td>
-							</tr>
 							<c:forEach items="${waitingApplications}" var="application"
 								varStatus="varStatus">
+								<tr class="grayRow">
+									<td id="respond"></td>
+									<td colspan="3">Wniosek ${varStatus.index + 1}</td>
+								</tr>
 								<tr>
-									<td>${varStatus.index + 1}</td>
-									<td>${application.title}</td>
-									<td>${application.content}</td>
+									<td>Opiekun:</td>
+									<td>${application.administrator.name} ${application.administrator.surname}</td>
+									<td>Data z³o¿enia:</td>
 									<td><fmt:formatDate pattern="dd.MM.yyyy"
 											value="${application.dispatchDate}" /></td>
 								</tr>
+								<tr>
+									<td width="150px">Tytu³:</td>
+									<td colspan="3">${application.title}</td>
+								</tr>
+								<tr>
+									<td>Tre¶æ:</td>
+									<td id="content" colspan="3">${application.content}</td>
 								</tr>
 							</c:forEach>
 						</table>
