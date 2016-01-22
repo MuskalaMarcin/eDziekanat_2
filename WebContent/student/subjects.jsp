@@ -77,7 +77,7 @@
 										<td>${varStatus.index + 1}</td>
 										<td>${subject.name}</td>
 										<td>${subject.ECTS}</td>
-										<td>${subject.lecturer.name}${subject.lecturer.surname}</td>
+										<td>${subject.lecturer.name} ${subject.lecturer.surname}</td>
 										<td width="75px" id="respond">
 											<form action="studentpartialmarks" method=post>
 												<input type="hidden" name="studentId"

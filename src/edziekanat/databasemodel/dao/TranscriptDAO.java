@@ -28,6 +28,6 @@ public class TranscriptDAO extends DAOParentClass<TranscriptDTO>
 
     public List<TranscriptDTO> getStudentTranscript(Integer studentId)
     {
-	return executeMultiResultQuery("student_id = '" + studentId + "'");
+	return getMultipleEntities("student_id = '" + studentId + "'");
     }
 }

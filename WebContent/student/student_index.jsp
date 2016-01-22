@@ -1,5 +1,6 @@
-<%@ page language="java" import="edziekanat.bean.LoginBean"
-	contentType="text/html; charset=ISO-8859-2" pageEncoding="ISO-8859-2"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-2"
+	pageEncoding="ISO-8859-2"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -45,30 +46,11 @@
 			<div class="content">
 				<h2 class="content-subhead">Zalogowano jako:</h2>
 				<p>
-					<%
-					    LoginBean loginBean = (LoginBean) request.getSession().getAttribute("loginBean");
-					%>
-					Login: <b> <%
-     out.print(loginBean.getLogin());
- %>
-					</b><br> Imiê i nazwisko: <b> <%
-     out.print(loginBean.getName());
- %> <%
-     out.print(loginBean.getSurname());
- %>
-					</b><br> Stopieñ naukowy: <b> <%
-     out.print(loginBean.getAcademicDegree());
- %>
-					</b><br> E-mail: <b> <%
-     out.print(loginBean.geteMail());
- %>
-					</b><br> Poziom uprawnieñ: <b> <%
-     out.print(loginBean.getUserRole());
- %>
-					</b><br> Adres: <b> <%
-     out.print(loginBean.getAddress());
- %>
-					</b><br>
+					Login: <b> ${loginBean.login} </b><br> Imiê i nazwisko: <b>${loginBean.name}
+						${loginBean.surname} </b><br> Stopieñ naukowy: <b>
+						${loginBean.academicDegree} </b><br> E-mail: <b>
+						${loginBean.eMail} </b><br> Poziom uprawnieñ: <b>${loginBean.userRole}
+					</b><br> Adres: <b> ${loginBean.address} </b><br>
 				</p>
 			</div>
 		</div>

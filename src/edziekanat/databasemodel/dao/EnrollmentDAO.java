@@ -1,5 +1,6 @@
 package edziekanat.databasemodel.dao;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -38,6 +39,8 @@ public class EnrollmentDAO extends DAOParentClass<EnrollmentDTO>
 		allEnrollments.add(enrollment);
 	    }
 	}
+	Collections.sort(allEnrollments,
+		(y, x) -> x.getSubject().getSemester().compareTo(y.getSubject().getSemester()));
 	return allEnrollments;
     }
 

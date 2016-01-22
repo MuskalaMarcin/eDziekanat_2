@@ -11,10 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.bean.LoginBean;
-import edziekanat.databasemodel.dao.TranscriptDAO;
-import edziekanat.databasemodel.dto.CourseDTO;
-import edziekanat.databasemodel.dto.StudentsGroupDTO;
-import edziekanat.databasemodel.dto.TranscriptDTO;
+import edziekanat.databasemodel.dao.EnrollmentDAO;
+import edziekanat.databasemodel.dto.EnrollmentDTO;
 
 /**
  * Servlet implementation class TranscriptController
@@ -42,18 +40,51 @@ public class TranscriptController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<TranscriptDTO> transcripts = new TranscriptDAO()
-		.getStudentTranscript(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
-	request.setAttribute("transcriptList", transcripts);
-	List<CourseDTO> courses = new LinkedList<CourseDTO>();
-	for (TranscriptDTO transcript : transcripts)
+	List<EnrollmentDTO> enrollments = new EnrollmentDAO().getAllStudentEnrollments(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
+	if (!enrollments.isEmpty())
 	{
-	    StudentsGroupDTO studentGroup = transcript.getStudentsGroup();
-	    courses.add(studentGroup.getCourse());
+	    List<Integer> semesterList = new LinkedList<Integer>();
+	    for (EnrollmentDTO enrollment: enrollments)
+	    {
+		if (!semesterList.contains(enrollment.getSubject().getSemester()))
+		{
+		    semesterList.add(enrollment.getSubject().getSemester());
+		}
+	    }
+	 
+	    if (request.getParameter("rqsemester") == null)
+	    {
+		
+		for (int i = 0; i < enrollments.size(); i++)
+		{
+		    if (enrollments.get(i).getSubject().getSemester().compareTo(semesterList.get(0)) != 0)
+		    {
+			enrollments.remove(i);
+			i--;
+		    }
+		}
+		request.setAttribute("selectedSemester", semesterList.get(0));
+	    }
+	    else
+	    {
+		int selectedSemester = Integer.valueOf(request.getParameter("rqsemester"));
+		for (int i = 0; i < enrollments.size(); i++)
+		{
+		    if (enrollments.get(i).getSubject().getSemester().compareTo(selectedSemester) != 0)
+		    {
+			enrollments.remove(i);
+			i--;
+		    }
+		}
+		request.setAttribute("selectedSemester", selectedSemester);
+	    }
+	    request.setAttribute("enrollments", enrollments);
+	    request.setAttribute("semesterList", semesterList);
+	    request.setAttribute("noEnrollments", false);
 	}
-	for (int i = 0; i < transcripts.size(); i++)
+	else
 	{
-
+	    request.setAttribute("noEnrollments", true);
 	}
 
 	request.getRequestDispatcher("student/transcript").forward(request, response);
