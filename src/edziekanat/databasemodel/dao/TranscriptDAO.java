@@ -1,5 +1,7 @@
 package edziekanat.databasemodel.dao;
 
+import java.util.List;
+
 import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.TranscriptDTO;
 
@@ -22,5 +24,10 @@ public class TranscriptDAO extends DAOParentClass<TranscriptDTO>
     public TranscriptDTO getEntity(Integer id)
     {
 	return entityManager.find(TranscriptDTO.class, id);
+    }
+
+    public List<TranscriptDTO> getStudentTranscript(Integer studentId)
+    {
+	return executeMultiResultQuery("student_id = '" + studentId + "'");
     }
 }
