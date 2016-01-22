@@ -48,7 +48,7 @@ public class TimetableController extends HttpServlet
 	Date currentDate = calendar.getTime();
 
 	int selectedWeek = (request.getParameter("rqweek") == null ? calendar.get(Calendar.WEEK_OF_YEAR)
-		: Integer.parseInt(request.getParameter("rqweek"))) % 53;
+		: (Integer.parseInt(request.getParameter("rqweek")) % 53 + 53) % 53);
 	request.setAttribute("currentWeek", selectedWeek == calendar.get(Calendar.WEEK_OF_YEAR));
 
 	long maxTimeDiff = 180 * 24 * 60 * 60 * 1000L; // 180 days

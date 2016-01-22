@@ -22,7 +22,7 @@
 						class="pure-menu-link">Indeks</a></li>
 					<li class="pure-menu-item menu-item-divided"><a
 						href="studenttimetable" class="pure-menu-link">Plan zajêæ</a></li>
-					<li class="pure-menu-item menu-item-divided">
+					<li class="pure-menu-item">
 						<form action="studenttimetable" method="post">
 							<input type="hidden" name="rqweek" value="${selectedWeek - 1}">
 							<button class="linkButton " type="submit">Poprzedni
