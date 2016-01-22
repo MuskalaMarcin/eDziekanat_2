@@ -41,6 +41,9 @@
 		<jsp-file>/student/newapplication.jsp</jsp-file>
 	</servlet>
 	<servlet>
+		<servlet-name>StudentGetLecturers</servlet-name>
+	</servlet>
+	<servlet>
 		<servlet-name>StudentLecturers</servlet-name>
 		<jsp-file>/student/lecturers.jsp</jsp-file>
 	</servlet>
@@ -139,6 +142,10 @@
 	<servlet-mapping>
 		<servlet-name>StudentNewApplication</servlet-name>
 		<url-pattern>/student/newapplication</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>StudentGetLecturers</servlet-name>
+		<url-pattern>/student/getlecturers</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>StudentLecturers</servlet-name>
@@ -256,6 +263,7 @@
 			<url-pattern>/studentwaitingpayments/*</url-pattern>
 			<url-pattern>/studentapplications/*</url-pattern>
 			<url-pattern>/studentnewapplication/*</url-pattern>
+			<url-pattern>/studentgetlecturers/*</url-pattern>
 			<url-pattern>/studentlecturers/*</url-pattern>
 			<url-pattern>/student/newmessage/*</url-pattern>
 			<url-pattern>/student/sentmessages/*</url-pattern>

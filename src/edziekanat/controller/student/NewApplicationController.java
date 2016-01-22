@@ -33,6 +33,13 @@ public class NewApplicationController extends HttpServlet
     private static final long serialVersionUID = 1L;
 
     /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public NewApplicationController()
+    {
+	super();
+    }
+    /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
      *      response)
      */
@@ -49,14 +56,14 @@ public class NewApplicationController extends HttpServlet
     {
 	UserDAO userDAO = new UserDAO();
 	StudentDAO studentDAO = new StudentDAO();
-	AdministratorDAO adminDAO = new AdministratorDAO();
+	List<AdministratorDTO> adminList = (List) request.getAttribute("adminList");
 	ApplicationDTO newApplication = new ApplicationDTO();
-	
+	request.setAttribute("adminList", adminList);
 	newApplication.setTitle(request.getParameter("title"));
 	newApplication.setContent(request.getParameter("content"));
 	newApplication.setDispatchDate(Calendar.getInstance().getTime());
 	newApplication.setStatus("Nierozpatrzony");
-	newApplication.setAdministrator(adminDAO.getEntity(1));
+	newApplication.setAdministrator(new AdministratorDAO().getEntity(Integer.parseInt(request.getParameter("id"))));
 	newApplication.setStudent(
 		studentDAO.getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
 	new ApplicationDAO().insert(newApplication);

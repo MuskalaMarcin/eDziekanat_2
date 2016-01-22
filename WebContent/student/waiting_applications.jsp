@@ -36,7 +36,7 @@
 					<li class="pure-menu-item  pure-menu-selected"><a
 						href="studentwaitingapplications" class="pure-menu-link">Wnioski
 							nierozpatrzone</a></li>
-					<li class="pure-menu-item"><a href="student/newapplication"
+					<li class="pure-menu-item"><a href="studentgetlecturers"
 						class="pure-menu-link">Nowy wniosek</a></li>
 					<li class="pure-menu-item   menu-item-divided">
 					<li class="pure-menu-item"><a href="studentlecturers"
@@ -68,10 +68,14 @@
 									<td colspan="3">Wniosek ${varStatus.index + 1}</td>
 								</tr>
 								<tr>
-									<td width="150px">Data z³o¿enia:</td>
+									<td>Opiekun:</td>
+									<td>${application.administrator.name} ${application.administrator.surname}</td>
+									<td>Data z³o¿enia:</td>
 									<td><fmt:formatDate pattern="dd.MM.yyyy"
 											value="${application.dispatchDate}" /></td>
-									<td>Tytu³:</td>
+								</tr>
+								<tr>
+									<td width="150px">Tytu³:</td>
 									<td colspan="3">${application.title}</td>
 								</tr>
 								<tr>

@@ -1,6 +1,8 @@
 <%@ page language="java"
 	import="edziekanat.databasemodel.dao.UserDAO, edziekanat.databasemodel.dto.UserDTO"
 	contentType="text/html; charset=ISO-8859-2" pageEncoding="ISO-8859-2"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -44,7 +46,7 @@
 						href="http://localhost:8080/eDziekanat/studentwaitingapplications"
 						class="pure-menu-link">Wnioski nierozpatrzone</a></li>
 					<li class="pure-menu-item  pure-menu-selected"><a
-						href="newapplication" class="pure-menu-link">Nowy wniosek</a></li>
+						href="studentgetlecturers" class="pure-menu-link">Nowy wniosek</a></li>
 					<li class="pure-menu-item"><a
 						href="http://localhost:8080/eDziekanat/studentlecturers"
 						class="pure-menu-link">Wyk³adowcy</a></li>
@@ -70,13 +72,17 @@
 					<form
 						action="http://localhost:8080/eDziekanat/studentnewapplication"
 						method=post class="pure-form">
-						
-						<select id="state">
-							<c:forEach items="${admins}" var="admin" varStatus="varStatus">
-								<option>${admin.surname}</option>
-							</c:forEach>
-						</select> </select>
-
+						<c:choose>
+							<c:when test="${!empty adminList}">
+								<select name="id">
+									<c:forEach items="${adminList}" var="admin"
+										varStatus="varStatus">
+										<option value="${admin.id}">${admin.id} ${admin.name}
+											${admin.surname}</option>
+									</c:forEach>
+								</select>
+							</c:when>
+						</c:choose>
 						<fieldset class="pure-group">
 							<input type="text" name="title" class="pure-input-1-2"
 								placeholder="Tytu³" required>
@@ -84,7 +90,6 @@
 							<textarea name="content" class="pure-input-1-2"
 								placeholder="Tre¶æ" required></textarea>
 						</fieldset>
-
 						<button type="submit"
 							class="pure-button pure-input-1-2 pure-button-primary">Wy¶lij</button>
 					</form>
