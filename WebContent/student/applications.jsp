@@ -1,6 +1,8 @@
 <%@ page language="java"
 	import="edziekanat.databasemodel.dto.ApplicationDTO, java.util.List"
 	contentType="text/html; charset=ISO-8859-2" pageEncoding="ISO-8859-2"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -32,9 +34,10 @@
 					<li class="pure-menu-item pure-menu-selected"><a
 						href="studentapplications" class="pure-menu-link">Wnioski
 							rozpatrzone </a></li>
-					<li class="pure-menu-item"><a href="studentwaitingapplications"
-						class="pure-menu-link">Wnioski nierozpatrzone</a></li>
-						<li class="pure-menu-item"><a href="studentnewapplication"
+					<li class="pure-menu-item"><a
+						href="studentwaitingapplications" class="pure-menu-link">Wnioski
+							nierozpatrzone</a></li>
+					<li class="pure-menu-item"><a href="student/newapplication"
 						class="pure-menu-link">Nowy wniosek</a></li>
 					<li class="pure-menu-item   menu-item-divided">
 					<li class="pure-menu-item"><a href="studentlecturers"
@@ -52,95 +55,55 @@
 				<h2>Twój wirtualny dziekanat.</h2>
 			</div>
 			<div class="content">
-				<h2 class="content-subhead">Wnioski:</h2>
-				<p>
-				<p>
-					<font color="red"> TODO: <br> 1. Wy¶wietlanie
-						informacji o wys³anych wnioskach ³±cznie z info czy jest przyjêty
-						i kiedy<br> 2. Kontakt do administratora który siê nim
-						zajmowa³.
-					</font>
-				</p>
-				<p>
-					<%
-					    List<ApplicationDTO> applications = (List<ApplicationDTO>) request.getAttribute("ownapplications");
-					%>
-				</p>
-				<%
-				    if (applications != null)
-				    {
-				%>
-				<p>
-				<table class="responseTable">
-					<%
-					    for (int i = 0; i < applications.size(); i++)
-							{
-							    ApplicationDTO apps = applications.get(i);
-					%>
-					<tr class="grayRow">
-						<td colspan="2">Nr: <%
-						    out.print(i + 1);
-						%></td>
-					</tr>
-					<tr>
-						<td>Tytu³:</td>
-						<td>
-							<%
-							    out.print(apps.getTitle());
-							%>
-						</td>
-					</tr>
-					<tr>
-						<td>Tre¶æ wniosku:</td>
-						<td>
-							<%
-							    out.print(apps.getContent());
-							%>
-						</td>
-					</tr>
-					<tr>
-						<td>Data z³o¿enia:</td>
-						<td>
-							<%
-							    out.print(apps.getDispatchDate());
-							%>
-						</td>
-					</tr>
-					<tr>
-						<td>Status:</td>
-						<td>
-							<%
-							    out.print(apps.getStatus());
-							%>
-						</td>
-					</tr>
-					<%
-					    if (apps.getStatus().equalsIgnoreCase("Odrzucony"))
-							    {
-					%>
-					<tr>
-						<td colspan="2">
-							<form action="student/newmessage" method=post>
-								<input type="hidden" name="receiverLogin"
-									value="<%out.print(apps.getAdministrator().getUser().getLogin());%>">
-								<input type="hidden" name="title"
-									value="<%out.print(apps.getTitle());%>"> <input
-									type="submit" value="Odpowiedz">
-							</form>
-						</td>
-					</tr>
-					<%
-					    }
-					%>
-					<%
-					    }
-					%>
-				</table>
-
-				<%
-				    }
-				%>
-				</p>
+				<h2 class="content-subhead">Wnioski rozpatrzone:</h2>
+				<c:choose>
+					<c:when test="${empty ownapplications}">
+						<p>Brak rozpatrzonych wniosków.</p>
+					</c:when>
+					<c:otherwise>
+						<table class="responseTable">
+							<c:forEach items="${ownapplications}" var="application"
+								varStatus="varStatus">
+								<tr class="grayRow">
+									<c:choose>
+										<c:when test="${application.status == 'Odrzucony'}">
+											<td id="respond">
+												<form action="student/newmessage" method=post>
+													<input type="hidden" name="receiverLogin"
+														value="${application.administrator.user.login}"> <input
+														type="hidden" name="title" value="${application.title }">
+													<input
+														class="pure-button pure-input-1-2 pure-button-primary"
+														type="submit" value="Odpowiedz">
+												</form>
+											</td>
+										</c:when>
+										<c:otherwise>
+											<td></td>
+										</c:otherwise>
+									</c:choose>
+									
+									<td colspan="3">Wniosek ${varStatus.index + 1}</td>
+								</tr>
+								<tr>
+									<td>Status:</td>
+									<td>${application.status}</td>
+									<td>Data z³o¿enia:</td>
+									<td><fmt:formatDate pattern="dd.MM.yyyy"
+											value="${application.dispatchDate}" /></td>
+								</tr>
+								<tr>
+									<td width="150px">Tytu³:</td>
+									<td colspan="3">${application.title}</td>
+								</tr>
+								<tr>
+									<td>Tre¶æ:</td>
+									<td id="content" colspan="3">${application.content}</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>

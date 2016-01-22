@@ -35,13 +35,20 @@
 					<li class="pure-menu-item"><a
 						href="http://localhost:8080/eDziekanat/studentpayments"
 						class="pure-menu-link">P³atno¶ci</a></li>
+					<li class="pure-menu-item menu-item-divided"><a href="#"
+						class="pure-menu-link">Wnioski</a></li>
 					<li class="pure-menu-item"><a
 						href="http://localhost:8080/eDziekanat/studentapplications"
-						class="pure-menu-link">Wnioski</a></li>
+						class="pure-menu-link">Wnioski rozpatrzone </a></li>
+					<li class="pure-menu-item"><a
+						href="http://localhost:8080/eDziekanat/studentwaitingapplications"
+						class="pure-menu-link">Wnioski nierozpatrzone</a></li>
+					<li class="pure-menu-item  pure-menu-selected"><a
+						href="newapplication" class="pure-menu-link">Nowy wniosek</a></li>
 					<li class="pure-menu-item"><a
 						href="http://localhost:8080/eDziekanat/studentlecturers"
 						class="pure-menu-link">Wyk³adowcy</a></li>
-					<li class="pure-menu-item  pure-menu-selected"><a
+					<li class="pure-menu-item"><a
 						href="http://localhost:8080/eDziekanat/messages"
 						class="pure-menu-link">Historia komunikatów</a></li>
 					<li class="pure-menu-item"><a
@@ -59,21 +66,21 @@
 				<h2 class="content-subhead">Wy¶lij nowy wniosek:</h2>
 				<p>
 				<p>
-
 				<center>
-					<form action="http://localhost:8080/eDziekanat/studentnewapplication"
+					<form
+						action="http://localhost:8080/eDziekanat/studentnewapplication"
 						method=post class="pure-form">
-						<fieldset class="pure-group">
-							<textarea name="title" class="pure-input-1-2"
-								placeholder="Tytu³" required></textarea>
-						</fieldset>
+						
+						<select id="state">
+							<c:forEach items="${admins}" var="admin" varStatus="varStatus">
+								<option>${admin.surname}</option>
+							</c:forEach>
+						</select> </select>
 
 						<fieldset class="pure-group">
-							<textarea name="receiver" class="pure-input-1-2"
-								placeholder="Odbiorca" required></textarea>
-						</fieldset>
-						
-						<fieldset class="pure-group">
+							<input type="text" name="title" class="pure-input-1-2"
+								placeholder="Tytu³" required>
+							</textarea>
 							<textarea name="content" class="pure-input-1-2"
 								placeholder="Tre¶æ" required></textarea>
 						</fieldset>

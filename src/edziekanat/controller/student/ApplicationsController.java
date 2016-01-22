@@ -2,6 +2,7 @@ package edziekanat.controller.student;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -53,7 +54,12 @@ public class ApplicationsController extends HttpServlet
 
 	if (!applications.isEmpty())
 	{
+	    List<String> adminLogins = new LinkedList<String>();
+	    applications.forEach(pmnt -> {
+		adminLogins.add(pmnt.getAdministrator().getUser().getLogin());
+	    });
 	    request.setAttribute("ownapplications", applications);
+	    request.setAttribute("adminLogins", adminLogins);
 	}
 	request.getRequestDispatcher("student/applications").forward(request, response);
     }
