@@ -37,8 +37,6 @@
 					<li class="pure-menu-item"><a
 						href="http://localhost:8080/eDziekanat/studentpayments"
 						class="pure-menu-link">P³atno¶ci</a></li>
-					<li class="pure-menu-item menu-item-divided"><a href="#"
-						class="pure-menu-link">Wnioski</a></li>
 					<li class="pure-menu-item"><a
 						href="http://localhost:8080/eDziekanat/studentapplications"
 						class="pure-menu-link">Wnioski rozpatrzone </a></li>

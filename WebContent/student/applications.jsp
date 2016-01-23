@@ -29,8 +29,6 @@
 						class="pure-menu-link">Stypendia</a></li>
 					<li class="pure-menu-item"><a href="studentpayments"
 						class="pure-menu-link">P³atno¶ci</a></li>
-					<li class="pure-menu-item menu-item-divided"><a href="#"
-						class="pure-menu-link">Wnioski</a></li>
 					<li class="pure-menu-item pure-menu-selected"><a
 						href="studentapplications" class="pure-menu-link">Wnioski
 							rozpatrzone </a></li>
