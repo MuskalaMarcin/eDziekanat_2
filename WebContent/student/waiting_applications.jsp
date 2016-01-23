@@ -29,6 +29,7 @@
 						class="pure-menu-link">Stypendia</a></li>
 					<li class="pure-menu-item"><a href="studentpayments"
 						class="pure-menu-link">P³atno¶ci</a></li>
+					<li class="pure-menu-item menu-item-divided">
 					<li class="pure-menu-item"><a href="studentapplications"
 						class="pure-menu-link">Wnioski rozpatrzone </a></li>
 					<li class="pure-menu-item  pure-menu-selected"><a
@@ -36,7 +37,7 @@
 							nierozpatrzone</a></li>
 					<li class="pure-menu-item"><a href="studentgetlecturers"
 						class="pure-menu-link">Nowy wniosek</a></li>
-					<li class="pure-menu-item   menu-item-divided">
+					<li class="pure-menu-item menu-item-divided">
 					<li class="pure-menu-item"><a href="studentlecturers"
 						class="pure-menu-link">Wyk³adowcy</a></li>
 					<li class="pure-menu-item"><a href="receivedmessages"
@@ -67,7 +68,8 @@
 								</tr>
 								<tr>
 									<td>Opiekun:</td>
-									<td>${application.administrator.name} ${application.administrator.surname}</td>
+									<td>${application.administrator.name}
+										${application.administrator.surname}</td>
 									<td>Data z³o¿enia:</td>
 									<td><fmt:formatDate pattern="dd.MM.yyyy"
 											value="${application.dispatchDate}" /></td>
