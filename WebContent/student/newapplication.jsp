@@ -77,7 +77,7 @@
 								<select name="id">
 									<c:forEach items="${adminList}" var="admin"
 										varStatus="varStatus">
-										<option value="${admin.id}">${admin.id} ${admin.name}
+										<option value="${admin.id}">${admin.name}
 											${admin.surname}</option>
 									</c:forEach>
 								</select>

@@ -57,7 +57,7 @@ public class NewApplicationController extends HttpServlet
 	newApplication.setContent(request.getParameter("content"));
 	newApplication.setDispatchDate(Calendar.getInstance().getTime());
 	newApplication.setStatus("Nierozpatrzony");
-	newApplication.setAdministrator(new AdministratorDAO().getEntity(Integer.parseInt(request.getParameter("id"))));
+	newApplication.setAdministrator(new AdministratorDAO().getEntity(Integer.parseInt(request.getParameter("id").toString())));
 	newApplication.setStudent(
 		studentDAO.getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
 	new ApplicationDAO().insert(newApplication);
