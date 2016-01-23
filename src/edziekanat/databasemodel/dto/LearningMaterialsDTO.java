@@ -33,7 +33,7 @@ public class LearningMaterialsDTO implements Serializable
     private String description;
     @Column(name = "file_link", columnDefinition = "BFILE NOT NULL")
     private String file;
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "subject_id")
     private SubjectDTO subject;
 

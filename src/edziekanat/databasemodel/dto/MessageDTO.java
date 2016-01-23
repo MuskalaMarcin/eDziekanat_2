@@ -26,8 +26,8 @@ public class MessageDTO implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name="MESSAGESEQ",sequenceName="message_id_seq", allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="MESSAGESEQ")
+    @SequenceGenerator(name = "MESSAGESEQ", sequenceName = "message_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "MESSAGESEQ")
     @Column(name = "id")
     private Integer id;
     @Column(name = "title")
@@ -40,10 +40,10 @@ public class MessageDTO implements Serializable
     @Temporal(TemporalType.DATE)
     @Column(name = "receive_date")
     private Date receiveDate;
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "sender_id")
     private UserDTO sender;
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "receiver_id")
     private UserDTO receiver;
 
@@ -99,21 +99,21 @@ public class MessageDTO implements Serializable
 
     public UserDTO getSender()
     {
-        return sender;
+	return sender;
     }
 
     public void setSender(UserDTO sender)
     {
-        this.sender = sender;
+	this.sender = sender;
     }
 
     public UserDTO getReceiver()
     {
-        return receiver;
+	return receiver;
     }
 
     public void setReceiver(UserDTO receiver)
     {
-        this.receiver = receiver;
+	this.receiver = receiver;
     }
 }

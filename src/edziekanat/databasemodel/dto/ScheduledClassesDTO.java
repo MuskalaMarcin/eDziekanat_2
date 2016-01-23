@@ -26,8 +26,8 @@ public class ScheduledClassesDTO implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name="SCHEDULEDCLASSESSEQ",sequenceName="scheduled_classes_id_seq", allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="SCHEDULEDCLASSESSEQ")
+    @SequenceGenerator(name = "SCHEDULEDCLASSESSEQ", sequenceName = "scheduled_classes_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "SCHEDULEDCLASSESSEQ")
     @Column(name = "id")
     private Integer id;
     @Temporal(TemporalType.TIMESTAMP)
@@ -35,10 +35,10 @@ public class ScheduledClassesDTO implements Serializable
     private Date date;
     @Column(name = "duration")
     private Integer duration;
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "classroom_id")
     private ClassroomDTO classroom;
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "subject_id")
     private SubjectDTO subject;
 
@@ -74,21 +74,21 @@ public class ScheduledClassesDTO implements Serializable
 
     public ClassroomDTO getClassroom()
     {
-        return classroom;
+	return classroom;
     }
 
     public void setClassroom(ClassroomDTO classroom)
     {
-        this.classroom = classroom;
+	this.classroom = classroom;
     }
 
     public SubjectDTO getSubject()
     {
-        return subject;
+	return subject;
     }
 
     public void setSubject(SubjectDTO subject)
     {
-        this.subject = subject;
+	this.subject = subject;
     }
 }

@@ -26,22 +26,22 @@ public class FacultyDTO implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name="FACULTYSEQ",sequenceName="faculty_id_seq", allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="FACULTYSEQ")
+    @SequenceGenerator(name = "FACULTYSEQ", sequenceName = "faculty_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "FACULTYSEQ")
     @Column(name = "id")
     private Integer id;
     @Column(name = "name")
     private String name;
     @Column(name = "address")
     private String address;
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "university_id")
     private UniversityDTO university;
     @OneToMany(mappedBy = "faculty", fetch = FetchType.LAZY)
     private List<ClassroomDTO> classroom;
     @OneToMany(mappedBy = "faculty", fetch = FetchType.LAZY)
     private List<CourseDTO> course;
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "faculty_id")
     private List<LecturerDTO> lecturer;
 
@@ -107,12 +107,12 @@ public class FacultyDTO implements Serializable
 
     public List<LecturerDTO> getLecturer()
     {
-        return lecturer;
+	return lecturer;
     }
 
     public void setLecturer(List<LecturerDTO> lecturer)
     {
-        this.lecturer = lecturer;
+	this.lecturer = lecturer;
     }
 
 }

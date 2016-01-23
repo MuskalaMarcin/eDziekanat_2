@@ -25,15 +25,15 @@ public class CourseDTO implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name="COURSESEQ",sequenceName="course_id_seq", allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="COURSESEQ")
+    @SequenceGenerator(name = "COURSESEQ", sequenceName = "course_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "COURSESEQ")
     @Column(name = "id")
     private Integer id;
     @Column(name = "name")
     private String name;
     @Column(name = "stationary")
     private Integer stationary;
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "faculty_id")
     private FacultyDTO faculty;
     @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)

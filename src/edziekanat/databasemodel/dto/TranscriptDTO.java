@@ -28,17 +28,17 @@ public class TranscriptDTO implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name="TRANSCRIPTSEQ",sequenceName="transcript_id_seq", allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="TRANSCRIPTSEQ")
+    @SequenceGenerator(name = "TRANSCRIPTSEQ", sequenceName = "transcript_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "TRANSCRIPTSEQ")
     @Column(name = "id")
     private Integer id;
     @Temporal(TemporalType.DATE)
     @Column(name = "issue_date")
     private Date issueDate;
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
     private StudentDTO student;
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "students_group_id")
     private StudentsGroupDTO studentsGroup;
     @OneToMany(mappedBy = "transcript", fetch = FetchType.LAZY)
@@ -86,12 +86,12 @@ public class TranscriptDTO implements Serializable
 
     public List<EnrollmentDTO> getEnrollment()
     {
-        return enrollment;
+	return enrollment;
     }
 
     public void setEnrollment(List<EnrollmentDTO> enrollment)
     {
-        this.enrollment = enrollment;
+	this.enrollment = enrollment;
     }
 
 }

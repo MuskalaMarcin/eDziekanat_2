@@ -25,8 +25,8 @@ public class ClassroomDTO implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name="CLASSROOMSEQ",sequenceName="classroom_id_seq", allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="CLASSROOMSEQ")
+    @SequenceGenerator(name = "CLASSROOMSEQ", sequenceName = "classroom_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "CLASSROOMSEQ")
     @Column(name = "id")
     private Integer id;
     @Column(name = "nr")
@@ -35,7 +35,7 @@ public class ClassroomDTO implements Serializable
     private Integer capacity;
     @Column(name = "type")
     private String type;
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "faculty_id")
     private FacultyDTO faculty;
     @OneToMany(mappedBy = "classroom", fetch = FetchType.LAZY)
@@ -93,11 +93,11 @@ public class ClassroomDTO implements Serializable
 
     public Integer getNumber()
     {
-        return number;
+	return number;
     }
 
     public void setNumber(Integer number)
     {
-        this.number = number;
+	this.number = number;
     }
 }

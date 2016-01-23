@@ -26,24 +26,24 @@ public class StudentsGroupDTO implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name="STUDENTSGROUPSEQ",sequenceName="students_group_id_seq", allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="STUDENTSGROUPSEQ")
+    @SequenceGenerator(name = "STUDENTSGROUPSEQ", sequenceName = "students_group_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "STUDENTSGROUPSEQ")
     @Column(name = "id")
     private Integer id;
     @Column(name = "semester")
     private Integer semester;
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
     private CourseDTO course;
     @OneToMany(mappedBy = "studentsGroup", fetch = FetchType.LAZY)
     private List<TranscriptDTO> transcript;
-    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
     private List<StudentDTO> student;
-    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "subject_id")
     private List<SubjectDTO> subject;
-    
+
     public Integer getId()
     {
 	return id;

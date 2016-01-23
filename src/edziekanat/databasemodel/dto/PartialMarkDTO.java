@@ -26,8 +26,8 @@ public class PartialMarkDTO implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name="PARTIALMARKSEQ",sequenceName="partial_mark_id_seq", allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="PARTIALMARKSEQ")
+    @SequenceGenerator(name = "PARTIALMARKSEQ", sequenceName = "partial_mark_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "PARTIALMARKSEQ")
     @Column(name = "id")
     private Integer id;
     @Column(name = "mark")
@@ -35,10 +35,10 @@ public class PartialMarkDTO implements Serializable
     @Temporal(TemporalType.DATE)
     @Column(name = "issue_date")
     private Date issueDate;
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "subject_id")
     private SubjectDTO subject;
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "transcript_id")
     private TranscriptDTO transcript;
 
@@ -74,21 +74,21 @@ public class PartialMarkDTO implements Serializable
 
     public SubjectDTO getSubject()
     {
-        return subject;
+	return subject;
     }
 
     public void setSubject(SubjectDTO subject)
     {
-        this.subject = subject;
+	this.subject = subject;
     }
 
     public TranscriptDTO getTranscript()
     {
-        return transcript;
+	return transcript;
     }
 
     public void setTranscript(TranscriptDTO transcript)
     {
-        this.transcript = transcript;
+	this.transcript = transcript;
     }
 }

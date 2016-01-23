@@ -26,8 +26,8 @@ public class ScholarshipDTO implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name="SCHOLARSHIPSEQ",sequenceName="scholarship_id_seq", allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="SCHOLARSHIPSEQ")
+    @SequenceGenerator(name = "SCHOLARSHIPSEQ", sequenceName = "scholarship_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "SCHOLARSHIPSEQ")
     @Column(name = "id")
     private Integer id;
     @Temporal(TemporalType.DATE)
@@ -36,13 +36,13 @@ public class ScholarshipDTO implements Serializable
     @Temporal(TemporalType.DATE)
     @Column(name = "end_date")
     private Date endDate;
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "scholarship_type")
     private ScholarshipTypeDTO scholarshipType;
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
     private StudentDTO student;
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "administrator_id")
     private AdministratorDTO administrator;
 
@@ -78,31 +78,31 @@ public class ScholarshipDTO implements Serializable
 
     public ScholarshipTypeDTO getScholarshipType()
     {
-        return scholarshipType;
+	return scholarshipType;
     }
 
     public void setScholarshipType(ScholarshipTypeDTO scholarshipType)
     {
-        this.scholarshipType = scholarshipType;
+	this.scholarshipType = scholarshipType;
     }
 
     public StudentDTO getStudent()
     {
-        return student;
+	return student;
     }
 
     public void setStudentId(StudentDTO student)
     {
-        this.student = student;
+	this.student = student;
     }
 
     public AdministratorDTO getAdministrator()
     {
-        return administrator;
+	return administrator;
     }
 
     public void setAdministratorId(AdministratorDTO administrator)
     {
-        this.administrator = administrator;
+	this.administrator = administrator;
     }
 }

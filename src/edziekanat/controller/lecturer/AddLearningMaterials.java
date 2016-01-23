@@ -67,6 +67,7 @@ public class AddLearningMaterials extends HttpServlet
 	}
 	catch (Exception e)
 	{
+	    e.printStackTrace();
 	    request.setAttribute("msgshort", "B³¹d");
 	    request.setAttribute("msglong",
 		    "Podczas dodawania twojego pliku " + fileName + " wyst¹pi³ nieznany b³¹d. Przepraszamy.");

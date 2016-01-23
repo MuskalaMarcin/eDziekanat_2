@@ -40,7 +40,7 @@ public class AdministratorDTO implements Serializable
     private String position;
     @Column(name = "academic_degree")
     private String academicDegree;
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "university_id")
     private UniversityDTO university;
     @OneToMany(mappedBy = "administrator", fetch = FetchType.LAZY)

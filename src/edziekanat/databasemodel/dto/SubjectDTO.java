@@ -26,8 +26,8 @@ public class SubjectDTO implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name="SUBJECTSEQ",sequenceName="subject_id_seq", allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="SUBJECTSEQ")
+    @SequenceGenerator(name = "SUBJECTSEQ", sequenceName = "subject_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "SUBJECTSEQ")
     @Column(name = "id")
     private Integer id;
     @Column(name = "name")
@@ -36,7 +36,7 @@ public class SubjectDTO implements Serializable
     private Integer semester;
     @Column(name = "ects")
     private Integer ECTS;
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "lecturer_id")
     private LecturerDTO lecturer;
     @ManyToMany(mappedBy = "subject", fetch = FetchType.LAZY)
@@ -49,7 +49,7 @@ public class SubjectDTO implements Serializable
     private List<PartialMarkDTO> partial_mark;
     @OneToMany(mappedBy = "subject", fetch = FetchType.LAZY)
     private List<ScheduledClassesDTO> scheduled_classes;
-    
+
     public Integer getId()
     {
 	return id;
@@ -102,52 +102,52 @@ public class SubjectDTO implements Serializable
 
     public List<StudentsGroupDTO> getStudentsGroup()
     {
-        return students_group;
+	return students_group;
     }
 
     public void setStudentsGroup(List<StudentsGroupDTO> studentsGroup)
     {
-        this.students_group = studentsGroup;
+	this.students_group = studentsGroup;
     }
 
     public List<EnrollmentDTO> getEnrollment()
     {
-        return enrollment;
+	return enrollment;
     }
 
     public void setEnrollment(List<EnrollmentDTO> enrollment)
     {
-        this.enrollment = enrollment;
+	this.enrollment = enrollment;
     }
 
     public List<LearningMaterialsDTO> getLearningMaterials()
     {
-        return learning_materials;
+	return learning_materials;
     }
 
     public void setLearningMaterials(List<LearningMaterialsDTO> learningMaterials)
     {
-        this.learning_materials = learningMaterials;
+	this.learning_materials = learningMaterials;
     }
 
     public List<PartialMarkDTO> getPartialMark()
     {
-        return partial_mark;
+	return partial_mark;
     }
 
     public void setPartialMark(List<PartialMarkDTO> partialMark)
     {
-        this.partial_mark = partialMark;
+	this.partial_mark = partialMark;
     }
 
     public List<ScheduledClassesDTO> getScheduledClasses()
     {
-        return scheduled_classes;
+	return scheduled_classes;
     }
 
     public void setScheduledClasses(List<ScheduledClassesDTO> scheduledClasses)
     {
-        this.scheduled_classes = scheduledClasses;
+	this.scheduled_classes = scheduledClasses;
     }
 
 }

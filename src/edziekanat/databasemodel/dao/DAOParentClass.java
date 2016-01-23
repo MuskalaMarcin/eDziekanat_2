@@ -3,7 +3,8 @@ package edziekanat.databasemodel.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
+
+import edziekanat.StartupListener;
 
 /**
  * Abstract class containing common methods and fields for DAO classes.
@@ -28,7 +29,7 @@ public abstract class DAOParentClass<T>
 
     protected EntityManager createEntityManager()
     {
-	return Persistence.createEntityManagerFactory("dbper").createEntityManager();
+	return StartupListener.createEntityManager();
     }
 
     protected T executeSingleResultQuery(String query)
@@ -73,22 +74,40 @@ public abstract class DAOParentClass<T>
     
     public void insert(T entity)
     {
-	entityManager.getTransaction().begin();
+	startTransaction();
 	entityManager.persist(entity);
 	entityManager.getTransaction().commit();
+	startTransaction();
+	entityManager.flush();
     }
     
     public void update(T entity)
     {
-	entityManager.getTransaction().begin();
+	startTransaction();
 	entityManager.merge(entity);
 	entityManager.getTransaction().commit();
+	startTransaction();
+	entityManager.flush();
     }
     
     public void remove(T entity)
     {
-	entityManager.getTransaction().begin();
+	startTransaction();
 	entityManager.remove(entity);
 	entityManager.getTransaction().commit();
+	startTransaction();
+	entityManager.flush();
+    }
+    
+    private void startTransaction()
+    {
+	if(entityManager.getTransaction().isActive())
+	{
+	    entityManager.joinTransaction();
+	}
+	else
+	{
+	    entityManager.getTransaction().begin();
+	}
     }
 }

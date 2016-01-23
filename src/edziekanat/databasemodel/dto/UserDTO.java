@@ -32,13 +32,16 @@ public class UserDTO
     private Integer isActive;
     @Column(name = "user_role")
     private String userRole;
-    @OneToOne(cascade = CascadeType.REMOVE, optional = true, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.REFRESH, optional = true,
+	    fetch = FetchType.LAZY)
     @JoinColumn(name = "lecturer_id", nullable = true)
     private LecturerDTO lecturer;
-    @OneToOne(cascade = CascadeType.REMOVE, optional = true, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.REFRESH, optional = true,
+	    fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id", nullable = true)
     private StudentDTO student;
-    @OneToOne(cascade = CascadeType.REMOVE, optional = true, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.REFRESH, optional = true,
+	    fetch = FetchType.LAZY)
     @JoinColumn(name = "administrator_id", nullable = true)
     private AdministratorDTO administrator;
     @OneToMany(mappedBy = "sender", fetch = FetchType.LAZY)

@@ -26,8 +26,8 @@ public class PaymentDTO implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name="PAYMENTSEQ",sequenceName="payment_id_seq", allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="PAYMENTSEQ")
+    @SequenceGenerator(name = "PAYMENTSEQ", sequenceName = "payment_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "PAYMENTSEQ")
     @Column(name = "id")
     private Integer id;
     @Column(name = "title")
@@ -42,10 +42,10 @@ public class PaymentDTO implements Serializable
     @Temporal(TemporalType.DATE)
     @Column(name = "payment_date")
     private Date paymentDate;
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
     private StudentDTO student;
-    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "administrator_id")
     private AdministratorDTO administrator;
 
@@ -111,21 +111,21 @@ public class PaymentDTO implements Serializable
 
     public StudentDTO getStudent()
     {
-        return student;
+	return student;
     }
 
     public void setStudent(StudentDTO student)
     {
-        this.student = student;
+	this.student = student;
     }
 
     public AdministratorDTO getAdministrator()
     {
-        return administrator;
+	return administrator;
     }
 
     public void setAdministrator(AdministratorDTO administrator)
     {
-        this.administrator = administrator;
+	this.administrator = administrator;
     }
 }

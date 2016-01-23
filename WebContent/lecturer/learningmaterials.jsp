@@ -73,7 +73,7 @@
 											<td>${material.name}</td>
 											<td>${material.description}</td>
 											<td>${material.subject.name}</td>
-											<td><a class="pure-button pure-button-primary" target="_blank" href="${material.file}">Pobierz</a></td>
+											<td><a class="pure-button pure-button-primary" target="_blank" href="${material.file}" download>Pobierz</a></td>
 											<td><form action="deletematerial" method=post>
 													<input name="materialId" type="text" value="${material.id}" hidden>
 													<input class="pure-button pure-button-primary" type="submit" value="Usuñ">
