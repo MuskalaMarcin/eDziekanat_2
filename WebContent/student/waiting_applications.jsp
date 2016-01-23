@@ -35,7 +35,7 @@
 					<li class="pure-menu-item  pure-menu-selected"><a
 						href="studentwaitingapplications" class="pure-menu-link">Wnioski
 							nierozpatrzone</a></li>
-					<li class="pure-menu-item"><a href="studentgetlecturers"
+					<li class="pure-menu-item"><a href="studentgetadministartors"
 						class="pure-menu-link">Nowy wniosek</a></li>
 					<li class="pure-menu-item menu-item-divided">
 					<li class="pure-menu-item"><a href="studentlecturers"

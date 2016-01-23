@@ -18,27 +18,32 @@
 				<a class="pure-menu-heading" href="home">eDziekanat</a>
 				<ul class="pure-menu-list">
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="lecturer">Strona g³ówna</a></li>
+						href="http://localhost:8080/eDziekanat/lecturer">Strona g³ówna</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="lecturerlearningmaterials">Materia³y dydaktyczne</a></li>
+						href="http://localhost:8080/eDziekanat/lecturerlearningmaterials">Materia³y
+							dydaktyczne</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="lecturerseestudents">Studenci</a></li>
+						href="http://localhost:8080/eDziekanat/lecturerseestudents">Studenci</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="lecturerseelecturers">Wyk³adowcy</a></li>
+						href="http://localhost:8080/eDziekanat/lecturerseelecturers">Wyk³adowcy</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="lecturerclassrooms">Dostêpno¶æ sal</a></li>
+						href="http://localhost:8080/eDziekanat/lecturerclassrooms">Dostêpno¶æ
+							sal</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="timetable">Plan zajêæ</a></li>
+						href="http://localhost:8080/eDziekanat/timetable">Plan zajêæ</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="lecturersubjects">Moje przedmioty</a></li>
-					<li class="pure-menu-item menu-item-divided"><a
-						href="#" class="pure-menu-link">Historia komunikatów</a></li>
+						href="http://localhost:8080/eDziekanat/lecturersubjects">Moje
+							przedmioty</a></li>
+					<li class="pure-menu-item menu-item-divided"><a href="#"
+						class="pure-menu-link">Historia komunikatów</a></li>
 					<li class="pure-menu-item"><a
-						href="receivedmessages" class="pure-menu-link">Skrzynka odbiorcza</a></li>
+						href="http://localhost:8080/eDziekanat/receivedmessages"
+						class="pure-menu-link">Skrzynka odbiorcza</a></li>
 					<li class="pure-menu-item"><a
-						href="sentmessages" class="pure-menu-link">Skrzynka nadawcza</a></li>
-					<li class="pure-menu-item   menu-item-divided"><a href="logout"
-						class="pure-menu-link">Wyloguj</a>
+						href="http://localhost:8080/eDziekanat/sentmessages"
+						class="pure-menu-link">Skrzynka nadawcza</a></li>
+					<li class="pure-menu-item   menu-item-divided"><a
+						href="logout" class="pure-menu-link">Wyloguj</a>
 				</ul>
 			</div>
 		</div>

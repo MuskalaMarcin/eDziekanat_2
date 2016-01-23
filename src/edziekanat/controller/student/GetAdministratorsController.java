@@ -17,17 +17,17 @@ import edziekanat.databasemodel.dto.AdministratorDTO;
 import edziekanat.databasemodel.dto.StudentsGroupDTO;
 
 /**
- * Servlet implementation class GetLecturersController
+ * Servlet implementation class GetAdministratorsController
  */
-@WebServlet("/studentgetlecturers")
-public class GetLecturersController extends HttpServlet
+@WebServlet("/studentgetadministartors")
+public class GetAdministratorsController extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetLecturersController()
+    public GetAdministratorsController()
     {
 	super();
     }
