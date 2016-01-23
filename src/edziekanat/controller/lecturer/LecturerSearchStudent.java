@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edziekanat.databasemodel.dao.LecturerDAO;
 import edziekanat.databasemodel.dao.StudentDAO;
-import edziekanat.databasemodel.dto.LecturerDTO;
 import edziekanat.databasemodel.dto.StudentDTO;
 
 /**

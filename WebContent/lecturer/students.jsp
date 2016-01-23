@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet" href="resources/pure-min.css">
 <link rel="stylesheet" href="resources/styles.css">
-<title>eDziekanat - Wykładowcy</title>
+<title>eDziekanat - Studenci</title>
 </head>
 <body>
 	<div id="layout">
@@ -44,7 +44,7 @@
 			<div class="content">
 				<h2 class="content-subhead">Studenci:</h2>
 				<center>
-					<form class="pure-form" action="lecturersearchstudents">
+					<form class="pure-form" action="lecturersearchstudents" method=post>
 						Imię: <input type="text" name="searchedName"
 							class="pure-input-rounded"> 
 						Nazwisko: <input type="text" name="searchedSurname" 

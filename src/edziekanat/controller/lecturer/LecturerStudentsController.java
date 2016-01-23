@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.LecturerDAO;
 import edziekanat.databasemodel.dao.SubjectDAO;
-import edziekanat.databasemodel.dto.FacultyDTO;
-import edziekanat.databasemodel.dto.LecturerDTO;
 import edziekanat.databasemodel.dto.StudentDTO;
 import edziekanat.databasemodel.dto.StudentsGroupDTO;
 import edziekanat.databasemodel.dto.SubjectDTO;
@@ -50,6 +48,7 @@ public class LecturerStudentsController extends HttpServlet
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
      *      response)
      */
+    @SuppressWarnings("unchecked")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	List<StudentDTO> students = new LinkedList<StudentDTO>();

@@ -44,7 +44,7 @@
 			<div class="content">
 				<h2 class="content-subhead">Wyk³adowcy:</h2>
 				<center>
-					<form class="pure-form" action="lecturersearchlecturers">
+					<form class="pure-form" action="lecturersearchlecturers"  method=post>
 						Imiê: <input type="text" name="searchedName"
 							class="pure-input-rounded"> 
 						Nazwisko: <input type="text" name="searchedSurname" 

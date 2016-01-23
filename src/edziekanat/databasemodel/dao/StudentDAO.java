@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import edziekanat.databasemodel.TableNames;
-import edziekanat.databasemodel.dto.LecturerDTO;
 import edziekanat.databasemodel.dto.StudentDTO;
 
 /**

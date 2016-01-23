@@ -14,7 +14,6 @@ import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.AdministratorDAO;
 import edziekanat.databasemodel.dao.ApplicationDAO;
 import edziekanat.databasemodel.dao.StudentDAO;
-import edziekanat.databasemodel.dao.UserDAO;
 import edziekanat.databasemodel.dto.AdministratorDTO;
 import edziekanat.databasemodel.dto.ApplicationDTO;
 
@@ -48,8 +47,8 @@ public class NewApplicationController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	UserDAO userDAO = new UserDAO();
 	StudentDAO studentDAO = new StudentDAO();
+	@SuppressWarnings("unchecked")
 	List<AdministratorDTO> adminList = (List<AdministratorDTO>) request.getAttribute("adminList");
 	ApplicationDTO newApplication = new ApplicationDTO();
 	request.setAttribute("adminList", adminList);

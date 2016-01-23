@@ -1,14 +1,10 @@
 package edziekanat.databasemodel.dao;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.LecturerDTO;
-import edziekanat.databasemodel.dto.StudentsGroupDTO;
-import edziekanat.databasemodel.dto.SubjectDTO;
-import edziekanat.databasemodel.dto.TranscriptDTO;
 
 /**
  * Data access class used to perform operations on lecturer entities.

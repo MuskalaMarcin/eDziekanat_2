@@ -46,8 +46,6 @@ public class ApplicationsController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	LoginBean loginBean = (LoginBean) request.getSession().getAttribute("loginBean");
-
 	List<ApplicationDTO> applications = new ApplicationDAO()
 		.getApplications(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
 	Collections.sort(applications, (x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()));

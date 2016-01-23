@@ -78,7 +78,6 @@ public abstract class DAOParentClass<T>
 	entityManager.persist(entity);
 	entityManager.getTransaction().commit();
 	startTransaction();
-	entityManager.flush();
     }
     
     public void update(T entity)
@@ -87,7 +86,6 @@ public abstract class DAOParentClass<T>
 	entityManager.merge(entity);
 	entityManager.getTransaction().commit();
 	startTransaction();
-	entityManager.flush();
     }
     
     public void remove(T entity)
@@ -96,7 +94,6 @@ public abstract class DAOParentClass<T>
 	entityManager.remove(entity);
 	entityManager.getTransaction().commit();
 	startTransaction();
-	entityManager.flush();
     }
     
     private void startTransaction()
