@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.bean.LoginBean;
-import edziekanat.databasemodel.dao.LearningMaterialsDAO;
+import edziekanat.databasemodel.dao.LecturerDAO;
 
 /**
- * Servlet implementation class LecturerLearningMaterialsController
+ * Servlet implementation class AddLearningMaterials
  */
-@WebServlet("/lecturerlearningmaterials")
-public class LecturerLearningMaterialsController extends HttpServlet
+@WebServlet("/newlearningmaterials")
+public class NewLearningMaterials extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
@@ -32,10 +32,9 @@ public class LecturerLearningMaterialsController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	request.setAttribute("learningMaterials", new LearningMaterialsDAO().getLecturerLearningMaterials(
-		((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
-	
-	request.getRequestDispatcher("lecturer/learningmaterials.jsp").forward(request, response);
+	request.setAttribute("subjects", new LecturerDAO()
+		.getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()).getSubject());
+	request.getRequestDispatcher("lecturer/newlearningmaterials.jsp").forward(request, response);
     }
 
 }

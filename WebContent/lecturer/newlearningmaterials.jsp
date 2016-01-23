@@ -19,11 +19,11 @@
 						href="lecturer">Strona g³ówna</a></li>
 					<li class="pure-menu-item menu-item-divided"><a
 						class="pure-menu-link" href="#">Materia³y dydaktyczne</a></li>
-					<li class="pure-menu-item pure-menu-selected"><a
-						class="pure-menu-link" href="lecturerlearningmaterials ">Moje
-							materia³y</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="newlearningmaterials">Dodaj materia³y</a></li>
+						href="lecturerlearningmaterials">Moje materia³y</a></li>
+					<li class="pure-menu-item pure-menu-selected"><a
+						class="pure-menu-link" href="newlearningmaterials">Dodaj
+							materia³y</a></li>
 					<li class="pure-menu-item menu-item-divided"><a
 						class="pure-menu-link" href="lecturerseestudents">Studenci</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
@@ -47,44 +47,34 @@
 				<h2>Twój wirtualny dziekanat.</h2>
 			</div>
 			<div class="content">
-				<h2 class="content-subhead">Moje materia³y dydaktyczne:</h2>
-				<c:choose>
-					<c:when test="${empty learningMaterials}">
-						<p>Brak dodanych materia³ów dydaktycznych.</p>
-					</c:when>
-					<c:otherwise>
-						<center>
-							<table class="pure-table pure-table-bordered">
-								<thead>
-									<tr style="text-align: center;">
-										<td>Nr</td>
-										<td>Nazwa</td>
-										<td>Opis</td>
-										<td>Przedmiot</td>
-										<td>Pobierz</td>
-										<td>Usuñ</td>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${learningMaterials}" var="material"
-										varStatus="varStatus">
-										<tr style="text-align: center;">
-											<td>${varStatus.index + 1}</td>
-											<td>${material.name}</td>
-											<td>${material.description}</td>
-											<td>${material.subject.name}</td>
-											<td><a class="pure-button pure-button-primary" target="_blank" href="${material.file}">Pobierz</a></td>
-											<td><form action="deletematerial" method=post>
-													<input name="materialId" type="text" value="${material.id}" hidden>
-													<input class="pure-button pure-button-primary" type="submit" value="Usuñ">
-												</form></td>
-										</tr>
+				<h2 class="content-subhead">Dodaj materia³y dydaktyczne:</h2>
+				<center>
+					<form class="pure-form pure-form-aligned"
+						action="addlearningmaterials" method=post enctype="multipart/form-data">
+						<fieldset class="pure-group">
+							<center>
+								<label for="state">Przedmiot</label> <select name="subjectId"
+									style="width: 42%" id="state">
+									<c:forEach items="${subjects}" var="subject">
+										<option value="${subject.id}">${subject.name}</option>
 									</c:forEach>
-								</tbody>
-							</table>
-						</center>
-					</c:otherwise>
-				</c:choose>
+								</select>
+							</center>
+						</fieldset>
+						<fieldset class="pure-group">
+							<input type="text" name="name" class="pure-input-1-2"
+								placeholder="Nazwa" required>
+
+							<textarea name="description" class="pure-input-1-2"
+								placeholder="Opis" required></textarea>
+
+							<input type="file" name="newFile" class="pure-input-1-2" required>
+						</fieldset>
+
+						<button type="submit"
+							class="pure-button pure-input-1-2 pure-button-primary">Wy¶lij</button>
+					</form>
+				</center>
 			</div>
 		</div>
 	</div>

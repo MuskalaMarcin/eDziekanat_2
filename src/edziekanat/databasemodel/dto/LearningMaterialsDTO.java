@@ -1,6 +1,5 @@
 package edziekanat.databasemodel.dto;
 
-import java.io.File;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
@@ -24,16 +23,16 @@ public class LearningMaterialsDTO implements Serializable
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name="LEARNINGMATERIALSSEQ",sequenceName="learning_materials_id_seq", allocationSize=1)
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="LEARNINGMATERIALSSEQ")
+    @SequenceGenerator(name = "LEARNINGMATERIALSSEQ", sequenceName = "learning_materials_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "LEARNINGMATERIALSSEQ")
     @Column(name = "id")
     private Integer id;
     @Column(name = "name")
     private String name;
     @Column(name = "description")
     private String description;
-    @Column(name = "file")
-    private File file;
+    @Column(name = "file_link", columnDefinition = "BFILE NOT NULL")
+    private String file;
     @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "subject_id")
     private SubjectDTO subject;
@@ -68,23 +67,23 @@ public class LearningMaterialsDTO implements Serializable
 	this.description = description;
     }
 
-    public File getFile()
+    public String getFile()
     {
 	return file;
     }
 
-    public void setFile(File file)
+    public void setFile(String file)
     {
 	this.file = file;
     }
 
     public SubjectDTO getSubject()
     {
-        return subject;
+	return subject;
     }
 
     public void setSubject(SubjectDTO subject)
     {
-        this.subject = subject;
+	this.subject = subject;
     }
 }
