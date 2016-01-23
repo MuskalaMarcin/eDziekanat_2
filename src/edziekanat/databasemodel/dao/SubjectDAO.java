@@ -57,4 +57,10 @@ public class SubjectDAO extends DAOParentClass<SubjectDTO>
 	Collections.sort(semesterSubjects, (x, y) -> x.getName().compareTo(y.getName()));
 	return semesterSubjects;
     }
+    
+    public List<SubjectDTO> getLecturerSubjects(Integer lecturerId) {
+	List <SubjectDTO> allSubjects = new LinkedList<SubjectDTO>();
+	allSubjects.addAll(new LecturerDAO().getEntity(lecturerId).getSubject());
+	return allSubjects;
+    }
 }

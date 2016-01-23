@@ -2,7 +2,6 @@ package edziekanat.controller.lecturer;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,26 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.LecturerDAO;
-import edziekanat.databasemodel.dao.StudentDAO;
-import edziekanat.databasemodel.dto.AdministratorDTO;
-import edziekanat.databasemodel.dto.FacultyDTO;
 import edziekanat.databasemodel.dto.LecturerDTO;
-import edziekanat.databasemodel.dto.StudentsGroupDTO;
 
 /**
- * Servlet implementation class LecturerSeeLecturersController
+ * Servlet implementation class LecturerSearchLecturer
  */
-@WebServlet("/lecturerseelecturers")
-public class LecturerSeeLecturersController extends HttpServlet
+@WebServlet("/lecturersearchlecturers")
+public class LecturerSearchLecturer extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LecturerSeeLecturersController()
+    public LecturerSearchLecturer()
     {
 	super();
     }
@@ -50,27 +44,24 @@ public class LecturerSeeLecturersController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<LecturerDTO> lecturers = new LinkedList<LecturerDTO>();
-	if (request.getParameter("lecturers") == null)
+	String name = request.getParameter("searchedName").toString();
+	String surname = request.getParameter("searchedSurname").toString();
+	if (!name.equals(""))
 	{
-	    for (FacultyDTO faculty : new LecturerDAO()
-		    .getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()).getFaculty())
-	    {
-		lecturers.addAll(faculty.getLecturer());
-	    }
+	    List<LecturerDTO> lecturers = new LecturerDAO().getLecturersByNameAndSurname(name, surname);
 	    request.setAttribute("lecturers", removeDuplicates(lecturers));
 	    request.getRequestDispatcher("lecturer/lecturers").forward(request, response);
 	}
 	else
 	{
-	    lecturers = (List<LecturerDTO>) request.getAttribute("lecturers");
+	    List<LecturerDTO> lecturers = new LecturerDAO().getLecturersBySurname(surname);
 	    request.setAttribute("lecturers", removeDuplicates(lecturers));
 	    request.getRequestDispatcher("lecturer/lecturers").forward(request, response);
 	}
     }
 
     /**
-     * Removes duplicated administrators, then sorts them by surname.
+     * Removes duplicated lecturers, then sorts them by surname.
      * 
      * @param lecturers
      * @return
@@ -91,5 +82,4 @@ public class LecturerSeeLecturersController extends HttpServlet
 	Collections.sort(lecturers, (x, y) -> x.getSurname().compareTo(y.getSurname()));
 	return lecturers;
     }
-
 }

@@ -37,6 +37,7 @@
 					<li class="pure-menu-item"><a
 						href="http://localhost:8080/eDziekanat/studentpayments"
 						class="pure-menu-link">P³atno¶ci</a></li>
+					<li class="pure-menu-item   menu-item-divided">
 					<li class="pure-menu-item"><a
 						href="http://localhost:8080/eDziekanat/studentapplications"
 						class="pure-menu-link">Wnioski rozpatrzone </a></li>
@@ -44,7 +45,7 @@
 						href="http://localhost:8080/eDziekanat/studentwaitingapplications"
 						class="pure-menu-link">Wnioski nierozpatrzone</a></li>
 					<li class="pure-menu-item  pure-menu-selected"><a
-						href="studentgetlecturers" class="pure-menu-link">Nowy wniosek</a></li>
+						href="studentgetadministartors" class="pure-menu-link">Nowy wniosek</a></li>
 					<li class="pure-menu-item"><a
 						href="http://localhost:8080/eDziekanat/studentlecturers"
 						class="pure-menu-link">Wyk³adowcy</a></li>
