@@ -19,7 +19,7 @@
 						href="student" class="pure-menu-link">Strona g³ówna</a></li>
 					<li class="pure-menu-item"><a href="studenttranscript"
 						class="pure-menu-link">Indeks</a></li>
-					<li class="pure-menu-item"><a href="studenttimetable"
+					<li class="pure-menu-item"><a href="timetable"
 						class="pure-menu-link">Plan zajêæ</a></li>
 					<li class="pure-menu-item"><a href="studentsubjects"
 						class="pure-menu-link">Moje przedmioty</a></li>

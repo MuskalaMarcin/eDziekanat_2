@@ -26,7 +26,7 @@
 						href="http://localhost:8080/eDziekanat/studenttranscript"
 						class="pure-menu-link">Indeks</a></li>
 					<li class="pure-menu-item"><a
-						href="http://localhost:8080/eDziekanat/studenttimetable"
+						href="http://localhost:8080/eDziekanat/timetable"
 						class="pure-menu-link">Plan zajêæ</a></li>
 					<li class="pure-menu-item"><a
 						href="http://localhost:8080/eDziekanat/studentsubjects"

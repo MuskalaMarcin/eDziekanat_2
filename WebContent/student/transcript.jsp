@@ -34,7 +34,7 @@
 						</li>
 					</c:forEach>
 					<li class="pure-menu-item  menu-item-divided"><a
-						href="studenttimetable" class="pure-menu-link">Plan zajêæ</a></li>
+						href="timetable" class="pure-menu-link">Plan zajêæ</a></li>
 					<li class="pure-menu-item"><a href="studentsubjects"
 						class="pure-menu-link">Moje przedmioty</a></li>
 					<li class="pure-menu-item"><a href="studentscholarships"

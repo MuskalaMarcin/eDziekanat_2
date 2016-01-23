@@ -16,10 +16,16 @@
 			<div class="pure-menu">
 				<a class="pure-menu-heading" href="home">eDziekanat</a>
 				<ul class="pure-menu-list">
-					<li class="pure-menu-item"><a href="student"
-						class="pure-menu-link">Strona g³ówna</a></li>
-					<li class="pure-menu-item"><a href="studenttranscript"
-						class="pure-menu-link">Indeks</a></li>
+					<li class="pure-menu-item pure-menu-selected"><a
+						class="pure-menu-link" href="lecturer">Strona g³ówna</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="lecturerlearningmaterials">Materia³y dydaktyczne</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="lecturerseestudents">Studenci</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="lecturerseelecturers">Wyk³adowcy</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="lecturerclassrooms">Dostêpno¶æ sal</a></li>
 					<li class="pure-menu-item menu-item-divided"><a
 						href="timetable" class="pure-menu-link">Plan zajêæ</a></li>
 					<li class="pure-menu-item">
@@ -30,8 +36,7 @@
 						</form>
 					</li>
 					<li class="pure-menu-item pure-menu-selected"><a href="#"
-						class="pure-menu-link"> 
-						<c:choose>
+						class="pure-menu-link"> <c:choose>
 								<c:when test="${currentWeek == true}">Aktualny tydzieñ</c:when>
 								<c:otherwise>Tydzieñ ${selectedWeek}</c:otherwise>
 							</c:choose>
@@ -44,19 +49,11 @@
 						</form>
 					</li>
 					<li class="pure-menu-item menu-item-divided"><a
-						href="studentsubjects" class="pure-menu-link">Moje przedmioty</a></li>
-					<li class="pure-menu-item"><a href="studentscholarships"
-						class="pure-menu-link">Stypendia</a></li>
-					<li class="pure-menu-item"><a href="studentwaitingpayments"
-						class="pure-menu-link">P³atno¶ci</a></li>
-					<li class="pure-menu-item"><a href="studentapplications"
-						class="pure-menu-link">Wnioski</a></li>
-					<li class="pure-menu-item"><a href="studentlecturers"
-						class="pure-menu-link">Wyk³adowcy</a></li>
-					<li class="pure-menu-item"><a href="receivedmessages"
-						class="pure-menu-link">Historia komunikatów</a></li>
-					<li class="pure-menu-item"><a href="logout"
-						class="pure-menu-link">Wyloguj</a>
+						class="pure-menu-link" href="lecturersubjects">Moje przedmioty</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="receivedmessages">Historia komunikatów</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="logout">Wyloguj</a></li>
 				</ul>
 			</div>
 		</div>

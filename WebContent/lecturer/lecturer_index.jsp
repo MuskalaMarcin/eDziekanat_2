@@ -25,7 +25,7 @@
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="lecturerclassrooms">Dostêpno¶æ sal</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="lecturertimetable">Plan zajêæ</a></li>
+						href="timetable">Plan zajêæ</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="lecturersubjects">Moje przedmioty</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"

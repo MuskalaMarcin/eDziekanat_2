@@ -39,4 +39,16 @@ public class ScheduledClassesDAO extends DAOParentClass<ScheduledClassesDTO>
 	
 	return scheduledClasses;
     }
+    
+    public List<ScheduledClassesDTO> getLecturersClasses(Integer lecturerId)
+    {
+	List<ScheduledClassesDTO> scheduledClasses = new LinkedList<ScheduledClassesDTO>();
+	
+	for(SubjectDTO subject: new LecturerDAO().getEntity(lecturerId).getSubject())
+	{
+	    scheduledClasses.addAll(subject.getScheduledClasses());
+	}
+	
+	return scheduledClasses;
+    }
 }

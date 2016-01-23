@@ -1,4 +1,4 @@
-package edziekanat.controller.student;
+package edziekanat.controller.common;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -21,7 +21,7 @@ import edziekanat.databasemodel.dto.ScheduledClassesDTO;
 /**
  * Servlet implementation class TimetableController
  */
-@WebServlet("/studenttimetable")
+@WebServlet("/timetable")
 public class TimetableController extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
@@ -40,8 +40,17 @@ public class TimetableController extends HttpServlet
     @SuppressWarnings("deprecation")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<ScheduledClassesDTO> scheduledClassesList = new ScheduledClassesDAO()
-		.getStudentsClasses(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
+	List<ScheduledClassesDTO> scheduledClassesList = null;
+	if (request.isUserInRole("student"))
+	{
+	    scheduledClassesList = new ScheduledClassesDAO()
+		    .getStudentsClasses(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
+	}
+	else if (request.isUserInRole("lecturer"))
+	{
+	    scheduledClassesList = new ScheduledClassesDAO()
+		    .getLecturersClasses(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
+	}
 
 	Calendar calendar = Calendar.getInstance();
 	calendar.setFirstDayOfWeek(Calendar.MONDAY);
@@ -106,7 +115,10 @@ public class TimetableController extends HttpServlet
 	}
 	request.setAttribute("selectedWeek", selectedWeek);
 
-	request.getRequestDispatcher("student/timetable").forward(request, response);
+	if (request.isUserInRole("student"))
+	    request.getRequestDispatcher("student/timetable.jsp").forward(request, response);
+	else if (request.isUserInRole("lecturer"))
+	    request.getRequestDispatcher("lecturer/timetable.jsp").forward(request, response);
     }
 
 }

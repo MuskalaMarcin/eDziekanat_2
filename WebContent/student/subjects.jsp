@@ -20,7 +20,7 @@
 						class="pure-menu-link">Strona g³ówna</a></li>
 					<li class="pure-menu-item"><a href="studenttranscript"
 						class="pure-menu-link">Indeks</a></li>
-					<li class="pure-menu-item"><a href="studenttimetable"
+					<li class="pure-menu-item"><a href="timetable"
 						class="pure-menu-link">Plan zajêæ</a></li>
 					<li
 						class="pure-menu-item menu-item-divided <c:if test="${noSubjects==true}">pure-menu-selected</c:if>"><a
