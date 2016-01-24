@@ -36,8 +36,7 @@ public class LecturerStudentsController extends HttpServlet
     }
 
     /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -45,8 +44,7 @@ public class LecturerStudentsController extends HttpServlet
     }
 
     /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     @SuppressWarnings("unchecked")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -67,12 +65,14 @@ public class LecturerStudentsController extends HttpServlet
 	}
 	else if (request.getParameter("students") == null && request.getParameter("subjectId") != null)
 	{
-	    for (StudentsGroupDTO group : new SubjectDAO()
-		    .getEntity(Integer.parseInt(request.getParameter("subjectId").toString())).getStudents_group())
+	    SubjectDTO subject = new SubjectDAO()
+		    .getEntity(Integer.parseInt(request.getParameter("subjectId").toString()));
+	    for (StudentsGroupDTO group : subject.getStudents_group())
 	    {
 		students.addAll(group.getStudent());
 	    }
 	    request.setAttribute("students", removeDuplicates(students));
+	    request.setAttribute("subject", subject);
 	    request.getRequestDispatcher("lecturer/students").forward(request, response);
 	}
 	else

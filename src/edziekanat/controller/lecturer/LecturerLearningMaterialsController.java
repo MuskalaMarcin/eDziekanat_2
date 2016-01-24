@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.LearningMaterialsDAO;
+import edziekanat.databasemodel.dao.SubjectDAO;
+import edziekanat.databasemodel.dto.SubjectDTO;
 
 /**
  * Servlet implementation class LecturerLearningMaterialsController
@@ -32,9 +34,18 @@ public class LecturerLearningMaterialsController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	request.setAttribute("learningMaterials", new LearningMaterialsDAO().getLecturerLearningMaterials(
-		((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
-	
+	if (request.getParameter("subjectId") == null)
+	{
+	    request.setAttribute("learningMaterials", new LearningMaterialsDAO().getLecturerLearningMaterials(
+		    ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
+	}
+	else
+	{
+	    SubjectDTO subject = new SubjectDAO().getEntity(Integer.parseInt(request.getParameter("subjectId")));
+	    request.setAttribute("learningMaterials", subject.getLearningMaterials());
+	    request.setAttribute("subject", subject);
+	}
+
 	request.getRequestDispatcher("lecturer/learningmaterials.jsp").forward(request, response);
     }
 

@@ -19,10 +19,10 @@
 						href="lecturer">Strona g³ówna</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="lecturerlearningmaterials">Materia³y dydaktyczne</a></li>
-					<li class="pure-menu-item pure-menu-selected"><a class="pure-menu-link"
-						href="lecturerseestudents">Studenci</a></li>
-					<li class="pure-menu-item"><a
-						class="pure-menu-link" href="lecturerseelecturers">Wyk³adowcy</a></li>
+					<li class="pure-menu-item pure-menu-selected"><a
+						class="pure-menu-link" href="lecturerseestudents">Studenci</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="lecturerseelecturers">Wyk³adowcy</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="lecturerclassrooms">Dostêpno¶æ sal</a></li>
 					<li class="pure-menu-item"><a href="timetable"
@@ -42,39 +42,47 @@
 				<h2>Twój wirtualny dziekanat.</h2>
 			</div>
 			<div class="content">
-				<h2 class="content-subhead">Studenci:</h2>
+				<h2 class="content-subhead">Studenci: ${subject.name}</h2>
 				<center>
 					<form class="pure-form" action="lecturersearchstudents" method=post>
 						Imiê: <input type="text" name="searchedName"
-							class="pure-input-rounded"> 
-						Nazwisko: <input type="text" name="searchedSurname" 
-							class="pure-input-rounded" required>
+							class="pure-input-rounded"> Nazwisko: <input type="text"
+							name="searchedSurname" class="pure-input-rounded" required>
 						<button type="submit" class="pure-button pure-button-primary">Szukaj</button>
 					</form>
 				</center>
 				<p>
-				<table class="responseTable">
-					<tr class="grayRow">
-						<td>Imiê</td>
-						<td>Nazwisko</td>
-						<td>e-Mail</td>
-					</tr>
-					<c:forEach items="${students}" var="student">
-						<tr>
-							<td>${student.name}</td>
-							<td>${student.surname}</td>
-							<td>${student.user.eMail}</td>
-							<td id="respond">
-								<form action="lecturer/newmessage" method=post>
-									<input type="hidden" name="receiverLogin"
-										value="${student.user.login}"> <input
-										class="pure-button pure-input-1-2 pure-button-primary"
-										type="submit" value="Kontakt">
-								</form>
-							</td>
-						</tr>
-					</c:forEach>
-				</table>
+					<c:choose>
+						<c:when test="${empty students }">
+							<center>Nie znaleziono studentów pasuj±cych do kryteriów
+								wyszukiwania.</center>
+						</c:when>
+						<c:otherwise>
+							<table class="responseTable">
+								<tr class="grayRow">
+									<td>Imiê</td>
+									<td>Nazwisko</td>
+									<td>e-Mail</td>
+								</tr>
+
+								<c:forEach items="${students}" var="student">
+									<tr>
+										<td>${student.name}</td>
+										<td>${student.surname}</td>
+										<td>${student.user.eMail}</td>
+										<td id="respond">
+											<form action="lecturer/newmessage" method=post>
+												<input type="hidden" name="receiverLogin"
+													value="${student.user.login}"> <input
+													class="pure-button pure-input-1-2 pure-button-primary"
+													type="submit" value="Kontakt">
+											</form>
+										</td>
+									</tr>
+								</c:forEach>
+							</table>
+						</c:otherwise>
+					</c:choose>
 			</div>
 		</div>
 	</div>

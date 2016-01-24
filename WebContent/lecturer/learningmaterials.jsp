@@ -47,7 +47,12 @@
 				<h2>Twój wirtualny dziekanat.</h2>
 			</div>
 			<div class="content">
-				<h2 class="content-subhead">Moje materia³y dydaktyczne:</h2>
+				<h2 class="content-subhead">
+					<c:choose>
+						<c:when test="${empty subject }">Moje materia³y dydaktyczne:</c:when>
+						<c:otherwise>Materia³y dydaktyczne przedmiotu: ${subject.name}</c:otherwise>
+					</c:choose>
+				</h2>
 				<c:choose>
 					<c:when test="${empty learningMaterials}">
 						<p>Brak dodanych materia³ów dydaktycznych.</p>
@@ -73,10 +78,13 @@
 											<td>${material.name}</td>
 											<td>${material.description}</td>
 											<td>${material.subject.name}</td>
-											<td><a class="pure-button pure-button-primary" target="_blank" href="${material.file}" download>Pobierz</a></td>
+											<td><a class="pure-button pure-button-primary"
+												target="_blank" href="${material.file}" download>Pobierz</a></td>
 											<td><form action="deletematerial" method=post>
-													<input name="materialId" type="text" value="${material.id}" hidden>
-													<input class="pure-button pure-button-primary" type="submit" value="Usuñ">
+													<input name="materialId" type="text" value="${material.id}"
+														hidden> <input
+														class="pure-button pure-button-primary" type="submit"
+														value="Usuñ">
 												</form></td>
 										</tr>
 									</c:forEach>
