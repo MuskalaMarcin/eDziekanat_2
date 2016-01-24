@@ -12,17 +12,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.bean.LoginBean;
-import edziekanat.databasemodel.dao.PartialMarkDAO;
+import edziekanat.databasemodel.dao.EnrollmentDAO;
 import edziekanat.databasemodel.dao.StudentDAO;
 import edziekanat.databasemodel.dao.SubjectDAO;
-import edziekanat.databasemodel.dto.PartialMarkDTO;
+import edziekanat.databasemodel.dto.EnrollmentDTO;
 import edziekanat.databasemodel.dto.SubjectDTO;
 
 /**
- * Servlet implementation class StudentMarks
+ * Servlet implementation class StudentEnrollments
  */
-@WebServlet("/studentmarks")
-public class StudentMarks extends HttpServlet
+@WebServlet("/studentenrollments")
+public class StudentEnrollments extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
@@ -41,15 +41,16 @@ public class StudentMarks extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<PartialMarkDTO> partialMarks = new LinkedList<PartialMarkDTO>();
+	List<EnrollmentDTO> enrollments = new LinkedList<EnrollmentDTO>();
 	if (!request.getParameter("subjectId").isEmpty())
 	{
 	    request.setAttribute("subject",
 		    new SubjectDAO().getEntity(Integer.parseInt(request.getParameter("subjectId"))));
-	    partialMarks = new PartialMarkDAO().getStudentMarksFromSubject(Integer.parseInt(request.getParameter("subjectId")),
+	    enrollments = new EnrollmentDAO().getStudentEnrollmentsFromSubject(
+		    Integer.parseInt(request.getParameter("subjectId")),
 		    Integer.parseInt(request.getParameter("studentId")));
-	    Collections.sort(partialMarks, (x, y) -> y.getIssueDate().compareTo(x.getIssueDate()));
-	    request.setAttribute("partialMarks", partialMarks);
+	    Collections.sort(enrollments, (x, y) -> y.getIssueDate().compareTo(x.getIssueDate()));
+	    request.setAttribute("enrollments", enrollments);
 	}
 	else
 	{
@@ -58,17 +59,17 @@ public class StudentMarks extends HttpServlet
 		    ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
 	    for (int i = 0; i < subjects.size(); i++)
 	    {
-		partialMarks.addAll(new PartialMarkDAO().getStudentMarksFromSubject(
+		enrollments.addAll(new EnrollmentDAO().getStudentEnrollmentsFromSubject(
 			Integer.parseInt(request.getParameter("studentId")), subjects.get(i).getId()));
 	    }
-	    Collections.sort(partialMarks, (x, y) -> y.getIssueDate().compareTo(x.getIssueDate()));
+	    Collections.sort(enrollments, (x, y) -> y.getIssueDate().compareTo(x.getIssueDate()));
 	    request.setAttribute("subject", subjects);
-	    request.setAttribute("partialMarks", partialMarks);
+	    request.setAttribute("enrollments", enrollments);
 	}
 	request.setAttribute("student",
 		new StudentDAO().getEntity(Integer.parseInt(request.getParameter("studentId"))));
 
-	request.getRequestDispatcher("lecturer/studentmarks.jsp").forward(request, response);
+	request.getRequestDispatcher("lecturer/studentenrollments.jsp").forward(request, response);
     }
 
 }

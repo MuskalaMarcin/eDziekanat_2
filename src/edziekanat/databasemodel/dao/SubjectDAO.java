@@ -21,7 +21,8 @@ public class SubjectDAO extends DAOParentClass<SubjectDTO>
     /**
      * Method getting one object of Subject entity.
      * 
-     * @param id Integer id value
+     * @param id
+     *            Integer id value
      * @return SubjectDTO object
      */
     public SubjectDTO getEntity(Integer id)
@@ -31,10 +32,10 @@ public class SubjectDAO extends DAOParentClass<SubjectDTO>
 
     public List<SubjectDTO> getStudentSubjects(Integer studentId)
     {
-	List <SubjectDTO> allSubjects = new LinkedList<SubjectDTO>();
-	for(StudentsGroupDTO stgroup: new StudentDAO().getEntity(studentId).getStudentsGroup())
+	List<SubjectDTO> allSubjects = new LinkedList<SubjectDTO>();
+	for (StudentsGroupDTO stgroup : new StudentDAO().getEntity(studentId).getStudentsGroup())
 	{
-	    for(SubjectDTO subject: stgroup.getSubject())
+	    for (SubjectDTO subject : stgroup.getSubject())
 	    {
 		allSubjects.add(subject);
 	    }
@@ -42,13 +43,13 @@ public class SubjectDAO extends DAOParentClass<SubjectDTO>
 	Collections.sort(allSubjects, (x, y) -> y.getSemester().compareTo(x.getSemester()));
 	return allSubjects;
     }
-    
+
     public List<SubjectDTO> getStudentsSubjectsFromSemester(Integer studentId, Integer semester)
     {
-	List <SubjectDTO> semesterSubjects = getStudentSubjects(studentId);
-	for(int i=0;i<semesterSubjects.size();i++)
+	List<SubjectDTO> semesterSubjects = getStudentSubjects(studentId);
+	for (int i = 0; i < semesterSubjects.size(); i++)
 	{
-	    if(semesterSubjects.get(i).getSemester().compareTo(semester)!=0)
+	    if (semesterSubjects.get(i).getSemester().compareTo(semester) != 0)
 	    {
 		semesterSubjects.remove(i);
 		i--;
@@ -57,10 +58,26 @@ public class SubjectDAO extends DAOParentClass<SubjectDTO>
 	Collections.sort(semesterSubjects, (x, y) -> x.getName().compareTo(y.getName()));
 	return semesterSubjects;
     }
-    
-    public List<SubjectDTO> getLecturerSubjects(Integer lecturerId) {
-	List <SubjectDTO> allSubjects = new LinkedList<SubjectDTO>();
+
+    public List<SubjectDTO> getLecturerSubjects(Integer lecturerId)
+    {
+	List<SubjectDTO> allSubjects = new LinkedList<SubjectDTO>();
 	allSubjects.addAll(new LecturerDAO().getEntity(lecturerId).getSubject());
+	return allSubjects;
+    }
+
+    public List<SubjectDTO> getStudentAndLecturerSubjects(Integer studentId, Integer lecturerId)
+    {
+	List<SubjectDTO> allSubjects = new LinkedList<SubjectDTO>();
+	for (StudentsGroupDTO stgroup : new StudentDAO().getEntity(studentId).getStudentsGroup())
+	{
+	    for (SubjectDTO subject : stgroup.getSubject())
+	    {
+		allSubjects.addAll(getMultipleEntities(
+			"lecturer_id = '" + lecturerId + "' and name = '" + subject.getName() + "'"));
+	    }
+	}
+	Collections.sort(allSubjects, (x, y) -> y.getSemester().compareTo(x.getSemester()));
 	return allSubjects;
     }
 }

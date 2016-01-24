@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet" href="resources/pure-min.css">
 <link rel="stylesheet" href="resources/styles.css">
-<title>eDziekanat - Oceny studenta</title>
+<title>eDziekanat - Wpisy studenta</title>
 </head>
 <body>
 	<div id="layout">
@@ -23,7 +23,7 @@
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="lecturerseestudents">Studenci</a></li>
 					<li class="pure-menu-item pure-menu-selected"><a href="#"
-						class="pure-menu-link">Oceny</a></li>
+						class="pure-menu-link">Wpisy</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="lecturerseelecturers">Wykładowcy</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
@@ -45,12 +45,12 @@
 				<h2>Twój wirtualny dziekanat.</h2>
 			</div>
 			<div class="content">
-				<h2 class="content-subhead">Oceny studenta ${student.name}
+				<h2 class="content-subhead">Wpisy studenta ${student.name}
 					${student.surname}:</h2>
 				<center>
 					<c:choose>
 						<c:when test="${!empty subject}">
-							<form action="http://localhost:8080/eDziekanat/newpartialmark"
+							<form action="http://localhost:8080/eDziekanat/newenrollment"
 								method=post class="pure-form">
 								<input type="hidden" name="transcript"
 									value="${student.transcript[0].id}"> <select
@@ -75,8 +75,8 @@
 					</c:choose>
 					<p>
 						<c:choose>
-							<c:when test="${empty partialMarks}">
-								<center>Brak ocen do wyświetlenia.</center>
+							<c:when test="${empty enrollments}">
+								<center>Brak wpisów do wyświetlenia.</center>
 							</c:when>
 							<c:otherwise>
 								<table class="pure-table pure-table-bordered">
@@ -89,14 +89,14 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${partialMarks}" var="partialMark"
+										<c:forEach items="${enrollments}" var="enrollment"
 											varStatus="varStatus">
 											<tr>
 												<td>${varStatus.index + 1}</td>
-												<td>${partialMark.mark}</td>
+												<td>${enrollment.mark}</td>
 												<td><fmt:formatDate pattern="dd.MM.yyyy"
-														value="${partialMark.issueDate}" /></td>
-												<td>${partialMark.subject.name}</td>
+														value="${enrollment.issueDate}" /></td>
+												<td>${enrollment.subject.name}</td>
 											</tr>
 										</c:forEach>
 									</tbody>

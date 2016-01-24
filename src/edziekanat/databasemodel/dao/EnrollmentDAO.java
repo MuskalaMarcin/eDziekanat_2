@@ -6,6 +6,7 @@ import java.util.List;
 
 import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.EnrollmentDTO;
+import edziekanat.databasemodel.dto.PartialMarkDTO;
 import edziekanat.databasemodel.dto.TranscriptDTO;
 
 /**
@@ -56,5 +57,16 @@ public class EnrollmentDAO extends DAOParentClass<EnrollmentDTO>
 	    }
 	}
 	return selectedEnrollments;
+    }
+    
+    public List<EnrollmentDTO> getStudentEnrollmentsFromSubject(Integer studentId, Integer subjectId)
+    {
+	List<EnrollmentDTO> enrollments = new LinkedList<EnrollmentDTO>();
+	for (TranscriptDTO transcript : new StudentDAO().getEntity(studentId).getTranscript())
+	{
+	    enrollments.addAll(getMultipleEntities(
+		    "subject_id = '" + subjectId + "' and transcript_id = '" + transcript.getId() + "'"));
+	}
+	return enrollments;
     }
 }
