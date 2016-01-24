@@ -3,6 +3,7 @@ package edziekanat.databasemodel.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 
 import edziekanat.StartupListener;
 
@@ -69,37 +70,25 @@ public abstract class DAOParentClass<T>
     
     public void insert(T entity)
     {
-	startTransaction();
+	EntityTransaction et = entityManager.getTransaction();
+	et.begin();
 	entityManager.persist(entity);
-	entityManager.getTransaction().commit();
-	startTransaction();
+	et.commit();
     }
     
     public void update(T entity)
     {
-	startTransaction();
+	EntityTransaction et = entityManager.getTransaction();
+	et.begin();
 	entityManager.merge(entity);
-	entityManager.getTransaction().commit();
-	startTransaction();
+	et.commit();
     }
     
     public void remove(T entity)
     {
-	startTransaction();
+	EntityTransaction et = entityManager.getTransaction();
+	et.begin();
 	entityManager.remove(entity);
-	entityManager.getTransaction().commit();
-	startTransaction();
-    }
-    
-    private void startTransaction()
-    {
-	if(entityManager.getTransaction().isActive())
-	{
-	    entityManager.joinTransaction();
-	}
-	else
-	{
-	    entityManager.getTransaction().begin();
-	}
+	et.commit();
     }
 }

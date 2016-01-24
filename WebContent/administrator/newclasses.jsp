@@ -72,30 +72,43 @@
 					<form class="pure-form pure-form-stacked" action="addnewclasses"
 						method=post>
 						<fieldset>
-			
-								<label for="sg">Grupa studencka </label>
-								<input id="sg"
-									type="text" name="nothing" class="pure-input-1-2" style="width:50%"
-									value="grupa: ${studentsGroup.id} kierunek: ${studentsGroup.course.name }"
-									disabled>
-					
-								<label for="state">Przedmiot </label> 
-								<select name="subjectId" style="width:50%" id="state">
-									<c:forEach items="${subjects}" var="subject">
-										<option value="${subject.id}">${subject.name}</option>
-									</c:forEach>
+
+							<label for="sg">Grupa studencka </label> <input id="sg"
+								type="text" name="nothing" class="pure-input-1-2"
+								style="width: 50%"
+								value="grupa: ${studentsGroup.id} kierunek: ${studentsGroup.course.name }"
+								disabled> <label for="state">Przedmiot </label> <select
+								name="subjectId" style="width: 50%" id="state">
+								<c:forEach items="${subjects}" var="subject">
+									<option value="${subject.id}">${subject.name}</option>
+								</c:forEach>
+							</select> <label for="classstate">Sala </label> <select style="width: 50%"
+								name="classroomId" id="classstate">
+								<c:forEach items="${classrooms}" var="classroom">
+									<option value="${classroom.id}">Nr:
+										${classroom.number} typ: ${classroom.type }</option>
+								</c:forEach>
+							</select> <label for="startDate">Data rozpoczêcia </label> <input
+								id="startDate" type="date" name="startDate" required> 
+								<label for="startTime">Godzina rozpoczêcia</label>
+							<select style="width:188px" name="startTime" id="startTime">
+										<option value="0">7:30</option>
+										<option value="1">9:15</option>
+										<option value="2">11:00</option>
+										<option value="3">12:45</option>
+										<option value="4">14:30</option>
+										<option value="5">16:15</option>
+										<option value="6">18:00</option>
+										<option value="7">19:45</option>
 								</select>
-								
-								<label for="classstate">Sala </label>
-								 <select style="width:50%" name="classroomId" id="classstate">
-									<c:forEach items="${classrooms}" var="classroom">
-										<option value="${classroom.id}">Nr:
-											${classroom.number} typ: ${classroom.type }</option>
-									</c:forEach>
+							<label for="repeat">Powtarzaj </label>
+								 <select style="width:188px" name="repeat" id="repeat">
+										<option value="0">Nie powtarzaj</option>
+										<option value="1">Co tydzieñ</option>
+										<option value="2">Co dwa tygodnie</option>
 								</select>
-							<label for="startDate">Sala </label>
-							<input id="startDate" type="date" name="bday">
-							<input type="date" name="bday">
+							<label for="endDate">Data zakoñczenia </label>
+							<input id="endDate" type="date" name="endDate">
 						</fieldset>
 
 						<button type="submit"
