@@ -272,6 +272,9 @@
       <url-pattern>/admin/newmessage/*</url-pattern>
       <url-pattern>/administrator/sentmessages/*</url-pattern>
       <url-pattern>/administrator/receivedmessages/*</url-pattern>
+      <url-pattern>/adminapplicationscontroller/*</url-pattern>
+      <url-pattern>/adminapplicationshistory/*</url-pattern>
+      <url-pattern>/manageapplications/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>admin</role-name>

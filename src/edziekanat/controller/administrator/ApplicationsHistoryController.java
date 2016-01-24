@@ -7,11 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edziekanat.bean.LoginBean;
+import edziekanat.databasemodel.dao.ApplicationDAO;
+
 /**
- * Servlet implementation class AdminTimetableController
+ * Servlet implementation class ApplicationsHistoryController
  */
-@WebServlet("/admintimetable")
-public class AdminTimetableController extends HttpServlet
+@WebServlet("/adminapplicationshistory")
+public class ApplicationsHistoryController extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
@@ -28,8 +31,10 @@ public class AdminTimetableController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	// TODO Auto-generated method stub
-	response.getWriter().append("Served at: ").append(request.getContextPath());
+	request.setAttribute("historicalApplications", new ApplicationDAO().getAdminHistoricalApplications(
+		((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
+
+	request.getRequestDispatcher("administrator/applicationshistory.jsp").forward(request, response);
     }
 
 }

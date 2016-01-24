@@ -15,7 +15,7 @@ public class ApplicationDAO extends DAOParentClass<ApplicationDTO>
     {
 	super(ApplicationDTO.class, TableNames.APPLICATION);
     }
-    
+
     /**
      * Method getting one object of Application entity.
      * 
@@ -26,7 +26,7 @@ public class ApplicationDAO extends DAOParentClass<ApplicationDTO>
     {
 	return entityManager.find(ApplicationDTO.class, id);
     }
-    
+
     public List<ApplicationDTO> getWaitingApplications(Integer studentId)
     {
 	List<ApplicationDTO> waitingApplications = getMultipleEntities(
@@ -34,11 +34,27 @@ public class ApplicationDAO extends DAOParentClass<ApplicationDTO>
 	Collections.sort(waitingApplications, (x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()));
 	return waitingApplications;
     }
-    
+
     public List<ApplicationDTO> getApplications(Integer studentId)
     {
 	List<ApplicationDTO> getApplications = getMultipleEntities(
 		"student_id = '" + studentId + "' and status != 'Nierozpatrzony'");
+	Collections.sort(getApplications, (x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()));
+	return getApplications;
+    }
+
+    public List<ApplicationDTO> getAdminWaitingApplications(Integer adminId)
+    {
+	List<ApplicationDTO> getApplications = getMultipleEntities(
+		"administrator_id = '" + adminId + "' and status = 'Nierozpatrzony'");
+	Collections.sort(getApplications, (x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()));
+	return getApplications;
+    }
+    
+    public List<ApplicationDTO> getAdminHistoricalApplications(Integer adminId)
+    {
+	List<ApplicationDTO> getApplications = getMultipleEntities(
+		"administrator_id = '" + adminId + "' and status != 'Nierozpatrzony'");
 	Collections.sort(getApplications, (x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()));
 	return getApplications;
     }
