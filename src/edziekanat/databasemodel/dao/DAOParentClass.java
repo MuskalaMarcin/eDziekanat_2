@@ -47,11 +47,6 @@ public abstract class DAOParentClass<T>
 	entityManager.close();
     }
 
-    public void persistEntity(T newEntity)
-    {
-	entityManager.persist(newEntity);
-    }
-
     public long getNumberOfAllEntities()
     {
 	return (long) entityManager.createQuery("SELECT count(*) FROM " + tableName).getSingleResult();

@@ -21,8 +21,8 @@
 						class="pure-menu-link">Indeks</a></li>
 					<li class="pure-menu-item"><a href="timetable"
 						class="pure-menu-link">Plan zajêæ</a></li>
-					<li class="pure-menu-item menu-item-divided"><a href="studentsubjects"
-						class="pure-menu-link">Moje przedmioty</a></li>
+					<li class="pure-menu-item menu-item-divided"><a
+						href="studentsubjects" class="pure-menu-link">Moje przedmioty</a></li>
 					<li class="pure-menu-item pure-menu-selected"><a href="#"
 						class="pure-menu-link">Materia³y dydaktyczne</a></li>
 					<c:forEach items="${semesterList}" var="semester">
@@ -54,8 +54,38 @@
 				<h2>Twój wirtualny dziekanat.</h2>
 			</div>
 			<div class="content">
-				<h2 class="content-subhead">Materia³y dydaktyczne:</h2>
-
+				<h2 class="content-subhead">Materia³y dydaktyczne ${subjectName}:</h2>
+				<c:choose>
+					<c:when test="${empty learningMaterials}">
+						<p>Brak dodanych materia³ów dydaktycznych.</p>
+					</c:when>
+					<c:otherwise>
+						<center>
+							<table class="pure-table pure-table-bordered">
+								<thead>
+									<tr style="text-align: center;">
+										<td>Nr</td>
+										<td>Nazwa</td>
+										<td>Opis</td>
+										<td>Pobierz</td>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${learningMaterials}" var="material"
+										varStatus="varStatus">
+										<tr style="text-align: center;">
+											<td>${varStatus.index + 1}</td>
+											<td>${material.name}</td>
+											<td>${material.description}</td>
+											<td><a class="pure-button pure-button-primary"
+												target="_blank" href="${material.file}" download>Pobierz</a></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</center>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>

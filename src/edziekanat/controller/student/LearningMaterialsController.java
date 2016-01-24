@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edziekanat.databasemodel.dao.LearningMaterialsDAO;
+import edziekanat.databasemodel.dao.SubjectDAO;
+
 /**
  * Servlet implementation class LearningMaterialsController
  */
@@ -29,10 +32,14 @@ public class LearningMaterialsController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	//TODO: dodac wyswietlanie materialow dydaktycznych
+	int subjectId = Integer.parseInt(request.getParameter("subjectId"));
 
+	request.setAttribute("subjectName", new SubjectDAO().getEntity(subjectId).getName());
+	request.setAttribute("learningMaterials", new LearningMaterialsDAO().getSubjectLearningMaterials(subjectId));
+	
 	request.setAttribute("semesterList",
 		request.getParameter("semesterList").replaceAll("\\[", "").replaceAll("\\]", "").split(","));
+
 	request.getRequestDispatcher("/student/learningmaterials.jsp").forward(request, response);
     }
 

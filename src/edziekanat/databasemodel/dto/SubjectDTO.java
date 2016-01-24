@@ -130,6 +130,16 @@ public class SubjectDTO implements Serializable
 	this.learning_materials = learningMaterials;
     }
 
+    public void addLearningMaterials(LearningMaterialsDTO learningMaterials)
+    {
+	this.learning_materials.add(learningMaterials);
+    }
+
+    public void removeLearningMaterials(LearningMaterialsDTO learningMaterials)
+    {
+	this.learning_materials.remove(learningMaterials);
+    }
+
     public List<PartialMarkDTO> getPartialMark()
     {
 	return partial_mark;

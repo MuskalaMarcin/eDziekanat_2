@@ -1023,15 +1023,6 @@ insert into app_user (login, password, e_mail, is_active, user_role, lecturer_id
 insert into app_user (login, password, e_mail, is_active, user_role, lecturer_id, student_id, administrator_id) values ('dcampbell26', 'b40PpGiH', 'jking26@netlog.com', '1', 'lecturer', 89, null, null);
 insert into app_user (login, password, e_mail, is_active, user_role, lecturer_id, student_id, administrator_id) values ('avasquez27', 'v40ecf', 'gfisher27@blogs.com', '1', 'lecturer', 90, null, null);
 
-Insert into CLASSROOM (ID,NR,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval, '1','100', 'Aula wykladowa','1');
-Insert into CLASSROOM (ID,NR,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval,'2', '30', 'Sala dydaktyczna','2');
-Insert into CLASSROOM (ID,NR,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval,'3', '15', 'Laboratorium komputerowe','3');
-Insert into CLASSROOM (ID,NR,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval,'4', '100', 'Aula wykladowaa','1');
-Insert into CLASSROOM (ID,NR,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval,'5', '30', 'Sala dydaktyczna','2');
-Insert into CLASSROOM (ID,NR,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval,'6', '15', 'Laboratorium komputerowe','3');
-Insert into CLASSROOM (ID,NR,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval,'7', '100', 'Aula wykladowawa','1');
-Insert into CLASSROOM (ID,NR,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval,'8', '30', 'Sala dydaktyczna','2');
-Insert into CLASSROOM (ID,NR,CAPACITY,TYPE,FACULTY_ID) values (classroom_id_seq.nextval,'9', '15', 'Laboratorium komputerowe','3');
 insert into classroom (id, nr, capacity, type, faculty_id) values (classroom_id_seq.nextval, 1, 175, 'laboratorium', 1);
 insert into classroom (id, nr, capacity, type, faculty_id) values (classroom_id_seq.nextval, 2, 57, 'sala dydaktyczna', 1);
 insert into classroom (id, nr, capacity, type, faculty_id) values (classroom_id_seq.nextval, 3, 38, 'laboratorium komputerowe', 1);

@@ -37,4 +37,21 @@ public class LearningMaterialsDAO extends DAOParentClass<LearningMaterialsDTO>
 	}
 	return learningMaterials;
     }
+
+    public List<LearningMaterialsDTO> getSubjectLearningMaterials(Integer subjectId)
+    {
+	return new SubjectDAO().getEntity(subjectId).getLearningMaterials();
+    }
+
+    public void insert(LearningMaterialsDTO entity)
+    {
+	super.insert(entity);
+	new SubjectDAO().getEntity(entity.getSubject().getId()).addLearningMaterials(entity);
+    }
+
+    public void remove(LearningMaterialsDTO entity)
+    {
+	new SubjectDAO().getEntity(entity.getSubject().getId()).removeLearningMaterials(entity);
+	super.remove(entity);
+    }
 }
