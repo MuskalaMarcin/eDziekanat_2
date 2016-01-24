@@ -27,17 +27,9 @@
 						href="lecturerclassrooms">Dostêpno¶æ sal</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="timetable">Plan zajêæ</a></li>
-					<c:forEach items="${semesterList}" var="semester">
-						<li
-							class="pure-menu-item <c:if test="${selectedSemester==semester}">pure-menu-selected</c:if>">
-							<form action="lecturersubjects" method="post">
-								<input type="hidden" name="rqsemester" value="${semester}">
-								<button
-									class="<c:if test="${selectedSemester==semester}">linkButtonSelected</c:if> linkButton "
-									type="submit">Semestr ${semester}</button>
-							</form>
-						</li>
-					</c:forEach>
+					<li class="pure-menu-item pure-menu-selected"><a
+						class="pure-menu-link" href="lecturerseelecturers">Moje
+							przedmioty</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="receivedmessages">Historia komunikatów</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
@@ -51,8 +43,7 @@
 				<h2>Twój wirtualny dziekanat.</h2>
 			</div>
 			<div class="content">
-				<h2 class="content-subhead">Przedmioty 
-				<p>Semestr: ${selectedSemester}</h2>
+				<h2 class="content-subhead">Przedmioty</h2>
 				<p>
 					<c:choose>
 						<c:when test="${noSubjects==true}">
@@ -64,6 +55,8 @@
 									<td>Nr</td>
 									<td>Nazwa</td>
 									<td>ECTS</td>
+									<td>Semestr</td>
+									<td>Grupa(y)</td>
 								</tr>
 								<c:forEach items="${subjects}" var="subject"
 									varStatus="varStatus">
@@ -71,20 +64,26 @@
 										<td>${varStatus.index + 1}</td>
 										<td>${subject.name}</td>
 										<td>${subject.ECTS}</td>
+										<td>${subject.semester}</td>
+										<td><c:choose>
+												<c:when test="${empty subject.students_group }">Brak</c:when>
+												<c:otherwise>
+													<c:forEach items="${subject.students_group}"
+														var="studentsGroup">${studentsGroup.id} </c:forEach>
+												</c:otherwise>
+											</c:choose></td>
+
 										<td width="75px" id="respond">
 											<form action="lecturerseestudents" method=post>
-												<input type="hidden" name="semesterList"
-													value="${semesterList}"> <input type="hidden"
-													name="subjectId" value="${subject.id}"><input
+												<input type="hidden" name="subjectId" value="${subject.id}"><input
 													class="pure-button pure-input-1-2 pure-button-primary"
 													type="submit" value="Studenci">
 											</form>
 										</td>
 										<td width="80px" id="respond">
 											<form action="lecturerlearningmaterials" method=post>
-												<input type="hidden" name="semesterList"
-													value="${semesterList}"> <input type="hidden"
-													name="subjectId" value="${subject.id}"> <input
+												<input type="hidden" name="subjectId" value="${subject.id}">
+												<input
 													class="pure-button pure-input-1-2 pure-button-primary"
 													type="submit" value="Materia³y">
 											</form>

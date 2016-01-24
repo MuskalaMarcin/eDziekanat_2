@@ -44,11 +44,11 @@
 			<div class="content">
 				<h2 class="content-subhead">Wyk³adowcy:</h2>
 				<center>
-					<form class="pure-form" action="lecturersearchlecturers"  method=post>
+					<form class="pure-form" action="lecturersearchlecturers"
+						method=post>
 						Imiê: <input type="text" name="searchedName"
-							class="pure-input-rounded"> 
-						Nazwisko: <input type="text" name="searchedSurname" 
-							class="pure-input-rounded" required>
+							class="pure-input-rounded"> Nazwisko: <input type="text"
+							name="searchedSurname" class="pure-input-rounded" required>
 						<button type="submit" class="pure-button pure-button-primary">Szukaj</button>
 					</form>
 				</center>
@@ -65,9 +65,14 @@
 							<td>${lecturer.name}</td>
 							<td>${lecturer.surname}</td>
 							<td>${lecturer.user.eMail}</td>
-							<td><c:forEach items="${lecturer.subject}" var="subject">
+							<td><c:choose>
+									<c:when test="${empty lecturer.subject}">Brak</c:when>
+									<c:otherwise>
+										<c:forEach items="${lecturer.subject}" var="subject">
 								${subject.name}  
-							</c:forEach></td>
+							</c:forEach>
+									</c:otherwise>
+								</c:choose></td>
 							<td id="respond">
 								<form action="lecturer/newmessage" method=post>
 									<input type="hidden" name="receiverLogin"

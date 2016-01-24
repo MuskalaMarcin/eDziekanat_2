@@ -100,14 +100,14 @@ public class SubjectDTO implements Serializable
 	this.lecturer = lecturer;
     }
 
-    public List<StudentsGroupDTO> getStudentsGroup()
+    public List<StudentsGroupDTO> getStudents_group()
     {
-	return students_group;
+        return students_group;
     }
 
-    public void setStudentsGroup(List<StudentsGroupDTO> studentsGroup)
+    public void setStudents_group(List<StudentsGroupDTO> students_group)
     {
-	this.students_group = studentsGroup;
+        this.students_group = students_group;
     }
 
     public List<EnrollmentDTO> getEnrollment()

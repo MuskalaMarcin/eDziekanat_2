@@ -1,7 +1,7 @@
 package edziekanat.controller.lecturer;
 
 import java.io.IOException;
-import java.util.LinkedList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -48,41 +48,8 @@ public class LecturerSubjectsController extends HttpServlet
 	List<SubjectDTO> subjects = new SubjectDAO().getLecturerSubjects(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
 	if (!subjects.isEmpty())
 	{
-	    List<Integer> semesterList = new LinkedList<Integer>();
-	    for (SubjectDTO subject : subjects)
-	    {
-		if (!semesterList.contains(subject.getSemester()))
-		{
-		    semesterList.add(subject.getSemester());
-		}
-	    }
-	    if (request.getParameter("rqsemester") == null)
-	    {
-		for (int i = 0; i < subjects.size(); i++)
-		{
-		    if (subjects.get(i).getSemester().compareTo(semesterList.get(0)) != 0)
-		    {
-			subjects.remove(i);
-			i--;
-		    }
-		}
-		request.setAttribute("selectedSemester", semesterList.get(0));
-	    }
-	    else
-	    {
-		int selectedSemester = Integer.valueOf(request.getParameter("rqsemester"));
-		for (int i = 0; i < subjects.size(); i++)
-		{
-		    if (subjects.get(i).getSemester().compareTo(selectedSemester) != 0)
-		    {
-			subjects.remove(i);
-			i--;
-		    }
-		}
-		request.setAttribute("selectedSemester", selectedSemester);
-	    }
+	    Collections.sort(subjects, (x,y)->x.getName().compareTo(y.getName()));
 	    request.setAttribute("subjects", subjects);
-	    request.setAttribute("semesterList", semesterList);
 	    request.setAttribute("noSubjects", false);
 	}
 	else

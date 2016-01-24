@@ -57,7 +57,7 @@ public class LecturerStudentsController extends HttpServlet
 	    for (SubjectDTO subject : new LecturerDAO()
 		    .getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()).getSubject())
 	    {
-		for (StudentsGroupDTO group : subject.getStudentsGroup())
+		for (StudentsGroupDTO group : subject.getStudents_group())
 		{
 		    students.addAll(group.getStudent());
 		}
@@ -68,7 +68,7 @@ public class LecturerStudentsController extends HttpServlet
 	else if (request.getParameter("students") == null && request.getParameter("subjectId") != null)
 	{
 	    for (StudentsGroupDTO group : new SubjectDAO()
-		    .getEntity(Integer.parseInt(request.getParameter("subjectId").toString())).getStudentsGroup())
+		    .getEntity(Integer.parseInt(request.getParameter("subjectId").toString())).getStudents_group())
 	    {
 		students.addAll(group.getStudent());
 	    }

@@ -82,12 +82,11 @@
 					${selectedClassroom.number}
 				</h2>
 
-				<form class="pure-form pure-form-aligned"
+				<form class="pure-form"
 					action="lecturerclassrooms" method=post>
-					<fieldset class="pure-group">
+					<fieldset>
 						<center>
-							<label for="state">Sala </label> <select name="classroomId"
-								style="width: 42%" id="state">
+							<select name="classroomId" id="state">
 								<c:forEach items="${classroomsList}" var="classroom">
 									<option
 										<c:if test="${selectedClassroom.id == classroom.id}">selected</c:if>
@@ -95,17 +94,15 @@
 										Sala ${classroom.number}</option>
 								</c:forEach>
 							</select>
+							<button type="submit"
+							class="pure-button pure-button-primary">Wy¶wietl</button>
 						</center>
 					</fieldset>
-					<center>
-						<button type="submit"
-							class="pure-button pure-input-1-2 pure-button-primary">Wy¶wietl</button>
-					</center>
 				</form>
 				<br> <br>
 				<c:choose>
 					<c:when test="${emptyWeek == true}">
-						<center>Plan zajêæ na ${selectedWeek} tydzieñ roku jest
+						<center>Plan zajêæ na ${selectedWeek} tydzieñ roku dla sali ${selectedClassroom.number} jest
 							pusty.</center>
 					</c:when>
 					<c:when test="${noClassroom == true}">
