@@ -20,6 +20,12 @@
 						class="pure-menu-link">Strona g³ówna</a></li>
 					<li class="pure-menu-item"><a href="admintimetable"
 						class="pure-menu-link">Plan zajêæ</a></li>
+					<li class="pure-menu-item"><a
+						class="pure-menu-link" href="adminclassrooms">Dostêpno¶æ sal</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="admincourses">Kierunki</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="adminstudentgroups">Grupy studenckie</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminusers">U¿ytkownicy</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
@@ -43,8 +49,8 @@
 							odbiorcza</a></li>
 					<li class="pure-menu-item"><a href="sentmessages"
 						class="pure-menu-link">Skrzynka nadawcza</a></li>
-					<li class="pure-menu-item  menu-item-divided"><a
-						href="logout" class="pure-menu-link">Wyloguj</a></li>
+					<li class="pure-menu-item  menu-item-divided"><a href="logout"
+						class="pure-menu-link">Wyloguj</a></li>
 				</ul>
 			</div>
 		</div>

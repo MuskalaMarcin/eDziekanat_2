@@ -20,6 +20,12 @@
 						class="pure-menu-link">Strona g³ówna</a></li>
 					<li class="pure-menu-item"><a href="admintimetable"
 						class="pure-menu-link">Plan zajêæ</a></li>
+					<li class="pure-menu-item"><a
+						class="pure-menu-link" href="adminclassrooms">Dostêpno¶æ sal</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="admincourses">Kierunki</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="adminstudentgroups">Grupy studenckie</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminusers">U¿ytkownicy</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
@@ -32,10 +38,11 @@
 						href="adminstatistics">Statystyki</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminscholarships">Stypendia</a></li>
-					<li class="pure-menu-item menu-item-divided"><a class="pure-menu-link"
-						href="#">Nale¿no¶ci</a></li>
-					<li class="pure-menu-item pure-menu-selected"><a class="pure-menu-link"
-						href="adminaddpayments">Historia nale¿no¶ci</a></li>
+					<li class="pure-menu-item menu-item-divided"><a
+						class="pure-menu-link" href="#">Nale¿no¶ci</a></li>
+					<li class="pure-menu-item pure-menu-selected"><a
+						class="pure-menu-link" href="adminaddpayments">Historia
+							nale¿no¶ci</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminwaitingpayments">Oczekuj±ce nale¿no¶ci</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
@@ -86,7 +93,7 @@
 													value="${payment.issueDate }" /></td>
 											<td><fmt:formatDate pattern="dd.MM.yyyy"
 													value="${payment.paymentDate }" /></td>
-											<td>${payment.student.name } ${payment.student.surname }</td>
+											<td>${payment.student.name }${payment.student.surname }</td>
 										</tr>
 									</c:forEach>
 								</tbody>

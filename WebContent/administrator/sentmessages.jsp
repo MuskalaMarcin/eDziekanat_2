@@ -21,6 +21,12 @@
 					<li class="pure-menu-item"><a href="admintimetable"
 						class="pure-menu-link">Plan zajêæ</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="adminclassrooms">Dostêpno¶æ sal</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="admincourses">Kierunki</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="adminstudentgroups">Grupy studenckie</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminusers">U¿ytkownicy</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminlecturers">Wyk³adowcy</a></li>
