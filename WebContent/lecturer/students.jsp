@@ -45,6 +45,7 @@
 				<h2 class="content-subhead">Studenci: ${subject.name}</h2>
 				<center>
 					<form class="pure-form" action="lecturersearchstudents" method=post>
+						<input type="text" name="subjectId" value="${subject.id}" hidden>
 						Imiê: <input type="text" name="searchedName"
 							class="pure-input-rounded"> Nazwisko: <input type="text"
 							name="searchedSurname" class="pure-input-rounded" required>

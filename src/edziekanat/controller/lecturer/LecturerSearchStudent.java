@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.databasemodel.dao.StudentDAO;
+import edziekanat.databasemodel.dao.SubjectDAO;
 import edziekanat.databasemodel.dto.StudentDTO;
 
 /**
@@ -30,8 +31,7 @@ public class LecturerSearchStudent extends HttpServlet
     }
 
     /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -39,25 +39,41 @@ public class LecturerSearchStudent extends HttpServlet
     }
 
     /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	String name = request.getParameter("searchedName").toString();
 	String surname = request.getParameter("searchedSurname").toString();
-	if (!name.equals(""))
+	Integer subjectId = Integer
+		.parseInt(request.getParameter("subjectId").isEmpty() ? "-1" : request.getParameter("subjectId"));
+	if (subjectId == -1)
 	{
-	    List<StudentDTO> students = new StudentDAO().getStudentsByNameAndSurname(name, surname);
-	    request.setAttribute("students", removeDuplicates(students));
-	    request.getRequestDispatcher("lecturer/students").forward(request, response);
+	    if (name.isEmpty())
+	    {
+		request.setAttribute("students", removeDuplicates(new StudentDAO().getStudentsBySurname(surname)));
+	    }
+	    else
+	    {
+		request.setAttribute("students",
+			removeDuplicates(new StudentDAO().getStudentsByNameAndSurname(name, surname)));
+	    }
 	}
 	else
 	{
-	    List<StudentDTO> students = new StudentDAO().getStudentsBySurname(surname);
-	    request.setAttribute("students", removeDuplicates(students));
-	    request.getRequestDispatcher("lecturer/students").forward(request, response);
+	    if (name.isEmpty())
+	    {
+		request.setAttribute("students",
+			removeDuplicates(new StudentDAO().searchStudentsInSubject(surname, subjectId)));
+	    }
+	    else
+	    {
+		request.setAttribute("students",
+			removeDuplicates(new StudentDAO().searchStudentsInSubject(name, surname, subjectId)));
+	    }
+	    request.setAttribute("subject", new SubjectDAO().getEntity(subjectId));
 	}
+	request.getRequestDispatcher("lecturer/students").forward(request, response);
     }
 
     /**
