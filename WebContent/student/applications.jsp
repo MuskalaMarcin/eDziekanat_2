@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet" href="resources/pure-min.css">
 <link rel="stylesheet" href="resources/styles.css">
-<title>eDziekanat - Student - Wnioski</title>
+<title>eDziekanat - Wnioski rozpatrzone</title>
 </head>
 <body>
 	<div id="layout">
@@ -29,6 +29,9 @@
 						class="pure-menu-link">Stypendia</a></li>
 					<li class="pure-menu-item"><a href="studentpayments"
 						class="pure-menu-link">Płatności</a></li>
+							<li class="pure-menu-item menu-item-divided">
+					<a href="#"
+						class="pure-menu-link">Wnioski </a></li>
 					<li class="pure-menu-item pure-menu-selected"><a
 						href="studentapplications" class="pure-menu-link">Wnioski
 							rozpatrzone </a></li>

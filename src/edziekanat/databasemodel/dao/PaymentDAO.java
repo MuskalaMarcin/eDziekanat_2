@@ -47,4 +47,20 @@ public class PaymentDAO extends DAOParentClass<PaymentDTO>
 	Collections.sort(historyPayments, (x, y) -> y.getPaymentDate().compareTo(x.getPaymentDate()));
 	return historyPayments;
     }
+
+    public List<PaymentDTO> getWaitingAdminPayments(Integer adminId)
+    {
+	List<PaymentDTO> waitingPayments = getMultipleEntities(
+		"administrator_id = '" + adminId + "' and payment_date is null");
+	Collections.sort(waitingPayments, (x, y) -> y.getIssueDate().compareTo(x.getIssueDate()));
+	return waitingPayments;
+    }
+
+    public List<PaymentDTO> getAdminPaymentsHistory(Integer adminId)
+    {
+	List<PaymentDTO> historyPayments = getMultipleEntities(
+		"administrator_id = '" + adminId + "' and payment_date is not null");
+	Collections.sort(historyPayments, (x, y) -> y.getPaymentDate().compareTo(x.getPaymentDate()));
+	return historyPayments;
+    }
 }

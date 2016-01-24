@@ -29,13 +29,11 @@
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminstudents">Studenci</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminbackup">Kopia zapasowa</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminstatistics">Statystyki</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminscholarships">Stypendia</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="admipayments">Nale¿no¶ci</a></li>
+						href="adminpayments">Nale¿no¶ci</a></li>
 					<li class="pure-menu-item menu-item-divided"><a
 						class="pure-menu-link" href="#">Wnioski</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"

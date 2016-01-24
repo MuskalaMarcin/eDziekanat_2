@@ -41,7 +41,7 @@
 						class="pure-menu-link">Stypendia</a></li>
 					<li class="pure-menu-item"><a href="studentwaitingpayments"
 						class="pure-menu-link">P³atno¶ci</a></li>
-					<li class="pure-menu-item"><a href="#" class="pure-menu-link">Wnioski</a></li>
+					<li class="pure-menu-item"><a href="studentapplications" class="pure-menu-link">Wnioski</a></li>
 					<li class="pure-menu-item"><a href="studentlecturers"
 						class="pure-menu-link">Wyk³adowcy</a></li>
 					<li class="pure-menu-item"><a href="receivedmessages"

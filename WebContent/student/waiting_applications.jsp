@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet" href="resources/pure-min.css">
 <link rel="stylesheet" href="resources/styles.css">
-<title>eDziekanat - Oczekujące płatności</title>
+<title>eDziekanat - Wnioski nierozpatrzone</title>
 </head>
 <body>
 	<div id="layout">
@@ -30,6 +30,8 @@
 					<li class="pure-menu-item"><a href="studentpayments"
 						class="pure-menu-link">Płatności</a></li>
 					<li class="pure-menu-item menu-item-divided">
+					<a href="#"
+						class="pure-menu-link">Wnioski </a></li>
 					<li class="pure-menu-item"><a href="studentapplications"
 						class="pure-menu-link">Wnioski rozpatrzone </a></li>
 					<li class="pure-menu-item  pure-menu-selected"><a
@@ -56,7 +58,7 @@
 				<h2 class="content-subhead">Nierozpatrzone wnioski:</h2>
 				<c:choose>
 					<c:when test="${empty waitingApplications}">
-						<p>Brak rozpatrzonych wniosków.</p>
+						<p>Brak nierozpatrzonych wniosków.</p>
 					</c:when>
 					<c:otherwise>
 						<table class="responseTable">

@@ -275,6 +275,10 @@
       <url-pattern>/adminapplicationscontroller/*</url-pattern>
       <url-pattern>/adminapplicationshistory/*</url-pattern>
       <url-pattern>/manageapplications/*</url-pattern>
+      <url-pattern>/adminpayments/*</url-pattern>
+      <url-pattern>/adminwaitingpayments/*</url-pattern>
+      <url-pattern>/applypayment/*</url-pattern>
+      <url-pattern>/adminaddpayments/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>admin</role-name>
