@@ -71,7 +71,16 @@
 										<td>${student.name}</td>
 										<td>${student.surname}</td>
 										<td>${student.user.eMail}</td>
-										<td id="respond">
+										<td width="70px" id="respond">
+											<form action="studentmarks" method=post>
+												<input type="hidden" name="subjectId" value="${subject.id}">
+												<input type="hidden" name="studentId" value="${student.id}">
+												<input
+													class="pure-button pure-input-1-2 pure-button-primary"
+													type="submit" value="Oceny">
+											</form>
+										</td>
+										<td width="70px" id="respond">
 											<form action="lecturer/newmessage" method=post>
 												<input type="hidden" name="receiverLogin"
 													value="${student.user.login}"> <input
