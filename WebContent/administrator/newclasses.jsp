@@ -38,8 +38,6 @@
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminstudentgroups">Grupy studenckie</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminusers">U¿ytkownicy</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminlecturers">Wyk³adowcy</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminsubjects">Przedmioty</a></li>
