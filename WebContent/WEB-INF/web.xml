@@ -255,6 +255,7 @@
       <url-pattern>/messages/*</url-pattern>
       <url-pattern>/receivedmessages/*</url-pattern>
       <url-pattern>/sentmessages/*</url-pattern>
+      <url-pattern>/timetable/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>*</role-name>
@@ -298,6 +299,8 @@
       <url-pattern>/studentpartialmarks/*</url-pattern>
       <url-pattern>/studentlearningmaterials/*</url-pattern>
       <url-pattern>/student/newmessage/*</url-pattern>
+      <url-pattern>/studentwaitingapplications/*</url-pattern>
+      <url-pattern>/studentwaitingpayments/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>student</role-name>
@@ -317,6 +320,13 @@
       <url-pattern>/lecturersubjects/*</url-pattern>
       <url-pattern>/lecturerseelecturers/*</url-pattern>
       <url-pattern>/lecturerseestudents/*</url-pattern>
+      <url-pattern>/newlearningmaterials/*</url-pattern>
+      <url-pattern>/lecturersearchstudents/*</url-pattern>
+      <url-pattern>/lecturersearchlecturers/*</url-pattern>
+      <url-pattern>/lecturerlearningmaterials/*</url-pattern>
+      <url-pattern>/lecturerclassrooms/*</url-pattern>
+      <url-pattern>/deletematerial/*</url-pattern>
+      <url-pattern>/addlearningmaterials/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>lecturer</role-name>

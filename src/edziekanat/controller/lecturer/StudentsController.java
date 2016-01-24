@@ -2,6 +2,7 @@ package edziekanat.controller.lecturer;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,24 +11,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edziekanat.databasemodel.dao.StudentDAO;
+import edziekanat.bean.LoginBean;
+import edziekanat.databasemodel.dao.LecturerDAO;
 import edziekanat.databasemodel.dao.SubjectDAO;
 import edziekanat.databasemodel.dto.StudentDTO;
+import edziekanat.databasemodel.dto.StudentsGroupDTO;
+import edziekanat.databasemodel.dto.SubjectDTO;
 
 /**
- * Servlet implementation class LecturerSearchStudent
+ * Servlet implementation class LecturerStudentsController
  */
-@WebServlet("/lecturersearchstudents")
-public class LecturerSearchStudent extends HttpServlet
+@WebServlet("/lecturerseestudents")
+public class StudentsController extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LecturerSearchStudent()
+    public StudentsController()
     {
 	super();
+	// TODO Auto-generated constructor stub
     }
 
     /**
@@ -41,39 +46,41 @@ public class LecturerSearchStudent extends HttpServlet
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
+    @SuppressWarnings("unchecked")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	String name = request.getParameter("searchedName").toString();
-	String surname = request.getParameter("searchedSurname").toString();
-	Integer subjectId = Integer
-		.parseInt(request.getParameter("subjectId").isEmpty() ? "-1" : request.getParameter("subjectId"));
-	if (subjectId == -1)
+	List<StudentDTO> students = new LinkedList<StudentDTO>();
+	if (request.getParameter("students") == null && request.getParameter("subjectId") == null)
 	{
-	    if (name.isEmpty())
+	    for (SubjectDTO subject : new LecturerDAO()
+		    .getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()).getSubject())
 	    {
-		request.setAttribute("students", removeDuplicates(new StudentDAO().getStudentsBySurname(surname)));
+		for (StudentsGroupDTO group : subject.getStudents_group())
+		{
+		    students.addAll(group.getStudent());
+		}
 	    }
-	    else
+	    request.setAttribute("students", removeDuplicates(students));
+	    request.getRequestDispatcher("lecturer/students").forward(request, response);
+	}
+	else if (request.getParameter("students") == null && request.getParameter("subjectId") != null)
+	{
+	    SubjectDTO subject = new SubjectDAO()
+		    .getEntity(Integer.parseInt(request.getParameter("subjectId").toString()));
+	    for (StudentsGroupDTO group : subject.getStudents_group())
 	    {
-		request.setAttribute("students",
-			removeDuplicates(new StudentDAO().getStudentsByNameAndSurname(name, surname)));
+		students.addAll(group.getStudent());
 	    }
+	    request.setAttribute("students", removeDuplicates(students));
+	    request.setAttribute("subject", subject);
+	    request.getRequestDispatcher("lecturer/students").forward(request, response);
 	}
 	else
 	{
-	    if (name.isEmpty())
-	    {
-		request.setAttribute("students",
-			removeDuplicates(new StudentDAO().searchStudentsInSubject(surname, subjectId)));
-	    }
-	    else
-	    {
-		request.setAttribute("students",
-			removeDuplicates(new StudentDAO().searchStudentsInSubject(name, surname, subjectId)));
-	    }
-	    request.setAttribute("subject", new SubjectDAO().getEntity(subjectId));
+	    students = (List<StudentDTO>) request.getAttribute("students");
+	    request.setAttribute("students", removeDuplicates(students));
+	    request.getRequestDispatcher("lecturer/students").forward(request, response);
 	}
-	request.getRequestDispatcher("lecturer/students").forward(request, response);
     }
 
     /**
@@ -98,4 +105,5 @@ public class LecturerSearchStudent extends HttpServlet
 	Collections.sort(students, (x, y) -> x.getSurname().compareTo(y.getSurname()));
 	return students;
     }
+
 }

@@ -20,14 +20,14 @@ import edziekanat.databasemodel.dto.LecturerDTO;
  * Servlet implementation class LecturerSeeLecturersController
  */
 @WebServlet("/lecturerseelecturers")
-public class LecturerSeeLecturersController extends HttpServlet
+public class SeeLecturersController extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LecturerSeeLecturersController()
+    public SeeLecturersController()
     {
 	super();
     }

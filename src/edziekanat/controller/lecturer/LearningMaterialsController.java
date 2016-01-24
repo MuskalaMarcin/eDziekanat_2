@@ -17,7 +17,7 @@ import edziekanat.databasemodel.dto.SubjectDTO;
  * Servlet implementation class LecturerLearningMaterialsController
  */
 @WebServlet("/lecturerlearningmaterials")
-public class LecturerLearningMaterialsController extends HttpServlet
+public class LearningMaterialsController extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 

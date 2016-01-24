@@ -23,7 +23,7 @@ import edziekanat.databasemodel.dto.ScheduledClassesDTO;
  * Servlet implementation class LecturerClassroomsController
  */
 @WebServlet("/lecturerclassrooms")
-public class LecturerClassroomsController extends HttpServlet
+public class ClassroomsController extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 

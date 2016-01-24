@@ -17,14 +17,14 @@ import edziekanat.databasemodel.dto.LecturerDTO;
  * Servlet implementation class LecturerSearchLecturer
  */
 @WebServlet("/lecturersearchlecturers")
-public class LecturerSearchLecturer extends HttpServlet
+public class SearchLecturer extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LecturerSearchLecturer()
+    public SearchLecturer()
     {
 	super();
     }
