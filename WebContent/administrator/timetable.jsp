@@ -50,6 +50,13 @@
 										tydzieñ</button>
 								</form>
 							</li>
+							<li class="pure-menu-item">
+								<form action="planclasses" method="post">
+									<input type="hidden" name="studentsGroupId"
+										value="${selectedStudentGroup.id}">
+									<button class="linkButton" type="submit">Zaplanuj nowe zajêcia</button>
+								</form>
+							</li>
 						</c:otherwise>
 					</c:choose>
 					<li class="pure-menu-item menu-item-divided"><a
@@ -87,11 +94,9 @@
 				<h2>Twój wirtualny dziekanat.</h2>
 			</div>
 			<div class="content">
-				<h2 class="content-subhead">
-					Grupy studenckie: ${selectedClassroom.faculty.name}
-					<c:if test="${!empty selectedClassroom }"> sala: </c:if>
-					${selectedClassroom.number}
-				</h2>
+				<h2 class="content-subhead">Zajêcia grupy studenckiej:
+					${selectedStudentGroup.id} kierunek:
+					${selectedStudentGroup.course.name }</h2>
 
 				<form class="pure-form" action="admintimetable" method=post>
 					<fieldset>
