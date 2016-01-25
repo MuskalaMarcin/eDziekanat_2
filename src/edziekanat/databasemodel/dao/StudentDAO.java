@@ -47,6 +47,36 @@ public class StudentDAO extends DAOParentClass<StudentDTO>
 	return students;
     }
 
+    public List<StudentDTO> searchStudentsInStudentsGroup(String surname, Integer studentGroupId)
+    {
+	List<StudentDTO> students = new LinkedList<StudentDTO>();
+
+	for (StudentDTO student : new StudentsGroupDAO().getEntity(studentGroupId).getStudent())
+	{
+	    if (student.getSurname().toLowerCase().contains(surname.toLowerCase()))
+	    {
+		students.add(student);
+	    }
+	}
+	return students;
+    }
+
+    public List<StudentDTO> searchStudentsInStudentsGroup(String name, String surname, Integer studentGroupId)
+    {
+	List<StudentDTO> students = new LinkedList<StudentDTO>();
+	
+	for (StudentDTO student : new StudentsGroupDAO().getEntity(studentGroupId).getStudent())
+	{
+	    if (student.getSurname().toLowerCase().contains(surname.toLowerCase())
+		    && student.getName().toLowerCase().contains(name.toLowerCase()))
+	    {
+		students.add(student);
+	    }
+	}
+
+	return students;
+    }
+
     public List<StudentDTO> searchStudentsInSubject(String surname, Integer subjectId)
     {
 	List<StudentDTO> students = new LinkedList<StudentDTO>();

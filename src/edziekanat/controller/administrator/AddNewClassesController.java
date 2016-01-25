@@ -1,11 +1,23 @@
 package edziekanat.controller.administrator;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import edziekanat.databasemodel.dao.ClassroomDAO;
+import edziekanat.databasemodel.dao.ScheduledClassesDAO;
+import edziekanat.databasemodel.dao.SubjectDAO;
+import edziekanat.databasemodel.dto.ClassroomDTO;
+import edziekanat.databasemodel.dto.SubjectDTO;
 
 /**
  * Servlet implementation class AddNewClassesController
@@ -28,8 +40,65 @@ public class AddNewClassesController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	// TODO Auto-generated method stub
-	
+	SubjectDTO subject = new SubjectDAO().getEntity(Integer.parseInt(request.getParameter("subjectId")));
+	ClassroomDTO classroom = new ClassroomDAO().getEntity(Integer.parseInt(request.getParameter("classroomId")));
+	Integer repeat = Integer.parseInt(request.getParameter("repeat"));
+	DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+	Integer startTime = Integer.parseInt(request.getParameter("startTime"));
+	Date startDate = null;
+	try
+	{
+	    startDate = format.parse(request.getParameter("startDate"));
+	}
+	catch (ParseException e)
+	{
+	    request.setAttribute("msgshort", "B³¹d");
+	    request.setAttribute("msglong", "Wyst¹pi³ nieznany b³¹d podczas parsowania daty. Przepraszamy.");
+	    request.getRequestDispatcher("error.jsp").forward(request, response);
+	}
+	if (repeat == 0)
+	{
+	    if (!new ScheduledClassesDAO().insertNewClasses(subject, classroom, startDate, startTime))
+	    {
+		request.setAttribute("msgshort", "B³¹d");
+		request.setAttribute("msglong",
+			"Sala jest ju¿ zajêta w godzinach które postanowi³eœ zarezerwowaæ. Spróbuj ponownie.");
+		request.getRequestDispatcher("error.jsp").forward(request, response);
+	    }
+	}
+	else
+	{
+	    Date endDate = null;
+	    try
+	    {
+		endDate = format.parse(request.getParameter("endDate"));
+	    }
+	    catch (ParseException e)
+	    {
+		request.setAttribute("msgshort", "B³¹d");
+		request.setAttribute("msglong",
+			"W przypadku powtarzaj¹cych siê zajêæ musisz okreœliæ ich koñcow¹ datê. Spróbuj ponownie.");
+		request.getRequestDispatcher("error.jsp").forward(request, response);
+	    }
+	    if (startDate.after(endDate))
+	    {
+		request.setAttribute("msgshort", "B³¹d");
+		request.setAttribute("msglong",
+			"W przypadku powtarzaj¹cych siê zajêæ data zakoñczenia powtarzania musi byæ póŸniejsza ni¿ rozpoczêcia. Spróbuj ponownie.");
+		request.getRequestDispatcher("error.jsp").forward(request, response);
+	    }
+	    if (!new ScheduledClassesDAO().insertNewRepeatedClasses(subject, classroom, repeat, startDate, endDate,
+		    startTime))
+	    {
+		request.setAttribute("msgshort", "B³¹d");
+		request.setAttribute("msglong",
+			"Sala jest ju¿ zajêta w godzinach które postanowi³eœ zarezerwowaæ. Spróbuj ponownie.");
+		request.getRequestDispatcher("error.jsp").forward(request, response);
+	    }
+	}
+	request.setAttribute("msgshort", "Dodano nowe zajêcia");
+	request.setAttribute("msglong", "Dodano nowe zaplanowane zajêcia z przedimotu: " + subject.getName());
+	request.getRequestDispatcher("info.jsp").forward(request, response);
     }
 
 }

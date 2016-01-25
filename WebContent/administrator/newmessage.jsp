@@ -17,36 +17,38 @@
 			<div class="pure-menu">
 				<a class="pure-menu-heading" href="home">eDziekanat</a>
 				<ul class="pure-menu-list">
-					<li class="pure-menu-item pure-menu-selected"><a href="admin"
+					<li class="pure-menu-item"><a href="http://localhost:8080/eDziekanat/admin"
 						class="pure-menu-link">Strona g³ówna</a></li>
-					<li class="pure-menu-item"><a href="admintimetable"
+					<li class="pure-menu-item"><a href="http://localhost:8080/eDziekanat/admintimetable"
 						class="pure-menu-link">Plan zajêæ</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminclassrooms">Dostêpno¶æ sal</a></li>
+						href="http://localhost:8080/eDziekanat/adminclassrooms">Dostêpno¶æ sal</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="admincourses">Kierunki</a></li>
+						href="http://localhost:8080/eDziekanat/admincourses">Kierunki</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminstudentgroups">Grupy studenckie</a></li>
+						href="http://localhost:8080/eDziekanat/adminstudentgroups">Grupy studenckie</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminusers">U¿ytkownicy</a></li>
+						href="http://localhost:8080/eDziekanat/adminlecturers">Wyk³adowcy</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminlecturers">Wyk³adowcy</a></li>
+						href="http://localhost:8080/eDziekanat/adminsubjects">Przedmioty</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminsubjects">Przedmioty</a></li>
+						href="http://localhost:8080/eDziekanat/adminstudents">Studenci</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminstudents">Studenci</a></li>
+						href="http://localhost:8080/eDziekanat/adminstatistics">Statystyki</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminstatistics">Statystyki</a></li>
+						href="http://localhost:8080/eDziekanat/adminscholarships">Stypendia</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminscholarships">Stypendia</a></li>
+						href="http://localhost:8080/eDziekanat/adminpayments">Nale¿no¶ci</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminpayments">Nale¿no¶ci</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminapplications">Wnioski</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="messages">Historia komunikatów</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="logout">Wyloguj</a></li>
+						href="http://localhost:8080/eDziekanat/adminapplications">Wnioski</a></li>
+					<li class="pure-menu-item menu-item-divided"><a
+						href="http://localhost:8080/eDziekanat/receivedmessages"
+						class="pure-menu-link">Historia komunikatów</a></li>
+					<li class="pure-menu-item  pure-menu-selected"><a href="#"
+						class="pure-menu-link">Nowa wiadomo¶æ</a></li>
+					<li class="pure-menu-item menu-item-divided"><a
+						href="http://localhost:8080/eDziekanat/logout"
+						class="pure-menu-link">Wyloguj</a>
 				</ul>
 			</div>
 		</div>
