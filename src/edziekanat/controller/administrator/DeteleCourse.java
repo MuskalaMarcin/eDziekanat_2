@@ -1,8 +1,6 @@
 package edziekanat.controller.administrator;
 
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,24 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.databasemodel.dao.CourseDAO;
+import edziekanat.databasemodel.dao.ScheduledClassesDAO;
 import edziekanat.databasemodel.dto.CourseDTO;
-import edziekanat.databasemodel.dto.StudentsGroupDTO;
+import edziekanat.databasemodel.dto.ScheduledClassesDTO;
 
 /**
- * Servlet implementation class AdminSearchStudentGroups
+ * Servlet implementation class DeteleCourse
  */
-@WebServlet("/adminsearchstudentgroups")
-public class AdminSearchStudentGroups extends HttpServlet
+@WebServlet("/deletecourse")
+public class DeteleCourse extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
-
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AdminSearchStudentGroups()
-    {
-	super();
-    }
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -45,14 +36,13 @@ public class AdminSearchStudentGroups extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	String course = request.getParameter("searchedCourse").toString();
-	if (!course.isEmpty())
-	{
-	    List<CourseDTO> courses = new CourseDAO().getCourseByName(course);
-	    System.out.println(courses.isEmpty());
-	    request.setAttribute("courses", courses);
-	}
-	request.getRequestDispatcher("adminstudentgroups").forward(request, response);
+	CourseDAO coursedao = new CourseDAO();
+	CourseDTO course = coursedao.getEntity(Integer.parseInt(request.getParameter("courseid")));
+	coursedao.remove(course);
+
+	request.setAttribute("msgshort", "Usuniêto kierunek");
+	request.setAttribute("msglong", "Usuniêto kierunek z wydzia³u: " + course.getFaculty().getName());
+	request.getRequestDispatcher("info.jsp").forward(request, response);
     }
 
 }

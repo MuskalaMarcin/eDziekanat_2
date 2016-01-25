@@ -24,7 +24,7 @@
 					<li class="pure-menu-item"><a
 						class="pure-menu-link" href="admincourses">Kierunki</a></li>
 					<li class="pure-menu-item pure-menu-selected"><a class="pure-menu-link"
-						href="adminstudentsgroup">Grupy studenckie</a></li>
+						href="adminstudentgroups">Grupy studenckie</a></li>
 						<li class="pure-menu-item"><a class="pure-menu-link"
 						href="admingetcourses">Dodaj grupê studenck±</a></li>
 					<li class="pure-menu-item   menu-item-divided">

@@ -81,9 +81,16 @@
 										<td>${course.faculty.name}</td>
 										<td width="75px" id="respond">
 											<form action="adminstudentgroups" method=post>
-												<input type="hidden" name="studentsgroup" value="${course.id}"><input
+												<input type="hidden" name="courseid" value="${course.id}"><input
 													class="pure-button pure-input-1-2 pure-button-primary"
 													type="submit" value="Grupy studenckie">
+											</form>
+										</td>
+										<td width="75px" id="respond">
+											<form action="deletecourse" method=post>
+												<input type="hidden" name="courseid" value="${course.id}"><input
+													class="pure-button pure-input-1-2 pure-button-primary"
+													type="submit" style="background-color:red" value="Usuñ">
 											</form>
 										</td>
 									</tr>

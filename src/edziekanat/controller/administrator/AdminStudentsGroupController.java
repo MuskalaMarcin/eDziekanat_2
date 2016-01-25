@@ -1,6 +1,7 @@
 package edziekanat.controller.administrator;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -38,15 +39,28 @@ public class AdminStudentsGroupController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	if (((List<StudentsGroupDTO>)request.getAttribute("studentsgroup")).isEmpty())
+	if (request.getAttribute("courseid") == null)
 	{
-	    request.setAttribute("studentsgroup", new StudentsGroupDAO().getAllEntities());
+	    if (request.getAttribute("courses") == null || ((List<CourseDTO>) request.getAttribute("courses")).isEmpty())
+	    {
+		request.setAttribute("studentsgroup", new StudentsGroupDAO().getAllEntities());
+	    }
+	    else
+	    {
+		@SuppressWarnings("unchecked")
+		List<CourseDTO> courses = (List<CourseDTO>) request.getAttribute("courses");
+		List<StudentsGroupDTO> studentsgroup = new LinkedList<StudentsGroupDTO>();
+		for (int i = 0; i < courses.size(); i++)
+		{
+		    studentsgroup.addAll(courses.get(i).getStudentsGroup());
+		}
+		request.setAttribute("studentsgroup", studentsgroup);
+	    }
 	}
 	else
 	{
-	    @SuppressWarnings("unchecked")
-	    List<StudentsGroupDTO> studentsgroup = (List<StudentsGroupDTO>) request.getAttribute("studentsgroup");
-	    request.setAttribute("studentsgroup", studentsgroup);
+	    CourseDTO course = new CourseDAO().getEntity(Integer.parseInt(request.getParameter("courseid")));
+	    request.setAttribute("studentsgroup", course.getStudentsGroup());
 	}
 	request.getRequestDispatcher("admin/studentgroups").forward(request, response);
     }
