@@ -1,6 +1,7 @@
 package edziekanat.controller.administrator;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,17 +17,17 @@ import edziekanat.databasemodel.dto.CourseDTO;
 import edziekanat.databasemodel.dto.FacultyDTO;
 
 /**
- * Servlet implementation class AdminGetCoursesController
+ * Servlet implementation class AdminSearchCourses
  */
-@WebServlet("/admingetcourses")
-public class AdminGetCoursesController extends HttpServlet
+@WebServlet("/adminsearchcourses")
+public class AdminSearchCourses extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminGetCoursesController()
+    public AdminSearchCourses()
     {
 	super();
     }
@@ -46,10 +47,18 @@ public class AdminGetCoursesController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<CourseDTO> courses = new LinkedList<CourseDTO>();
-	courses = new CourseDAO().getAllEntities();
-	request.setAttribute("courses", courses);
-	request.getRequestDispatcher("admin/addstudentsgroup").forward(request, response);
+	String faculty = request.getParameter("searchedFaculty").toString();
+	if (!faculty.isEmpty())
+	{
+	    List<FacultyDTO> faculties = new FacultyDAO().getFacultyByName(faculty);
+	    List<CourseDTO> courses = new LinkedList<CourseDTO>();
+	    for (int i = 0; i < faculties.size(); i++)
+	    {
+		courses.addAll(faculties.get(i).getCourse());
+	    }
+	    request.setAttribute("courses", courses);
+	}
+	request.getRequestDispatcher("admin/courses").forward(request, response);
     }
 
 }

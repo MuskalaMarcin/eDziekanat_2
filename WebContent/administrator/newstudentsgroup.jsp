@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet" href="resources/pure-min.css">
 <link rel="stylesheet" href="resources/styles.css">
-<title>eDziekanat - Administrator - Kierunki</title>
+<title>eDziekanat - Administrator - Dodaj grupę studencką</title>
 </head>
 <body>
 	<div id="layout">
@@ -21,13 +21,13 @@
 						class="pure-menu-link">Plan zajęć</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminclassrooms">Dostępność sal</a></li>
-					<li class="pure-menu-item pure-menu-selected"><a
-						class="pure-menu-link" href="admincourses">Kierunki</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="admingetfaculties">Dodaj kierunek</a></li>
+						href="admincourses">Kierunki</a></li>
 					<li class="pure-menu-item   menu-item-divided">
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminstudentgroups">Grupy studenckie</a></li>
+					<li class="pure-menu-item pure-menu-selected"><a
+						class="pure-menu-link" href="#">Dodaj grupę studencką</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminusers">Użytkownicy</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
@@ -57,43 +57,42 @@
 				<h2>Twój wirtualny dziekanat.</h2>
 			</div>
 			<div class="content">
-				<h2 class="content-subhead">Kierunki:</h2>
-				<c:choose>
-					<c:when test="${nocourses==true}">
-					Brak kierunków do wyświetlenia.
-					</c:when>
-					<c:otherwise>
-						<center>
-							<form class="pure-form" action="adminsearchcourses" method=post>
-								Wydział: <input type="text" name="searchedFaculty"
-									class="pure-input-rounded" required>
-								<button type="submit" class="pure-button pure-button-primary">Szukaj</button>
-							</form>
-							<p>
-							<table class="responseTable">
-								<tr class="grayRow">
-									<td>Nr</td>
-									<td>Nazwa</td>
-									<td>Wydział</td>
-								</tr>
-								<c:forEach items="${courses}" var="course" varStatus="varStatus">
-									<tr>
-										<td>${varStatus.index + 1}</td>
-										<td>${course.name}</td>
-										<td>${course.faculty.name}</td>
-										<td width="75px" id="respond">
-											<form action="adminstudentgroups" method=post>
-												<input type="hidden" name="studentsgroup" value="${course.id}"><input
-													class="pure-button pure-input-1-2 pure-button-primary"
-													type="submit" value="Grupy studenckie">
-											</form>
-										</td>
-									</tr>
-								</c:forEach>
-							</table>
-						</center>
-					</c:otherwise>
-				</c:choose>
+				<h2 class="content-subhead">Dodaj grupę studencką:</h2>
+				<p>
+				<p>
+				<center>
+					<form action="http://localhost:8080/eDziekanat/adminaddstudentsgroup"
+						method=post class="pure-form">
+						<c:choose>
+							<c:when test="${!empty courses}">
+								Kierunek:
+								<select name="id">
+									<c:forEach items="${courses}" var="course"
+										varStatus="varStatus">
+										<option value="${course.id}">${course.name}</option>
+									</c:forEach>
+								</select>
+							</c:when>
+						</c:choose>
+						<p>
+						Semestr:
+						<select name="semester">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+						</select>
+						<p>
+						<button type="submit"
+							class="pure-button pure-input-1-2 pure-button-primary">Dodaj</button>
+					</form>
+				</center>
 			</div>
 		</div>
 	</div>

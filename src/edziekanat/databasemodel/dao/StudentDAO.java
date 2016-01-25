@@ -20,7 +20,8 @@ public class StudentDAO extends DAOParentClass<StudentDTO>
     /**
      * Method getting one object of student entity.
      * 
-     * @param id Integer id value
+     * @param id
+     *            Integer id value
      * @return StudentDTO object
      */
     public StudentDTO getEntity(Integer id)
@@ -31,17 +32,18 @@ public class StudentDAO extends DAOParentClass<StudentDTO>
     public List<StudentDTO> getStudentsByNameAndSurname(String name, String surname)
     {
 	List<StudentDTO> students = new LinkedList<StudentDTO>();
-	name = name.substring(0, 1).toUpperCase() + name.substring(1);
-	surname = surname.substring(0, 1).toUpperCase() + surname.substring(1);
-	students.addAll(getMultipleEntities("name = '" + name + "' and surname = '" + surname + "'"));
+	name = name.toUpperCase();
+	surname = surname.toUpperCase();
+	students.addAll(
+		getMultipleEntities("UPPER(name) like '%" + name + "%' and UPPER(surname) like '%" + surname + "%'"));
 	return students;
     }
 
     public List<StudentDTO> getStudentsBySurname(String surname)
     {
 	List<StudentDTO> students = new LinkedList<StudentDTO>();
-	surname = surname.substring(0, 1).toUpperCase() + surname.substring(1);
-	students.addAll(getMultipleEntities("surname = '" + surname + "'"));
+	surname = surname.toUpperCase();
+	students.addAll(getMultipleEntities("UPPER(surname) LIKE '%" + surname + "%'"));
 	return students;
     }
 

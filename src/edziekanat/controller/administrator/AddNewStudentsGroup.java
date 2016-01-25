@@ -9,18 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edziekanat.databasemodel.dao.AdministratorDAO;
 import edziekanat.databasemodel.dao.CourseDAO;
-import edziekanat.databasemodel.dao.FacultyDAO;
-import edziekanat.databasemodel.dto.AdministratorDTO;
+import edziekanat.databasemodel.dao.StudentsGroupDAO;
 import edziekanat.databasemodel.dto.CourseDTO;
-import edziekanat.databasemodel.dto.FacultyDTO;
+import edziekanat.databasemodel.dto.StudentsGroupDTO;
 
 /**
- * Servlet implementation class AdminAddCourseController
+ * Servlet implementation class AddNewStudentsGroup
  */
-@WebServlet("/adminaddcourse")
-public class AdminAddCourseController extends HttpServlet
+@WebServlet("/adminaddstudentsgroup")
+public class AddNewStudentsGroup extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
@@ -37,17 +35,15 @@ public class AdminAddCourseController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	CourseDTO course = new CourseDTO();
+	StudentsGroupDTO studentsgroup = new StudentsGroupDTO();
 	@SuppressWarnings("unchecked")
-	List<FacultyDTO> faculties = (List<FacultyDTO>) request.getAttribute("faculties");
-	request.setAttribute("faculties", faculties);
-	course.setName(request.getParameter("name"));
-	course.setFaculty(new FacultyDAO().getEntity(Integer.parseInt(request.getParameter("id").toString())));
-	course.setStationary(Integer.parseInt(request.getParameter("stationary").toString()));
+	List<CourseDTO> courses = (List<CourseDTO>) request.getAttribute("courses");
+	studentsgroup.setSemester(Integer.parseInt(request.getParameter("semester").toString()));
+	studentsgroup.setCourse(new CourseDAO().getEntity(Integer.parseInt(request.getParameter("id").toString())));
+	new StudentsGroupDAO().insert(studentsgroup);
 	
-	new CourseDAO().insert(course);
-	request.setAttribute("msgshort", "Kierunek z³o¿ony");
-	request.setAttribute("msglong", "Nowy kierunek zosta³ dodany");
+	request.setAttribute("msgshort", "Grupa studencka dodana");
+	request.setAttribute("msglong", "Nowa grupa studencka zosta³a dodana");
 	request.getRequestDispatcher("/info.jsp").forward(request, response);
     }
 

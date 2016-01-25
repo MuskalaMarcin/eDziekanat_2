@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet" href="resources/pure-min.css">
 <link rel="stylesheet" href="resources/styles.css">
-<title>eDziekanat - Administrator - Kierunki</title>
+<title>eDziekanat - Administrator - Grupy studenckie</title>
 </head>
 <body>
 	<div id="layout">
@@ -21,13 +21,13 @@
 						class="pure-menu-link">Plan zajęć</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminclassrooms">Dostępność sal</a></li>
-					<li class="pure-menu-item pure-menu-selected"><a
+					<li class="pure-menu-item"><a
 						class="pure-menu-link" href="admincourses">Kierunki</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="admingetfaculties">Dodaj kierunek</a></li>
+					<li class="pure-menu-item pure-menu-selected"><a class="pure-menu-link"
+						href="adminstudentsgroup">Grupy studenckie</a></li>
+						<li class="pure-menu-item"><a class="pure-menu-link"
+						href="admingetcourses">Dodaj grupę studencką</a></li>
 					<li class="pure-menu-item   menu-item-divided">
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminstudentgroups">Grupy studenckie</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminusers">Użytkownicy</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
@@ -57,15 +57,15 @@
 				<h2>Twój wirtualny dziekanat.</h2>
 			</div>
 			<div class="content">
-				<h2 class="content-subhead">Kierunki:</h2>
+				<h2 class="content-subhead">Grupy studenckie:</h2>
 				<c:choose>
-					<c:when test="${nocourses==true}">
-					Brak kierunków do wyświetlenia.
+					<c:when test="${empty studentsgroup}">
+					Brak grup studenckich do wyświetlenia.
 					</c:when>
 					<c:otherwise>
 						<center>
-							<form class="pure-form" action="adminsearchcourses" method=post>
-								Wydział: <input type="text" name="searchedFaculty"
+							<form class="pure-form" action="adminsearchstudentgroups" method=post>
+								Kierunek: <input type="text" name="searchedCourse"
 									class="pure-input-rounded" required>
 								<button type="submit" class="pure-button pure-button-primary">Szukaj</button>
 							</form>
@@ -73,19 +73,19 @@
 							<table class="responseTable">
 								<tr class="grayRow">
 									<td>Nr</td>
-									<td>Nazwa</td>
-									<td>Wydział</td>
+									<td>Semestr</td>
+									<td>Kierunek</td>
 								</tr>
-								<c:forEach items="${courses}" var="course" varStatus="varStatus">
+								<c:forEach items="${studentsgroup}" var="studentsgroup" varStatus="varStatus">
 									<tr>
 										<td>${varStatus.index + 1}</td>
-										<td>${course.name}</td>
-										<td>${course.faculty.name}</td>
+										<td>${studentsgroup.semester}</td>
+										<td>${studentsgroup.course.name}</td>
 										<td width="75px" id="respond">
-											<form action="adminstudentgroups" method=post>
-												<input type="hidden" name="studentsgroup" value="${course.id}"><input
+											<form action="adminstudents" method=post>
+												<input type="hidden" name="studentsgroup" value="${studentsgroup}"><input
 													class="pure-button pure-input-1-2 pure-button-primary"
-													type="submit" value="Grupy studenckie">
+													type="submit" value="Studenci">
 											</form>
 										</td>
 									</tr>

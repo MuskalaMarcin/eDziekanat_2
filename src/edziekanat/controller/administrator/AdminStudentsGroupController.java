@@ -1,7 +1,6 @@
 package edziekanat.controller.administrator;
 
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,24 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.databasemodel.dao.CourseDAO;
 import edziekanat.databasemodel.dao.FacultyDAO;
+import edziekanat.databasemodel.dao.StudentsGroupDAO;
 import edziekanat.databasemodel.dto.CourseDTO;
-import edziekanat.databasemodel.dto.FacultyDTO;
+import edziekanat.databasemodel.dto.StudentsGroupDTO;
 
 /**
- * Servlet implementation class AdminGetCoursesController
+ * Servlet implementation class AdminStudentGroupsController
  */
-@WebServlet("/admingetcourses")
-public class AdminGetCoursesController extends HttpServlet
+@WebServlet("/adminstudentgroups")
+public class AdminStudentsGroupController extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
-
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AdminGetCoursesController()
-    {
-	super();
-    }
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -46,10 +38,17 @@ public class AdminGetCoursesController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<CourseDTO> courses = new LinkedList<CourseDTO>();
-	courses = new CourseDAO().getAllEntities();
-	request.setAttribute("courses", courses);
-	request.getRequestDispatcher("admin/addstudentsgroup").forward(request, response);
+	if (((List<StudentsGroupDTO>)request.getAttribute("studentsgroup")).isEmpty())
+	{
+	    request.setAttribute("studentsgroup", new StudentsGroupDAO().getAllEntities());
+	}
+	else
+	{
+	    @SuppressWarnings("unchecked")
+	    List<StudentsGroupDTO> studentsgroup = (List<StudentsGroupDTO>) request.getAttribute("studentsgroup");
+	    request.setAttribute("studentsgroup", studentsgroup);
+	}
+	request.getRequestDispatcher("admin/studentgroups").forward(request, response);
     }
 
 }

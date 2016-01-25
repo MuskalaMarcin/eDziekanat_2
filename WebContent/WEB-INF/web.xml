@@ -102,6 +102,34 @@
 		<jsp-file>/administrator/newmessage.jsp</jsp-file>
 	</servlet>
 	<servlet>
+		<servlet-name>AdminCourses</servlet-name>
+		<jsp-file>/administrator/courses.jsp</jsp-file>
+	</servlet>
+	<servlet>
+		<servlet-name>AdminAddCourse</servlet-name>
+		<jsp-file>/administrator/newcourse.jsp</jsp-file>
+	</servlet>
+	<servlet>
+		<servlet-name>AdminAddStudentsGroup</servlet-name>
+		<jsp-file>/administrator/newstudentsgroup.jsp</jsp-file>
+	</servlet>
+	<servlet>
+		<servlet-name>AdminSearchCourses</servlet-name>
+	</servlet>
+	<servlet>
+		<servlet-name>AdminSearchStudentGroups</servlet-name>
+	</servlet>
+	<servlet>
+		<servlet-name>AdminGetFaculties</servlet-name>
+	</servlet>
+	<servlet>
+		<servlet-name>AdminGetCourses</servlet-name>
+	</servlet>
+	<servlet>
+		<servlet-name>AdminStudentGroups</servlet-name>
+		<jsp-file>/administrator/studentsgroup.jsp</jsp-file>
+	</servlet>
+	<servlet>
 		<servlet-name>StudentPayments</servlet-name>
 		<jsp-file>/student/payments.jsp</jsp-file>
 	</servlet>
@@ -226,6 +254,38 @@
 		<url-pattern>/admin/newmessage</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
+		<servlet-name>AdminCourses</servlet-name>
+		<url-pattern>/admin/courses</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AdminSearchCourses</servlet-name>
+		<url-pattern>/admin/searchcourses</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AdminSearchStudentGroups</servlet-name>
+		<url-pattern>/admin/searchstudentgroups</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AdminGetFaculties</servlet-name>
+		<url-pattern>/admin/getfaculties</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AdminGetCourses</servlet-name>
+		<url-pattern>/admin/getcourses</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AdminAddCourse</servlet-name>
+		<url-pattern>/admin/addcourse</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AdminAddStudentsGroup</servlet-name>
+		<url-pattern>/admin/addstudentsgroup</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AdminStudentGroups</servlet-name>
+		<url-pattern>/admin/studentgroups</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>StudentPayments</servlet-name>
 		<url-pattern>/student/payments</url-pattern>
 	</servlet-mapping>
@@ -281,7 +341,9 @@
 			<url-pattern>/adminpayments/*</url-pattern>
 			<url-pattern>/adminwaitingpayments/*</url-pattern>
 			<url-pattern>/applypayment/*</url-pattern>
-			<url-pattern>/adminaddpayments/*</url-pattern>
+			<url-pattern>/admincourses/*</url-pattern>
+			<url-pattern>/adminaddcourses/*</url-pattern>
+			<url-pattern>/adminstudentgroups/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>admin</role-name>

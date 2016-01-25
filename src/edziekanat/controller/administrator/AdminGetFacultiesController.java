@@ -10,25 +10,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edziekanat.databasemodel.dao.CourseDAO;
 import edziekanat.databasemodel.dao.FacultyDAO;
-import edziekanat.databasemodel.dto.CourseDTO;
 import edziekanat.databasemodel.dto.FacultyDTO;
 
 /**
- * Servlet implementation class AdminGetCoursesController
+ * Servlet implementation class AdminGetFacultiesController
  */
-@WebServlet("/admingetcourses")
-public class AdminGetCoursesController extends HttpServlet
+@WebServlet("/admingetfaculties")
+public class AdminGetFacultiesController extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminGetCoursesController()
+    public AdminGetFacultiesController()
     {
 	super();
+	// TODO Auto-generated constructor stub
     }
 
     /**
@@ -46,10 +45,10 @@ public class AdminGetCoursesController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<CourseDTO> courses = new LinkedList<CourseDTO>();
-	courses = new CourseDAO().getAllEntities();
-	request.setAttribute("courses", courses);
-	request.getRequestDispatcher("admin/addstudentsgroup").forward(request, response);
+	List<FacultyDTO> faculties = new LinkedList<FacultyDTO>();
+	faculties = new FacultyDAO().getAllEntities();
+	request.setAttribute("faculties", faculties);
+	request.getRequestDispatcher("admin/addcourse").forward(request, response);
     }
 
 }
