@@ -29,8 +29,8 @@
 						href="adminlecturers">Wyk³adowcy</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminsubjects">Przedmioty</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminstudents  pure-menu-selected">Studenci</a></li>
+					<li class="pure-menu-item pure-menu-selected"><a
+						class="pure-menu-link" href="adminstudents">Studenci</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminstatistics">Statystyki</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
@@ -58,10 +58,11 @@
 				</h2>
 				<center>
 					<form class="pure-form" action="adminsearchstudents" method=post>
-						<input type="text" name="studentsGroupId" value="${studentsGroup.id}"
-							hidden> Imiê: <input type="text" name="searchedName"
-							class="pure-input-rounded"> Nazwisko: <input type="text"
-							name="searchedSurname" class="pure-input-rounded" required>
+						<input type="text" name="studentsGroupId"
+							value="${studentsGroup.id}" hidden> Imiê: <input
+							type="text" name="searchedName" class="pure-input-rounded">
+						Nazwisko: <input type="text" name="searchedSurname"
+							class="pure-input-rounded" required>
 						<button type="submit" class="pure-button pure-button-primary">Szukaj</button>
 					</form>
 				</center>
@@ -85,25 +86,31 @@
 										<td>${student.surname}</td>
 										<td>${student.user.eMail}</td>
 										<td width="70px" id="respond">
-											<form action="studentmarks" method=post>
-												<input type="hidden" name="subjectId" value="${subject.id}">
+											<form action="adminscholarships" method=post>
 												<input type="hidden" name="studentId" value="${student.id}">
 												<input
 													class="pure-button pure-input-1-2 pure-button-primary"
-													type="submit" value="Oceny">
+													type="submit" value="Stypendia">
 											</form>
 										</td>
 										<td width="70px" id="respond">
-											<form action="studentenrollments" method=post>
-												<input type="hidden" name="subjectId" value="${subject.id}">
+											<form action="adminpayments" method=post>
 												<input type="hidden" name="studentId" value="${student.id}">
 												<input
 													class="pure-button pure-input-1-2 pure-button-primary"
-													type="submit" value="Wpisy">
+													type="submit" value="Nale¿no¶ci">
 											</form>
 										</td>
 										<td width="70px" id="respond">
-											<form action="lecturer/newmessage" method=post>
+											<form action="adminapplications" method=post>
+												<input type="hidden" name="studentId" value="${student.id}">
+												<input
+													class="pure-button pure-input-1-2 pure-button-primary"
+													type="submit" value="Wnioski">
+											</form>
+										</td>
+										<td width="70px" id="respond">
+											<form action="admin/newmessage" method=post>
 												<input type="hidden" name="receiverLogin"
 													value="${student.user.login}"> <input
 													class="pure-button pure-input-1-2 pure-button-primary"

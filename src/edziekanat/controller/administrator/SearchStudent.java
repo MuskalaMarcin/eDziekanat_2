@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.databasemodel.dao.StudentDAO;
 import edziekanat.databasemodel.dao.StudentsGroupDAO;
-import edziekanat.databasemodel.dao.SubjectDAO;
 import edziekanat.databasemodel.dto.StudentDTO;
 
 /**

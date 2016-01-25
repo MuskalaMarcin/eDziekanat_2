@@ -34,16 +34,16 @@
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="http://localhost:8080/eDziekanat/lecturersubjects">Moje
 							przedmioty</a></li>
-					<li class="pure-menu-item menu-item-divided"><a href="#"
-						class="pure-menu-link">Historia komunikatów</a></li>
-					<li class="pure-menu-item"><a
-						href="http://localhost:8080/eDziekanat/receivedmessages"
-						class="pure-menu-link">Skrzynka odbiorcza</a></li>
-					<li class="pure-menu-item"><a
-						href="http://localhost:8080/eDziekanat/sentmessages"
-						class="pure-menu-link">Skrzynka nadawcza</a></li>
 					<li class="pure-menu-item   menu-item-divided"><a
 						href="logout" class="pure-menu-link">Wyloguj</a>
+					<li class="pure-menu-item menu-item-divided"><a
+						href="http://localhost:8080/eDziekanat/receivedmessages"
+						class="pure-menu-link">Historia komunikatów</a></li>
+					<li class="pure-menu-item  pure-menu-selected"><a href="#"
+						class="pure-menu-link">Nowa wiadomo¶æ</a></li>
+					<li class="pure-menu-item menu-item-divided"><a
+						href="http://localhost:8080/eDziekanat/logout"
+						class="pure-menu-link">Wyloguj</a>
 				</ul>
 			</div>
 		</div>
