@@ -1,7 +1,6 @@
 package edziekanat.controller.administrator;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edziekanat.databasemodel.dao.CourseDAO;
 import edziekanat.databasemodel.dao.FacultyDAO;
 import edziekanat.databasemodel.dto.CourseDTO;
 import edziekanat.databasemodel.dto.FacultyDTO;

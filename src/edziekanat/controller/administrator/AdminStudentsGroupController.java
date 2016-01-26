@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.databasemodel.dao.CourseDAO;
-import edziekanat.databasemodel.dao.FacultyDAO;
 import edziekanat.databasemodel.dao.StudentsGroupDAO;
 import edziekanat.databasemodel.dto.CourseDTO;
 import edziekanat.databasemodel.dto.StudentsGroupDTO;
@@ -37,6 +36,7 @@ public class AdminStudentsGroupController extends HttpServlet
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
      *      response)
      */
+    @SuppressWarnings("unchecked")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	if (request.getParameter("courseid") == null)
@@ -47,7 +47,6 @@ public class AdminStudentsGroupController extends HttpServlet
 	    }
 	    else
 	    {
-		@SuppressWarnings("unchecked")
 		List<CourseDTO> courses = (List<CourseDTO>) request.getAttribute("courses");
 		List<StudentsGroupDTO> studentsgroup = new LinkedList<StudentsGroupDTO>();
 		for (int i = 0; i < courses.size(); i++)
@@ -60,6 +59,7 @@ public class AdminStudentsGroupController extends HttpServlet
 	else
 	{
 	    CourseDTO course = new CourseDAO().getEntity(Integer.parseInt(request.getParameter("courseid")));
+	    request.setAttribute("course", course);
 	    request.setAttribute("studentsgroup", course.getStudentsGroup());
 	}
 	request.getRequestDispatcher("admin/studentgroups").forward(request, response);

@@ -2,7 +2,6 @@ package edziekanat.controller.lecturer;
 
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,20 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edziekanat.bean.LoginBean;
-import edziekanat.databasemodel.dao.AdministratorDAO;
-import edziekanat.databasemodel.dao.ApplicationDAO;
 import edziekanat.databasemodel.dao.EnrollmentDAO;
-import edziekanat.databasemodel.dao.PartialMarkDAO;
-import edziekanat.databasemodel.dao.StudentDAO;
 import edziekanat.databasemodel.dao.SubjectDAO;
 import edziekanat.databasemodel.dao.TranscriptDAO;
-import edziekanat.databasemodel.dto.AdministratorDTO;
-import edziekanat.databasemodel.dto.ApplicationDTO;
 import edziekanat.databasemodel.dto.EnrollmentDTO;
-import edziekanat.databasemodel.dto.PartialMarkDTO;
-import edziekanat.databasemodel.dto.SubjectDTO;
-import edziekanat.databasemodel.dto.TranscriptDTO;
 
 /**
  * Servlet implementation class NewEnrollment

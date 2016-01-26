@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.databasemodel.dao.CourseDAO;
-import edziekanat.databasemodel.dao.FacultyDAO;
 import edziekanat.databasemodel.dto.CourseDTO;
-import edziekanat.databasemodel.dto.FacultyDTO;
 
 /**
  * Servlet implementation class AdminGetCoursesController

@@ -1,8 +1,6 @@
 package edziekanat.controller.administrator;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,9 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.SubjectDAO;
-import edziekanat.databasemodel.dto.SubjectDTO;
 
 /**
  * Servlet implementation class AdminSubjects

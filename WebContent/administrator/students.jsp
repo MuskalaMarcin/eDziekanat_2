@@ -54,7 +54,7 @@
 			<div class="content">
 				<h2 class="content-subhead">
 					Studenci:
-					<c:if test="${!empty studentsGroup }"> grupa studencka: ${studentsGroup.id } kierunek: ${studentsGroup.course.name }</c:if>
+					<c:if test="${!empty studentsgroup }"> grupa studencka: ${studentsgroup.id } kierunek: ${studentsgroup.course.name }</c:if>
 				</h2>
 				<center>
 					<form class="pure-form" action="adminsearchstudents" method=post>

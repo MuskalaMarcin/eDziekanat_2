@@ -6,7 +6,6 @@ import java.util.List;
 
 import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.EnrollmentDTO;
-import edziekanat.databasemodel.dto.PartialMarkDTO;
 import edziekanat.databasemodel.dto.TranscriptDTO;
 
 /**

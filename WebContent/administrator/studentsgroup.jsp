@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-2"
 	pageEncoding="ISO-8859-2"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -55,35 +56,48 @@
 				<h2>Twój wirtualny dziekanat.</h2>
 			</div>
 			<div class="content">
-				<h2 class="content-subhead">Grupy studenckie:</h2>
+				<h2 class="content-subhead">Grupy studenckie <c:if test="${!empty course }"> z kierunku ${course.name}</c:if></h2>
 				<c:choose>
 					<c:when test="${empty studentsgroup}">
 					Brak grup studenckich do wy¶wietlenia.
 					</c:when>
 					<c:otherwise>
 						<center>
+						<c:if test="${empty course }">
 							<form class="pure-form" action="adminsearchstudentgroups" method=post>
 								Kierunek: <input type="text" name="searchedCourse"
 									class="pure-input-rounded" required>
 								<button type="submit" class="pure-button pure-button-primary">Szukaj</button>
 							</form>
+							</c:if>
 							<p>
 							<table class="responseTable">
 								<tr class="grayRow">
 									<td>Nr</td>
+									<td>Nazwa</td>
 									<td>Semestr</td>
-									<td>Kierunek</td>
+									<td>Ilo¶æ studentów</td>
+									<c:if test="${empty course }"><td>Kierunek</td></c:if>
 								</tr>
 								<c:forEach items="${studentsgroup}" var="studentsgroup" varStatus="varStatus">
 									<tr>
 										<td>${varStatus.index + 1}</td>
+										<td>${studentsgroup.id }</td>
 										<td>${studentsgroup.semester}</td>
-										<td>${studentsgroup.course.name}</td>
+										<td>${fn:length(studentsgroup.student)}</td>
+										<c:if test="${empty course }"><td>${studentsgroup.course.name}</td></c:if>
 										<td width="75px" id="respond">
 											<form action="adminstudents" method=post>
 												<input type="hidden" name="studentsGroupId" value="${studentsgroup.id}"><input
 													class="pure-button pure-input-1-2 pure-button-primary"
 													type="submit" value="Studenci">
+											</form>
+										</td>
+										<td width="75px" id="respond">
+											<form action="deletestudentsgroup" method=post>
+												<input type="hidden" name="studentsGroupId" value="${studentsgroup.id}"><input
+													class="pure-button pure-input-1-2 pure-button-primary"
+													type="submit" style="background-color: red" value="Usuñ">
 											</form>
 										</td>
 									</tr>

@@ -3,10 +3,7 @@ package edziekanat.databasemodel.dao;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.persistence.NoResultException;
-
 import edziekanat.databasemodel.TableNames;
-import edziekanat.databasemodel.dto.CourseDTO;
 import edziekanat.databasemodel.dto.FacultyDTO;
 
 /**

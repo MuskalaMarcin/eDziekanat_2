@@ -1,7 +1,6 @@
 package edziekanat.controller.administrator;
 
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.databasemodel.dao.CourseDAO;
 import edziekanat.databasemodel.dto.CourseDTO;
-import edziekanat.databasemodel.dto.StudentsGroupDTO;
 
 /**
  * Servlet implementation class AdminSearchStudentGroups

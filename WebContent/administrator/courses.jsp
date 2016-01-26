@@ -56,17 +56,21 @@
 			</div>
 			<div class="content">
 				<h2 class="content-subhead">Kierunki:</h2>
+				<center>
+						<form class="pure-form" action="adminsearchcourses" method=post>
+							Wydzia³: <input type="text" name="searchedFaculty"
+								class="pure-input-rounded" required>
+							<button type="submit" class="pure-button pure-button-primary">Szukaj</button>
+						</form>
+					</center>
 				<c:choose>
-					<c:when test="${nocourses==true}">
-					Brak kierunków do wy¶wietlenia.
+					<c:when test="${empty courses}">
+					<center><p>
+					Brak kierunków spe³niaj±cych podane warunki.
+					</p></center>
 					</c:when>
 					<c:otherwise>
 						<center>
-							<form class="pure-form" action="adminsearchcourses" method=post>
-								Wydzia³: <input type="text" name="searchedFaculty"
-									class="pure-input-rounded" required>
-								<button type="submit" class="pure-button pure-button-primary">Szukaj</button>
-							</form>
 							<p>
 							<table class="responseTable">
 								<tr class="grayRow">
@@ -90,7 +94,7 @@
 											<form action="deletecourse" method=post>
 												<input type="hidden" name="courseid" value="${course.id}"><input
 													class="pure-button pure-input-1-2 pure-button-primary"
-													type="submit" style="background-color:red" value="Usuñ">
+													type="submit" style="background-color: red" value="Usuñ">
 											</form>
 										</td>
 									</tr>

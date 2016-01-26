@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.databasemodel.dao.CourseDAO;
-import edziekanat.databasemodel.dao.ScheduledClassesDAO;
 import edziekanat.databasemodel.dto.CourseDTO;
-import edziekanat.databasemodel.dto.ScheduledClassesDTO;
 
 /**
  * Servlet implementation class DeteleCourse

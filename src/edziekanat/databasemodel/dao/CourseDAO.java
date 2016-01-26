@@ -5,8 +5,6 @@ import java.util.List;
 
 import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.CourseDTO;
-import edziekanat.databasemodel.dto.FacultyDTO;
-import edziekanat.databasemodel.dto.LecturerDTO;
 
 /**
  * Data access class used to perform operations on course entities.

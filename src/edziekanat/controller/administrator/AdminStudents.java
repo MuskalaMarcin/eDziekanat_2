@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import edziekanat.databasemodel.dao.StudentDAO;
 import edziekanat.databasemodel.dao.StudentsGroupDAO;
 import edziekanat.databasemodel.dto.StudentDTO;
+import edziekanat.databasemodel.dto.StudentsGroupDTO;
 
 /**
  * Servlet implementation class AdminStudents
@@ -45,8 +46,9 @@ public class AdminStudents extends HttpServlet
 	}
 	else if (request.getParameter("studentsGroupId") != null)
 	{
-	    students = new StudentsGroupDAO().getEntity(Integer.parseInt(request.getParameter("studentsGroupId")))
-		    .getStudent();
+	    StudentsGroupDTO studentsGroup = new StudentsGroupDAO().getEntity(Integer.parseInt(request.getParameter("studentsGroupId")));
+	    students = studentsGroup.getStudent();
+	    request.setAttribute("studentsgroup", studentsGroup);
 	}
 	else
 	{
