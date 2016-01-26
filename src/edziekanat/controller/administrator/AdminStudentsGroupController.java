@@ -39,7 +39,7 @@ public class AdminStudentsGroupController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	if (request.getAttribute("courseid") == null)
+	if (request.getParameter("courseid") == null)
 	{
 	    if (request.getAttribute("courses") == null || ((List<CourseDTO>) request.getAttribute("courses")).isEmpty())
 	    {
