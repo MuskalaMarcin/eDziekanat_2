@@ -68,7 +68,45 @@
 			</div>
 			<div class="content">
 				<h2 class="content-subhead">Dodaj wyk³adowcê</h2>
-
+				<p>
+				<p>
+				<center>
+					<form action="http://localhost:8080/eDziekanat/adminaddlecturer"
+						method=post class="pure-form">
+						<fieldset class="pure-group">
+							<input type="text" name="name" class="pure-input-1-2"
+								placeholder="Imiê" required>
+							</textarea>
+						</fieldset>
+						<p>
+						<fieldset class="pure-group">
+							<input type="text" name="surname" class="pure-input-1-2"
+								placeholder="Nazwisko" required>
+							</textarea>
+						</fieldset>
+						<p>
+						<fieldset class="pure-group">
+							<input type="text" name="address" class="pure-input-1-2"
+								placeholder="Adres" required>
+							</textarea>
+						</fieldset>
+						<p>
+						<fieldset class="pure-group">
+							<input type="text" name="academicdegree" class="pure-input-1-2"
+								placeholder="Stopieñ naukowy" required>
+							</textarea>
+						</fieldset>
+						<p>
+						<fieldset class="pure-group">
+							<input type="text" name="position" class="pure-input-1-2"
+								placeholder="Stanowisko" required>
+							</textarea>
+						</fieldset>
+						<p>
+						<button type="submit"
+							class="pure-button pure-input-1-2 pure-button-primary">Dodaj</button>
+					</form>
+				</center>
 			</div>
 		</div>
 	</div>

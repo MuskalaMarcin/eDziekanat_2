@@ -1,6 +1,9 @@
 package edziekanat.controller.administrator;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.PaymentDAO;
+import edziekanat.databasemodel.dto.PaymentDTO;
 
 /**
  * Servlet implementation class AdminWaitingPaymentsController
@@ -31,8 +35,17 @@ public class AdminWaitingPaymentsController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	request.setAttribute("waitingPayments", new PaymentDAO()
-		.getWaitingAdminPayments(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
+	List<PaymentDTO> paymentsAdmin = new LinkedList<PaymentDTO>();
+	paymentsAdmin = paymentsAdmin = new PaymentDAO()
+		.getWaitingAdminPayments(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
+	if (request.getParameter("studentId") != null)
+	{
+	    List<PaymentDTO> paymentsStudent = new LinkedList<PaymentDTO>();
+	    paymentsStudent = new PaymentDAO().getAllStudentPayments(Integer.parseInt(request.getParameter("studentId")));
+	    paymentsAdmin.retainAll(paymentsStudent);
+	}
+	
+	request.setAttribute("waitingPayments", paymentsAdmin);
 
 	request.getRequestDispatcher("administrator/waitingpayments.jsp").forward(request, response);
     }
