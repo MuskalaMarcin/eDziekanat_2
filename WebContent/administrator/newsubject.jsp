@@ -66,6 +66,7 @@
 								placeholder="Nazwa" required>
 							</textarea>
 						</fieldset>
+						Prowadz±cy:
 						<c:choose>
 							<c:when test="${!empty lecturers}">
 								<select name="lecturerid">
@@ -76,18 +77,19 @@
 								</select>
 							</c:when>
 						</c:choose>
-						Semestr: <select name="semester">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-						</select> 
+						<p>
+						Grupa studencka:
+						<c:choose>
+							<c:when test="${!empty studentsgroup}">
+								<select name="lecturerid">
+									<c:forEach items="${studentsgroup}" var="studentsgroup"
+										varStatus="varStatus">
+										<option value="${studentsgroup.id}">${studentsgroup.id}</option>
+									</c:forEach>
+								</select>
+							</c:when>
+						</c:choose>
+						<p>
 						Punkty ECTS: <select name="ECTS">
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -101,6 +103,19 @@
 							<option value="10">10</option>
 							<option value="11">11</option>
 							<option value="12">12</option>
+						</select>
+						<p>
+						Semestr: <select name="semester">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
 						</select>
 						<p>
 						<button type="submit"

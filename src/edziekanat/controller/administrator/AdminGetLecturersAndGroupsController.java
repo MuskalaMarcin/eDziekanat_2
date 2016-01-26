@@ -1,8 +1,6 @@
 package edziekanat.controller.administrator;
 
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,20 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.databasemodel.dao.LecturerDAO;
-import edziekanat.databasemodel.dto.LecturerDTO;
+import edziekanat.databasemodel.dao.StudentsGroupDAO;
 
 /**
- * Servlet implementation class AdminGetLecturersController
+ * Servlet implementation class AdminGetLecturersAndGroupsController
  */
 @WebServlet("/admingetlecturers")
-public class AdminGetLecturersController extends HttpServlet
+public class AdminGetLecturersAndGroupsController extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminGetLecturersController()
+    public AdminGetLecturersAndGroupsController()
     {
 	super();
     }
@@ -44,9 +42,8 @@ public class AdminGetLecturersController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<LecturerDTO> lecturers = new LinkedList<LecturerDTO>();
-	lecturers = new LecturerDAO().getAllEntities();
-	request.setAttribute("lecturers", lecturers);
+	request.setAttribute("lecturers", new LecturerDAO().getAllEntities());
+	request.setAttribute("studentsgroup", new StudentsGroupDAO().getAllEntities());
 	request.getRequestDispatcher("admin/newsubject").forward(request, response);
     }
 
