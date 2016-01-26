@@ -29,8 +29,13 @@
 						href="adminlecturers">Wyk³adowcy</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminsubjects">Przedmioty</a></li>
+					<li class="pure-menu-item menu-item-divided">
+					<li class="pure-menu-item"><a class="pure-menu-link" href="#">Studenci</a></li>
 					<li class="pure-menu-item pure-menu-selected"><a
-						class="pure-menu-link" href="adminstudents">Studenci</a></li>
+						class="pure-menu-link" href="adminstudents">Przegl±daj</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="admingetstudentsgroup">Dodaj studenta</a></li>
+					<li class="pure-menu-item menu-item-divided">
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminstatistics">Statystyki</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"

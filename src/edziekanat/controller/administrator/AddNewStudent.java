@@ -10,17 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edziekanat.databasemodel.dao.LecturerDAO;
+import edziekanat.databasemodel.dao.StudentDAO;
 import edziekanat.databasemodel.dao.StudentsGroupDAO;
-import edziekanat.databasemodel.dao.SubjectDAO;
+import edziekanat.databasemodel.dao.UserDAO;
+import edziekanat.databasemodel.dto.StudentDTO;
 import edziekanat.databasemodel.dto.StudentsGroupDTO;
-import edziekanat.databasemodel.dto.SubjectDTO;
+import edziekanat.databasemodel.dto.UserDTO;
+
 
 /**
- * Servlet implementation class AddNewSubject
+ * Servlet implementation class AddNewStudent
  */
-@WebServlet("/adminaddsubject")
-public class AddNewSubject extends HttpServlet
+@WebServlet("/adminaddstudent")
+public class AddNewStudent extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
@@ -37,18 +39,27 @@ public class AddNewSubject extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	SubjectDTO subject = new SubjectDTO();
-	subject.setName(request.getParameter("name").toString());
-	subject.setSemester(Integer.parseInt(request.getParameter("semester").toString()));
-	subject.setECTS(Integer.parseInt(request.getParameter("ECTS").toString()));
-	subject.setLecturer(new LecturerDAO().getEntity(Integer.parseInt(request.getParameter("lecturerid").toString())));
+	StudentDTO student = new StudentDTO();
+	student.setName(request.getParameter("name").toString());
+	student.setSurname(request.getParameter("surname").toString());
+	student.setAddress(request.getParameter("address").toString());
+	student.setAcademicDegree(request.getParameter("academicdegree").toString());
 	List<StudentsGroupDTO> studentsgroup = new LinkedList<StudentsGroupDTO>();
 	studentsgroup.add(new StudentsGroupDAO().getEntity(Integer.parseInt(request.getParameter("studentsgroupid").toString())));
-	subject.setStudents_group(studentsgroup);
-	new SubjectDAO().insert(subject);
+	student.setStudentsGroup(studentsgroup);
 	
-	request.setAttribute("msgshort", "Przedmiot dodany");
-	request.setAttribute("msglong", "Nowa przedmiot zosta³ dodany");
+	UserDTO user = new UserDTO();
+	user.setActive(1);
+	user.seteMail(request.getParameter("email").toString());
+	user.setLogin(request.getParameter("login").toString());
+	user.setPassword(request.getParameter("password").toString());
+	user.setUserRole("lecturer");
+	student.setUser(user);
+	new UserDAO().insert(user);
+	new StudentDAO().insert(student);
+
+	request.setAttribute("msgshort", "Student dodany");
+	request.setAttribute("msglong", "Nowy student zosta³ dodany");
 	request.getRequestDispatcher("/info.jsp").forward(request, response);
     }
 

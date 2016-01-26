@@ -54,31 +54,9 @@ public class AdminStudents extends HttpServlet
 	{
 	    students = (List<StudentDTO>) request.getAttribute("students");
 	}
-	request.setAttribute("students", removeDuplicates(students));
+	request.setAttribute("students", students);
 	request.getRequestDispatcher("administrator/students.jsp").forward(request, response);
     }
 
-    /**
-     * Removes duplicated students, then sorts them by surname.
-     * 
-     * @param students
-     * @return
-     */
-    private List<StudentDTO> removeDuplicates(List<StudentDTO> students)
-    {
-	Collections.sort(students, (x, y) -> x.getUser().getLogin().compareTo(y.getUser().getLogin()));
-	for (int i = 1; i < students.size(); i++)
-	{
-	    StudentDTO previous = students.get(i - 1);
-	    StudentDTO next = students.get(i);
-	    if (previous.getUser().getLogin().equals(next.getUser().getLogin()))
-	    {
-		students.remove(previous);
-		i--;
-	    }
-	}
-	Collections.sort(students, (x, y) -> x.getSurname().compareTo(y.getSurname()));
-	return students;
-    }
 
 }
