@@ -18,6 +18,10 @@ import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
 
+/**
+ *  Data transfer object representing course entity.
+ *
+ */
 @Entity
 @Table(name = TableNames.COURSE)
 public class CourseDTO implements Serializable

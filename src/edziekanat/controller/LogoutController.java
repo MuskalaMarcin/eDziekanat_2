@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class LogoutServlet
+ * Servlet maintaing logging out from application.
  */
 @WebServlet("/logout")
 public class LogoutController extends HttpServlet

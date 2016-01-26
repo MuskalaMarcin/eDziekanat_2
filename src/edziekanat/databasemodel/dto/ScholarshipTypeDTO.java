@@ -12,6 +12,10 @@ import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
 
+/**
+ *  Data transfer object representing scholarship type entity.
+ *
+ */
 @Entity
 @Table(name = TableNames.SCHOLARSHIP_TYPE)
 public class ScholarshipTypeDTO implements Serializable

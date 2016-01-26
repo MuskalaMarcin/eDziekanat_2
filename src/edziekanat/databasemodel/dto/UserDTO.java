@@ -15,7 +15,8 @@ import javax.persistence.Table;
 import edziekanat.databasemodel.TableNames;
 
 /**
- * UserDTO class represents one user from users table.
+ *  Data transfer object representing user entity.
+ *
  */
 @Entity
 @Table(name = TableNames.USER)

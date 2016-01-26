@@ -19,6 +19,10 @@ import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
 
+/**
+ *  Data transfer object representing administrator entity.
+ *
+ */
 @Entity
 @Table(name = TableNames.ADMINISTRATOR)
 public class AdministratorDTO implements Serializable

@@ -1,4 +1,4 @@
-package edziekanat;
+package edziekanat.listener;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

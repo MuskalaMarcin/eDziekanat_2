@@ -19,6 +19,10 @@ import javax.persistence.TemporalType;
 
 import edziekanat.databasemodel.TableNames;
 
+/**
+ *  Data transfer object representing application entity.
+ *
+ */
 @Entity
 @Table(name = TableNames.APPLICATION)
 public class ApplicationDTO implements Serializable

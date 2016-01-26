@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-2"
 	pageEncoding="ISO-8859-2"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
- <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -26,12 +26,16 @@
 						href="admincourses">Kierunki</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminstudentgroups">Grupy studenckie</a></li>
-					<li class="pure-menu-item pure-menu-selected"><a class="pure-menu-link"
-						href="adminlecturers">Wyk³adowcy</a></li>
+					<li class="pure-menu-item menu-item-divided"><a
+						class="pure-menu-link" href="#">Wyk³adowcy</a></li>
+					<li class="pure-menu-item pure-menu-selected"><a
+						class="pure-menu-link" href="adminlecturers">Przegl±daj</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminsubjects">Przedmioty</a></li>
-					<li class="pure-menu-item"><a
-						class="pure-menu-link" href="adminstudents">Studenci</a></li>
+						href="admin/newlecturer">Dodaj wyk³adowcê</a></li>
+					<li class="pure-menu-item menu-item-divided"><a
+						class="pure-menu-link" href="adminsubjects">Przedmioty</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="adminstudents">Studenci</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminstatistics">Statystyki</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
@@ -53,24 +57,21 @@
 				<h2>Twój wirtualny dziekanat.</h2>
 			</div>
 			<div class="content">
-				<h2 class="content-subhead">
-					Wyk³adowcy:
-				</h2>
+				<h2 class="content-subhead">Wyk³adowcy:</h2>
 				<center>
 					<form class="pure-form" action="adminsearchlecturers" method=post>
-						<input type="text" name="subjectId"
-							value="${subject.id}" hidden> Imiê: <input
-							type="text" name="searchedName" class="pure-input-rounded">
-						Nazwisko: <input type="text" name="searchedSurname"
-							class="pure-input-rounded" required>
+						<input type="text" name="subjectId" value="${subject.id}" hidden>
+						Imiê: <input type="text" name="searchedName"
+							class="pure-input-rounded"> Nazwisko: <input type="text"
+							name="searchedSurname" class="pure-input-rounded" required>
 						<button type="submit" class="pure-button pure-button-primary">Szukaj</button>
 					</form>
 				</center>
 				<p>
 					<c:choose>
 						<c:when test="${empty lecturers}">
-							<center>Nie znaleziono wyk³adowców pasuj±cych do kryteriów
-								wyszukiwania.</center>
+							<center>Nie znaleziono wyk³adowców pasuj±cych do
+								kryteriów wyszukiwania.</center>
 						</c:when>
 						<c:otherwise>
 							<table class="responseTable">
@@ -78,16 +79,18 @@
 									<td>Imiê</td>
 									<td>Nazwisko</td>
 									<td>e-Mail</td>
+									<td>Ilo¶æ przedmiotów</td>
 								</tr>
 								<c:forEach items="${lecturers}" var="lecturer">
 									<tr>
 										<td>${lecturer.name}</td>
 										<td>${lecturer.surname}</td>
 										<td>${lecturer.user.eMail}</td>
+										<td>${fn:length(lecturer.subject)}</td>
 										<td width="70px" id="respond">
 											<form action="adminsubjects" method=post>
-												<input type="hidden" name="lecturerId" value="${lecturer.id}">
-												<input
+												<input type="hidden" name="lecturerId"
+													value="${lecturer.id}"> <input
 													class="pure-button pure-input-1-2 pure-button-primary"
 													type="submit" value="Przedmioty">
 											</form>
@@ -98,6 +101,13 @@
 													value="${lecturer.user.login}"> <input
 													class="pure-button pure-input-1-2 pure-button-primary"
 													type="submit" value="Kontakt">
+											</form>
+										</td>
+										<td width="75px" id="respond">
+											<form action="deletelecturer" method=post>
+												<input type="hidden" name="lecturerId" value="${lecturer.id}"><input
+													class="pure-button pure-input-1-2 pure-button-primary"
+													type="submit" style="background-color: red" value="Usuñ">
 											</form>
 										</td>
 									</tr>

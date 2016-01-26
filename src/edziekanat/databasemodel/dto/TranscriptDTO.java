@@ -21,6 +21,10 @@ import javax.persistence.TemporalType;
 
 import edziekanat.databasemodel.TableNames;
 
+/**
+ *  Data transfer object representing transcript entity.
+ *
+ */
 @Entity
 @Table(name = TableNames.TRANSCRIPT)
 public class TranscriptDTO implements Serializable

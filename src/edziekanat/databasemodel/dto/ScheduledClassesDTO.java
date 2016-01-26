@@ -19,6 +19,10 @@ import javax.persistence.TemporalType;
 
 import edziekanat.databasemodel.TableNames;
 
+/**
+ *  Data transfer object representing scheduled classes entity.
+ *
+ */
 @Entity
 @Table(name = TableNames.SCHEDULED_CLASSES)
 public class ScheduledClassesDTO implements Serializable

@@ -17,6 +17,10 @@ import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
 
+/**
+ *  Data transfer object representing lecturer entity.
+ *
+ */
 @Entity
 @Table(name = TableNames.LECTURER)
 public class LecturerDTO implements Serializable

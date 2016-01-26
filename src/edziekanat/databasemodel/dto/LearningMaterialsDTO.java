@@ -16,6 +16,10 @@ import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
 
+/**
+ *  Data transfer object representing learning materials entity.
+ *
+ */
 @Entity
 @Table(name = TableNames.LEARNING_MATERIALS)
 public class LearningMaterialsDTO implements Serializable

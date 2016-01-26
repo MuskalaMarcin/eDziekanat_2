@@ -110,6 +110,10 @@
     <servlet-name>AdminAddStudentsGroup</servlet-name>
     <jsp-file>/administrator/newstudentsgroup.jsp</jsp-file>
   </servlet>
+    <servlet>
+    <servlet-name>AdminNewLecturer</servlet-name>
+    <jsp-file>/administrator/newlecturer.jsp</jsp-file>
+  </servlet>
   <servlet>
     <servlet-name>AdminSearchCourses</servlet-name>
   </servlet>
@@ -165,6 +169,11 @@
   <servlet-mapping>
     <servlet-name>LoginForm</servlet-name>
     <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+
+    <servlet-mapping>
+    <servlet-name>AdminNewLecturer</servlet-name>
+    <url-pattern>/admin/newlecturer</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>403Error</servlet-name>

@@ -19,6 +19,10 @@ import javax.persistence.TemporalType;
 
 import edziekanat.databasemodel.TableNames;
 
+/**
+ *  Data transfer object representing partial mark entity.
+ *
+ */
 @Entity
 @Table(name = TableNames.PARTIAL_MARK)
 public class PartialMarkDTO implements Serializable

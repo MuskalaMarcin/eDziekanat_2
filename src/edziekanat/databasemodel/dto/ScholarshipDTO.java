@@ -19,6 +19,10 @@ import javax.persistence.TemporalType;
 
 import edziekanat.databasemodel.TableNames;
 
+/**
+ *  Data transfer object representing scholarship entity.
+ *
+ */
 @Entity
 @Table(name = TableNames.SCHOLARSHIP)
 public class ScholarshipDTO implements Serializable

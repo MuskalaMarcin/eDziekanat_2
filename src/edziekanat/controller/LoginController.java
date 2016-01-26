@@ -16,7 +16,7 @@ import edziekanat.databasemodel.dto.StudentDTO;
 import edziekanat.databasemodel.dto.UserDTO;
 
 /**
- * Servlet implementation class LoginController
+ * Servlet maintaing logging in to application.
  */
 @WebServlet("/loginaction")
 public class LoginController extends HttpServlet

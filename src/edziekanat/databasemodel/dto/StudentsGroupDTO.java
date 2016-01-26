@@ -19,6 +19,10 @@ import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
 
+/**
+ *  Data transfer object representing students group entity.
+ *
+ */
 @Entity
 @Table(name = TableNames.STUDENTS_GROUP)
 public class StudentsGroupDTO implements Serializable

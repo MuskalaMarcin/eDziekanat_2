@@ -18,6 +18,10 @@ import javax.persistence.Table;
 
 import edziekanat.databasemodel.TableNames;
 
+/**
+ *  Data transfer object representing classroom entity.
+ *
+ */
 @Entity
 @Table(name = TableNames.CLASSROOM)
 public class ClassroomDTO implements Serializable

@@ -19,6 +19,10 @@ import javax.persistence.TemporalType;
 
 import edziekanat.databasemodel.TableNames;
 
+/**
+ *  Data transfer object representing payment entity.
+ *
+ */
 @Entity
 @Table(name = TableNames.PAYMENT)
 public class PaymentDTO implements Serializable

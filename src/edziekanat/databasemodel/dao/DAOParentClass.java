@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import edziekanat.StartupListener;
+import edziekanat.listener.StartupListener;
 
 /**
  * Abstract class containing common methods and fields for DAO classes.
