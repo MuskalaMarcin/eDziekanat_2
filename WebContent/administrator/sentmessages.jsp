@@ -16,7 +16,7 @@
 			<div class="pure-menu">
 				<a class="pure-menu-heading" href="home">eDziekanat</a>
 				<ul class="pure-menu-list">
-					<li class="pure-menu-item pure-menu-selected"><a href="admin"
+					<li class="pure-menu-item"><a href="admin"
 						class="pure-menu-link">Strona g³ówna</a></li>
 					<li class="pure-menu-item"><a href="admintimetable"
 						class="pure-menu-link">Plan zajêæ</a></li>

@@ -27,10 +27,13 @@
 						href="adminstudentgroups">Grupy studenckie</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminlecturers">Wyk³adowcy</a></li>
-					<li class="pure-menu-item pure-menu-selected"><a class="pure-menu-link"
-						href="adminsubjects">Przedmioty</a></li>
-					<li class="pure-menu-item"><a
-						class="pure-menu-link" href="adminstudents">Studenci</a></li>
+					<li class="pure-menu-item pure-menu-selected"><a
+						class="pure-menu-link" href="adminsubjects">Przedmioty</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="admingetlecturers">Dodaj przedmiot</a></li>
+					<li class="pure-menu-item   menu-item-divided">
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="adminstudents">Studenci</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminstatistics">Statystyki</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
@@ -56,8 +59,8 @@
 				<p>
 					<c:choose>
 						<c:when test="${empty subjects}">
-							<center>Nie znaleziono przedmiotów pasuj±cych do kryteriów
-								wyszukiwania.</center>
+							<center>Nie znaleziono przedmiotów pasuj±cych do
+								kryteriów wyszukiwania.</center>
 						</c:when>
 						<c:otherwise>
 							<table class="responseTable">
