@@ -87,7 +87,7 @@
 											<td>${app.content }</td>
 											<td><fmt:formatDate pattern="dd.MM.yyyy"
 													value="${app.dispatchDate }" /></td>
-											<td>${app.student.name }${app.student.surname }</td>
+											<td>${app.student.name } ${app.student.surname }</td>
 											<td>${app.status }</td>
 										</tr>
 									</c:forEach>

@@ -37,17 +37,17 @@ public class LecturerDAO extends DAOParentClass<LecturerDTO>
     public List<LecturerDTO> getLecturersBySurname(String surname)
     {
 	List<LecturerDTO> lecturers = new LinkedList<LecturerDTO>();
-	surname = surname.substring(0, 1).toUpperCase() + surname.substring(1);
-	lecturers.addAll(getMultipleEntities("surname = '" + surname + "'"));
+	surname = surname.toUpperCase();
+	lecturers.addAll(getMultipleEntities("UPPER(surname) like '%" + surname + "%'"));
 	return lecturers;
     }
 
     public List<LecturerDTO> getLecturersByNameAndSurname(String name, String surname)
     {
 	List<LecturerDTO> lecturers = new LinkedList<LecturerDTO>();
-	name = name.substring(0, 1).toUpperCase() + name.substring(1);
-	surname = surname.substring(0, 1).toUpperCase() + surname.substring(1);
-	lecturers.addAll(getMultipleEntities("name = '" + name + "' and surname = '" + surname + "'"));
+	name = name.toUpperCase();
+	surname = surname.toUpperCase();
+	lecturers.addAll(getMultipleEntities("UPPER(name) like '%" + name + "%' and UPPER(surname)  '%" + surname + "%'"));
 	return lecturers;
     }
 }

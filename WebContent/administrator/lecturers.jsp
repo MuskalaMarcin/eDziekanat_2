@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet" href="resources/pure-min.css">
 <link rel="stylesheet" href="resources/styles.css">
-<title>eDziekanat - Administrator - Grupy studenckie</title>
+<title>eDziekanat - Studenci</title>
 </head>
 <body>
 	<div id="layout">
@@ -21,19 +21,16 @@
 						class="pure-menu-link">Plan zajęć</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminclassrooms">Dostępność sal</a></li>
-					<li class="pure-menu-item"><a
-						class="pure-menu-link" href="admincourses">Kierunki</a></li>
-					<li class="pure-menu-item pure-menu-selected"><a class="pure-menu-link"
-						href="adminstudentgroups">Grupy studenckie</a></li>
-						<li class="pure-menu-item"><a class="pure-menu-link"
-						href="admingetcourses">Dodaj grupę studencką</a></li>
-					<li class="pure-menu-item   menu-item-divided">
 					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="admincourses">Kierunki</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="adminstudentgroups">Grupy studenckie</a></li>
+					<li class="pure-menu-item pure-menu-selected"><a class="pure-menu-link"
 						href="adminlecturers">Wykładowcy</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminsubjects">Przedmioty</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminstudents">Studenci</a></li>
+					<li class="pure-menu-item"><a
+						class="pure-menu-link" href="adminstudents">Studenci</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminstatistics">Statystyki</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
@@ -55,43 +52,59 @@
 				<h2>Twój wirtualny dziekanat.</h2>
 			</div>
 			<div class="content">
-				<h2 class="content-subhead">Grupy studenckie:</h2>
-				<c:choose>
-					<c:when test="${empty studentsgroup}">
-					Brak grup studenckich do wyświetlenia.
-					</c:when>
-					<c:otherwise>
-						<center>
-							<form class="pure-form" action="adminsearchstudentgroups" method=post>
-								Kierunek: <input type="text" name="searchedCourse"
-									class="pure-input-rounded" required>
-								<button type="submit" class="pure-button pure-button-primary">Szukaj</button>
-							</form>
-							<p>
+				<h2 class="content-subhead">
+					Wykładowcy:
+					<c:if test="${!empty studentsGroup }"> grupa studencka: ${studentsGroup.id } kierunek: ${studentsGroup.course.name }</c:if>
+				</h2>
+				<center>
+					<form class="pure-form" action="adminsearchlecturers" method=post>
+						<input type="text" name="subjectId"
+							value="${subject.id}" hidden> Imię: <input
+							type="text" name="searchedName" class="pure-input-rounded">
+						Nazwisko: <input type="text" name="searchedSurname"
+							class="pure-input-rounded" required>
+						<button type="submit" class="pure-button pure-button-primary">Szukaj</button>
+					</form>
+				</center>
+				<p>
+					<c:choose>
+						<c:when test="${empty lecturers}">
+							<center>Nie znaleziono wykładowców pasujących do kryteriów
+								wyszukiwania.</center>
+						</c:when>
+						<c:otherwise>
 							<table class="responseTable">
 								<tr class="grayRow">
-									<td>Nr</td>
-									<td>Semestr</td>
-									<td>Kierunek</td>
+									<td>Imię</td>
+									<td>Nazwisko</td>
+									<td>e-Mail</td>
 								</tr>
-								<c:forEach items="${studentsgroup}" var="studentsgroup" varStatus="varStatus">
+								<c:forEach items="${lecturers}" var="lecturer">
 									<tr>
-										<td>${varStatus.index + 1}</td>
-										<td>${studentsgroup.semester}</td>
-										<td>${studentsgroup.course.name}</td>
-										<td width="75px" id="respond">
-											<form action="adminstudents" method=post>
-												<input type="hidden" name="studentsGroupId" value="${studentsgroup.id}"><input
+										<td>${lecturer.name}</td>
+										<td>${lecturer.surname}</td>
+										<td>${lecturer.user.eMail}</td>
+										<td width="70px" id="respond">
+											<form action="adminsubjects" method=post>
+												<input type="hidden" name="studentId" value="${lecturer.id}">
+												<input
 													class="pure-button pure-input-1-2 pure-button-primary"
-													type="submit" value="Studenci">
+													type="submit" value="Przedmioty">
+											</form>
+										</td>
+										<td width="70px" id="respond">
+											<form action="admin/newmessage" method=post>
+												<input type="hidden" name="receiverLogin"
+													value="${lecturer.user.login}"> <input
+													class="pure-button pure-input-1-2 pure-button-primary"
+													type="submit" value="Kontakt">
 											</form>
 										</td>
 									</tr>
 								</c:forEach>
 							</table>
-						</center>
-					</c:otherwise>
-				</c:choose>
+						</c:otherwise>
+					</c:choose>
 			</div>
 		</div>
 	</div>
