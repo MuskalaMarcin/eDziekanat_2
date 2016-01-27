@@ -1,7 +1,6 @@
 package edziekanat.controller.administrator;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 

@@ -13,8 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -47,6 +47,8 @@ public class TranscriptDTO implements Serializable
     private StudentsGroupDTO studentsGroup;
     @OneToMany(mappedBy = "transcript", fetch = FetchType.LAZY)
     private List<EnrollmentDTO> enrollment;
+    @OneToMany(mappedBy = "transcript", fetch = FetchType.LAZY)
+    private List<PartialMarkDTO> partial_mark;
 
     public Integer getId()
     {
@@ -98,4 +100,13 @@ public class TranscriptDTO implements Serializable
 	this.enrollment = enrollment;
     }
 
+    public List<PartialMarkDTO> getPartial_mark()
+    {
+        return partial_mark;
+    }
+
+    public void setPartial_mark(List<PartialMarkDTO> partial_mark)
+    {
+        this.partial_mark = partial_mark;
+    }
 }

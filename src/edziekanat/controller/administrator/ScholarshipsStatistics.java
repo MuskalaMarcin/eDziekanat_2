@@ -44,18 +44,21 @@ public class ScholarshipsStatistics extends HttpServlet
 	{
 	    LinkedList<String> partialResult = new LinkedList<String>();
 	    Integer schlNumber = 0;
+	    Float schlAmount = 0F;
 	    for (ScholarshipDTO scholarship : scholarships)
 	    {
 		for (StudentsGroupDTO sg : scholarship.getStudent().getStudentsGroup())
 		{
 		    if (sg.getCourse().getFaculty().getId().equals(faculty.getId()))
 		    {
+			schlAmount += scholarship.getScholarshipType().getAmount();
 			schlNumber++;
 		    }
 		}
 	    }
 	    partialResult.add(faculty.getName());
 	    partialResult.add(schlNumber.toString());
+	    partialResult.add(String.valueOf(Math.round(schlAmount / schlNumber)));
 	    results.add(partialResult);
 	}
 	request.setAttribute("schlByFaculty", results);

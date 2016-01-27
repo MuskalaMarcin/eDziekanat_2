@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-2"
-	pageEncoding="ISO-8859-2"%>
+<%@ page language="java" import="java.util.List"
+	contentType="text/html; charset=ISO-8859-2" pageEncoding="ISO-8859-2"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -8,6 +8,60 @@
 <link rel="stylesheet" href="resources/pure-min.css">
 <link rel="stylesheet" href="resources/styles.css">
 <title>eDziekanat - Statystyki wniosków</title>
+<%
+	@SuppressWarnings("unchecked")
+    List<List<String>> list = (List<List<String>>) request.getAttribute("appsByFaculty");
+%>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+	google.load('visualization', '1.0', {
+		'packages' : [ 'corechart' ]
+	});
+	google.setOnLoadCallback(drawChart);
+	function drawChart() {
+
+		var data = new google.visualization.DataTable();
+		data.addColumn('string', 'Wydzia³');
+		data.addColumn('number', 'Ilo¶æ wniosków');
+
+		data.addRows([ 		<%for (int i = 0; i < list.size(); i++) {
+				List<String> smallerList = list.get(i);
+				if (i != 0)
+					out.print(",");%> ['<%out.print(smallerList.get(0));%>', <%out.print(smallerList.get(1));%>]<%}%> ]);
+
+		var data3 = new google.visualization.DataTable();
+		data3.addColumn('string', 'Wydzia³');
+		data3.addColumn('number', 'Ilo¶æ przyjêtych');
+		data3.addColumn('number', 'Ilo¶æ oczekuj±cych');
+		data3.addColumn('number', 'Ilo¶æ odrzuconych');
+		data3.addRows([<%for (int i = 0; i < list.size(); i++) {
+				List<String> smallerList = list.get(i);
+				if (i != 0)
+					out.print(",");%> ['<%out.print(smallerList.get(0));%>', <%out.print(smallerList.get(2));%> , <%out.print(smallerList.get(3));%> , <%out.print(smallerList.get(4));%>]<%}%>  ]);
+
+		var options = {
+			'title' : 'Ilo¶æ wniosków na wydzia³',
+			'width' : 500,
+			'height' : 400
+		};
+
+		var options3 = {
+			'title' : 'Ilo¶æ wniosków z podzia³em na statusy',
+			'width' : 850,
+			'height' : 350
+		};
+
+		
+		var chart = new google.visualization.PieChart(document
+				.getElementById('chart_div'));
+		chart.draw(data, options);
+		
+		var chart3 = new google.visualization.ColumnChart(document
+				.getElementById('chart_div3'));
+		chart3.draw(data3, options3);
+
+	}
+</script>
 </head>
 <body>
 	<div id="layout">
@@ -33,14 +87,15 @@
 						href="adminstudents">Studenci</a></li>
 					<li class="pure-menu-item menu-item-divided"><a
 						class="pure-menu-link" href="#">Statystyki</a></li>
-					<li class="pure-menu-item"><a
-						class="pure-menu-link" href="marksstatistics">Statystyki ocen</a></li>
-					<li class="pure-menu-item pure-menu-selected"><a class="pure-menu-link"
-						href="applicationsstatistics">Statystyki wniosków</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="marksstatistics">Statystyki ocen</a></li>
+					<li class="pure-menu-item pure-menu-selected"><a
+						class="pure-menu-link" href="applicationsstatistics">Statystyki
+							wniosków</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="scholarshipstatistics ">Statystyki stypendiów</a></li>
-					<li class="pure-menu-item  menu-item-divided"><a class="pure-menu-link"
-						href="adminscholarships">Stypendia</a></li>
+					<li class="pure-menu-item  menu-item-divided"><a
+						class="pure-menu-link" href="adminscholarships">Stypendia</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminpayments">Nale¿no¶ci</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
@@ -59,7 +114,10 @@
 			</div>
 			<div class="content">
 				<h2 class="content-subhead">Statystyki wniosków:</h2>
-				
+				<center>
+					<div id="chart_div"></div>
+					<div id="chart_div3"></div>
+				</center>
 			</div>
 		</div>
 	</div>

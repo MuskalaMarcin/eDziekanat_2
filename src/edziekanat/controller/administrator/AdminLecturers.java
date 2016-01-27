@@ -1,7 +1,6 @@
 package edziekanat.controller.administrator;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import edziekanat.databasemodel.dao.LecturerDAO;
 import edziekanat.databasemodel.dao.SubjectDAO;
 import edziekanat.databasemodel.dto.LecturerDTO;
-import edziekanat.databasemodel.dto.StudentDTO;
 
 /**
  * Servlet implementation class AdminLecturers

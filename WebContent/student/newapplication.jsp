@@ -87,7 +87,6 @@
 						<fieldset class="pure-group">
 							<input type="text" name="title" class="pure-input-1-2"
 								placeholder="Tytu³" required>
-							</textarea>
 							<textarea name="content" class="pure-input-1-2"
 								placeholder="Tre¶æ" required></textarea>
 						</fieldset>

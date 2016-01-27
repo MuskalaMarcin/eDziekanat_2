@@ -89,50 +89,42 @@
 						<fieldset class="pure-group">
 							<input type="text" name="name" class="pure-input-1-2"
 								placeholder="Imiê" required>
-							</textarea>
 						</fieldset>
 						<p>
 						<fieldset class="pure-group">
 							<input type="text" name="surname" class="pure-input-1-2"
 								placeholder="Nazwisko" required>
-							</textarea>
 						</fieldset>
 						<p>
 						<fieldset class="pure-group">
 							<input type="text" name="address" class="pure-input-1-2"
 								placeholder="Adres" required>
-							</textarea>
 						</fieldset>
 						<p>
 						<fieldset class="pure-group">
 							<input type="text" name="academicdegree" class="pure-input-1-2"
 								placeholder="Stopieñ naukowy" required>
-							</textarea>
 						</fieldset>
 						<p>
 						<fieldset class="pure-group">
 							<input type="text" name="position" class="pure-input-1-2"
 								placeholder="Stanowisko" required>
-							</textarea>
 						</fieldset>
 						<p>Dane nowego u¿ytkownika:
 						<p>
 						<fieldset class="pure-group">
 							<input type="text" name="login" class="pure-input-1-2"
 								placeholder="Login" required>
-							</textarea>
 						</fieldset>
 						<p>
 						<fieldset class="pure-group">
 							<input type="password" name="password" class="pure-input-1-2"
 								placeholder="Has³o" required>
-							</textarea>
 						</fieldset>
 						<p>
 						<fieldset class="pure-group">
 							<input type="text" name="email" class="pure-input-1-2"
 								placeholder="Adres e-mail" required>
-							</textarea>
 						</fieldset>
 						<p>
 							<button type="submit"

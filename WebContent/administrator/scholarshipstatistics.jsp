@@ -8,29 +8,56 @@
 <link rel="stylesheet" href="resources/pure-min.css">
 <link rel="stylesheet" href="resources/styles.css">
 <title>eDziekanat - Statystyki stypendiów</title>
-<script type="text/javascript"
-	src="https://www.gstatic.com/charts/loader.js"></script>
+<%
+	@SuppressWarnings("unchecked")
+    List<List<String>> list = (List<List<String>>) request.getAttribute("schlByFaculty");
+%>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
-	google.charts.load("current", {
-		packages : [ "corechart" ]
+	google.load('visualization', '1.0', {
+		'packages' : [ 'corechart' ]
 	});
-	google.charts.setOnLoadCallback(drawChart);
+	google.setOnLoadCallback(drawChart);
 	function drawChart() {
-		var data = google.visualization
-				.arrayToDataTable([
-						[ 'Wydzia³', 'Ilo¶æ stypendiów' ]
-<%List<List<String>> list = (List<List<String>>) request.getAttribute("schlByFaculty");
-			for (List<String> smallerList : list) {%>, ['<%out.print(smallerList.get(0));%>', <%out.print(smallerList.get(1));%>]<%}%>
-]);
+
+		var data = new google.visualization.DataTable();
+		data.addColumn('string', 'Wydzia³');
+		data.addColumn('number', 'Ilo¶æ stypendiów');
+
+		data.addRows([ 		<%for (int i = 0; i < list.size(); i++) {
+				List<String> smallerList = list.get(i);
+				if (i != 0)
+					out.print(",");%> ['<%out.print(smallerList.get(0));%>', <%out.print(smallerList.get(1));%>]<%}%> ]);
+
+		var data3 = new google.visualization.DataTable();
+		data3.addColumn('string', 'Wydzia³');
+		data3.addColumn('number', '¦rednia wysoko¶æ');
+		data3.addRows([<%for (int i = 0; i < list.size(); i++) {
+				List<String> smallerList = list.get(i);
+				if (i != 0)
+					out.print(",");%> ['<%out.print(smallerList.get(0));%>', <%out.print(smallerList.get(2));%>]<%}%>  ]);
 
 		var options = {
-			title : 'Ilo¶æ stypendiów na wydzia³',
-			pieHole : 0.4,
+			'title' : 'Ilo¶æ stypendiów na wydzia³',
+			'width' : 500,
+			'height' : 400
 		};
 
+		var options3 = {
+			'title' : '¦rednia wysoko¶æ stypendium',
+			'width' : 500,
+			'height' : 400
+		};
+
+		
 		var chart = new google.visualization.PieChart(document
-				.getElementById('donutchart'));
+				.getElementById('chart_div'));
 		chart.draw(data, options);
+		
+		var chart3 = new google.visualization.ColumnChart(document
+				.getElementById('chart_div3'));
+		chart3.draw(data3, options3);
+
 	}
 </script>
 </head>
@@ -86,8 +113,8 @@
 			<div class="content">
 				<h2 class="content-subhead">Statystyki stypendiów:</h2>
 				<center>
-					<div id="donutchart" style="width: 900px; height: 500px;"></div>
-
+					<div id="chart_div"></div>
+					<div id="chart_div3"></div>
 				</center>
 			</div>
 		</div>

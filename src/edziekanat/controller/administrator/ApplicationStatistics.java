@@ -1,11 +1,20 @@
 package edziekanat.controller.administrator;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import edziekanat.databasemodel.dao.ApplicationDAO;
+import edziekanat.databasemodel.dao.FacultyDAO;
+import edziekanat.databasemodel.dto.ApplicationDTO;
+import edziekanat.databasemodel.dto.FacultyDTO;
+import edziekanat.databasemodel.dto.StudentsGroupDTO;
 
 /**
  * Servlet implementation class ApplicationStatistics
@@ -28,6 +37,46 @@ public class ApplicationStatistics extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	List<ApplicationDTO> applications = new ApplicationDAO().getAllEntities();
+	List<FacultyDTO> faculties = new FacultyDAO().getAllEntities();
+	List<LinkedList<String>> results = new LinkedList<LinkedList<String>>();
+	for (FacultyDTO faculty : faculties)
+	{
+	    LinkedList<String> partialResult = new LinkedList<String>();
+	    Integer appNumber = 0;
+	    Integer accepted = 0;
+	    Integer waiting = 0;
+	    Integer rejected = 0;
+	    for (ApplicationDTO application : applications)
+	    {
+		for (StudentsGroupDTO sg : application.getStudent().getStudentsGroup())
+		{
+		    if (sg.getCourse().getFaculty().getId().equals(faculty.getId()))
+		    {
+			switch (application.getStatus())
+			{
+			case "Odrzucony":
+			    rejected++;
+			    break;
+			case "Przyjety":
+			    accepted++;
+			    break;
+			case "Nierozpatrzony":
+			    waiting++;
+			    break;
+			}
+			appNumber++;
+		    }
+		}
+	    }
+	    partialResult.add(faculty.getName());
+	    partialResult.add(appNumber.toString());
+	    partialResult.add(accepted.toString());
+	    partialResult.add(waiting.toString());
+	    partialResult.add(rejected.toString());
+	    results.add(partialResult);
+	}
+	request.setAttribute("appsByFaculty", results);
 	request.getRequestDispatcher("administrator/aplicationsstatistics.jsp").forward(request, response);
     }
 

@@ -78,7 +78,6 @@
 						<fieldset class="pure-group">
 							<input type="text" name="name" class="pure-input-1-2"
 								placeholder="Nazwa" required>
-							</textarea>
 						</fieldset>
 						<button type="submit"
 							class="pure-button pure-input-1-2 pure-button-primary">Dodaj</button>

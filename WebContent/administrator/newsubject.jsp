@@ -64,7 +64,6 @@
 						<fieldset class="pure-group">
 							Nazwa: <input type="text" name="name" class="pure-input-1-2"
 								placeholder="Nazwa" required>
-							</textarea>
 						</fieldset>
 						Prowadz±cy:
 						<c:choose>
