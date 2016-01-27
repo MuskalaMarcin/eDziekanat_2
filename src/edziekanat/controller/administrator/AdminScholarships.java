@@ -1,11 +1,15 @@
 package edziekanat.controller.administrator;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import edziekanat.bean.LoginBean;
+import edziekanat.databasemodel.dao.ScholarshipDAO;
 
 /**
  * Servlet implementation class AdminScholarships
@@ -28,6 +32,9 @@ public class AdminScholarships extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	request.setAttribute("allScholarships", new ScholarshipDAO().getAllActiveAdminScholarships(
+		((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
+
 	request.getRequestDispatcher("administrator/scholarships.jsp").forward(request, response);
     }
 

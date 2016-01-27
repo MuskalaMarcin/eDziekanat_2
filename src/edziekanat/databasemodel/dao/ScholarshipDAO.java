@@ -44,4 +44,20 @@ public class ScholarshipDAO extends DAOParentClass<ScholarshipDTO>
 	Collections.sort(scholarships, (x, y) -> y.getEndDate().compareTo(x.getEndDate()));
 	return scholarships;
     }
+
+    public List<ScholarshipDTO> getAllActiveAdminScholarships(Integer adminId)
+    {
+	List<ScholarshipDTO> scholarships = new AdministratorDAO().getEntity(adminId).getScholarship();
+	Date currentDate = Calendar.getInstance().getTime();
+	for (int i = 0; i < scholarships.size(); i++)
+	{
+	    if (scholarships.get(i).getEndDate().compareTo(currentDate) < 0)
+	    {
+		scholarships.remove(i);
+		i--;
+	    }
+	}
+	Collections.sort(scholarships, (x, y) -> y.getEndDate().compareTo(x.getEndDate()));
+	return scholarships;
+    }
 }
