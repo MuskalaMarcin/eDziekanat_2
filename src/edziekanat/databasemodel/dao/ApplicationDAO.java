@@ -42,6 +42,14 @@ public class ApplicationDAO extends DAOParentClass<ApplicationDTO>
 	Collections.sort(getApplications, (x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()));
 	return getApplications;
     }
+    
+    public List<ApplicationDTO> getWaitingStudentApplications(Integer studentId)
+    {
+	List<ApplicationDTO> getApplications = getMultipleEntities(
+		"student_id = '" + studentId + "' and status = 'Nierozpatrzony'");
+	Collections.sort(getApplications, (x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()));
+	return getApplications;
+    }
 
     public List<ApplicationDTO> getAdminWaitingApplications(Integer adminId)
     {

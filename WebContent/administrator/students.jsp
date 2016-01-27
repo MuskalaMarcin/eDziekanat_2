@@ -107,7 +107,7 @@
 											</form>
 										</td>
 										<td width="70px" id="respond">
-											<form action="adminapplications" method=post>
+											<form action="adminstudentapplications" method=post>
 												<input type="hidden" name="studentId" value="${student.id}">
 												<input
 													class="pure-button pure-input-1-2 pure-button-primary"
