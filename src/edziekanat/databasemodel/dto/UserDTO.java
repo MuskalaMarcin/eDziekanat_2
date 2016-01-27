@@ -24,15 +24,15 @@ public class UserDTO
 {
     @Id
     @Column(name = "login")
-    private String login;
+    protected String login;
     @Column(name = "password")
-    private String password;
+    protected String password;
     @Column(name = "e_mail")
-    private String eMail;
+    protected String eMail;
     @Column(name = "is_active")
-    private Integer isActive;
+    protected Integer isActive;
     @Column(name = "user_role")
-    private String userRole;
+    protected String userRole;
     @OneToOne(cascade = CascadeType.REFRESH, optional = true,
 	    fetch = FetchType.LAZY)
     @JoinColumn(name = "lecturer_id", nullable = true)
