@@ -22,5 +22,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="E:/Projekty/eDziekanat/eDziekanat/lib/ejb3unit-2.0.0-RC-1.jar"/>
+	<classpathentry kind="lib" path="E:/Projekty/eDziekanat/eDziekanat/lib/log4j-1.2.13.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
