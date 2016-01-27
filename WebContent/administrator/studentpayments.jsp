@@ -36,7 +36,7 @@
 						href="adminstatistics">Statystyki</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminscholarships">Stypendia</a></li>
-					<li class="pure-menu-item menu-item-divided"><a
+					<li class="pure-menu-item  pure-menu-selected"><a
 						class="pure-menu-link" href="#">Nale¿no¶ci</a></li>
 					<li class="pure-menu-item menu-item-divided"><a
 						class="pure-menu-link" href="adminapplications">Wnioski</a></li>
