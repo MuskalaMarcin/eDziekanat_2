@@ -34,7 +34,7 @@
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="http://localhost:8080/eDziekanat/adminstudents">Studenci</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="http://localhost:8080/eDziekanat/adminstatistics">Statystyki</a></li>
+						href="http://localhost:8080/eDziekanat/marksstatistics">Statystyki</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="http://localhost:8080/eDziekanat/adminscholarships">Stypendia</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"

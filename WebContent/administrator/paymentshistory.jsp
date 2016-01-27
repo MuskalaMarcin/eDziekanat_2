@@ -33,7 +33,7 @@
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminstudents">Studenci</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminstatistics">Statystyki</a></li>
+						href="marksstatistics">Statystyki</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminscholarships">Stypendia</a></li>
 					<li class="pure-menu-item menu-item-divided"><a

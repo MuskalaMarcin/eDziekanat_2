@@ -1,0 +1,65 @@
+package edziekanat.controller.administrator;
+
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import edziekanat.databasemodel.dao.FacultyDAO;
+import edziekanat.databasemodel.dao.ScholarshipDAO;
+import edziekanat.databasemodel.dto.FacultyDTO;
+import edziekanat.databasemodel.dto.ScholarshipDTO;
+import edziekanat.databasemodel.dto.StudentsGroupDTO;
+
+/**
+ * Servlet implementation class ScholarshipsStatistics
+ */
+@WebServlet("/scholarshipstatistics")
+public class ScholarshipsStatistics extends HttpServlet
+{
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+	doPost(request, response);
+    }
+
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+	List<ScholarshipDTO> scholarships = new ScholarshipDAO().getAllEntities();
+	List<FacultyDTO> faculties = new FacultyDAO().getAllEntities();
+	List<LinkedList<String>> results = new LinkedList<LinkedList<String>>();
+	for (FacultyDTO faculty : faculties)
+	{
+	    LinkedList<String> partialResult = new LinkedList<String>();
+	    Integer schlNumber = 0;
+	    for (ScholarshipDTO scholarship : scholarships)
+	    {
+		for (StudentsGroupDTO sg : scholarship.getStudent().getStudentsGroup())
+		{
+		    if (sg.getCourse().getFaculty().getId().equals(faculty.getId()))
+		    {
+			schlNumber++;
+		    }
+		}
+	    }
+	    partialResult.add(faculty.getName());
+	    partialResult.add(schlNumber.toString());
+	    results.add(partialResult);
+	}
+	request.setAttribute("schlByFaculty", results);
+	request.getRequestDispatcher("administrator/scholarshipstatistics.jsp").forward(request, response);
+    }
+
+}
