@@ -44,7 +44,7 @@
 						class="pure-menu-link" href="adminwaitingpayments">Oczekuj±ce
 							nale¿no¶ci</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminaddpayments">Dodaj nale¿no¶æ</a></li>
+						href="admingetstudents">Dodaj nale¿no¶æ</a></li>
 					<li class="pure-menu-item menu-item-divided"><a
 						class="pure-menu-link" href="adminapplications">Wnioski</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
@@ -89,7 +89,7 @@
 											<td>${payment.amount }</td>
 											<td><fmt:formatDate pattern="dd.MM.yyyy"
 													value="${payment.issueDate }" /></td>
-											<td>${payment.student.name }${payment.student.surname }</td>
+											<td>${payment.student.name } ${payment.student.surname }</td>
 											<td><form action="applypayment" method=post>
 													<input type="hidden" name="paymentId" value="${payment.id}">
 													<input type="hidden" name="studentId"
