@@ -45,7 +45,7 @@ public class DeleteStudentsGroupController extends HttpServlet
 	catch (Exception e)
 	{
 	    request.setAttribute("msgshort", "B³¹d");
-	    request.setAttribute("msglong", "Podczas usutwania grupy studenckiej"
+	    request.setAttribute("msglong", "Podczas usuwania grupy studenckiej"
 		    + " wyst¹pi³ nieznany b³¹d. Przepraszamy.");
 	    request.getRequestDispatcher("error.jsp").forward(request, response);
 	}

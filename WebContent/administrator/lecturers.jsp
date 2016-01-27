@@ -31,7 +31,7 @@
 					<li class="pure-menu-item pure-menu-selected"><a
 						class="pure-menu-link" href="adminlecturers">Przegl±daj</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="admin/newlecturer">Dodaj wyk³adowcê</a></li>
+						href="admingetfacultyforlecterer">Dodaj wyk³adowcê</a></li>
 					<li class="pure-menu-item menu-item-divided"><a
 						class="pure-menu-link" href="adminsubjects">Przedmioty</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"

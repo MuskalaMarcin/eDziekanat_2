@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet" href="resources/pure-min.css">
 <link rel="stylesheet" href="resources/styles.css">
-<title>eDziekanat - Wnioski nierozpatrzone</title>
+<title>eDziekanat - Wnioski studenta</title>
 </head>
 <body>
 	<div id="layout">
@@ -33,18 +33,13 @@
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminstudents">Studenci</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="marksstatistics">Statystyki</a></li>
+						href="adminstatistics">Statystyki</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminscholarships">Stypendia</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminpayments">Należności</a></li>
-					<li class="pure-menu-item menu-item-divided"><a
-						class="pure-menu-link" href="#">Wnioski</a></li>
 					<li class="pure-menu-item pure-menu-selected"><a
-						class="pure-menu-link" href="adminapplications">Wnioski
-							nierozpatrzone</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminapplicationshistory">Historia wniosków</a></li>
+						class="pure-menu-link" href="#">Wnioski</a></li>
 					<li class="pure-menu-item  menu-item-divided"><a
 						class="pure-menu-link" href="receivedmessages">Historia
 							komunikatów</a></li>
@@ -59,11 +54,12 @@
 				<h2>Twój wirtualny dziekanat.</h2>
 			</div>
 			<div class="content">
-				<h2 class="content-subhead">Wnioski nierozpatrzone:</h2>
+				<h2 class="content-subhead">Wnioski studenta: ${student.name}
+					${student.surname}</h2>
 				<center>
 					<c:choose>
-						<c:when test="${empty waitingApplications }">
-						Brak wniosków oczekujących na rozpatrzenie.
+						<c:when test="${empty appsStudent }">
+						Brak wniosków do wyświetlenia.
 						</c:when>
 						<c:otherwise>
 
@@ -74,13 +70,11 @@
 										<td>Tytuł</td>
 										<td>Opis</td>
 										<td>Data nadania</td>
-										<td>Imię i nazwisko</td>
-										<td>Przyjmij</td>
-										<td>Odrzuć</td>
+										<td>Status</td>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${waitingApplications}" var="app"
+									<c:forEach items="${appsStudent}" var="app"
 										varStatus="varStatus">
 										<tr>
 											<td>${varStatus.index + 1 }</td>
@@ -88,21 +82,7 @@
 											<td>${app.content }</td>
 											<td><fmt:formatDate pattern="dd.MM.yyyy"
 													value="${app.dispatchDate }" /></td>
-											<td>${app.student.name } ${app.student.surname }</td>
-											<td><form action="manageapplications" method=post>
-													<input type="hidden" name="action" value="0"> <input
-														type="hidden" name="applicationId" value="${app.id}">
-													<input
-														class="pure-button pure-input-1-2 pure-button-primary"
-														type="submit" value="Przyjmij">
-												</form></td>
-											<td><form action="manageapplications" method=post>
-													<input type="hidden" name="action" value="1"> <input
-														type="hidden" name="applicationId" value="${app.id}">
-													<input
-														class="pure-button pure-input-1-2 pure-button-primary"
-														type="submit" value="Odrzuć">
-												</form></td>
+											<td>${app.status }</td>
 										</tr>
 									</c:forEach>
 								</tbody>

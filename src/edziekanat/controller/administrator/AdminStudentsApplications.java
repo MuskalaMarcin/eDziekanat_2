@@ -1,10 +1,7 @@
 package edziekanat.controller.administrator;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,15 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.ApplicationDAO;
+import edziekanat.databasemodel.dao.StudentDAO;
 import edziekanat.databasemodel.dto.ApplicationDTO;
 
 /**
- * Servlet implementation class AdminApplicationsController
+ * Servlet implementation class AdminStudentsApplications
  */
-@WebServlet("/adminapplications")
-public class AdminApplicationsController extends HttpServlet
+@WebServlet("/adminstudentapplications")
+public class AdminStudentsApplications extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
@@ -39,12 +36,12 @@ public class AdminApplicationsController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<ApplicationDTO> appsAdmin = new ApplicationDAO().getAdminWaitingApplications(
-		((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
+	List<ApplicationDTO> appsStudent = new ApplicationDAO().getApplications(Integer.parseInt(request.getParameter("studentId")));
 
-	request.setAttribute("waitingApplications", appsAdmin);
-
-	request.getRequestDispatcher("administrator/waitingapplications.jsp").forward(request, response);
+	appsStudent.addAll(new ApplicationDAO().getWaitingApplications(Integer.parseInt(request.getParameter("studentId"))));
+	request.setAttribute("appsStudent", appsStudent);
+	request.setAttribute("student", new StudentDAO().getEntity(Integer.parseInt(request.getParameter("studentId"))));
+	request.getRequestDispatcher("administrator/studentsapplications.jsp").forward(request, response);
     }
 
 }

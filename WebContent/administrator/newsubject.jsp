@@ -81,7 +81,7 @@
 						Grupa studencka:
 						<c:choose>
 							<c:when test="${!empty studentsgroup}">
-								<select name="lecturerid">
+								<select name="studentsgroupid">
 									<c:forEach items="${studentsgroup}" var="studentsgroup"
 										varStatus="varStatus">
 										<option value="${studentsgroup.id}">${studentsgroup.id}</option>

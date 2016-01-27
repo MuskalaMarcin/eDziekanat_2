@@ -1,8 +1,6 @@
 package edziekanat.controller.administrator;
 
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,13 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.PaymentDAO;
-import edziekanat.databasemodel.dto.PaymentDTO;
+import edziekanat.databasemodel.dao.StudentDAO;
 
 /**
- * Servlet implementation class AdminWaitingPaymentsController
+ * Servlet implementation class AdminStudentPayments
  */
-@WebServlet("/adminwaitingpayments")
-public class AdminWaitingPaymentsController extends HttpServlet
+@WebServlet("/adminstudentpayments")
+public class AdminStudentPayments extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
@@ -35,19 +33,10 @@ public class AdminWaitingPaymentsController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<PaymentDTO> paymentsAdmin = new LinkedList<PaymentDTO>();
-	paymentsAdmin = paymentsAdmin = new PaymentDAO()
-		.getWaitingAdminPayments(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
-	if (request.getParameter("studentId") != null)
-	{
-	    List<PaymentDTO> paymentsStudent = new LinkedList<PaymentDTO>();
-	    paymentsStudent = new PaymentDAO().getAllStudentPayments(Integer.parseInt(request.getParameter("studentId")));
-	    paymentsAdmin.retainAll(paymentsStudent);
-	}
-	
-	request.setAttribute("waitingPayments", paymentsAdmin);
+	request.setAttribute("studentPayments", new PaymentDAO().getAllStudentPayments(Integer.parseInt(request.getParameter("studentId"))));
+	request.setAttribute("student", new StudentDAO().getEntity(Integer.parseInt(request.getParameter("studentId"))));
 
-	request.getRequestDispatcher("administrator/waitingpayments.jsp").forward(request, response);
+	request.getRequestDispatcher("administrator/studentpayments.jsp").forward(request, response);
     }
 
 }

@@ -102,6 +102,14 @@
 		<jsp-file>/administrator/newmessage.jsp</jsp-file>
 	</servlet>
 	<servlet>
+		<servlet-name>AdminNewLecturer</servlet-name>
+		<jsp-file>/administrator/newlecturer.jsp</jsp-file>
+	</servlet>
+	<servlet>
+		<servlet-name>AdminNewStudent</servlet-name>
+		<jsp-file>/administrator/newstudent.jsp</jsp-file>
+	</servlet>
+	<servlet>
 		<servlet-name>AdminCourses</servlet-name>
 		<jsp-file>/administrator/courses.jsp</jsp-file>
 	</servlet>
@@ -258,6 +266,14 @@
 		<url-pattern>/admin/newmessage</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
+		<servlet-name>AdminNewLecturer</servlet-name>
+		<url-pattern>/admin/newlecturer</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AdminNewStudent</servlet-name>
+		<url-pattern>/admin/newstudent</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>AdminAddSubject</servlet-name>
 		<url-pattern>/admin/newsubject</url-pattern>
 	</servlet-mapping>
@@ -352,6 +368,9 @@
 			<url-pattern>/admincourses/*</url-pattern>
 			<url-pattern>/adminaddcourses/*</url-pattern>
 			<url-pattern>/adminstudentgroups/*</url-pattern>
+			<url-pattern>/adminsubjects/*</url-pattern>
+			<url-pattern>/adminlecturers/*</url-pattern>
+			<url-pattern>/adminstudents/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>admin</role-name>

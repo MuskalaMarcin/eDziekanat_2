@@ -30,7 +30,7 @@
 					<li class="pure-menu-item pure-menu-selected"><a
 						class="pure-menu-link" href="adminsubjects">Przedmioty</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="admingetlecturers">Dodaj przedmiot</a></li>
+						href="admingetlecturersandstudentsgroup">Dodaj przedmiot</a></li>
 					<li class="pure-menu-item   menu-item-divided">
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminstudents">Studenci</a></li>

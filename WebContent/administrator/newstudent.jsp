@@ -10,7 +10,7 @@
 	href="http://localhost:8080/eDziekanat/resources/pure-min.css">
 <link rel="stylesheet"
 	href="http://localhost:8080/eDziekanat/resources/styles.css">
-<title>eDziekanat - Dodaj wyk³adowcê</title>
+<title>eDziekanat - Dodaj studenta</title>
 </head>
 <body>
 	<div id="layout">
@@ -32,21 +32,22 @@
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="http://localhost:8080/eDziekanat/adminstudentgroups">Grupy
 							studenckie</a></li>
-					<li class="pure-menu-item menu-item-divided"><a
-						class="pure-menu-link" href="#">Wyk³adowcy</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="http://localhost:8080/eDziekanat/adminlecturers">Przegl±daj</a></li>
+						href="http://localhost:8080/eDziekanat/adminlecturers">Wyk³adowcy</a>
+					</li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="http://localhost:8080/eDziekanat/adminsubjects">Przedmioty</a>
+					</li>
+					<li class="pure-menu-item menu-item-divided">
+					<li class="pure-menu-item"><a class="pure-menu-link" href="#">Studenci</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="http://localhost:8080/eDziekanat/adminstudents">Przegl±daj</a></li>
 					<li class="pure-menu-item pure-menu-selected"><a
 						class="pure-menu-link"
-						href="http://localhost:8080/eDziekanat/admin/newlecturer">Dodaj
-							wyk³adowcê</a></li>
-					<li class="pure-menu-item menu-item-divided"><a
-						class="pure-menu-link"
-						href="http://localhost:8080/eDziekanat/adminsubjects">Przedmioty</a></li>
+						href="http://localhost:8080/eDziekanat/admin/newstudent">Dodaj
+							studenta</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="http://localhost:8080/eDziekanat/adminstudents">Studenci</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="http://localhost:8080/eDziekanat/marksstatistics">Statystyki</a></li>
+						href="http://localhost:8080/eDziekanat/adminstatistics">Statystyki</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="http://localhost:8080/eDziekanat/adminscholarships">Stypendia</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
@@ -67,25 +68,24 @@
 				<h2>Twój wirtualny dziekanat.</h2>
 			</div>
 			<div class="content">
-				<h2 class="content-subhead">Dodaj wyk³adowcê</h2>
+				<h2 class="content-subhead">Dodaj studenta</h2>
 				<p>
 				<p>
 				<center>
-					<form action="http://localhost:8080/eDziekanat/adminaddlecturer"
+					<form action="http://localhost:8080/eDziekanat/adminaddstudent"
 						method=post class="pure-form">
 						<p>
-						Wydzia³
-						<c:choose>
-							<c:when test="${!empty faculties}">
-								<select name="facultyid">
-									<c:forEach items="${faculties}" var="faculty"
-										varStatus="varStatus">
-										<option value="${faculty.id}">${faculty.name}</option>
-									</c:forEach>
-								</select>
-							</c:when>
-						</c:choose>
-						
+							Grupa studencka:
+							<c:choose>
+								<c:when test="${!empty studentsgroup}">
+									<select name="studentsgroupid">
+										<c:forEach items="${studentsgroup}" var="studentsgroup"
+											varStatus="varStatus">
+											<option value="${studentsgroup.id}">${studentsgroup.id}</option>
+										</c:forEach>
+									</select>
+								</c:when>
+							</c:choose>
 						<fieldset class="pure-group">
 							<input type="text" name="name" class="pure-input-1-2"
 								placeholder="Imiê" required>
@@ -107,12 +107,6 @@
 						<fieldset class="pure-group">
 							<input type="text" name="academicdegree" class="pure-input-1-2"
 								placeholder="Stopieñ naukowy" required>
-							</textarea>
-						</fieldset>
-						<p>
-						<fieldset class="pure-group">
-							<input type="text" name="position" class="pure-input-1-2"
-								placeholder="Stanowisko" required>
 							</textarea>
 						</fieldset>
 						<p>Dane nowego u¿ytkownika:

@@ -14,7 +14,7 @@ import edziekanat.databasemodel.dao.StudentsGroupDAO;
 /**
  * Servlet implementation class AdminGetLecturersAndGroupsController
  */
-@WebServlet("/admingetlecturers")
+@WebServlet("/admingetlecturersandstudentsgroup")
 public class AdminGetLecturersAndGroupsController extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
