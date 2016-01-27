@@ -110,6 +110,14 @@
 		<jsp-file>/administrator/newstudent.jsp</jsp-file>
 	</servlet>
 	<servlet>
+		<servlet-name>AdminNewPayment</servlet-name>
+		<jsp-file>/administrator/newpayment.jsp</jsp-file>
+	</servlet>
+	<servlet>
+		<servlet-name>AdminNewScholarship</servlet-name>
+		<jsp-file>/administrator/newscholarship.jsp</jsp-file>
+	</servlet>
+	<servlet>
 		<servlet-name>AdminCourses</servlet-name>
 		<jsp-file>/administrator/courses.jsp</jsp-file>
 	</servlet>
@@ -272,6 +280,14 @@
 	<servlet-mapping>
 		<servlet-name>AdminNewStudent</servlet-name>
 		<url-pattern>/admin/newstudent</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AdminNewPayment</servlet-name>
+		<url-pattern>/admin/newpayment</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AdminNewScholarship</servlet-name>
+		<url-pattern>/admin/newscholarship</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>AdminAddSubject</servlet-name>

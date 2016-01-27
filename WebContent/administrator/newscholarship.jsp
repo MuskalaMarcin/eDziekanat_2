@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet" href="resources/pure-min.css">
 <link rel="stylesheet" href="resources/styles.css">
-<title>eDziekanat - Historia płatności</title>
+<title>eDziekanat - Przyznaj stypendium</title>
 </head>
 <body>
 	<div id="layout">
@@ -34,18 +34,14 @@
 						href="adminstudents">Studenci</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="marksstatistics">Statystyki</a></li>
+					<li class="pure-menu-item   menu-item-divided">
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminscholarships">Stypendia</a></li>
-					<li class="pure-menu-item menu-item-divided"><a
-						class="pure-menu-link" href="#">Należności</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminpayments">Historia należności</a></li>
-					<li class="pure-menu-item  pure-menu-selected"><a
-						class="pure-menu-link" href="adminwaitingpayments">Oczekujące
-							należności</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="admingetstudents">Dodaj należność</a></li>
-					<li class="pure-menu-item menu-item-divided"><a
+					<li class="pure-menu-item"><a class="pure-menu-link" href="#">Przyznaj
+							stypendium</a></li>
+					<li class="pure-menu-item menu-item-divided"><a class="pure-menu-link"
+						href="adminpayments">Należności</a></li>
+					<li class="pure-menu-item"><a
 						class="pure-menu-link" href="adminapplications">Wnioski</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="receivedmessages">Historia komunikatów</a></li>
@@ -60,49 +56,42 @@
 				<h2>Twój wirtualny dziekanat.</h2>
 			</div>
 			<div class="content">
-				<h2 class="content-subhead">Oczekujące należności:</h2>
+				<h2 class="content-subhead">Przyznaj stypendium:</h2>
 				<center>
-					<c:choose>
-						<c:when test="${empty waitingPayments }">
-						Brak wcześniejszych płatności.
-						</c:when>
-						<c:otherwise>
-							<table class="pure-table pure-table-bordered">
-								<thead>
-									<tr>
-										<td>Nr</td>
-										<td>Tytuł</td>
-										<td>Opis</td>
-										<td>Kwota</td>
-										<td>Data nadania</td>
-										<td>Imię i nazwisko</td>
-										<td>Potwierdź płatność</td>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${waitingPayments}" var="payment"
-										varStatus="varStatus">
-										<tr>
-											<td>${varStatus.index + 1 }</td>
-											<td>${payment.title }</td>
-											<td>${payment.description}</td>
-											<td>${payment.amount }</td>
-											<td><fmt:formatDate pattern="dd.MM.yyyy"
-													value="${payment.issueDate }" /></td>
-											<td>${payment.student.name } ${payment.student.surname }</td>
-											<td><form action="applypayment" method=post>
-													<input type="hidden" name="paymentId" value="${payment.id}">
-													<input type="hidden" name="studentId"
-														value="${payment.student.id }"> <input
-														class="pure-button pure-input-1-2 pure-button-primary"
-														type="submit" value="Potwierdź płatność">
-												</form></td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</c:otherwise>
-					</c:choose>
+					<form action="http://localhost:8080/eDziekanat/adminaddscholarship"
+						method=post class="pure-form">
+						<p>
+							Dane studenta:
+							<c:choose>
+								<c:when test="${!empty students}">
+									<select name="studentid">
+										<c:forEach items="${students}" var="student"
+											varStatus="varStatus">
+											<option value="${student.id}">${student.name}
+												${student.surname}</option>
+										</c:forEach>
+									</select>
+								</c:when>
+							</c:choose>
+						<p>
+							Rodzaj stypendium:
+							<c:choose>
+								<c:when test="${!empty scholarships}">
+									<select name="type">
+										<c:forEach items="${scholarships}" var="scholarship"
+											varStatus="varStatus">
+											<option value="${scholarship.type}">${scholarship.type}</option>
+										</c:forEach>
+									</select>
+								</c:when>
+							</c:choose>
+						<p>
+						<p>
+							Data zakończenia: <input id="endDate" type="date" name="endDate">
+						<p>
+							<button type="submit"
+								class="pure-button pure-input-1-2 pure-button-primary">Dodaj</button>
+					</form>
 				</center>
 			</div>
 		</div>

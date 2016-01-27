@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-2"
 	pageEncoding="ISO-8859-2"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -33,8 +34,12 @@
 						href="adminstudents">Studenci</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="marksstatistics">Statystyki</a></li>
-					<li class="pure-menu-item  pure-menu-selected"><a class="pure-menu-link"
-						href="adminscholarships">Stypendia</a></li>
+					<li class="pure-menu-item  pure-menu-selected"><a
+						class="pure-menu-link" href="adminscholarships">Stypendia</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="admingetstudentsandscholarshiptypes"> Przyznaj
+							stypendium</a></li>
+					<li class="pure-menu-item   menu-item-divided">
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminpayments">Nale¿no¶ci</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
@@ -68,14 +73,18 @@
 								<td>Imiê i nazwisko</td>
 							</tr>
 
-							<c:forEach items="${allScholarships}" var="scholarship" varStatus = "varStatus">
+							<c:forEach items="${allScholarships}" var="scholarship"
+								varStatus="varStatus">
 								<tr>
 									<td>${varStatus.index +1}</td>
-									<td>${scholarship.grant_date}</td>
-									<td>${scholarship.end_date}</td>
+									<td><fmt:formatDate pattern="dd.MM.yyyy"
+											value="${scholarship.grantDate }" /></td>
+									<td><fmt:formatDate pattern="dd.MM.yyyy"
+											value="${scholarship.endDate }" /></td>
 									<td>${scholarship.scholarshipType.type}</td>
 									<td>${scholarship.scholarshipType.amount}</td>
-									<td>${scholarship.student.name} ${scholarship.student.surname}</td>
+									<td>${scholarship.student.name}
+										${scholarship.student.surname}</td>
 								</tr>
 							</c:forEach>
 						</table>

@@ -1,6 +1,7 @@
 package edziekanat.controller.administrator;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -38,13 +39,16 @@ public class AdminCoursesController extends HttpServlet
     {
 	if (request.getAttribute("courses") == null)
 	{
-	    request.setAttribute("courses", new CourseDAO().getAllEntities());
+	    List<CourseDTO> courses =  new CourseDAO().getAllEntities();
+	    Collections.sort(courses, (x, y) -> x.getName().compareTo(y.getName()));
+	    request.setAttribute("courses", courses);
 	    request.setAttribute("faculties", new FacultyDAO().getAllEntities());
 	}
 	else
 	{
 	    @SuppressWarnings("unchecked")
 	    List<CourseDTO> courses = (List<CourseDTO>) request.getAttribute("courses");
+	    Collections.sort(courses, (x, y) -> x.getName().compareTo(y.getName()));
 	    request.setAttribute("courses", courses);
 	    request.setAttribute("faculties", courses.get(0).getFaculty());
 	}

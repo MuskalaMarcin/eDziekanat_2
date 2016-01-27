@@ -42,7 +42,7 @@
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminwaitingpayments">Oczekuj±ce nale¿no¶ci</a></li>
 					<li class="pure-menu-item  pure-menu-selected"><a
-						class="pure-menu-link" href="adminaddpayments">Dodaj nale¿no¶æ</a></li>
+						class="pure-menu-link" href="#">Dodaj nale¿no¶æ</a></li>
 					<li class="pure-menu-item menu-item-divided"><a
 						class="pure-menu-link" href="adminapplications">Wnioski</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
@@ -59,7 +59,42 @@
 			</div>
 			<div class="content">
 				<h2 class="content-subhead">Dodaj now± nale¿no¶æ:</h2>
-				<center></center>
+				<center>
+				<form action="http://localhost:8080/eDziekanat/adminaddpayment"
+						method=post class="pure-form">
+						<p>
+						Dane studenta:
+						<c:choose>
+							<c:when test="${!empty students}">
+								<select name="studentid">
+									<c:forEach items="${students}" var="student"
+										varStatus="varStatus">
+										<option value="${student.id}">${student.name}
+											${student.surname}</option>
+									</c:forEach>
+								</select>
+							</c:when>
+						</c:choose>
+						<p>
+						<fieldset class="pure-group">
+							<input type="text" name="title" class="pure-input-1-2"
+								placeholder="Tytu³" required>
+						</fieldset>
+						<p>
+						<fieldset class="pure-group">
+							<input type="text" name="description" class="pure-input-1-2"
+								placeholder="Opis" required>
+						</fieldset>
+						<p>
+						<fieldset class="pure-group">
+							<input type="number" step="0.01" name="amount" class="pure-input-1-2"
+								placeholder="Kwota" required>
+						</fieldset>
+						<p>
+							<button type="submit"
+								class="pure-button pure-input-1-2 pure-button-primary">Dodaj</button>
+					</form>
+				</center>
 			</div>
 		</div>
 	</div>

@@ -44,7 +44,7 @@
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminwaitingpayments">Oczekuj±ce nale¿no¶ci</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminaddpayments">Dodaj nale¿no¶æ</a></li>
+						href="admingetstudents">Dodaj nale¿no¶æ</a></li>
 					<li class="pure-menu-item menu-item-divided"><a
 						class="pure-menu-link" href="adminapplications">Wnioski</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
@@ -91,7 +91,7 @@
 													value="${payment.issueDate }" /></td>
 											<td><fmt:formatDate pattern="dd.MM.yyyy"
 													value="${payment.paymentDate }" /></td>
-											<td>${payment.student.name }${payment.student.surname }</td>
+											<td>${payment.student.name } ${payment.student.surname }</td>
 										</tr>
 									</c:forEach>
 								</tbody>

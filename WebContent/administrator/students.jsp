@@ -91,7 +91,7 @@
 										<td>${student.surname}</td>
 										<td>${student.user.eMail}</td>
 										<td width="70px" id="respond">
-											<form action="adminscholarships" method=post>
+											<form action="adminstudentscholarships" method=post>
 												<input type="hidden" name="studentId" value="${student.id}">
 												<input
 													class="pure-button pure-input-1-2 pure-button-primary"
