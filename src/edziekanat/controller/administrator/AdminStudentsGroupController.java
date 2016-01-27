@@ -1,6 +1,7 @@
 package edziekanat.controller.administrator;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -43,7 +44,9 @@ public class AdminStudentsGroupController extends HttpServlet
 	{
 	    if (request.getAttribute("courses") == null || ((List<CourseDTO>) request.getAttribute("courses")).isEmpty())
 	    {
-		request.setAttribute("studentsgroup", new StudentsGroupDAO().getAllEntities());
+		List<StudentsGroupDTO> studentsgroup =   new StudentsGroupDAO().getAllEntities();
+		Collections.sort(studentsgroup, (x, y) -> x.getCourse().getName().compareTo(y.getCourse().getName()));
+		request.setAttribute("studentsgroup", studentsgroup);
 	    }
 	    else
 	    {

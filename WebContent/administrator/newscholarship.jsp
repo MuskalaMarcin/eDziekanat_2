@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet" href="resources/pure-min.css">
 <link rel="stylesheet" href="resources/styles.css">
-<title>eDziekanat - Stypendia</title>
+<title>eDziekanat - Przyznaj stypendium</title>
 </head>
 <body>
 	<div id="layout">
@@ -34,16 +34,15 @@
 						href="adminstudents">Studenci</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="marksstatistics">Statystyki</a></li>
-					<li class="pure-menu-item  pure-menu-selected"><a
-						class="pure-menu-link" href="adminscholarships">Stypendia</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="admingetstudentsandscholarshiptypes"> Przyznaj
-							stypendium</a></li>
 					<li class="pure-menu-item   menu-item-divided">
 					<li class="pure-menu-item"><a class="pure-menu-link"
+						href="adminscholarships">Stypendia</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link" href="#">Przyznaj
+							stypendium</a></li>
+					<li class="pure-menu-item menu-item-divided"><a class="pure-menu-link"
 						href="adminpayments">Należności</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminapplications">Wnioski</a></li>
+					<li class="pure-menu-item"><a
+						class="pure-menu-link" href="adminapplications">Wnioski</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="receivedmessages">Historia komunikatów</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
@@ -57,39 +56,43 @@
 				<h2>Twój wirtualny dziekanat.</h2>
 			</div>
 			<div class="content">
-				<h2 class="content-subhead">Aktualne stypendia:</h2>
-				<c:choose>
-					<c:when test="${empty allScholarships }">
-						<center>Nie znaleziono aktualnych stypendiów w bazie.</center>
-					</c:when>
-					<c:otherwise>
-						<table class="responseTable">
-							<tr class="grayRow">
-								<td>Nr</td>
-								<td>Data przyznania</td>
-								<td>Data zakończenia</td>
-								<td>Typ</td>
-								<td>Wysokość</td>
-								<td>Imię i nazwisko</td>
-							</tr>
-
-							<c:forEach items="${allScholarships}" var="scholarship"
-								varStatus="varStatus">
-								<tr>
-									<td>${varStatus.index +1}</td>
-									<td><fmt:formatDate pattern="dd.MM.yyyy"
-											value="${scholarship.grantDate }" /></td>
-									<td><fmt:formatDate pattern="dd.MM.yyyy"
-											value="${scholarship.endDate }" /></td>
-									<td>${scholarship.scholarshipType.type}</td>
-									<td>${scholarship.scholarshipType.amount}</td>
-									<td>${scholarship.student.name}
-										${scholarship.student.surname}</td>
-								</tr>
-							</c:forEach>
-						</table>
-					</c:otherwise>
-				</c:choose>
+				<h2 class="content-subhead">Przyznaj stypendium:</h2>
+				<center>
+					<form action="http://localhost:8080/eDziekanat/adminaddscholarship"
+						method=post class="pure-form">
+						<p>
+							Dane studenta:
+							<c:choose>
+								<c:when test="${!empty students}">
+									<select name="studentid">
+										<c:forEach items="${students}" var="student"
+											varStatus="varStatus">
+											<option value="${student.id}">${student.name}
+												${student.surname}</option>
+										</c:forEach>
+									</select>
+								</c:when>
+							</c:choose>
+						<p>
+							Rodzaj stypendium:
+							<c:choose>
+								<c:when test="${!empty scholarships}">
+									<select name="type">
+										<c:forEach items="${scholarships}" var="scholarship"
+											varStatus="varStatus">
+											<option value="${scholarship.type}">${scholarship.type}</option>
+										</c:forEach>
+									</select>
+								</c:when>
+							</c:choose>
+						<p>
+						<p>
+							Data zakończenia: <input id="endDate" type="date" name="endDate">
+						<p>
+							<button type="submit"
+								class="pure-button pure-input-1-2 pure-button-primary">Dodaj</button>
+					</form>
+				</center>
 			</div>
 		</div>
 	</div>

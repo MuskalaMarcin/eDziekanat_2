@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet" href="resources/pure-min.css">
 <link rel="stylesheet" href="resources/styles.css">
-<title>eDziekanat - Stypendia</title>
+<title>eDziekanat - Stypendia studenta</title>
 </head>
 <body>
 	<div id="layout">
@@ -36,9 +36,6 @@
 						href="marksstatistics">Statystyki</a></li>
 					<li class="pure-menu-item  pure-menu-selected"><a
 						class="pure-menu-link" href="adminscholarships">Stypendia</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="admingetstudentsandscholarshiptypes"> Przyznaj
-							stypendium</a></li>
 					<li class="pure-menu-item   menu-item-divided">
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminpayments">Należności</a></li>
@@ -57,10 +54,12 @@
 				<h2>Twój wirtualny dziekanat.</h2>
 			</div>
 			<div class="content">
-				<h2 class="content-subhead">Aktualne stypendia:</h2>
+				<h2 class="content-subhead">Stypendia studenta: ${student.name}
+					${student.surname}</h2>
 				<c:choose>
-					<c:when test="${empty allScholarships }">
-						<center>Nie znaleziono aktualnych stypendiów w bazie.</center>
+					<c:when test="${empty scholarships }">
+						<center>Nie znaleziono stypendiów danego studenta w
+							bazie.</center>
 					</c:when>
 					<c:otherwise>
 						<table class="responseTable">
@@ -70,10 +69,9 @@
 								<td>Data zakończenia</td>
 								<td>Typ</td>
 								<td>Wysokość</td>
-								<td>Imię i nazwisko</td>
 							</tr>
 
-							<c:forEach items="${allScholarships}" var="scholarship"
+							<c:forEach items="${scholarships}" var="scholarship"
 								varStatus="varStatus">
 								<tr>
 									<td>${varStatus.index +1}</td>
@@ -83,8 +81,6 @@
 											value="${scholarship.endDate }" /></td>
 									<td>${scholarship.scholarshipType.type}</td>
 									<td>${scholarship.scholarshipType.amount}</td>
-									<td>${scholarship.student.name}
-										${scholarship.student.surname}</td>
 								</tr>
 							</c:forEach>
 						</table>

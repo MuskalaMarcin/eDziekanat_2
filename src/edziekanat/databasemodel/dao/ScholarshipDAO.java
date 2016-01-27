@@ -60,4 +60,9 @@ public class ScholarshipDAO extends DAOParentClass<ScholarshipDTO>
 	Collections.sort(scholarships, (x, y) -> y.getEndDate().compareTo(x.getEndDate()));
 	return scholarships;
     }
+    
+    public List<ScholarshipDTO> getAllStudentsScholarships(Integer studentId)
+    {
+	return new StudentDAO().getEntity(studentId).getScholarship();
+    }
 }
