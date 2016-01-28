@@ -2,10 +2,6 @@ package edziekanat.bean;
 
 import java.io.Serializable;
 
-/*
- * Klasa LoginBean
- * Przechowuje informacje o zalogowanym u¿ytkowniku
- */
 public class LoginBean implements Serializable
 {
     private static final long serialVersionUID = 1L;

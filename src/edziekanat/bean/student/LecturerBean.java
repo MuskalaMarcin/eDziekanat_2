@@ -2,10 +2,6 @@ package edziekanat.bean.student;
 
 import java.io.Serializable;
 
-/*
- * Klasa LecturerBean
- * Przechowuje informacje o wyk³adowcy
- */
 public class LecturerBean implements Serializable
 {
     private static final long serialVersionUID = 1L;
