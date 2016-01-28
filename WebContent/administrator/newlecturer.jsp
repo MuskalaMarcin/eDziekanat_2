@@ -74,7 +74,6 @@
 					<form action="http://localhost:8080/eDziekanat/adminaddlecturer"
 						method=post class="pure-form">
 						<p>
-						Wydzia³
 						<c:choose>
 							<c:when test="${!empty faculties}">
 								<select name="facultyid">
