@@ -15,7 +15,7 @@ import edziekanat.databasemodel.dao.ApplicationDAO;
 import edziekanat.databasemodel.dto.ApplicationDTO;
 
 /**
- * Servlet implementation class WaitingApplicationsController
+ * Servlet showing waiting applications for the student.
  */
 @WebServlet("/studentwaitingapplications")
 public class WaitingApplicationsController extends HttpServlet

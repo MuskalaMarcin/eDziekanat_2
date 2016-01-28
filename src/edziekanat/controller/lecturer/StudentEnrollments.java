@@ -19,7 +19,7 @@ import edziekanat.databasemodel.dto.EnrollmentDTO;
 import edziekanat.databasemodel.dto.SubjectDTO;
 
 /**
- * Servlet implementation class StudentEnrollments
+ * Servlet showing all enrollments received by student.
  */
 @WebServlet("/studentenrollments")
 public class StudentEnrollments extends HttpServlet

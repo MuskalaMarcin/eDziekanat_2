@@ -17,7 +17,7 @@ import edziekanat.databasemodel.dto.AdministratorDTO;
 import edziekanat.databasemodel.dto.StudentsGroupDTO;
 
 /**
- * Servlet implementation class GetAdministratorsController
+ * Servlet used in sending new application to get all administrators from the database.
  */
 @WebServlet("/studentgetadministartors")
 public class GetAdministratorsController extends HttpServlet

@@ -16,7 +16,7 @@ import edziekanat.databasemodel.dto.AdministratorDTO;
 import edziekanat.databasemodel.dto.ScholarshipDTO;
 
 /**
- * Servlet implementation class ScholarshipController
+ * Servlet showing active sholarships for student.
  */
 @WebServlet("/studentscholarships")
 public class ScholarshipsController extends HttpServlet

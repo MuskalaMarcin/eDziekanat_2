@@ -20,7 +20,7 @@ import edziekanat.databasemodel.dto.ClassroomDTO;
 import edziekanat.databasemodel.dto.ScheduledClassesDTO;
 
 /**
- * Servlet implementation class LecturerClassroomsController
+ * Servlet used in showing classrooms.
  */
 @WebServlet("/lecturerclassrooms")
 public class ClassroomsController extends HttpServlet

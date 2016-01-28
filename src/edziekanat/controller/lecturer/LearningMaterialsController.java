@@ -14,7 +14,7 @@ import edziekanat.databasemodel.dao.SubjectDAO;
 import edziekanat.databasemodel.dto.SubjectDTO;
 
 /**
- * Servlet implementation class LecturerLearningMaterialsController
+ * Servlet used in showing actual added learning materials
  */
 @WebServlet("/lecturerlearningmaterials")
 public class LearningMaterialsController extends HttpServlet

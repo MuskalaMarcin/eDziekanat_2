@@ -15,7 +15,7 @@ import edziekanat.databasemodel.dao.PaymentDAO;
 import edziekanat.databasemodel.dto.PaymentDTO;
 
 /**
- * Servlet implementation class WaitingPaymentsController
+ * Servlet showing waiting payments for student.
  */
 @WebServlet("/studentwaitingpayments")
 public class WaitingPaymentsController extends HttpServlet

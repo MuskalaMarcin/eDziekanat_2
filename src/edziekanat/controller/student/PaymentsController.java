@@ -14,7 +14,7 @@ import edziekanat.databasemodel.dao.PaymentDAO;
 import edziekanat.databasemodel.dto.PaymentDTO;
 
 /**
- * Servlet implementation class PaymentsController
+ * Servlet showing to student history of payments.
  */
 @WebServlet("/studentpayments")
 public class PaymentsController extends HttpServlet

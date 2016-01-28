@@ -19,7 +19,7 @@ import edziekanat.databasemodel.dto.StudentsGroupDTO;
 import edziekanat.databasemodel.dto.SubjectDTO;
 
 /**
- * Servlet implementation class LecturerStudentsController
+ * Servlet used in getting all students taught by the lecturer.
  */
 @WebServlet("/lecturerseestudents")
 public class StudentsController extends HttpServlet

@@ -19,7 +19,7 @@ import edziekanat.databasemodel.dto.PartialMarkDTO;
 import edziekanat.databasemodel.dto.SubjectDTO;
 
 /**
- * Servlet implementation class StudentMarks
+ * Servlet used in showing all marks that student got.
  */
 @WebServlet("/studentmarks")
 public class StudentMarks extends HttpServlet

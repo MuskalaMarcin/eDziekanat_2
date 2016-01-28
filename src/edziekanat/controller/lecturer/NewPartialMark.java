@@ -15,7 +15,7 @@ import edziekanat.databasemodel.dao.TranscriptDAO;
 import edziekanat.databasemodel.dto.PartialMarkDTO;
 
 /**
- * Servlet implementation class NewPartialMark
+ * Servlet used in adding new partial mark.
  */
 @WebServlet("/newpartialmark")
 public class NewPartialMark extends HttpServlet

@@ -13,7 +13,7 @@ import edziekanat.databasemodel.dao.LearningMaterialsDAO;
 import edziekanat.databasemodel.dto.LearningMaterialsDTO;
 
 /**
- * Servlet implementation class DeleteMaterials
+ * Servlet used in deleting learning materials
  */
 @WebServlet("/deletematerial")
 public class DeleteMaterials extends HttpServlet

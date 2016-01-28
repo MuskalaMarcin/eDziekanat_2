@@ -14,7 +14,7 @@ import edziekanat.databasemodel.dao.LecturerDAO;
 import edziekanat.databasemodel.dto.LecturerDTO;
 
 /**
- * Servlet implementation class LecturerSearchLecturer
+ * Servlet used in searching lecturers.
  */
 @WebServlet("/lecturersearchlecturers")
 public class SearchLecturer extends HttpServlet

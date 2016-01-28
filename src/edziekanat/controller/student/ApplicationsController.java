@@ -16,7 +16,7 @@ import edziekanat.databasemodel.dao.ApplicationDAO;
 import edziekanat.databasemodel.dto.ApplicationDTO;
 
 /**
- * Servlet implementation class ApplicationsController
+ * Servlet providing applications send by student.
  */
 @WebServlet("/studentapplications")
 public class ApplicationsController extends HttpServlet

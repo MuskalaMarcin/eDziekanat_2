@@ -12,7 +12,7 @@ import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.PartialMarkDAO;
 
 /**
- * Servlet implementation class PartialMarksController
+ * Servlet used in showing partial marks of the student.
  */
 @WebServlet("/studentpartialmarks")
 public class PartialMarksController extends HttpServlet

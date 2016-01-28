@@ -12,7 +12,7 @@ import edziekanat.databasemodel.dao.LearningMaterialsDAO;
 import edziekanat.databasemodel.dao.SubjectDAO;
 
 /**
- * Servlet implementation class LearningMaterialsController
+ * Servlet used in showing learning materials for student.
  */
 @WebServlet("/studentlearningmaterials")
 public class LearningMaterialsController extends HttpServlet

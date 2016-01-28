@@ -18,7 +18,7 @@ import edziekanat.databasemodel.dao.SubjectDAO;
 import edziekanat.databasemodel.dto.LearningMaterialsDTO;
 
 /**
- * Servlet implementation class AddLearningMaterials
+ * Servlet used in adding new learning materials to database.
  */
 @WebServlet("/addlearningmaterials")
 @MultipartConfig

@@ -15,7 +15,7 @@ import edziekanat.databasemodel.dao.SubjectDAO;
 import edziekanat.databasemodel.dto.SubjectDTO;
 
 /**
- * Servlet implementation class SubjectsController
+ * Servlet getting subjects for student.
  */
 @WebServlet("/studentsubjects")
 public class SubjectsController extends HttpServlet

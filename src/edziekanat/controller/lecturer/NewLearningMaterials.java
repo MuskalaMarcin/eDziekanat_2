@@ -12,7 +12,7 @@ import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.LecturerDAO;
 
 /**
- * Servlet implementation class AddLearningMaterials
+ * Servlet used in adding new learning materials.
  */
 @WebServlet("/newlearningmaterials")
 public class NewLearningMaterials extends HttpServlet

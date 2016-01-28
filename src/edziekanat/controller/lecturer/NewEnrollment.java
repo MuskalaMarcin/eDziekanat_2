@@ -15,7 +15,7 @@ import edziekanat.databasemodel.dao.TranscriptDAO;
 import edziekanat.databasemodel.dto.EnrollmentDTO;
 
 /**
- * Servlet implementation class NewEnrollment
+ * Servlet used in adding new enrollment to database.
  */
 @WebServlet("/newenrollment")
 public class NewEnrollment extends HttpServlet

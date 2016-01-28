@@ -15,7 +15,7 @@ import edziekanat.databasemodel.dao.EnrollmentDAO;
 import edziekanat.databasemodel.dto.EnrollmentDTO;
 
 /**
- * Servlet implementation class TranscriptController
+ * Servlet showing students transcript.
  */
 @WebServlet("/studenttranscript")
 public class TranscriptController extends HttpServlet

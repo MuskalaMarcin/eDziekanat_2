@@ -18,7 +18,7 @@ import edziekanat.databasemodel.dto.AdministratorDTO;
 import edziekanat.databasemodel.dto.ApplicationDTO;
 
 /**
- * Servlet implementation class NewApplicationController
+ * Servlet inserting new application into database.
  */
 @WebServlet("/studentnewapplication")
 public class NewApplicationController extends HttpServlet
