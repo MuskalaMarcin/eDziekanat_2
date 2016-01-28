@@ -36,6 +36,11 @@ public class ScheduledClassesDAO extends DAOParentClass<ScheduledClassesDTO>
 	return entityManager.find(ScheduledClassesDTO.class, id);
     }
 
+    /**
+     * Method getting student's schedules classes
+     * @param studentId
+     * @return
+     */
     public List<ScheduledClassesDTO> getStudentsClasses(Integer studentId)
     {
 	List<ScheduledClassesDTO> scheduledClasses = new LinkedList<ScheduledClassesDTO>();
@@ -48,6 +53,11 @@ public class ScheduledClassesDAO extends DAOParentClass<ScheduledClassesDTO>
 	return scheduledClasses;
     }
 
+    /**
+     * Method getting lecturer's schedules classes
+     * @param lecturerId
+     * @return
+     */
     public List<ScheduledClassesDTO> getLecturersClasses(Integer lecturerId)
     {
 	List<ScheduledClassesDTO> scheduledClasses = new LinkedList<ScheduledClassesDTO>();
@@ -60,6 +70,11 @@ public class ScheduledClassesDAO extends DAOParentClass<ScheduledClassesDTO>
 	return scheduledClasses;
     }
 
+    /**
+     * Method getting studentsgroup's schedules classes
+     * @param studentsGroupId
+     * @return
+     */
     public List<ScheduledClassesDTO> getStudentsGroupClasses(Integer studentsGroupId)
     {
 	List<ScheduledClassesDTO> scheduledClasses = new LinkedList<ScheduledClassesDTO>();
@@ -72,6 +87,14 @@ public class ScheduledClassesDAO extends DAOParentClass<ScheduledClassesDTO>
 	return scheduledClasses;
     }
 
+    /**
+     * Method inserts new schedules classes
+     * @param subject
+     * @param classroom
+     * @param startDate
+     * @param startTime
+     * @return
+     */
     public boolean insertNewClasses(SubjectDTO subject, ClassroomDTO classroom, Date startDate, Integer startTime)
     {
 	startDate.setHours(hours.get(startTime));
@@ -93,6 +116,16 @@ public class ScheduledClassesDAO extends DAOParentClass<ScheduledClassesDTO>
 	return true;
     }
 
+    /**
+     * Method inserts repeated schedules classes
+     * @param subject
+     * @param classroom
+     * @param repeat
+     * @param startDate
+     * @param endDate
+     * @param startTime
+     * @return
+     */
     public boolean insertNewRepeatedClasses(SubjectDTO subject, ClassroomDTO classroom, Integer repeat, Date startDate,
 	    Date endDate, Integer startTime)
     {

@@ -29,6 +29,12 @@ public class StudentDAO extends DAOParentClass<StudentDTO>
 	return entityManager.find(StudentDTO.class, id);
     }
 
+    /**
+     * Method getting students by name and surname
+     * @param name
+     * @param surname
+     * @return
+     */
     public List<StudentDTO> getStudentsByNameAndSurname(String name, String surname)
     {
 	List<StudentDTO> students = new LinkedList<StudentDTO>();
@@ -39,6 +45,11 @@ public class StudentDAO extends DAOParentClass<StudentDTO>
 	return students;
     }
 
+    /**
+     * Method getting students by surname
+     * @param surname
+     * @return
+     */
     public List<StudentDTO> getStudentsBySurname(String surname)
     {
 	List<StudentDTO> students = new LinkedList<StudentDTO>();
@@ -47,6 +58,12 @@ public class StudentDAO extends DAOParentClass<StudentDTO>
 	return students;
     }
 
+    /**
+     * Method getting students in specific students group by student's surname
+     * @param surname
+     * @param studentGroupId
+     * @return
+     */
     public List<StudentDTO> searchStudentsInStudentsGroup(String surname, Integer studentGroupId)
     {
 	List<StudentDTO> students = new LinkedList<StudentDTO>();
@@ -61,6 +78,13 @@ public class StudentDAO extends DAOParentClass<StudentDTO>
 	return students;
     }
 
+    /**
+     * Method getting students in specific students group by student's name and surname
+     * @param name
+     * @param surname
+     * @param studentGroupId
+     * @return
+     */
     public List<StudentDTO> searchStudentsInStudentsGroup(String name, String surname, Integer studentGroupId)
     {
 	List<StudentDTO> students = new LinkedList<StudentDTO>();
@@ -77,6 +101,12 @@ public class StudentDAO extends DAOParentClass<StudentDTO>
 	return students;
     }
 
+    /**
+     * Method getting students with specific subject by student's surname
+     * @param surname
+     * @param subjectId
+     * @return
+     */
     public List<StudentDTO> searchStudentsInSubject(String surname, Integer subjectId)
     {
 	List<StudentDTO> students = new LinkedList<StudentDTO>();
@@ -93,6 +123,13 @@ public class StudentDAO extends DAOParentClass<StudentDTO>
 	return students;
     }
 
+    /**
+     * Method getting students in specific subject by student's name and surname
+     * @param name
+     * @param surname
+     * @param subjectId
+     * @return
+     */
     public List<StudentDTO> searchStudentsInSubject(String name, String surname, Integer subjectId)
     {
 	List<StudentDTO> students = new LinkedList<StudentDTO>();

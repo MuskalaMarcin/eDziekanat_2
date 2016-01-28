@@ -28,6 +28,11 @@ public class LearningMaterialsDAO extends DAOParentClass<LearningMaterialsDTO>
 	return entityManager.find(LearningMaterialsDTO.class, id);
     }
 
+    /**
+     * Method getting list of lecturer's learning materials 
+     * @param lecturerId
+     * @return
+     */
     public List<LearningMaterialsDTO> getLecturerLearningMaterials(Integer lecturerId)
     {
 	List<LearningMaterialsDTO> learningMaterials = new LinkedList<LearningMaterialsDTO>();
@@ -38,17 +43,28 @@ public class LearningMaterialsDAO extends DAOParentClass<LearningMaterialsDTO>
 	return learningMaterials;
     }
 
+    /**
+     * Method getting all subject's learning materials
+     * @param subjectId
+     * @return
+     */
     public List<LearningMaterialsDTO> getSubjectLearningMaterials(Integer subjectId)
     {
 	return new SubjectDAO().getEntity(subjectId).getLearningMaterials();
     }
 
+    /**
+     * Method adds learning materials
+     */
     public void insert(LearningMaterialsDTO entity)
     {
 	super.insert(entity);
 	new SubjectDAO().getEntity(entity.getSubject().getId()).addLearningMaterials(entity);
     }
 
+    /**
+     * Method removes learning materials
+     */
     public void remove(LearningMaterialsDTO entity)
     {
 	new SubjectDAO().getEntity(entity.getSubject().getId()).removeLearningMaterials(entity);

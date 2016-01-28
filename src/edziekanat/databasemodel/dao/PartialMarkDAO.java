@@ -28,6 +28,12 @@ public class PartialMarkDAO extends DAOParentClass<PartialMarkDTO>
 	return entityManager.find(PartialMarkDTO.class, id);
     }
 
+    /**
+     * Method getting all student's partial marks in specific subject
+     * @param studentId
+     * @param subjectId
+     * @return
+     */
     public List<PartialMarkDTO> getStudentMarksFromSubject(Integer studentId, Integer subjectId)
     {
 	List<PartialMarkDTO> partialMarks = new LinkedList<PartialMarkDTO>();

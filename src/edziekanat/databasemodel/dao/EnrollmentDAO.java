@@ -29,6 +29,11 @@ public class EnrollmentDAO extends DAOParentClass<EnrollmentDTO>
 	return entityManager.find(EnrollmentDTO.class, id);
     }
 
+    /**
+     * Method getting all student's enrollments
+     * @param studentId
+     * @return
+     */
     public List<EnrollmentDTO> getAllStudentEnrollments(Integer studentId)
     {
 	List<EnrollmentDTO> allEnrollments = new LinkedList<EnrollmentDTO>();
@@ -44,6 +49,12 @@ public class EnrollmentDAO extends DAOParentClass<EnrollmentDTO>
 	return allEnrollments;
     }
 
+    /**
+     * Method getting all student's enrollment in particular semester
+     * @param studentId
+     * @param semester
+     * @return
+     */
     public List<EnrollmentDTO> getEnrollmentsFromSemester(Integer studentId, Integer semester)
     {
 	List<EnrollmentDTO> selectedEnrollments = getAllStudentEnrollments(studentId);
@@ -58,6 +69,12 @@ public class EnrollmentDAO extends DAOParentClass<EnrollmentDTO>
 	return selectedEnrollments;
     }
     
+    /**
+     * Method getting all student's enrollment in specific subject
+     * @param studentId
+     * @param subjectId
+     * @return
+     */
     public List<EnrollmentDTO> getStudentEnrollmentsFromSubject(Integer studentId, Integer subjectId)
     {
 	List<EnrollmentDTO> enrollments = new LinkedList<EnrollmentDTO>();

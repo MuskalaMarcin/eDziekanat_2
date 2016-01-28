@@ -387,6 +387,20 @@
 			<url-pattern>/adminsubjects/*</url-pattern>
 			<url-pattern>/adminlecturers/*</url-pattern>
 			<url-pattern>/adminstudents/*</url-pattern>
+			<url-pattern>/adminclassrooms/*</url-pattern>
+			<url-pattern>/marksstatistics/*</url-pattern>
+			<url-pattern>/applicationsstatistics/*</url-pattern>
+			<url-pattern>/scholarshipstatistics/*</url-pattern>
+			<url-pattern>/admintimetable/*</url-pattern>
+			<url-pattern>/admingetfaculties/*</url-pattern>
+			<url-pattern>/admingetcourses/*</url-pattern>
+			<url-pattern>/admingetfacultyforlecterer/*</url-pattern>
+			<url-pattern>/admingetlecturersandstudentsgroup/*</url-pattern>
+			<url-pattern>/admingetstudentsgroup/*</url-pattern>
+			<url-pattern>/adminscholarships/*</url-pattern>
+			<url-pattern>/admingetstudentsandscholarshiptypes/*</url-pattern>
+			<url-pattern>/admingetstudents/*</url-pattern>
+			<url-pattern>/adminapplications/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>admin</role-name>

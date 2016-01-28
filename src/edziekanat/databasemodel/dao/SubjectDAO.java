@@ -30,6 +30,11 @@ public class SubjectDAO extends DAOParentClass<SubjectDTO>
 	return entityManager.find(SubjectDTO.class, id);
     }
 
+    /**
+     * Method getting all student's subjects
+     * @param studentId
+     * @return
+     */
     public List<SubjectDTO> getStudentSubjects(Integer studentId)
     {
 	List<SubjectDTO> allSubjects = new LinkedList<SubjectDTO>();

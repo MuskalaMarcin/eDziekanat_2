@@ -27,11 +27,21 @@ public class PaymentDAO extends DAOParentClass<PaymentDTO>
 	return entityManager.find(PaymentDTO.class, id);
     }
 
+    /**
+     * Method getting all student's payments
+     * @param studentId
+     * @return
+     */
     public List<PaymentDTO> getAllStudentPayments(Integer studentId)
     {
 	return getMultipleEntities("student_id = '" + studentId + "'");
     }
 
+    /**
+     * Method getting all waiting student's payments
+     * @param studentId
+     * @return
+     */
     public List<PaymentDTO> getWaitingPayments(Integer studentId)
     {
 	List<PaymentDTO> waitingPayments = getMultipleEntities(
@@ -40,6 +50,11 @@ public class PaymentDAO extends DAOParentClass<PaymentDTO>
 	return waitingPayments;
     }
 
+    /**
+     * Method getting student's payment history
+     * @param studentId
+     * @return
+     */
     public List<PaymentDTO> getPaymentsHistory(Integer studentId)
     {
 	List<PaymentDTO> historyPayments = getMultipleEntities(
@@ -48,6 +63,11 @@ public class PaymentDAO extends DAOParentClass<PaymentDTO>
 	return historyPayments;
     }
 
+    /**
+     * Method getting admin's waiting payments
+     * @param adminId
+     * @return
+     */
     public List<PaymentDTO> getWaitingAdminPayments(Integer adminId)
     {
 	List<PaymentDTO> waitingPayments = getMultipleEntities(
@@ -56,6 +76,11 @@ public class PaymentDAO extends DAOParentClass<PaymentDTO>
 	return waitingPayments;
     }
 
+    /**
+     * Method getting payments history by adminid
+     * @param adminId
+     * @return
+     */
     public List<PaymentDTO> getAdminPaymentsHistory(Integer adminId)
     {
 	List<PaymentDTO> historyPayments = getMultipleEntities(

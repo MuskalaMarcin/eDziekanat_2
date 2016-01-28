@@ -27,6 +27,11 @@ public class ApplicationDAO extends DAOParentClass<ApplicationDTO>
 	return entityManager.find(ApplicationDTO.class, id);
     }
 
+    /**
+     * Method getting waiting students applications by studentid
+     * @param studentId
+     * @return
+     */
     public List<ApplicationDTO> getWaitingApplications(Integer studentId)
     {
 	List<ApplicationDTO> waitingApplications = getMultipleEntities(
@@ -35,6 +40,11 @@ public class ApplicationDAO extends DAOParentClass<ApplicationDTO>
 	return waitingApplications;
     }
 
+    /**
+     * Method getting all students applications
+     * @param studentId
+     * @return
+     */
     public List<ApplicationDTO> getApplications(Integer studentId)
     {
 	List<ApplicationDTO> getApplications = getMultipleEntities(
@@ -43,6 +53,11 @@ public class ApplicationDAO extends DAOParentClass<ApplicationDTO>
 	return getApplications;
     }
     
+    /**
+     * Method getting waiting students applications by studentid
+     * @param studentId
+     * @return
+     */
     public List<ApplicationDTO> getWaitingStudentApplications(Integer studentId)
     {
 	List<ApplicationDTO> getApplications = getMultipleEntities(
@@ -51,6 +66,11 @@ public class ApplicationDAO extends DAOParentClass<ApplicationDTO>
 	return getApplications;
     }
 
+    /**
+     * Method getting all waiting admin applications by adminid
+     * @param adminId
+     * @return
+     */
     public List<ApplicationDTO> getAdminWaitingApplications(Integer adminId)
     {
 	List<ApplicationDTO> getApplications = getMultipleEntities(
@@ -59,6 +79,11 @@ public class ApplicationDAO extends DAOParentClass<ApplicationDTO>
 	return getApplications;
     }
     
+    /**
+     * Method getting list of historial applications by adminid
+     * @param adminId
+     * @return
+     */
     public List<ApplicationDTO> getAdminHistoricalApplications(Integer adminId)
     {
 	List<ApplicationDTO> getApplications = getMultipleEntities(

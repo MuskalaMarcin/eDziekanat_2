@@ -28,6 +28,11 @@ public class FacultyDAO extends DAOParentClass<FacultyDTO>
 	return entityManager.find(FacultyDTO.class, id);
     }
 
+    /**
+     * Method getting faculties by name
+     * @param facultyname
+     * @return
+     */
     public List<FacultyDTO> getFacultyByName(String facultyname)
     {
 	List<FacultyDTO> faculty = new LinkedList<FacultyDTO>();

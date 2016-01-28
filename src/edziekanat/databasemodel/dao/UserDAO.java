@@ -24,16 +24,31 @@ public class UserDAO extends DAOParentClass<UserDTO>
 	return entityManager.find(UserDTO.class, login);
     }
     
+    /**
+     * Method getting admin's user
+     * @param id
+     * @return
+     */
     public UserDTO getAdminUser(Integer id)
     {
 	return getSingleEntity("administrator_id = '" + id +"'");
     }
     
+    /**
+     * Method getting student's user
+     * @param id
+     * @return
+     */
     public UserDTO getStudentUser(Integer id)
     {
 	return getSingleEntity("student_id = '" + id +"'");
     }
     
+    /**
+     * Method getting lecturer's user
+     * @param id
+     * @return
+     */
     public UserDTO getLecturerUser(Integer id)
     {
 	return getSingleEntity("lecturer_id = '" + id +"'");

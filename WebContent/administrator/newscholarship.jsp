@@ -37,7 +37,7 @@
 					<li class="pure-menu-item   menu-item-divided">
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminscholarships">Stypendia</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link" href="#">Przyznaj
+					<li class="pure-menu-item pure-menu-selected"><a class="pure-menu-link" href="#">Przyznaj
 							stypendium</a></li>
 					<li class="pure-menu-item menu-item-divided"><a class="pure-menu-link"
 						href="adminpayments">Nale¿no¶ci</a></li>

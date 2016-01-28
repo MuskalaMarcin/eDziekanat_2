@@ -29,11 +29,21 @@ public class LecturerDAO extends DAOParentClass<LecturerDTO>
 	return entityManager.find(LecturerDTO.class, id);
     }
 
+    /**
+     * Method getting list of student's lecturers
+     * @param studentId
+     * @return
+     */
     public List<LecturerDTO> getLecturersByStudentId(Integer studentId)
     {
 	return entityManager.createNativeQuery("", LecturerDTO.class).getResultList();
     }
 
+    /**
+     * Method getting list of lecturers by surname
+     * @param surname
+     * @return
+     */
     public List<LecturerDTO> getLecturersBySurname(String surname)
     {
 	List<LecturerDTO> lecturers = new LinkedList<LecturerDTO>();
@@ -42,6 +52,12 @@ public class LecturerDAO extends DAOParentClass<LecturerDTO>
 	return lecturers;
     }
 
+    /**
+     * Method getting list of lecturers by name and surname
+     * @param name
+     * @param surname
+     * @return
+     */
     public List<LecturerDTO> getLecturersByNameAndSurname(String name, String surname)
     {
 	List<LecturerDTO> lecturers = new LinkedList<LecturerDTO>();

@@ -26,6 +26,11 @@ public class TranscriptDAO extends DAOParentClass<TranscriptDTO>
 	return entityManager.find(TranscriptDTO.class, id);
     }
 
+    /**
+     * Method getting all student's transcript
+     * @param studentId
+     * @return
+     */
     public List<TranscriptDTO> getStudentTranscript(Integer studentId)
     {
 	return getMultipleEntities("student_id = '" + studentId + "'");

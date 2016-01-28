@@ -29,6 +29,11 @@ public class ScholarshipDAO extends DAOParentClass<ScholarshipDTO>
 	return entityManager.find(ScholarshipDTO.class, id);
     }
 
+    /**
+     * Method getting all active student's scholarships
+     * @param studentId
+     * @return
+     */
     public List<ScholarshipDTO> getActiveStudentScholarships(Integer studentId)
     {
 	List<ScholarshipDTO> scholarships = getMultipleEntities("student_id = '" + studentId + "'");
@@ -45,6 +50,11 @@ public class ScholarshipDAO extends DAOParentClass<ScholarshipDTO>
 	return scholarships;
     }
 
+    /**
+     * Method getting all active scholarships by adminid
+     * @param adminId
+     * @return
+     */
     public List<ScholarshipDTO> getAllActiveAdminScholarships(Integer adminId)
     {
 	List<ScholarshipDTO> scholarships = new AdministratorDAO().getEntity(adminId).getScholarship();
@@ -61,6 +71,11 @@ public class ScholarshipDAO extends DAOParentClass<ScholarshipDTO>
 	return scholarships;
     }
     
+    /**
+     * Method getting all student's scholarships
+     * @param studentId
+     * @return
+     */
     public List<ScholarshipDTO> getAllStudentsScholarships(Integer studentId)
     {
 	return new StudentDAO().getEntity(studentId).getScholarship();

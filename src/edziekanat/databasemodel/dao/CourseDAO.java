@@ -27,6 +27,11 @@ public class CourseDAO extends DAOParentClass<CourseDTO>
 	return entityManager.find(CourseDTO.class, id);
     }
     
+    /**
+     * Method getting courses by name
+     * @param coursename
+     * @return
+     */
     public List<CourseDTO> getCourseByName(String coursename)
     {
 	List<CourseDTO> courses = new LinkedList<CourseDTO>();

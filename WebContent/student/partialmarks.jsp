@@ -30,7 +30,7 @@
 						<li class="pure-menu-item">
 							<form action="studentsubjects" method="post">
 								<input type="hidden" name="rqsemester" value="${semester}">
-								<button class="linkButton " type="submit">Semestr
+								<button class="linkButton" type="submit">Semestr
 									${semester}</button>
 							</form>
 						</li>

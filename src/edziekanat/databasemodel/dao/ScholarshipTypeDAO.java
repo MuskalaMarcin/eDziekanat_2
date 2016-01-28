@@ -24,6 +24,11 @@ public class ScholarshipTypeDAO extends DAOParentClass<ScholarshipTypeDTO>
 	return entityManager.find(ScholarshipTypeDTO.class, id);
     }
     
+    /**
+     * Method getting scholarship by type
+     * @param type
+     * @return
+     */
     public ScholarshipTypeDTO getScholarshipByType(String type)
     {
 	ScholarshipTypeDTO scholarship = new ScholarshipTypeDTO();

@@ -29,6 +29,11 @@ public class ClassroomDAO extends DAOParentClass<ClassroomDTO>
 	return entityManager.find(ClassroomDTO.class, id);
     }
 
+    /**
+     * Method getting list of classrooms by lecturerid
+     * @param lecturerId
+     * @return
+     */
     public List<ClassroomDTO> getLecturerClassrooms(Integer lecturerId)
     {
 	List<ClassroomDTO> classrooms = new LinkedList<ClassroomDTO>();
