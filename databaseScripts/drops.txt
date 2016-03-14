@@ -1,0 +1,44 @@
+DROP SEQUENCE administrator_id_seq; 
+DROP SEQUENCE application_id_seq; 
+DROP SEQUENCE classroom_id_seq;
+DROP SEQUENCE course_id_seq; 
+DROP SEQUENCE enrollment_id_seq; 
+DROP SEQUENCE faculty_id_seq;
+DROP SEQUENCE learning_materials_id_seq; 
+DROP SEQUENCE lecturer_id_seq;  
+DROP SEQUENCE message_id_seq; 
+DROP SEQUENCE partial_mark_id_seq; 
+DROP SEQUENCE payment_id_seq; 
+DROP SEQUENCE scheduled_classes_id_seq; 
+DROP SEQUENCE scholarship_id_seq; 
+DROP SEQUENCE student_id_seq; 
+DROP SEQUENCE students_group_id_seq; 
+DROP SEQUENCE subject_id_seq; 
+DROP SEQUENCE transcript_id_seq; 
+DROP SEQUENCE university_id_seq; 
+
+DROP TABLE "university" CASCADE;                                                                                                                       
+DROP TABLE "transcript" CASCADE;                                                                                                                       
+DROP TABLE "subject" CASCADE;                                                                                                                          
+DROP TABLE "students_group_student" CASCADE;                                                                                                           
+DROP TABLE "students_group" CASCADE;                                                                                                                   
+DROP TABLE "student" CASCADE;                                                                                                                          
+DROP TABLE "scholarship_type" CASCADE;                                                                                                                 
+DROP TABLE "scholarship" CASCADE;                                                                                                                      
+DROP TABLE "scheduled_classes" CASCADE;                                                                                                                
+DROP TABLE "payment" CASCADE;                                                                                                                          
+DROP TABLE "partial_mark" CASCADE;                                                                                                                     
+DROP TABLE "message" CASCADE;                                                                                                                          
+DROP TABLE "lecturer" CASCADE;                                                                                                                         
+DROP TABLE "learning_materials" CASCADE;                                                                                                               
+DROP TABLE "faculty_lecturer" CASCADE;                                                                                                                 
+DROP TABLE "faculty" CASCADE;                                                                                                                          
+DROP TABLE "enrollment" CASCADE;                                                                                                                       
+DROP TABLE "course" CASCADE;                                                                                                                           
+DROP TABLE "classroom" CASCADE;                                                                                                                        
+DROP TABLE "application" CASCADE;                                                                                                                      
+DROP TABLE "administrator" CASCADE; 
+DROP TABLE "app_user" CASCADE; 
+DROP TABLE "students_group_subject" CASCADE; 
+
+
