@@ -6,9 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet"
-	href="http://localhost:8080/eDziekanat/resources/pure-min.css">
+	href="http://localhost:8080/edziekanat/resources/pure-min.css">
 <link rel="stylesheet"
-	href="http://localhost:8080/eDziekanat/resources/styles.css">
+	href="http://localhost:8080/edziekanat/resources/styles.css">
 <title>eDziekanat - Wykładowca - Nowa Wiadomość</title>
 </head>
 <body>
@@ -17,37 +17,37 @@
 			<div class="pure-menu">
 				<a class="pure-menu-heading" href="home">eDziekanat</a>
 				<ul class="pure-menu-list">
-					<li class="pure-menu-item"><a href="http://localhost:8080/eDziekanat/admin"
+					<li class="pure-menu-item"><a href="http://localhost:8080/edziekanat/admin"
 						class="pure-menu-link">Strona główna</a></li>
-					<li class="pure-menu-item"><a href="http://localhost:8080/eDziekanat/admintimetable"
+					<li class="pure-menu-item"><a href="http://localhost:8080/edziekanat/admintimetable"
 						class="pure-menu-link">Plan zajęć</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="http://localhost:8080/eDziekanat/adminclassrooms">Dostępność sal</a></li>
+						href="http://localhost:8080/edziekanat/adminclassrooms">Dostępność sal</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="http://localhost:8080/eDziekanat/admincourses">Kierunki</a></li>
+						href="http://localhost:8080/edziekanat/admincourses">Kierunki</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="http://localhost:8080/eDziekanat/adminstudentgroups">Grupy studenckie</a></li>
+						href="http://localhost:8080/edziekanat/adminstudentgroups">Grupy studenckie</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="http://localhost:8080/eDziekanat/adminlecturers">Wykładowcy</a></li>
+						href="http://localhost:8080/edziekanat/adminlecturers">Wykładowcy</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="http://localhost:8080/eDziekanat/adminsubjects">Przedmioty</a></li>
+						href="http://localhost:8080/edziekanat/adminsubjects">Przedmioty</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="http://localhost:8080/eDziekanat/adminstudents">Studenci</a></li>
+						href="http://localhost:8080/edziekanat/adminstudents">Studenci</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="http://localhost:8080/eDziekanat/marksstatistics">Statystyki</a></li>
+						href="http://localhost:8080/edziekanat/marksstatistics">Statystyki</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="http://localhost:8080/eDziekanat/adminscholarships">Stypendia</a></li>
+						href="http://localhost:8080/edziekanat/adminscholarships">Stypendia</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="http://localhost:8080/eDziekanat/adminpayments">Należności</a></li>
+						href="http://localhost:8080/edziekanat/adminpayments">Należności</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="http://localhost:8080/eDziekanat/adminapplications">Wnioski</a></li>
+						href="http://localhost:8080/edziekanat/adminapplications">Wnioski</a></li>
 					<li class="pure-menu-item menu-item-divided"><a
-						href="http://localhost:8080/eDziekanat/receivedmessages"
+						href="http://localhost:8080/edziekanat/receivedmessages"
 						class="pure-menu-link">Historia komunikatów</a></li>
 					<li class="pure-menu-item  pure-menu-selected"><a href="#"
 						class="pure-menu-link">Nowa wiadomość</a></li>
 					<li class="pure-menu-item menu-item-divided"><a
-						href="http://localhost:8080/eDziekanat/logout"
+						href="http://localhost:8080/edziekanat/logout"
 						class="pure-menu-link">Wyloguj</a>
 				</ul>
 			</div>
@@ -79,7 +79,7 @@
 					%>
 				
 				<center>
-					<form action="http://localhost:8080/eDziekanat/sendmessage"
+					<form action="http://localhost:8080/edziekanat/sendmessage"
 						method=post class="pure-form">
 						<fieldset class="pure-group">
 							<input type="text" name="msgtitle" class="pure-input-1-2"

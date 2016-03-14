@@ -19,7 +19,7 @@
 				<center>
 					<p>
 						<img width="500"
-							src="http://localhost:8080/eDziekanat/images/Access-Denied-Yoda.jpg" />
+							src="http://localhost:8080/edziekanat/images/Access-Denied-Yoda.jpg" />
 					</p>
 					<p>
 						<b><font color="red">Odmowa dostêpu!</font></b>
@@ -33,7 +33,7 @@
 					</p>
 					<p>
 						<br> <br><a class="pure-button pure-button-primary"
-							href="http://localhost:8080/eDziekanat/">Powrót do strony
+							href="http://localhost:8080/edziekanat/">Powrót do strony
 							g³ównej</a>
 					</p>
 					<p>

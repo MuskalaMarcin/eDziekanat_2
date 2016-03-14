@@ -59,7 +59,7 @@
 				<p>
 				<p>
 				<center>
-					<form action="http://localhost:8080/eDziekanat/adminaddstudentsgroup"
+					<form action="http://localhost:8080/edziekanat/adminaddstudentsgroup"
 						method=post class="pure-form">
 						<c:choose>
 							<c:when test="${!empty courses}">

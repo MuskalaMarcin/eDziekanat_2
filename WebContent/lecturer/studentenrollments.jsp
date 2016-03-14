@@ -50,7 +50,7 @@
 				<center>
 					<c:choose>
 						<c:when test="${!empty subject}">
-							<form action="http://localhost:8080/eDziekanat/newenrollment"
+							<form action="http://localhost:8080/edziekanat/newenrollment"
 								method=post class="pure-form">
 								<input type="hidden" name="transcript"
 									value="${student.transcript[0].id}"> <select

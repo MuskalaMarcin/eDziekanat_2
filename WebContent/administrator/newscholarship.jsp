@@ -58,7 +58,7 @@
 			<div class="content">
 				<h2 class="content-subhead">Przyznaj stypendium:</h2>
 				<center>
-					<form action="http://localhost:8080/eDziekanat/adminaddscholarship"
+					<form action="http://localhost:8080/edziekanat/adminaddscholarship"
 						method=post class="pure-form">
 						<p>
 							Dane studenta:

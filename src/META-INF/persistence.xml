@@ -12,7 +12,6 @@
 		<class>edziekanat.databasemodel.dto.CourseDTO</class>
 		<class>edziekanat.databasemodel.dto.EnrollmentDTO</class>
 		<class>edziekanat.databasemodel.dto.FacultyDTO</class>
-		<class>edziekanat.databasemodel.dto.FacultyLecturerDTO</class>
 		<class>edziekanat.databasemodel.dto.LearningMaterialsDTO</class>
 		<class>edziekanat.databasemodel.dto.LecturerDTO</class>
 		<class>edziekanat.databasemodel.dto.MessageDTO</class>
@@ -23,7 +22,6 @@
 		<class>edziekanat.databasemodel.dto.ScholarshipTypeDTO</class>
 		<class>edziekanat.databasemodel.dto.StudentDTO</class>
 		<class>edziekanat.databasemodel.dto.StudentsGroupDTO</class>
-		<class>edziekanat.databasemodel.dto.StudentsGroupStudentDTO</class>
 		<class>edziekanat.databasemodel.dto.SubjectDTO</class>
 		<class>edziekanat.databasemodel.dto.TranscriptDTO</class>
 		<class>edziekanat.databasemodel.dto.UniversityDTO</class>

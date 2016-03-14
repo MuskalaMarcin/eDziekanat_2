@@ -19,12 +19,12 @@
 				<center>
 					<p>
 						<img width="250"
-							src="http://localhost:8080/eDziekanat/images/Infobox_info_icon.svg.png" />
+							src="http://localhost:8080/edziekanat/images/Infobox_info_icon.svg.png" />
 					</p>
 					<p><b>${msglong}</b></p>
 					<p>
 						<br> <br> <a class="pure-button pure-button-primary"
-							href="http://localhost:8080/eDziekanat/">Powrót do strony g³ównej</a>
+							href="http://localhost:8080/edziekanat/">Powrót do strony g³ównej</a>
 
 					</p>
 					<p>

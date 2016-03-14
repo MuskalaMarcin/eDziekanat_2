@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" path="/eDziekanat">
+<Context antiJARLocking="true" path="/edziekanat">
 
   <Resource name="jdbc/edziekanat"
             type="javax.sql.DataSource"
             factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
-            driverClassName="oracle.jdbc.driver.OracleDriver"
-            url="jdbc:oracle:thin:@localhost:1521:edziekanat"
-            username="dbuser"
+            driverClassName="org.postgresql.Driver"
+            url="jdbc:postgresql://localhost:5432/edziekanat"
+            username="postgres"
             password="Haslo123"
             maxActive="200" 
             maxIdle="100" 

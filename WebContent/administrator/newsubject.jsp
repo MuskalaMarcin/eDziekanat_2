@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
-<link rel="stylesheet" href="http://localhost:8080/eDziekanat/resources/pure-min.css">
-<link rel="stylesheet" href="http://localhost:8080/eDziekanat/resources/styles.css">
+<link rel="stylesheet" href="http://localhost:8080/edziekanat/resources/pure-min.css">
+<link rel="stylesheet" href="http://localhost:8080/edziekanat/resources/styles.css">
 <title>eDziekanat - Administrator - Dodaj przedmiot</title>
 </head>
 <body>
@@ -59,7 +59,7 @@
 				<p>
 				<p>
 				<center>
-					<form action="http://localhost:8080/eDziekanat/adminaddsubject"
+					<form action="http://localhost:8080/edziekanat/adminaddsubject"
 						method=post class="pure-form">
 						<fieldset class="pure-group">
 							Nazwa: <input type="text" name="name" class="pure-input-1-2"

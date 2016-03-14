@@ -19,7 +19,7 @@
 				<center>
 					<p>
 						<img width="600"
-							src="http://localhost:8080/eDziekanat/images/androiddev101.jpg" />
+							src="http://localhost:8080/edziekanat/images/androiddev101.jpg" />
 					</p>
 					<p>
 						<b>Kod b³êdu:</b> ${pageContext.errorData.statusCode} <br>
@@ -28,7 +28,7 @@
 					</p>
 					<p>
 						<a class="pure-button pure-button-primary"
-							href="http://localhost:8080/eDziekanat/">Powrót do strony
+							href="http://localhost:8080/edziekanat/">Powrót do strony
 							g³ównej</a>
 					</p>
 					<p>

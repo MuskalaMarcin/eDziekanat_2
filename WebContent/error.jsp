@@ -19,14 +19,14 @@
 				<center>
 					<p>
 						<img width="250"
-							src="http://localhost:8080/eDziekanat/images/error.png" />
+							src="http://localhost:8080/edziekanat/images/error.png" />
 					</p>
 					<p>
 						<b><font color="red">${errorlong}</font></b>
 					</p>
 					<p>
 						<br> <br> <a class="pure-button pure-button-primary"
-							href="http://localhost:8080/eDziekanat/">Powrót do strony
+							href="http://localhost:8080/edziekanat/">Powrót do strony
 							g³ównej</a>
 					</p>
 					<p>

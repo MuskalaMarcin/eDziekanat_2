@@ -6,9 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet"
-	href="http://localhost:8080/eDziekanat/resources/pure-min.css">
+	href="http://localhost:8080/edziekanat/resources/pure-min.css">
 <link rel="stylesheet"
-	href="http://localhost:8080/eDziekanat/resources/styles.css">
+	href="http://localhost:8080/edziekanat/resources/styles.css">
 <title>eDziekanat - Nowa Wiadomość</title>
 </head>
 <body>
@@ -18,36 +18,36 @@
 				<a class="pure-menu-heading" href="home">eDziekanat</a>
 				<ul class="pure-menu-list">
 					<li class="pure-menu-item"><a
-						href="http://localhost:8080/eDziekanat/student"
+						href="http://localhost:8080/edziekanat/student"
 						class="pure-menu-link">Strona główna</a></li>
 					<li class="pure-menu-item"><a
-						href="http://localhost:8080/eDziekanat/studenttranscript"
+						href="http://localhost:8080/edziekanat/studenttranscript"
 						class="pure-menu-link">Indeks</a></li>
 					<li class="pure-menu-item"><a
-						href="http://localhost:8080/eDziekanat/timetable"
+						href="http://localhost:8080/edziekanat/timetable"
 						class="pure-menu-link">Plan zajęć</a></li>
 					<li class="pure-menu-item"><a
-						href="http://localhost:8080/eDziekanat/studentsubjects"
+						href="http://localhost:8080/edziekanat/studentsubjects"
 						class="pure-menu-link">Moje przedmioty</a></li>
 					<li class="pure-menu-item"><a
-						href="http://localhost:8080/eDziekanat/studentscholarships"
+						href="http://localhost:8080/edziekanat/studentscholarships"
 						class="pure-menu-link">Stypendia</a></li>
 					<li class="pure-menu-item"><a
-						href="http://localhost:8080/eDziekanat/studentwaitingpayments"
+						href="http://localhost:8080/edziekanat/studentwaitingpayments"
 						class="pure-menu-link">Płatności</a></li>
 					<li class="pure-menu-item"><a
-						href="http://localhost:8080/eDziekanat/studentapplications"
+						href="http://localhost:8080/edziekanat/studentapplications"
 						class="pure-menu-link">Wnioski</a></li>
 					<li class="pure-menu-item"><a
-						href="http://localhost:8080/eDziekanat/studentlecturers"
+						href="http://localhost:8080/edziekanat/studentlecturers"
 						class="pure-menu-link">Wykładowcy</a></li>
 					<li class="pure-menu-item menu-item-divided"><a
-						href="http://localhost:8080/eDziekanat/receivedmessages"
+						href="http://localhost:8080/edziekanat/receivedmessages"
 						class="pure-menu-link">Historia komunikatów</a></li>
 					<li class="pure-menu-item  pure-menu-selected"><a href="#"
 						class="pure-menu-link">Nowa wiadomość</a></li>
 					<li class="pure-menu-item menu-item-divided"><a
-						href="http://localhost:8080/eDziekanat/logout"
+						href="http://localhost:8080/edziekanat/logout"
 						class="pure-menu-link">Wyloguj</a>
 				</ul>
 			</div>
@@ -79,7 +79,7 @@
 					%>
 				
 				<center>
-					<form action="http://localhost:8080/eDziekanat/sendmessage"
+					<form action="http://localhost:8080/edziekanat/sendmessage"
 						method=post class="pure-form">
 						<fieldset class="pure-group">
 							<input type="text" name="msgtitle" class="pure-input-1-2"

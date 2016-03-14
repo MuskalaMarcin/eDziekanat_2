@@ -60,7 +60,7 @@
 			<div class="content">
 				<h2 class="content-subhead">Dodaj now± nale¿no¶æ:</h2>
 				<center>
-				<form action="http://localhost:8080/eDziekanat/adminaddpayment"
+				<form action="http://localhost:8080/edziekanat/adminaddpayment"
 						method=post class="pure-form">
 						<p>
 						Dane studenta:
