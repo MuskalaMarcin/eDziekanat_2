@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="eDziekanat_2:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="eDziekanat_2-0.1.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="eDziekanat_2:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="jpa-descriptors" facet="eDziekanat_2/jpa/JPA" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
