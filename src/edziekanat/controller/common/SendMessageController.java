@@ -47,8 +47,8 @@ public class SendMessageController extends HttpServlet
 
 	new MessageDAO().insert(newMessage);
 
-	request.setAttribute("msgshort", "Wys³ano wiadomoœæ");
-	request.setAttribute("msglong", "Twoja wiadomoœæ zosta³a wys³ana.");
+	request.setAttribute("msgshort", "Wys³ano wiadomo¶æ");
+	request.setAttribute("msglong", "Twoja wiadomo¶æ zosta³a wys³ana.");
 	request.getRequestDispatcher("/info.jsp").forward(request, response);
     }
 

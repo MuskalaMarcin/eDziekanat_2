@@ -50,9 +50,9 @@ public class DeleteMaterials extends HttpServlet
 	catch (Exception e)
 	{
 	    e.printStackTrace();
-	    request.setAttribute("msgshort", "B³¹d");
+	    request.setAttribute("msgshort", "B³±d");
 	    request.setAttribute("msglong",
-		    "Podczas usuwania twojego pliku " + fileName + " wyst¹pi³ nieznany b³¹d. Przepraszamy.");
+		    "Podczas usuwania twojego pliku " + fileName + " wyst±pi³ nieznany b³±d. Przepraszamy.");
 	    request.getRequestDispatcher("/error.jsp").forward(request, response);
 	}
 

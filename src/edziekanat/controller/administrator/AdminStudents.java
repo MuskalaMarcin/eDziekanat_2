@@ -37,7 +37,7 @@ public class AdminStudents extends HttpServlet
     @SuppressWarnings("unchecked")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<StudentDTO> students = new LinkedList<StudentDTO>();
+	List<StudentDTO> students;
 	if (request.getParameter("students") == null && request.getParameter("studentsGroupId") == null)
 	{
 	    students = new StudentDAO().getAllEntities();

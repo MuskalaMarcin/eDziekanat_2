@@ -38,15 +38,15 @@ public class DeleteStudentsGroupController extends HttpServlet
 	    StudentsGroupDTO studentsGroup = sgDAO.getEntity(Integer.parseInt(request.getParameter("studentsGroupId")));
 	    sgDAO.remove(studentsGroup);
 
-	    request.setAttribute("msgshort", "Usuniêto grupe studenck¹");
-	    request.setAttribute("msglong", "Usuniêto grupê studenck¹: " + studentsGroup.getId());
+	    request.setAttribute("msgshort", "UsuniÄ™to grupe studenckÄ…");
+	    request.setAttribute("msglong", "UsuniÄ™to grupÄ™ studenckÄ…: " + studentsGroup.getId());
 	    request.getRequestDispatcher("info.jsp").forward(request, response);
 	}
 	catch (Exception e)
 	{
-	    request.setAttribute("msgshort", "B³¹d");
+	    request.setAttribute("msgshort", "BÅ‚Ä…d");
 	    request.setAttribute("msglong", "Podczas usuwania grupy studenckiej"
-		    + " wyst¹pi³ nieznany b³¹d. Przepraszamy.");
+		    + " wystÄ…piÅ‚ nieznany bÅ‚Ä…d. Przepraszamy.");
 	    request.getRequestDispatcher("error.jsp").forward(request, response);
 	}
     }

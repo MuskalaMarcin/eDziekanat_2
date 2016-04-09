@@ -50,9 +50,9 @@ public class DeleteLecturer extends HttpServlet
 	}
 	catch (Exception e)
 	{
-	    request.setAttribute("errorshort", "B³¹d");
+	    request.setAttribute("errorshort", "B³±d");
 	    request.setAttribute("errorlong", "Podczas usuwania wyk³adowcy"
-		    + " wyst¹pi³ nieznany b³¹d. Przepraszamy.");
+		    + " wyst±pi³ nieznany b³±d. Przepraszamy.");
 	    request.getRequestDispatcher("error.jsp").forward(request, response);
 	}
     }

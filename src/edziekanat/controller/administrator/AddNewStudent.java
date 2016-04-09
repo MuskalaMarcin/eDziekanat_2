@@ -59,7 +59,7 @@ public class AddNewStudent extends HttpServlet
 	new StudentDAO().insert(student);
 
 	request.setAttribute("msgshort", "Student dodany");
-	request.setAttribute("msglong", "Nowy student zosta≥ dodany");
+	request.setAttribute("msglong", "Nowy student zosta≈Ç dodany");
 	request.getRequestDispatcher("/info.jsp").forward(request, response);
     }
 

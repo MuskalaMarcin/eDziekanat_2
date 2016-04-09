@@ -54,10 +54,10 @@ public class ManageApplications extends HttpServlet
 	}
 	catch (Exception e)
 	{
-	    request.setAttribute("msgshort", "B³¹d");
+	    request.setAttribute("msgshort", "B³±d");
 	    request.setAttribute("msglong",
 		    "Podczas zmiany statusu wniosku " + application.getTitle()
-			    + " wyst¹pi³ nieznany b³¹d. Przepraszamy.");
+			    + " wyst±pi³ nieznany b³±d. Przepraszamy.");
 	    request.getRequestDispatcher("error.jsp").forward(request, response);
 	}
 

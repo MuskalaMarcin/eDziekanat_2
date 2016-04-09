@@ -44,7 +44,7 @@ public class AdminAddCourseController extends HttpServlet
 	course.setStationary(Integer.parseInt(request.getParameter("stationary").toString()));
 	
 	new CourseDAO().insert(course);
-	request.setAttribute("msgshort", "Kierunek z³o¿ony");
+	request.setAttribute("msgshort", "Kierunek dodany");
 	request.setAttribute("msglong", "Nowy kierunek zosta³ dodany");
 	request.getRequestDispatcher("/info.jsp").forward(request, response);
     }

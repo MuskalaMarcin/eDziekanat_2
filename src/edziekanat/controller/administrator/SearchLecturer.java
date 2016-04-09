@@ -58,9 +58,9 @@ public class SearchLecturer extends HttpServlet
     }
 
     /**
-     * Removes duplicated students, then sorts them by surname.
+     * Removes duplicated lecturers, then sorts them by surname.
      * 
-     * @param students
+     * @param lecturers
      * @return
      */
     private List<LecturerDTO> removeDuplicates(List<LecturerDTO> lecturers)
