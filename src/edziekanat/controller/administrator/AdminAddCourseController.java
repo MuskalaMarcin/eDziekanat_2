@@ -45,7 +45,7 @@ public class AdminAddCourseController extends HttpServlet
 	
 	new CourseDAO().insert(course);
 	request.setAttribute("msgshort", "Kierunek dodany");
-	request.setAttribute("msglong", "Nowy kierunek zosta≥ dodany");
+	request.setAttribute("msglong", "Nowy kierunek zosta≈Ç dodany");
 	request.getRequestDispatcher("/info.jsp").forward(request, response);
     }
 

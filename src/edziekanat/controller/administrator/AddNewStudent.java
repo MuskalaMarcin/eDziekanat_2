@@ -1,6 +1,7 @@
 package edziekanat.controller.administrator;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ import edziekanat.databasemodel.dao.UserDAO;
 import edziekanat.databasemodel.dto.StudentDTO;
 import edziekanat.databasemodel.dto.StudentsGroupDTO;
 import edziekanat.databasemodel.dto.UserDTO;
-
+import edziekanat.utilities.PasswordUtils;
 
 /**
  * Servlet implementation class AddNewStudent
@@ -40,23 +41,24 @@ public class AddNewStudent extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	StudentDTO student = new StudentDTO();
-	student.setName(request.getParameter("name").toString());
-	student.setSurname(request.getParameter("surname").toString());
-	student.setAddress(request.getParameter("address").toString());
-	student.setAcademicDegree(request.getParameter("academicdegree").toString());
-	List<StudentsGroupDTO> studentsgroup = new LinkedList<StudentsGroupDTO>();
-	studentsgroup.add(new StudentsGroupDAO().getEntity(Integer.parseInt(request.getParameter("studentsgroupid").toString())));
-	student.setStudentsGroup(studentsgroup);
-	
+	student.setName(request.getParameter("name"));
+	student.setSurname(request.getParameter("surname"));
+	student.setAddress(request.getParameter("address"));
+	student.setAcademicDegree(request.getParameter("academicdegree"));
+	student.setStudentsGroup(Arrays.asList(new StudentsGroupDAO()
+			.getEntity(Integer.parseInt(request.getParameter("studentsgroupid")))));
+
+	new StudentDAO().insert(student);
 	UserDTO user = new UserDTO();
 	user.setActive(1);
-	user.seteMail(request.getParameter("email").toString());
-	user.setLogin(request.getParameter("login").toString());
-	user.setPassword(request.getParameter("password").toString());
-	user.setUserRole("lecturer");
-	student.setUser(user);
+	user.seteMail(request.getParameter("email"));
+	user.setLogin(request.getParameter("login"));
+	String salt = PasswordUtils.generateSalt();
+	user.setSalt(salt);
+	user.setPassword(PasswordUtils.getSHA512PasswordHash(request.getParameter("password"), salt));
+	user.setUserRole("student");
+	user.setStudent(student);
 	new UserDAO().insert(user);
-	new StudentDAO().insert(student);
 
 	request.setAttribute("msgshort", "Student dodany");
 	request.setAttribute("msglong", "Nowy student został dodany");

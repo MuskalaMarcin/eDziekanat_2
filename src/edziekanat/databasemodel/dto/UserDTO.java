@@ -27,6 +27,8 @@ public class UserDTO
     protected String login;
     @Column(name = "password")
     protected String password;
+    @Column(name = "salt")
+    protected String salt;
     @Column(name = "e_mail")
     protected String eMail;
     @Column(name = "is_active")
@@ -68,6 +70,16 @@ public class UserDTO
     public void setPassword(String password)
     {
 	this.password = password;
+    }
+
+    public String getSalt()
+    {
+	return salt;
+    }
+
+    public void setSalt(String salt)
+    {
+	this.salt = salt;
     }
 
     public String geteMail()
@@ -140,24 +152,23 @@ public class UserDTO
 	this.administrator = administrator;
     }
 
-    public List<MessageDTO> getSendMessage()
+    public List<MessageDTO> getSend_message()
     {
 	return send_message;
     }
 
-    public void setSendMessage(List<MessageDTO> sendMessage)
+    public void setSend_message(List<MessageDTO> send_message)
     {
-	this.send_message = sendMessage;
+	this.send_message = send_message;
     }
 
-    public List<MessageDTO> getReceivedMessage()
+    public List<MessageDTO> getReceived_message()
     {
 	return received_message;
     }
 
-    public void setReceivedMessage(List<MessageDTO> receivedMessage)
+    public void setReceived_message(List<MessageDTO> received_message)
     {
-	this.received_message = receivedMessage;
+	this.received_message = received_message;
     }
-
 }

@@ -44,8 +44,8 @@ public class AdminNewPayment extends HttpServlet
 	payment.setAdministrator(new AdministratorDAO().getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
 	new PaymentDAO().insert(payment);
 	
-	request.setAttribute("msgshort", "Naleøo∂Ê dodana");
-	request.setAttribute("msglong", "Nowa naleøno∂Ê zosta≥a dodana");
+	request.setAttribute("msgshort", "Nale≈ºno≈õƒá dodana");
+	request.setAttribute("msglong", "Nowa nalee≈ºno≈õƒá zosta≈Ça dodana");
 	request.getRequestDispatcher("/info.jsp").forward(request, response);
     }
 

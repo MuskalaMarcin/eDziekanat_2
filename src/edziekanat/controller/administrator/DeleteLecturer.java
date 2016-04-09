@@ -43,16 +43,16 @@ public class DeleteLecturer extends HttpServlet
 	    userDAO.remove(user);
 	    lecturerDAO.remove(lecturer);
 
-	    request.setAttribute("msgshort", "Usuniêto wyk³adowcê");
+	    request.setAttribute("msgshort", "UsuniÄ™to wykÅ‚adowcÄ™");
 	    request.setAttribute("msglong",
-		    "Usuniêto wyk³adowcê: " + lecturer.getName() + " " + lecturer.getSurname());
+		    "UsuniÄ™to wykÅ‚adowcÄ™: " + lecturer.getName() + " " + lecturer.getSurname());
 	    request.getRequestDispatcher("info.jsp").forward(request, response);
 	}
 	catch (Exception e)
 	{
-	    request.setAttribute("errorshort", "B³±d");
-	    request.setAttribute("errorlong", "Podczas usuwania wyk³adowcy"
-		    + " wyst±pi³ nieznany b³±d. Przepraszamy.");
+	    request.setAttribute("errorshort", "BÅ‚Ä…d");
+	    request.setAttribute("errorlong", "Podczas usuwania wykÅ‚adowcy"
+		    + " wystÄ…piÅ‚ nieznany bÅ‚Ä…d. Przepraszamy.");
 	    request.getRequestDispatcher("error.jsp").forward(request, response);
 	}
     }
