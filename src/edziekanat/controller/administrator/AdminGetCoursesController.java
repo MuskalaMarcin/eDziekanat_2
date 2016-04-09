@@ -31,7 +31,7 @@ public class AdminGetCoursesController extends HttpServlet
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -40,12 +40,11 @@ public class AdminGetCoursesController extends HttpServlet
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<CourseDTO> courses = new LinkedList<CourseDTO>();
-	courses = new CourseDAO().getAllEntities();
+	List<CourseDTO> courses = new CourseDAO().getAllEntities();
 	request.setAttribute("courses", courses);
 	request.getRequestDispatcher("admin/addstudentsgroup").forward(request, response);
     }

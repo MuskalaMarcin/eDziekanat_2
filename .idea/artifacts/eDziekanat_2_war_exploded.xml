@@ -5,6 +5,7 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="eDziekanat_2" />
+          <element id="jpa-descriptors" facet="eDziekanat_2/jpa/JPA" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: javax.enterprise:cdi-api:1.2" />

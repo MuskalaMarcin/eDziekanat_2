@@ -61,7 +61,7 @@ public class GetAdministratorsController extends HttpServlet
     /**
      * Removes duplicated administrators, then sorts them by surname.
      * 
-     * @param administrators
+     * @param admins
      * @return
      */
     private List<AdministratorDTO> removeDuplicates(List<AdministratorDTO> admins)

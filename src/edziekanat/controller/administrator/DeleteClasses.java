@@ -36,8 +36,8 @@ public class DeleteClasses extends HttpServlet
 	ScheduledClassesDTO sc = scDAO.getEntity(Integer.parseInt(request.getParameter("classes")));
 	scDAO.remove(sc);
 
-	request.setAttribute("msgshort", "Usuniêto zajêcia");
-	request.setAttribute("msglong", "Usuniêto zaplanowane zajêcia z przedimotu: " + sc.getSubject().getName());
+	request.setAttribute("msgshort", "UsuniÄ™to zajÄ™cia");
+	request.setAttribute("msglong", "UsuniÄ™to zaplanowane zajÄ™cia z przedimotu: " + sc.getSubject().getName());
 	request.getRequestDispatcher("info.jsp").forward(request, response);
     }
 

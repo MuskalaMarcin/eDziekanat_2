@@ -12,10 +12,10 @@ import edziekanat.databasemodel.dao.CourseDAO;
 import edziekanat.databasemodel.dto.CourseDTO;
 
 /**
- * Servlet implementation class DeteleCourse
+ * Servlet implementation class DeleteCourse
  */
 @WebServlet("/deletecourse")
-public class DeteleCourse extends HttpServlet
+public class DeleteCourse extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
@@ -38,8 +38,8 @@ public class DeteleCourse extends HttpServlet
 	CourseDTO course = coursedao.getEntity(Integer.parseInt(request.getParameter("courseid")));
 	coursedao.remove(course);
 
-	request.setAttribute("msgshort", "Usuniêto kierunek");
-	request.setAttribute("msglong", "Usuniêto kierunek z wydzia³u: " + course.getFaculty().getName());
+	request.setAttribute("msgshort", "UsuniÄ™to kierunek");
+	request.setAttribute("msglong", "UsuniÄ™to kierunek z wydziaÅ‚u: " + course.getFaculty().getName());
 	request.getRequestDispatcher("info.jsp").forward(request, response);
     }
 

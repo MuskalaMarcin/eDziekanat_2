@@ -48,7 +48,7 @@ public class AddNewSubject extends HttpServlet
 	new SubjectDAO().insert(subject);
 	
 	request.setAttribute("msgshort", "Przedmiot dodany");
-	request.setAttribute("msglong", "Nowa przedmiot zosta≥ dodany");
+	request.setAttribute("msglong", "Nowa przedmiot zosta≈Ç dodany");
 	request.getRequestDispatcher("/info.jsp").forward(request, response);
     }
 

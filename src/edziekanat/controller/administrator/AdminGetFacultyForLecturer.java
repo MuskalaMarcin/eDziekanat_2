@@ -36,8 +36,7 @@ public class AdminGetFacultyForLecturer extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<FacultyDTO> faculties = new LinkedList<FacultyDTO>();
-	faculties = new FacultyDAO().getAllEntities();
+	List<FacultyDTO> faculties = new FacultyDAO().getAllEntities();
 	request.setAttribute("faculties", faculties);
 	request.getRequestDispatcher("admin/newlecturer").forward(request, response);
     }

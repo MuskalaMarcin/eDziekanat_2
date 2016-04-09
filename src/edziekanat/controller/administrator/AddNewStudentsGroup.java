@@ -43,7 +43,7 @@ public class AddNewStudentsGroup extends HttpServlet
 	new StudentsGroupDAO().insert(studentsgroup);
 	
 	request.setAttribute("msgshort", "Grupa studencka dodana");
-	request.setAttribute("msglong", "Nowa grupa studencka zosta≥a dodana");
+	request.setAttribute("msglong", "Nowa grupa studencka zosta≈Ça dodana");
 	request.getRequestDispatcher("/info.jsp").forward(request, response);
     }
 

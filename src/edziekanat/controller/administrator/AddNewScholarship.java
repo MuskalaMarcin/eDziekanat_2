@@ -57,9 +57,9 @@ public class AddNewScholarship extends HttpServlet
 	}
 	catch (ParseException e)
 	{
-	    request.setAttribute("msgshort", "B³¹d");
+	    request.setAttribute("msgshort", "B³±d");
 	    request.setAttribute("msglong",
-		    "Podano b³êdn¹ datê. Proszê spróbowaæ ponownie.");
+		    "Podano b³êdn± datê. Proszê spróbowaæ ponownie.");
 	}
 	new ScholarshipDAO().insert(scholarship);
 	

@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet" href="resources/pure-min.css">
 <link rel="stylesheet" href="resources/styles.css">
-<title>eDziekanat - Studenci</title>
+<title>eDziekanat - Wykładowcy</title>
 </head>
 <body>
 	<div id="layout">

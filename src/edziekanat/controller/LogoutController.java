@@ -42,14 +42,14 @@ public class LogoutController extends HttpServlet
 		request.getSession().invalidate();
 		request.logout();
 		request.setAttribute("msgshort", "Wylogowano");
-		request.setAttribute("msglong", "Zosta³eœ wylogowany z systemu.");
+		request.setAttribute("msglong", "Zosta³e¶ wylogowany z systemu.");
 		request.getRequestDispatcher("/info.jsp").forward(request, response);
 	    }
 	    catch (ServletException e)
 	    {
 		e.printStackTrace();
-		request.setAttribute("errorshort", "B³¹d");
-		request.setAttribute("errorlong", "Podczas wylogowywania z systemu wyst¹pi³ nieznany problem.");
+		request.setAttribute("errorshort", "B³±d");
+		request.setAttribute("errorlong", "Podczas wylogowywania z systemu wyst±pi³ nieznany problem.");
 		request.getRequestDispatcher("/error.jsp").forward(request, response);
 	    }
 	}

@@ -25,7 +25,7 @@ public class AdminStudentsScholarships extends HttpServlet
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -34,14 +34,16 @@ public class AdminStudentsScholarships extends HttpServlet
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<ScholarshipDTO> scholarships = new ScholarshipDAO().getAllStudentsScholarships(Integer.parseInt(request.getParameter("studentId")));
+	List<ScholarshipDTO> scholarships = new ScholarshipDAO()
+			.getAllStudentsScholarships(Integer.parseInt(request.getParameter("studentId")));
 	Collections.sort(scholarships, (x, y) -> y.getEndDate().compareTo(x.getEndDate()));
 	request.setAttribute("scholarships", scholarships);
-	request.setAttribute("student", new StudentDAO().getEntity(Integer.parseInt(request.getParameter("studentId"))));
+	request.setAttribute("student",
+			new StudentDAO().getEntity(Integer.parseInt(request.getParameter("studentId"))));
 	request.getRequestDispatcher("administrator/studentsscholarships.jsp").forward(request, response);
     }
 
