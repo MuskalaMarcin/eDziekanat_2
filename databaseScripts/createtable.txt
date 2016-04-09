@@ -63,7 +63,7 @@ ALTER TABLE course ADD CONSTRAINT course__UN UNIQUE ( name , stationary ) ;
 CREATE TABLE enrollment
   (
     id            INTEGER NOT NULL ,
-    mark          NUMERIC (2,1) NOT NULL ,
+    mark          NUMERIC (3,2) NOT NULL ,
     issue_date    DATE NOT NULL ,
     subject_id    INTEGER NOT NULL ,
     transcript_id INTEGER NOT NULL
@@ -129,7 +129,7 @@ ALTER TABLE MESSAGE ADD CONSTRAINT message_PK PRIMARY KEY ( id ) ;
 CREATE TABLE partial_mark
   (
     id            INTEGER NOT NULL ,
-    mark          NUMERIC (2,1) NOT NULL ,
+    mark          NUMERIC (3,2) NOT NULL ,
     issue_date    DATE NOT NULL ,
     subject_id    INTEGER NOT NULL ,
     transcript_id INTEGER NOT NULL
@@ -142,7 +142,7 @@ CREATE TABLE payment
     id    INTEGER NOT NULL ,
     title VARCHAR(256) NOT NULL ,
     description TEXT NOT NULL ,
-    amount           INTEGER NOT NULL ,
+    amount           NUMERIC (8,2) NOT NULL ,
     issue_date       DATE NOT NULL ,
     payment_date     DATE ,
     student_id       INTEGER NOT NULL ,
@@ -178,7 +178,7 @@ CREATE TABLE scholarship_type
   (
     type VARCHAR(256) NOT NULL ,
     requirements TEXT NOT NULL ,
-    amount INTEGER NOT NULL
+    amount NUMERIC (8,2) NOT NULL
   ) ;
 ALTER TABLE scholarship_type ADD CONSTRAINT schollarship_type_PK PRIMARY KEY ( type ) ;
 

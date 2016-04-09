@@ -18,7 +18,7 @@ public class StartupListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent event) {
-        emf = Persistence.createEntityManagerFactory("dbper");
+        emf = Persistence.createEntityManagerFactory("edziekanatPersistence");
     }
 
     @Override
@@ -28,7 +28,7 @@ public class StartupListener implements ServletContextListener {
 
     public static EntityManager createEntityManager() {
         if (emf == null) {
-            throw new IllegalStateException("Context is not initialized yet.");
+            throw new IllegalStateException("Entity manager factory is not initialized yet.");
         }
 
         return emf.createEntityManager();
