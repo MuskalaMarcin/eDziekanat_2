@@ -2,6 +2,7 @@ package edziekanat.databasemodel.dao;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.ApplicationDTO;
@@ -18,7 +19,7 @@ public class ApplicationDAO extends DAOParentClass<ApplicationDTO>
 
     /**
      * Method getting one object of Application entity.
-     * 
+     *
      * @param id Integer id value
      * @return ApplicationDTO object
      */
@@ -29,66 +30,66 @@ public class ApplicationDAO extends DAOParentClass<ApplicationDTO>
 
     /**
      * Method getting waiting students applications by studentid
+     *
      * @param studentId
      * @return
      */
     public List<ApplicationDTO> getWaitingApplications(Integer studentId)
     {
-	List<ApplicationDTO> waitingApplications = getMultipleEntities(
-		"student_id = '" + studentId + "' and status = 'Nierozpatrzony'");
-	Collections.sort(waitingApplications, (x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()));
-	return waitingApplications;
+	return getMultipleEntities("student_id = '" + studentId + "' and status = 'Nierozpatrzony'").stream()
+			.sorted((x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate())).collect(
+					Collectors.toList());
     }
 
     /**
      * Method getting all students applications
+     *
      * @param studentId
      * @return
      */
     public List<ApplicationDTO> getApplications(Integer studentId)
     {
-	List<ApplicationDTO> getApplications = getMultipleEntities(
-		"student_id = '" + studentId + "' and status != 'Nierozpatrzony'");
-	Collections.sort(getApplications, (x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()));
-	return getApplications;
+	return getMultipleEntities("student_id = '" + studentId + "' and status != 'Nierozpatrzony'").stream()
+			.sorted((x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()))
+			.collect(Collectors.toList());
     }
-    
+
     /**
      * Method getting waiting students applications by studentid
+     *
      * @param studentId
      * @return
      */
     public List<ApplicationDTO> getWaitingStudentApplications(Integer studentId)
     {
-	List<ApplicationDTO> getApplications = getMultipleEntities(
-		"student_id = '" + studentId + "' and status = 'Nierozpatrzony'");
-	Collections.sort(getApplications, (x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()));
-	return getApplications;
+	return getMultipleEntities("student_id = '" + studentId + "' and status = 'Nierozpatrzony'").stream()
+			.sorted((x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate())).collect(
+					Collectors.toList());
     }
 
     /**
      * Method getting all waiting admin applications by adminid
+     *
      * @param adminId
      * @return
      */
     public List<ApplicationDTO> getAdminWaitingApplications(Integer adminId)
     {
-	List<ApplicationDTO> getApplications = getMultipleEntities(
-		"administrator_id = '" + adminId + "' and status = 'Nierozpatrzony'");
-	Collections.sort(getApplications, (x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()));
-	return getApplications;
+	return getMultipleEntities("administrator_id = '" + adminId + "' and status = 'Nierozpatrzony'").stream()
+			.sorted((x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate())).collect(
+					Collectors.toList());
     }
-    
+
     /**
      * Method getting list of historial applications by adminid
+     *
      * @param adminId
      * @return
      */
     public List<ApplicationDTO> getAdminHistoricalApplications(Integer adminId)
     {
-	List<ApplicationDTO> getApplications = getMultipleEntities(
-		"administrator_id = '" + adminId + "' and status != 'Nierozpatrzony'");
-	Collections.sort(getApplications, (x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()));
-	return getApplications;
+	return getMultipleEntities("administrator_id = '" + adminId + "' and status != 'Nierozpatrzony'").stream()
+			.sorted((x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()))
+			.collect(Collectors.toList());
     }
 }

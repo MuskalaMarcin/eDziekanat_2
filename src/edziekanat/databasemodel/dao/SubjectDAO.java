@@ -66,9 +66,7 @@ public class SubjectDAO extends DAOParentClass<SubjectDTO>
 
     public List<SubjectDTO> getLecturerSubjects(Integer lecturerId)
     {
-	List<SubjectDTO> allSubjects = new LinkedList<SubjectDTO>();
-	allSubjects.addAll(new LecturerDAO().getEntity(lecturerId).getSubject());
-	return allSubjects;
+	return new LecturerDAO().getEntity(lecturerId).getSubject();
     }
 
     public List<SubjectDTO> getStudentAndLecturerSubjects(Integer studentId, Integer lecturerId)

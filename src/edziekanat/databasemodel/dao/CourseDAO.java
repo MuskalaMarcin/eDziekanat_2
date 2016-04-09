@@ -34,10 +34,7 @@ public class CourseDAO extends DAOParentClass<CourseDTO>
      */
     public List<CourseDTO> getCourseByName(String coursename)
     {
-	List<CourseDTO> courses = new LinkedList<CourseDTO>();
-	coursename = coursename.toUpperCase();
-	courses = getMultipleEntities("UPPER(name) LIKE '%" + coursename + "%'");
-	return courses;
+	return getMultipleEntities("UPPER(name) LIKE '%" + coursename.toUpperCase() + "%'");
     }
 
 }

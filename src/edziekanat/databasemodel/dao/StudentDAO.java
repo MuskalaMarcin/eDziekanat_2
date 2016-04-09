@@ -19,9 +19,8 @@ public class StudentDAO extends DAOParentClass<StudentDTO>
 
     /**
      * Method getting one object of student entity.
-     * 
-     * @param id
-     *            Integer id value
+     *
+     * @param id Integer id value
      * @return StudentDTO object
      */
     public StudentDTO getEntity(Integer id)
@@ -31,35 +30,31 @@ public class StudentDAO extends DAOParentClass<StudentDTO>
 
     /**
      * Method getting students by name and surname
+     *
      * @param name
      * @param surname
      * @return
      */
     public List<StudentDTO> getStudentsByNameAndSurname(String name, String surname)
     {
-	List<StudentDTO> students = new LinkedList<StudentDTO>();
-	name = name.toUpperCase();
-	surname = surname.toUpperCase();
-	students.addAll(
-		getMultipleEntities("UPPER(name) like '%" + name + "%' and UPPER(surname) like '%" + surname + "%'"));
-	return students;
+	return getMultipleEntities("UPPER(name) like '%" + name.toUpperCase() + "%' and UPPER(surname) like '%"
+			+ surname.toUpperCase() + "%'");
     }
 
     /**
      * Method getting students by surname
+     *
      * @param surname
      * @return
      */
     public List<StudentDTO> getStudentsBySurname(String surname)
     {
-	List<StudentDTO> students = new LinkedList<StudentDTO>();
-	surname = surname.toUpperCase();
-	students.addAll(getMultipleEntities("UPPER(surname) LIKE '%" + surname + "%'"));
-	return students;
+	return getMultipleEntities("UPPER(surname) LIKE '%" + surname.toUpperCase() + "%'");
     }
 
     /**
      * Method getting students in specific students group by student's surname
+     *
      * @param surname
      * @param studentGroupId
      * @return
@@ -80,6 +75,7 @@ public class StudentDAO extends DAOParentClass<StudentDTO>
 
     /**
      * Method getting students in specific students group by student's name and surname
+     *
      * @param name
      * @param surname
      * @param studentGroupId
@@ -88,11 +84,11 @@ public class StudentDAO extends DAOParentClass<StudentDTO>
     public List<StudentDTO> searchStudentsInStudentsGroup(String name, String surname, Integer studentGroupId)
     {
 	List<StudentDTO> students = new LinkedList<StudentDTO>();
-	
+
 	for (StudentDTO student : new StudentsGroupDAO().getEntity(studentGroupId).getStudent())
 	{
 	    if (student.getSurname().toLowerCase().contains(surname.toLowerCase())
-		    && student.getName().toLowerCase().contains(name.toLowerCase()))
+			    && student.getName().toLowerCase().contains(name.toLowerCase()))
 	    {
 		students.add(student);
 	    }
@@ -103,6 +99,7 @@ public class StudentDAO extends DAOParentClass<StudentDTO>
 
     /**
      * Method getting students with specific subject by student's surname
+     *
      * @param surname
      * @param subjectId
      * @return
@@ -125,6 +122,7 @@ public class StudentDAO extends DAOParentClass<StudentDTO>
 
     /**
      * Method getting students in specific subject by student's name and surname
+     *
      * @param name
      * @param surname
      * @param subjectId
@@ -138,7 +136,7 @@ public class StudentDAO extends DAOParentClass<StudentDTO>
 	    for (StudentDTO student : sg.getStudent())
 	    {
 		if (student.getSurname().toLowerCase().contains(surname.toLowerCase())
-			&& student.getName().toLowerCase().contains(name.toLowerCase()))
+				&& student.getName().toLowerCase().contains(name.toLowerCase()))
 		{
 		    students.add(student);
 		}

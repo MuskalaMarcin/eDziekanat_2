@@ -35,9 +35,6 @@ public class FacultyDAO extends DAOParentClass<FacultyDTO>
      */
     public List<FacultyDTO> getFacultyByName(String facultyname)
     {
-	List<FacultyDTO> faculty = new LinkedList<FacultyDTO>();
-	facultyname = facultyname.toUpperCase();
-	faculty = getMultipleEntities("UPPER(name) LIKE '%" + facultyname + "%'");
-	return faculty;
+	return getMultipleEntities("UPPER(name) LIKE '%" + facultyname.toUpperCase() + "%'");
     }
 }

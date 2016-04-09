@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.ClassroomDTO;
@@ -27,7 +28,7 @@ public class ScheduledClassesDAO extends DAOParentClass<ScheduledClassesDTO>
 
     /**
      * Method getting one object of ScheduledClasses entity.
-     * 
+     *
      * @param id Integer id value
      * @return ScheduledClassesDTO object
      */
@@ -38,57 +39,46 @@ public class ScheduledClassesDAO extends DAOParentClass<ScheduledClassesDTO>
 
     /**
      * Method getting student's schedules classes
+     *
      * @param studentId
      * @return
      */
     public List<ScheduledClassesDTO> getStudentsClasses(Integer studentId)
     {
-	List<ScheduledClassesDTO> scheduledClasses = new LinkedList<ScheduledClassesDTO>();
-
-	for (SubjectDTO subject : new SubjectDAO().getStudentSubjects(studentId))
-	{
-	    scheduledClasses.addAll(subject.getScheduledClasses());
-	}
-
-	return scheduledClasses;
+	return new SubjectDAO().getStudentSubjects(studentId).stream()
+			.map(subjectDTO -> subjectDTO.getScheduledClasses()).flatMap(p -> p.stream())
+			.collect(Collectors.toList());
     }
 
     /**
      * Method getting lecturer's schedules classes
+     *
      * @param lecturerId
      * @return
      */
     public List<ScheduledClassesDTO> getLecturersClasses(Integer lecturerId)
     {
-	List<ScheduledClassesDTO> scheduledClasses = new LinkedList<ScheduledClassesDTO>();
-
-	for (SubjectDTO subject : new LecturerDAO().getEntity(lecturerId).getSubject())
-	{
-	    scheduledClasses.addAll(subject.getScheduledClasses());
-	}
-
-	return scheduledClasses;
+	return new LecturerDAO().getEntity(lecturerId).getSubject().stream()
+			.map(subjectDTO -> subjectDTO.getScheduledClasses()).flatMap(p -> p.stream())
+			.collect(Collectors.toList());
     }
 
     /**
      * Method getting studentsgroup's schedules classes
+     *
      * @param studentsGroupId
      * @return
      */
     public List<ScheduledClassesDTO> getStudentsGroupClasses(Integer studentsGroupId)
     {
-	List<ScheduledClassesDTO> scheduledClasses = new LinkedList<ScheduledClassesDTO>();
-
-	for (SubjectDTO subject : new StudentsGroupDAO().getEntity(studentsGroupId).getSubject())
-	{
-	    scheduledClasses.addAll(subject.getScheduledClasses());
-	}
-
-	return scheduledClasses;
+	return new StudentsGroupDAO().getEntity(studentsGroupId).getSubject().stream()
+			.map(subjectDTO -> subjectDTO.getScheduledClasses()).flatMap(p -> p.stream())
+			.collect(Collectors.toList());
     }
 
     /**
      * Method inserts new schedules classes
+     *
      * @param subject
      * @param classroom
      * @param startDate
@@ -118,6 +108,7 @@ public class ScheduledClassesDAO extends DAOParentClass<ScheduledClassesDTO>
 
     /**
      * Method inserts repeated schedules classes
+     *
      * @param subject
      * @param classroom
      * @param repeat
@@ -127,7 +118,7 @@ public class ScheduledClassesDAO extends DAOParentClass<ScheduledClassesDTO>
      * @return
      */
     public boolean insertNewRepeatedClasses(SubjectDTO subject, ClassroomDTO classroom, Integer repeat, Date startDate,
-	    Date endDate, Integer startTime)
+		    Date endDate, Integer startTime)
     {
 	Date newClassesDate = startDate;
 	newClassesDate.setHours(hours.get(startTime));
@@ -157,10 +148,7 @@ public class ScheduledClassesDAO extends DAOParentClass<ScheduledClassesDTO>
 	}
 	while (calendar.getTime().before(endDate));
 
-	for (ScheduledClassesDTO sc : newClasses)
-	{
-	    insert(sc);
-	}
+	newClasses.forEach(sc -> insert(sc));
 
 	return true;
     }

@@ -2,6 +2,7 @@ package edziekanat.databasemodel.dao;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.PartialMarkDTO;
@@ -19,7 +20,7 @@ public class PartialMarkDAO extends DAOParentClass<PartialMarkDTO>
 
     /**
      * Method getting one object of PartialMark entity.
-     * 
+     *
      * @param id Integer id value
      * @return PartialMarkDTO object
      */
@@ -30,18 +31,16 @@ public class PartialMarkDAO extends DAOParentClass<PartialMarkDTO>
 
     /**
      * Method getting all student's partial marks in specific subject
+     *
      * @param studentId
      * @param subjectId
      * @return
      */
     public List<PartialMarkDTO> getStudentMarksFromSubject(Integer studentId, Integer subjectId)
     {
-	List<PartialMarkDTO> partialMarks = new LinkedList<PartialMarkDTO>();
-	for (TranscriptDTO transcript : new StudentDAO().getEntity(studentId).getTranscript())
-	{
-	    partialMarks.addAll(getMultipleEntities(
-		    "subject_id = '" + subjectId + "' and transcript_id = '" + transcript.getId() + "'"));
-	}
-	return partialMarks;
+	return new StudentDAO().getEntity(studentId).getTranscript().stream().map(transcriptDTO -> getMultipleEntities(
+			"subject_id = '" + subjectId + "' and transcript_id = '" + transcriptDTO.getId() + "'"))
+			.flatMap(partialMarkDTOs -> partialMarkDTOs.stream()).collect(
+					Collectors.toList());
     }
 }

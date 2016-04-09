@@ -40,7 +40,7 @@ public class ScholarshipDAO extends DAOParentClass<ScholarshipDTO>
 	Date currentDate = Calendar.getInstance().getTime();
 	for (int i = 0; i < scholarships.size(); i++)
 	{
-	    if (scholarships.get(i).getEndDate().compareTo(currentDate) < 0)
+	    if (scholarships.get(i).getEndDate().before(currentDate))
 	    {
 		scholarships.remove(i);
 		i--;
@@ -61,7 +61,7 @@ public class ScholarshipDAO extends DAOParentClass<ScholarshipDTO>
 	Date currentDate = Calendar.getInstance().getTime();
 	for (int i = 0; i < scholarships.size(); i++)
 	{
-	    if (scholarships.get(i).getEndDate().compareTo(currentDate) < 0)
+	    if (scholarships.get(i).getEndDate().before(currentDate))
 	    {
 		scholarships.remove(i);
 		i--;
