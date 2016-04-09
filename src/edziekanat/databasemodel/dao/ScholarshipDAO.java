@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.ScholarshipDTO;
@@ -20,7 +21,7 @@ public class ScholarshipDAO extends DAOParentClass<ScholarshipDTO>
 
     /**
      * Method getting one object of Scholarship entity.
-     * 
+     *
      * @param id Integer id value
      * @return ScholarshipDTO object
      */
@@ -31,48 +32,39 @@ public class ScholarshipDAO extends DAOParentClass<ScholarshipDTO>
 
     /**
      * Method getting all active student's scholarships
+     *
      * @param studentId
      * @return
      */
     public List<ScholarshipDTO> getActiveStudentScholarships(Integer studentId)
     {
-	List<ScholarshipDTO> scholarships = getMultipleEntities("student_id = '" + studentId + "'");
 	Date currentDate = Calendar.getInstance().getTime();
-	for (int i = 0; i < scholarships.size(); i++)
-	{
-	    if (scholarships.get(i).getEndDate().before(currentDate))
-	    {
-		scholarships.remove(i);
-		i--;
-	    }
-	}
-	Collections.sort(scholarships, (x, y) -> y.getEndDate().compareTo(x.getEndDate()));
-	return scholarships;
+
+	return new StudentDAO().getEntity(studentId).getScholarship().stream()
+			.filter(scholarship -> scholarship.getEndDate().after(currentDate))
+			.sorted((x, y) -> y.getEndDate().compareTo(x.getEndDate())).collect(
+					Collectors.toList());
     }
 
     /**
      * Method getting all active scholarships by adminid
+     *
      * @param adminId
      * @return
      */
     public List<ScholarshipDTO> getAllActiveAdminScholarships(Integer adminId)
     {
-	List<ScholarshipDTO> scholarships = new AdministratorDAO().getEntity(adminId).getScholarship();
 	Date currentDate = Calendar.getInstance().getTime();
-	for (int i = 0; i < scholarships.size(); i++)
-	{
-	    if (scholarships.get(i).getEndDate().before(currentDate))
-	    {
-		scholarships.remove(i);
-		i--;
-	    }
-	}
-	Collections.sort(scholarships, (x, y) -> y.getEndDate().compareTo(x.getEndDate()));
-	return scholarships;
+
+	return new AdministratorDAO().getEntity(adminId).getScholarship().stream()
+			.filter(scholarship -> scholarship.getEndDate().after(currentDate))
+			.sorted((x, y) -> y.getEndDate().compareTo(x.getEndDate())).collect(
+					Collectors.toList());
     }
-    
+
     /**
      * Method getting all student's scholarships
+     *
      * @param studentId
      * @return
      */

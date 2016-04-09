@@ -59,7 +59,7 @@ public class LecturerDAO extends DAOParentClass<LecturerDTO>
      */
     public List<LecturerDTO> getLecturersByNameAndSurname(String name, String surname)
     {
-	return getMultipleEntities("UPPER(name) like '%" + name.toUpperCase() + "%' and UPPER(surname)  '%"
+	return getMultipleEntities("UPPER(name) like '%" + name.toUpperCase() + "%' and UPPER(surname) like '%"
 			+ surname.toUpperCase() + "%'");
     }
 }

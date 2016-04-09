@@ -2,6 +2,7 @@ package edziekanat.databasemodel.dao;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.StudentDTO;
@@ -61,16 +62,9 @@ public class StudentDAO extends DAOParentClass<StudentDTO>
      */
     public List<StudentDTO> searchStudentsInStudentsGroup(String surname, Integer studentGroupId)
     {
-	List<StudentDTO> students = new LinkedList<StudentDTO>();
-
-	for (StudentDTO student : new StudentsGroupDAO().getEntity(studentGroupId).getStudent())
-	{
-	    if (student.getSurname().toLowerCase().contains(surname.toLowerCase()))
-	    {
-		students.add(student);
-	    }
-	}
-	return students;
+	return new StudentsGroupDAO().getEntity(studentGroupId).getStudent().stream()
+			.filter(student -> student.getSurname().toLowerCase().contains(surname.toLowerCase())).collect(
+					Collectors.toList());
     }
 
     /**
@@ -83,18 +77,10 @@ public class StudentDAO extends DAOParentClass<StudentDTO>
      */
     public List<StudentDTO> searchStudentsInStudentsGroup(String name, String surname, Integer studentGroupId)
     {
-	List<StudentDTO> students = new LinkedList<StudentDTO>();
-
-	for (StudentDTO student : new StudentsGroupDAO().getEntity(studentGroupId).getStudent())
-	{
-	    if (student.getSurname().toLowerCase().contains(surname.toLowerCase())
-			    && student.getName().toLowerCase().contains(name.toLowerCase()))
-	    {
-		students.add(student);
-	    }
-	}
-
-	return students;
+	return new StudentsGroupDAO().getEntity(studentGroupId).getStudent().stream()
+			.filter(student -> student.getSurname().toLowerCase().contains(surname.toLowerCase())
+					&& student.getName().toLowerCase().contains(name.toLowerCase()))
+			.collect(Collectors.toList());
     }
 
     /**
@@ -106,18 +92,10 @@ public class StudentDAO extends DAOParentClass<StudentDTO>
      */
     public List<StudentDTO> searchStudentsInSubject(String surname, Integer subjectId)
     {
-	List<StudentDTO> students = new LinkedList<StudentDTO>();
-	for (StudentsGroupDTO sg : new SubjectDAO().getEntity(subjectId).getStudents_group())
-	{
-	    for (StudentDTO student : sg.getStudent())
-	    {
-		if (student.getSurname().toLowerCase().contains(surname.toLowerCase()))
-		{
-		    students.add(student);
-		}
-	    }
-	}
-	return students;
+	return new SubjectDAO().getEntity(subjectId).getStudents_group().stream()
+			.map(studentsGroupDTO -> studentsGroupDTO.getStudent()).flatMap(p -> p.stream())
+			.filter(student -> student.getSurname().toLowerCase().contains(surname.toLowerCase())).collect(
+					Collectors.toList());
     }
 
     /**
@@ -130,18 +108,10 @@ public class StudentDAO extends DAOParentClass<StudentDTO>
      */
     public List<StudentDTO> searchStudentsInSubject(String name, String surname, Integer subjectId)
     {
-	List<StudentDTO> students = new LinkedList<StudentDTO>();
-	for (StudentsGroupDTO sg : new SubjectDAO().getEntity(subjectId).getStudents_group())
-	{
-	    for (StudentDTO student : sg.getStudent())
-	    {
-		if (student.getSurname().toLowerCase().contains(surname.toLowerCase())
-				&& student.getName().toLowerCase().contains(name.toLowerCase()))
-		{
-		    students.add(student);
-		}
-	    }
-	}
-	return students;
+	return new SubjectDAO().getEntity(subjectId).getStudents_group().stream()
+			.map(studentsGroupDTO -> studentsGroupDTO.getStudent()).flatMap(p -> p.stream())
+			.filter(student -> student.getSurname().toLowerCase().contains(surname.toLowerCase())
+					&& student.getName().toLowerCase().contains(name.toLowerCase())).collect(
+					Collectors.toList());
     }
 }
