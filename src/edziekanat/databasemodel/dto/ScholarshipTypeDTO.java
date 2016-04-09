@@ -27,7 +27,7 @@ public class ScholarshipTypeDTO implements Serializable
     private String type;
     @Column(name = "requirements")
     private String requirements;
-    @Column(name = "amount")
+    @Column(name = "amount", columnDefinition = "NUMERIC (8,2)")
     private Float amount;
     @OneToMany(mappedBy = "scholarshipType", fetch = FetchType.LAZY)
     private List<ScholarshipDTO> scholarship;

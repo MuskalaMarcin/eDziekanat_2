@@ -34,7 +34,7 @@ public class EnrollmentDTO implements Serializable
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "ENROLLMENTSEQ")
     @Column(name = "id")
     private Integer id;
-    @Column(name = "mark")
+    @Column(name = "mark", columnDefinition = "NUMERIC (3,2)")
     private Float mark;
     @Temporal(TemporalType.DATE)
     @Column(name = "issue_date")

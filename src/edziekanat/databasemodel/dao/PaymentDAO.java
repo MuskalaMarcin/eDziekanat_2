@@ -2,6 +2,7 @@ package edziekanat.databasemodel.dao;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.PaymentDTO;
@@ -18,7 +19,7 @@ public class PaymentDAO extends DAOParentClass<PaymentDTO>
 
     /**
      * Method getting one object of Payment entity.
-     * 
+     *
      * @param id Integer id value
      * @return PaymentDTO object
      */
@@ -29,6 +30,7 @@ public class PaymentDAO extends DAOParentClass<PaymentDTO>
 
     /**
      * Method getting all student's payments
+     *
      * @param studentId
      * @return
      */
@@ -39,53 +41,53 @@ public class PaymentDAO extends DAOParentClass<PaymentDTO>
 
     /**
      * Method getting all waiting student's payments
+     *
      * @param studentId
      * @return
      */
     public List<PaymentDTO> getWaitingPayments(Integer studentId)
     {
-	List<PaymentDTO> waitingPayments = getMultipleEntities(
-		"student_id = '" + studentId + "' and payment_date is null");
-	Collections.sort(waitingPayments, (x, y) -> y.getIssueDate().compareTo(x.getIssueDate()));
-	return waitingPayments;
+	return getMultipleEntities("student_id = '" + studentId + "' and payment_date is null").stream()
+			.sorted((x, y) -> y.getIssueDate().compareTo(x.getIssueDate())).collect(
+					Collectors.toList());
     }
 
     /**
      * Method getting student's payment history
+     *
      * @param studentId
      * @return
      */
     public List<PaymentDTO> getPaymentsHistory(Integer studentId)
     {
-	List<PaymentDTO> historyPayments = getMultipleEntities(
-		"student_id = '" + studentId + "' and payment_date is not null");
-	Collections.sort(historyPayments, (x, y) -> y.getPaymentDate().compareTo(x.getPaymentDate()));
-	return historyPayments;
+	return getMultipleEntities("student_id = '" + studentId + "' and payment_date is not null").stream()
+			.sorted((x, y) -> y.getPaymentDate().compareTo(x.getPaymentDate()))
+			.collect(Collectors.toList());
     }
 
     /**
      * Method getting admin's waiting payments
+     *
      * @param adminId
      * @return
      */
     public List<PaymentDTO> getWaitingAdminPayments(Integer adminId)
     {
-	List<PaymentDTO> waitingPayments = getMultipleEntities(
-		"administrator_id = '" + adminId + "' and payment_date is null");
-	Collections.sort(waitingPayments, (x, y) -> y.getIssueDate().compareTo(x.getIssueDate()));
-	return waitingPayments;
+	return getMultipleEntities("administrator_id = '" + adminId + "' and payment_date is null").stream()
+			.sorted((x, y) -> y.getIssueDate().compareTo(x.getIssueDate())).collect(
+					Collectors.toList());
     }
 
     /**
      * Method getting payments history by adminid
+     *
      * @param adminId
      * @return
      */
     public List<PaymentDTO> getAdminPaymentsHistory(Integer adminId)
     {
-	List<PaymentDTO> historyPayments = getMultipleEntities(
-		"administrator_id = '" + adminId + "' and payment_date is not null");
-	Collections.sort(historyPayments, (x, y) -> y.getPaymentDate().compareTo(x.getPaymentDate()));
-	return historyPayments;
+	return getMultipleEntities("administrator_id = '" + adminId + "' and payment_date is not null").stream()
+			.sorted((x, y) -> y.getPaymentDate().compareTo(x.getPaymentDate())).collect(
+					Collectors.toList());
     }
 }

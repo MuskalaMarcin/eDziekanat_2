@@ -38,7 +38,7 @@ public class PaymentDTO implements Serializable
     private String title;
     @Column(name = "description")
     private String description;
-    @Column(name = "amount")
+    @Column(name = "amount", columnDefinition = "NUMERIC (8,2)")
     private float amount;
     @Temporal(TemporalType.DATE)
     @Column(name = "issue_date")

@@ -15,7 +15,7 @@ public class ScholarshipTypeDAO extends DAOParentClass<ScholarshipTypeDTO>
 
     /**
      * Method getting one object of ScholarshipType entity.
-     * 
+     *
      * @param id Integer id value
      * @return ScholarshipTypeDTO object
      */
@@ -23,16 +23,15 @@ public class ScholarshipTypeDAO extends DAOParentClass<ScholarshipTypeDTO>
     {
 	return entityManager.find(ScholarshipTypeDTO.class, id);
     }
-    
+
     /**
      * Method getting scholarship by type
+     *
      * @param type
      * @return
      */
     public ScholarshipTypeDTO getScholarshipByType(String type)
     {
-	ScholarshipTypeDTO scholarship = new ScholarshipTypeDTO();
-	scholarship = getSingleEntity("type = '" + type + "'");
-	return scholarship;
+	return getSingleEntity("type = '" + type + "'");
     }
 }
