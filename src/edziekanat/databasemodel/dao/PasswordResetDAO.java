@@ -5,7 +5,7 @@ import edziekanat.databasemodel.dto.PartialMarkDTO;
 import edziekanat.databasemodel.dto.PasswordResetDTO;
 
 /**
- * Created by mumar on 10.04.2016.
+ * Created by Marcin Muskala on 10.04.2016.
  */
 public class PasswordResetDAO extends DAOParentClass<PasswordResetDTO>
 {

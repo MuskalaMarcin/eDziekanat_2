@@ -25,13 +25,13 @@
                 }
                 else
                 {
-                    document.getElementById("errorText2").style.display = "block";
+                    errorText2.style.display = "block";
                     return false;
                 }
             }
             else
             {
-                document.getElementById("errorText1").style.display = "block";
+                errorText1.style.display = "block";
                 return false;
             }
         }
