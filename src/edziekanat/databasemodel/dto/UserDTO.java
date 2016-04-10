@@ -51,6 +51,8 @@ public class UserDTO
     private List<MessageDTO> send_message;
     @OneToMany(mappedBy = "receiver", fetch = FetchType.LAZY)
     private List<MessageDTO> received_message;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<PasswordResetDTO> passwordResets;
 
     public String getLogin()
     {
@@ -170,5 +172,15 @@ public class UserDTO
     public void setReceived_message(List<MessageDTO> received_message)
     {
 	this.received_message = received_message;
+    }
+
+    public List<PasswordResetDTO> getPasswordResets()
+    {
+	return passwordResets;
+    }
+
+    public void setPasswordResets(List<PasswordResetDTO> passwordResets)
+    {
+	this.passwordResets = passwordResets;
     }
 }
