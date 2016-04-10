@@ -8,6 +8,7 @@ public final class TableNames
     public static final String USER = "app_user";
     public static final String ADMINISTRATOR = "administrator";
     public static final String APPLICATION = "application";
+    public static final String APPLICATION_TYPE = "application_type";
     public static final String CLASSROOM = "classroom";
     public static final String COURSE = "course";
     public static final String ENROLLMENT = "enrollment";

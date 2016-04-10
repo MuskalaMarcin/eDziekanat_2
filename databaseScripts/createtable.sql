@@ -1,4 +1,4 @@
-CREATE TABLE administrator
+﻿CREATE TABLE administrator
   (
     id              INTEGER NOT NULL ,
     name            VARCHAR(256) NOT NULL ,
@@ -24,6 +24,12 @@ CREATE TABLE app_user
   ) ;
 ALTER TABLE app_user ADD CONSTRAINT users_PK PRIMARY KEY ( login ) ;
 
+CREATE TABLE application_type
+  (
+    type_id    INTEGER NOT NULL ,
+    type_name VARCHAR(256) NOT NULL
+  ) ;
+ALTER TABLE application_type ADD CONSTRAINT application_type_PK PRIMARY KEY ( type_id ) ;
 
 CREATE TABLE application
   (
@@ -33,7 +39,8 @@ CREATE TABLE application
     dispatch_date    DATE NOT NULL ,
     status           VARCHAR(256) NOT NULL ,
     student_id       INTEGER NOT NULL ,
-    administrator_id INTEGER NOT NULL
+    administrator_id INTEGER NOT NULL ,
+    application_type_id INTEGER NOT NULL
   ) ;
 ALTER TABLE application ADD CONSTRAINT application_PK PRIMARY KEY ( id ) ;
 
@@ -256,6 +263,9 @@ ALTER TABLE application ADD CONSTRAINT application_administrator_FK FOREIGN KEY 
 DELETE CASCADE ;
 
 ALTER TABLE application ADD CONSTRAINT application_student_FK FOREIGN KEY ( student_id ) REFERENCES student ( id ) ON
+DELETE CASCADE ;
+
+ALTER TABLE application ADD CONSTRAINT application_type_FK FOREIGN KEY (application_type_id) REFERENCES application_type (type_id) ON
 DELETE CASCADE ;
 
 ALTER TABLE classroom ADD CONSTRAINT classroom_faculty_FK FOREIGN KEY ( faculty_id ) REFERENCES faculty ( id ) ON

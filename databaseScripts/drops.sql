@@ -1,5 +1,6 @@
-DROP SEQUENCE administrator_id_seq; 
-DROP SEQUENCE application_id_seq; 
+﻿DROP SEQUENCE administrator_id_seq; 
+DROP SEQUENCE application_type_id_seq;
+DROP SEQUENCE application_id_seq;
 DROP SEQUENCE classroom_id_seq;
 DROP SEQUENCE course_id_seq; 
 DROP SEQUENCE enrollment_id_seq; 
@@ -36,7 +37,8 @@ DROP TABLE "faculty" CASCADE;
 DROP TABLE "enrollment" CASCADE;                                                                                                                       
 DROP TABLE "course" CASCADE;                                                                                                                           
 DROP TABLE "classroom" CASCADE;                                                                                                                        
-DROP TABLE "application" CASCADE;                                                                                                                      
+DROP TABLE "application" CASCADE;
+DROP TABLE "application_type" CASCADE;
 DROP TABLE "administrator" CASCADE; 
 DROP TABLE "app_user" CASCADE; 
 DROP TABLE "students_group_subject" CASCADE; 
