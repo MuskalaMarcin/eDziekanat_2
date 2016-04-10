@@ -45,10 +45,14 @@ public class AddNewStudent extends HttpServlet
 	student.setSurname(request.getParameter("surname"));
 	student.setAddress(request.getParameter("address"));
 	student.setAcademicDegree(request.getParameter("academicdegree"));
-	student.setStudentsGroup(Arrays.asList(new StudentsGroupDAO()
-			.getEntity(Integer.parseInt(request.getParameter("studentsgroupid")))));
-
+	StudentsGroupDAO studentsGroupDAO = new StudentsGroupDAO();
+	StudentsGroupDTO studentsGroup = studentsGroupDAO
+			.getEntity(Integer.parseInt(request.getParameter("studentsgroupid")));
+	student.setStudentsGroup(Arrays.asList(studentsGroup));
 	new StudentDAO().insert(student);
+	studentsGroup.getStudent().add(student);
+	studentsGroupDAO.update(studentsGroup);
+
 	UserDTO user = new UserDTO();
 	user.setActive(1);
 	user.seteMail(request.getParameter("email"));

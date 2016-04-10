@@ -17,29 +17,18 @@
             <h2>Twój wirtualny dziekanat.</h2>
         </div>
         <div class="content">
-            <h2 class="content-subhead">Zaloguj siê do systemu, aby uzyskaæ
-                dostêp do swoich danych</h2>
+            <h2 class="content-subhead">Wprowad¼ dwukrotnie nowe has³o do konta.</h2>
             <p>
             <center>
-                <form action="loginaction" method=post class="pure-form">
+                <form name="newpassword" action="setnewpassword" method=post class="pure-form">
                     <fieldset class="pure-group">
-                        <input type="text" name="username" class="pure-input-1-2" placeholder="Login" required>
+                        <input type="hidden" name="resetid" value="${resetid}">
                         <input type="password" name="password" class="pure-input-1-2" placeholder="Has³o" required>
-                    </fieldset>
-
-                    <fieldset class="pure-group">
-                        <%
-                            if (request.getSession().getAttribute("loginError") != null
-                                    && request.getSession().getAttribute("loginError").equals("true"))
-                            {
-                                out.print("<font color='red'><b>B³êdny login lub has³o, spróbuj ponownie.</b></font>");
-                                request.getSession().invalidate();
-                            }
-                        %>
+                        <input type="password" name="passwordrepeat" class="pure-input-1-2" placeholder="Powtórz has³o" required>
                     </fieldset>
 
                     <button type="submit"
-                            class="pure-button pure-input-1-2 pure-button-primary">Zaloguj</button>
+                            class="pure-button pure-input-1-2 pure-button-primary">Wy¶lij</button>
                 </form>
             </center>
         </div>

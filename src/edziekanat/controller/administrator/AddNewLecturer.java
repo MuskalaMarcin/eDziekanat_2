@@ -46,9 +46,12 @@ public class AddNewLecturer extends HttpServlet
 	lecturer.setAddress(request.getParameter("address"));
 	lecturer.setAcademicDegree(request.getParameter("academicdegree"));
 	lecturer.setPosition(request.getParameter("position"));
-	lecturer.setFaculty(
-			Arrays.asList(new FacultyDAO().getEntity(Integer.parseInt(request.getParameter("facultyid")))));
+	FacultyDAO facultyDAO = new FacultyDAO();
+	FacultyDTO faculty =facultyDAO.getEntity(Integer.parseInt(request.getParameter("facultyid")));
+	lecturer.setFaculty(Arrays.asList(faculty));
 	new LecturerDAO().insert(lecturer);
+	faculty.getLecturer().add(lecturer);
+	facultyDAO.update(faculty);
 
 	UserDTO user = new UserDTO();
 	user.setActive(1);
