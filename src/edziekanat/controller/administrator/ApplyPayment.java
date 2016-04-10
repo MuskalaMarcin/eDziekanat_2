@@ -42,14 +42,14 @@ public class ApplyPayment extends HttpServlet
 
 	    request.setAttribute("msgshort", "Zmieniono status p³atno¶ci");
 	    request.setAttribute("msglong", "Potwierdzono dokonanie p³atno¶ci " + payment.getTitle());
-	    request.getRequestDispatcher("info.jsp").forward(request, response);
+	    request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	}
 	catch (Exception e)
 	{
 	    request.setAttribute("msgshort", "B³±d");
 	    request.setAttribute("msglong", "Podczas zmiany statusu p³atno¶ci " + payment.getTitle()
 		    + " wyst±pi³ nieznany b³±d. Przepraszamy.");
-	    request.getRequestDispatcher("error.jsp").forward(request, response);
+	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
 
     }

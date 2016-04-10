@@ -63,7 +63,7 @@ public class NewApplicationController extends HttpServlet
 	
 	request.setAttribute("msgshort", "Wniosek z³o¿ony");
 	request.setAttribute("msglong", "Twój wniosek zosta³ wys³any");
-	request.getRequestDispatcher("/info.jsp").forward(request, response);
+	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	
     }
     

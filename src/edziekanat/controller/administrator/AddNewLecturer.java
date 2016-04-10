@@ -64,7 +64,7 @@ public class AddNewLecturer extends HttpServlet
 
 	request.setAttribute("msgshort", "Wykładowca dodany");
 	request.setAttribute("msglong", "Nowy wykładowca został dodany");
-	request.getRequestDispatcher("/info.jsp").forward(request, response);
+	request.getRequestDispatcher("common/info.jsp").forward(request, response);
     }
 
 }

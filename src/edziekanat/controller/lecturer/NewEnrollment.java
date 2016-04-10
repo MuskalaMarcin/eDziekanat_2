@@ -53,7 +53,7 @@ public class NewEnrollment extends HttpServlet
 	new EnrollmentDAO().insert(enrollment);
 	request.setAttribute("msgshort", "Wpis dodana");
 	request.setAttribute("msglong", "Nowy wpis zosta³ dodany");
-	request.getRequestDispatcher("/info.jsp").forward(request, response);
+	request.getRequestDispatcher("common/info.jsp").forward(request, response);
     }
     
 }

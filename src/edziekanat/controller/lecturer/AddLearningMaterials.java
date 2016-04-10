@@ -63,7 +63,7 @@ public class AddLearningMaterials extends HttpServlet
 
 	    request.setAttribute("msgshort", "Dodano plik");
 	    request.setAttribute("msglong", "Nowy plik " + fileName + " zosta³ dodany do bazy danych.");
-	    request.getRequestDispatcher("/info.jsp").forward(request, response);
+	    request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	}
 	catch (Exception e)
 	{
@@ -71,7 +71,7 @@ public class AddLearningMaterials extends HttpServlet
 	    request.setAttribute("msgshort", "B³±d");
 	    request.setAttribute("msglong",
 		    "Podczas dodawania twojego pliku " + fileName + " wystapi³ nieznany b³±d. Przepraszamy.");
-	    request.getRequestDispatcher("/error.jsp").forward(request, response);
+	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
     }
 

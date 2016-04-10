@@ -62,7 +62,7 @@ public class AddNewStudent extends HttpServlet
 
 	request.setAttribute("msgshort", "Student dodany");
 	request.setAttribute("msglong", "Nowy student został dodany");
-	request.getRequestDispatcher("/info.jsp").forward(request, response);
+	request.getRequestDispatcher("common/info.jsp").forward(request, response);
     }
 
 }

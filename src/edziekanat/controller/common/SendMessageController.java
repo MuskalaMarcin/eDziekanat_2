@@ -49,7 +49,7 @@ public class SendMessageController extends HttpServlet
 
 	request.setAttribute("msgshort", "Wys³ano wiadomo¶æ");
 	request.setAttribute("msglong", "Twoja wiadomo¶æ zosta³a wys³ana.");
-	request.getRequestDispatcher("/info.jsp").forward(request, response);
+	request.getRequestDispatcher("common/info.jsp").forward(request, response);
     }
 
 }

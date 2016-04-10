@@ -65,7 +65,7 @@ public class AddNewScholarship extends HttpServlet
 	
 	request.setAttribute("msgshort", "Stypendium przyznane");
 	request.setAttribute("msglong", "Stypendium zosta³o przyznane");
-	request.getRequestDispatcher("/info.jsp").forward(request, response);
+	request.getRequestDispatcher("common/info.jsp").forward(request, response);
     }
 
 }

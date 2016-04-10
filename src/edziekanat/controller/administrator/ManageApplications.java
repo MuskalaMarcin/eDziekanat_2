@@ -50,7 +50,7 @@ public class ManageApplications extends HttpServlet
 	    request.setAttribute("msgshort", "Zmieniono status wniosku");
 	    request.setAttribute("msglong",
 		    "Status wniosku " + application.getTitle() + " zostal zmieniony na " + application.getStatus());
-	    request.getRequestDispatcher("info.jsp").forward(request, response);
+	    request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	}
 	catch (Exception e)
 	{
@@ -58,7 +58,7 @@ public class ManageApplications extends HttpServlet
 	    request.setAttribute("msglong",
 		    "Podczas zmiany statusu wniosku " + application.getTitle()
 			    + " wyst±pi³ nieznany b³±d. Przepraszamy.");
-	    request.getRequestDispatcher("error.jsp").forward(request, response);
+	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
 
     }

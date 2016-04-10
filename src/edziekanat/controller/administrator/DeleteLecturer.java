@@ -46,14 +46,14 @@ public class DeleteLecturer extends HttpServlet
 	    request.setAttribute("msgshort", "Usunięto wykładowcę");
 	    request.setAttribute("msglong",
 		    "Usunięto wykładowcę: " + lecturer.getName() + " " + lecturer.getSurname());
-	    request.getRequestDispatcher("info.jsp").forward(request, response);
+	    request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	}
 	catch (Exception e)
 	{
 	    request.setAttribute("errorshort", "Błąd");
 	    request.setAttribute("errorlong", "Podczas usuwania wykładowcy"
 		    + " wystąpił nieznany błąd. Przepraszamy.");
-	    request.getRequestDispatcher("error.jsp").forward(request, response);
+	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
     }
 
