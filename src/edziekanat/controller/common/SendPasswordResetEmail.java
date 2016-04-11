@@ -40,7 +40,7 @@ public class SendPasswordResetEmail extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	UserDTO user = getUser(request.getParameter("login-email"));
+	UserDTO user = new UserDAO().getUserByLoginOrEmail(request.getParameter("login-email"));
 	if (user == null)
 	{
 	    request.setAttribute("resetError", "true");
@@ -124,24 +124,5 @@ public class SendPasswordResetEmail extends HttpServlet
 	passwordResetDAO.insert(passwordResetDTO);
 
 	return passwordResetDTO;
-    }
-
-    private UserDTO getUser(String loginEMail)
-    {
-	UserDAO userDAO = new UserDAO();
-	UserDTO user = userDAO.getEntity(loginEMail);
-	if (user == null)
-	{
-	    try
-	    {
-		user = userDAO.getAllEntities().stream().filter(userDTO -> userDTO.geteMail().equals(loginEMail))
-				.findAny().get();
-	    }
-	    catch (NoSuchElementException e)
-	    {
-		return null;
-	    }
-	}
-	return user;
     }
 }
