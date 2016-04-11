@@ -14,6 +14,7 @@ import edziekanat.databasemodel.dto.AdministratorDTO;
 import edziekanat.databasemodel.dto.LecturerDTO;
 import edziekanat.databasemodel.dto.StudentDTO;
 import edziekanat.databasemodel.dto.UserDTO;
+import edziekanat.utilities.PasswordUtils;
 
 /**
  * Servlet maintaing logging in to application.
@@ -39,7 +40,15 @@ public class LoginController extends HttpServlet
 	request.getSession().setMaxInactiveInterval(3600);
 	try
 	{
-	    request.login((String) request.getParameter("username"), (String) request.getParameter("password"));
+	    String username = request.getParameter("username");
+	    String password = request.getParameter("password");
+	    UserDTO user = new UserDAO().getEntity(username);
+	    if (user == null)
+		throw new ServletException();
+	    else
+	    {
+		request.login(username, PasswordUtils.getSHA512PasswordHash(password, user.getSalt()));
+	    }
 	    request.getSession().setAttribute("loginBean", getLoginBean(request));
 	}
 	catch (ServletException e)
@@ -57,18 +66,18 @@ public class LoginController extends HttpServlet
 	case "admin":
 	    AdministratorDTO admin = user.getAdministrator();
 	    return new LoginBean(user.getLogin(), user.geteMail(), user.isActive(), user.getUserRole(),
-		    admin.getId(), admin.getName(), admin.getSurname(), admin.getAddress(),
-		    admin.getAcademicDegree());
+			    admin.getId(), admin.getName(), admin.getSurname(), admin.getAddress(),
+			    admin.getAcademicDegree());
 	case "student":
 	    StudentDTO student = user.getStudent();
 	    return new LoginBean(user.getLogin(), user.geteMail(), user.isActive(), user.getUserRole(),
-		    student.getId(), student.getName(), student.getSurname(), student.getAddress(),
-		    student.getAcademicDegree());
+			    student.getId(), student.getName(), student.getSurname(), student.getAddress(),
+			    student.getAcademicDegree());
 	case "lecturer":
 	    LecturerDTO lecturer = user.getLecturer();
 	    return new LoginBean(user.getLogin(), user.geteMail(), user.isActive(), user.getUserRole(),
-		    lecturer.getId(), lecturer.getName(), lecturer.getSurname(), lecturer.getAddress(),
-		    lecturer.getAcademicDegree());
+			    lecturer.getId(), lecturer.getName(), lecturer.getSurname(), lecturer.getAddress(),
+			    lecturer.getAcademicDegree());
 	default:
 	    return null;
 	}

@@ -43,15 +43,15 @@
     </servlet>
     <servlet>
         <servlet-name>LoginForm</servlet-name>
-        <jsp-file>/login.jsp</jsp-file>
+        <jsp-file>/common/login.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>403Error</servlet-name>
-        <jsp-file>/403.jsp</jsp-file>
+        <jsp-file>/common/403.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>404Error</servlet-name>
-        <jsp-file>/404.jsp</jsp-file>
+        <jsp-file>/common/404.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>StudentApplications</servlet-name>
@@ -198,8 +198,16 @@
         <servlet-name>StudentTranscript</servlet-name>
         <jsp-file>/student/transcript.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>SendResetEmail</servlet-name>
+        <jsp-file>/common/passwordresetform.jsp</jsp-file>
+    </servlet>
 
     <!-- Servlet mappings -->
+    <servlet-mapping>
+        <servlet-name>SendResetEmail</servlet-name>
+        <url-pattern>/sendresetemail</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AdminIndex</servlet-name>
         <url-pattern>/admin</url-pattern>

@@ -6,6 +6,7 @@ package edziekanat.databasemodel;
 public final class TableNames
 {
     public static final String USER = "app_user";
+    public static final String PASSWORD_RESET = "password_reset";
     public static final String ADMINISTRATOR = "administrator";
     public static final String APPLICATION = "application";
     public static final String APPLICATION_TYPE = "application_type";

@@ -49,7 +49,7 @@ public class AddNewSubject extends HttpServlet
 	
 	request.setAttribute("msgshort", "Przedmiot dodany");
 	request.setAttribute("msglong", "Nowa przedmiot został dodany");
-	request.getRequestDispatcher("/info.jsp").forward(request, response);
+	request.getRequestDispatcher("common/info.jsp").forward(request, response);
     }
 
 }

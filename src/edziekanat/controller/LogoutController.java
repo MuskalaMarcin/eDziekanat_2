@@ -33,7 +33,7 @@ public class LogoutController extends HttpServlet
 	{
 	    request.setAttribute("errorshort", "Niezalogowano");
 	    request.setAttribute("errorlong", "Najpierw zaloguj siê do systemu.");
-	    request.getRequestDispatcher("/error.jsp").forward(request, response);
+	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
 	else
 	{
@@ -43,14 +43,14 @@ public class LogoutController extends HttpServlet
 		request.logout();
 		request.setAttribute("msgshort", "Wylogowano");
 		request.setAttribute("msglong", "Zosta³e¶ wylogowany z systemu.");
-		request.getRequestDispatcher("/info.jsp").forward(request, response);
+		request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	    }
 	    catch (ServletException e)
 	    {
 		e.printStackTrace();
 		request.setAttribute("errorshort", "B³±d");
 		request.setAttribute("errorlong", "Podczas wylogowywania z systemu wyst±pi³ nieznany problem.");
-		request.getRequestDispatcher("/error.jsp").forward(request, response);
+		request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	    }
 	}
     }

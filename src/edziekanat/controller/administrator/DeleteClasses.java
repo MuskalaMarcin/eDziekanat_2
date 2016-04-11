@@ -38,7 +38,7 @@ public class DeleteClasses extends HttpServlet
 
 	request.setAttribute("msgshort", "Usunięto zajęcia");
 	request.setAttribute("msglong", "Usunięto zaplanowane zajęcia z przedimotu: " + sc.getSubject().getName());
-	request.getRequestDispatcher("info.jsp").forward(request, response);
+	request.getRequestDispatcher("common/info.jsp").forward(request, response);
     }
 
 }

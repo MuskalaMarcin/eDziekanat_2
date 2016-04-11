@@ -1,6 +1,7 @@
 package edziekanat.controller.administrator;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ import edziekanat.databasemodel.dao.UserDAO;
 import edziekanat.databasemodel.dto.FacultyDTO;
 import edziekanat.databasemodel.dto.LecturerDTO;
 import edziekanat.databasemodel.dto.UserDTO;
-
+import edziekanat.utilities.PasswordUtils;
 
 /**
  * Servlet implementation class AddNewLecturer
@@ -40,29 +41,33 @@ public class AddNewLecturer extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	LecturerDTO lecturer = new LecturerDTO();
-	lecturer.setName(request.getParameter("name").toString());
-	lecturer.setSurname(request.getParameter("surname").toString());
-	lecturer.setAddress(request.getParameter("address").toString());
-	lecturer.setAcademicDegree(request.getParameter("academicdegree").toString());
-	lecturer.setPosition(request.getParameter("position").toString());
-	List<FacultyDTO> faculty = new LinkedList<FacultyDTO>();
-	faculty.add(new FacultyDAO().getEntity(Integer.parseInt(request.getParameter("facultyid").toString())));
-	lecturer.setFaculty(faculty);
+	lecturer.setName(request.getParameter("name"));
+	lecturer.setSurname(request.getParameter("surname"));
+	lecturer.setAddress(request.getParameter("address"));
+	lecturer.setAcademicDegree(request.getParameter("academicdegree"));
+	lecturer.setPosition(request.getParameter("position"));
+	FacultyDAO facultyDAO = new FacultyDAO();
+	FacultyDTO faculty =facultyDAO.getEntity(Integer.parseInt(request.getParameter("facultyid")));
+	lecturer.setFaculty(Arrays.asList(faculty));
+	new LecturerDAO().insert(lecturer);
+	faculty.getLecturer().add(lecturer);
+	facultyDAO.update(faculty);
 
 	UserDTO user = new UserDTO();
 	user.setActive(1);
 	user.setLecturer(lecturer);
-	user.seteMail(request.getParameter("email").toString());
-	user.setLogin(request.getParameter("login").toString());
-	user.setPassword(request.getParameter("password").toString());
+	user.seteMail(request.getParameter("email"));
+	user.setLogin(request.getParameter("login"));
+	String salt = PasswordUtils.generateSalt();
+	user.setSalt(salt);
+	user.setPassword(PasswordUtils.getSHA512PasswordHash(request.getParameter("password"), salt));
 	user.setUserRole("lecturer");
-	lecturer.setUser(user);
+	user.setLecturer(lecturer);
 	new UserDAO().insert(user);
-	new LecturerDAO().insert(lecturer);
 
-	request.setAttribute("msgshort", "Wyk≥adowca dodany");
-	request.setAttribute("msglong", "Nowy wyk≥adowca zosta≥ dodany");
-	request.getRequestDispatcher("/info.jsp").forward(request, response);
+	request.setAttribute("msgshort", "Wyk≈Çadowca dodany");
+	request.setAttribute("msglong", "Nowy wyk≈Çadowca zosta≈Ç dodany");
+	request.getRequestDispatcher("common/info.jsp").forward(request, response);
     }
 
 }

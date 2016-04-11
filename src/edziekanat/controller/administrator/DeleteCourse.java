@@ -40,7 +40,7 @@ public class DeleteCourse extends HttpServlet
 
 	request.setAttribute("msgshort", "Usunięto kierunek");
 	request.setAttribute("msglong", "Usunięto kierunek z wydziału: " + course.getFaculty().getName());
-	request.getRequestDispatcher("info.jsp").forward(request, response);
+	request.getRequestDispatcher("common/info.jsp").forward(request, response);
     }
 
 }

@@ -64,9 +64,9 @@ public class NewApplicationController extends HttpServlet
 		studentDAO.getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
 	new ApplicationDAO().insert(newApplication);
 	
-	request.setAttribute("msgshort", "Wniosek z�o�ony");
-	request.setAttribute("msglong", "Tw�j wniosek zosta� wys�any");
-	request.getRequestDispatcher("/info.jsp").forward(request, response);
+	request.setAttribute("msgshort", "Wniosek z?o?ony");
+	request.setAttribute("msglong", "Tw?j wniosek zosta? wys?any");
+	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	
     }
     

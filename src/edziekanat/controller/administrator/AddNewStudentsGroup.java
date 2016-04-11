@@ -44,7 +44,7 @@ public class AddNewStudentsGroup extends HttpServlet
 	
 	request.setAttribute("msgshort", "Grupa studencka dodana");
 	request.setAttribute("msglong", "Nowa grupa studencka została dodana");
-	request.getRequestDispatcher("/info.jsp").forward(request, response);
+	request.getRequestDispatcher("common/info.jsp").forward(request, response);
     }
 
 }
