@@ -84,6 +84,17 @@
 								</select>
 							</c:when>
 						</c:choose>
+						<h3 class="content-subhead">Typ wniosku:</h3>
+						<c:choose>
+							<c:when test="${!empty typeList}">
+								<select name="type">
+									<c:forEach items="${typeList}" var="type"
+											   varStatus="varStatus2">
+										<option value="${type.type_id}">${type.type_name}</option>
+									</c:forEach>
+								</select>
+							</c:when>
+						</c:choose>
 						<fieldset class="pure-group">
 							<input type="text" name="title" class="pure-input-1-2"
 								placeholder="Tytu³" required>

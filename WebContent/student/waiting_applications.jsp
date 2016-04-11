@@ -77,8 +77,8 @@
 											value="${application.dispatchDate}" /></td>
 								</tr>
 								<tr>
-									<td width="150px">Tytu³:</td>
-									<td colspan="3">${application.title}</td>
+									<td colspan="2">Typ: ${application.application_type.type_name}</td>
+									<td colspan="2">Tytu³: ${application.title}</td>
 								</tr>
 								<tr>
 									<td>Tre¶æ:</td>

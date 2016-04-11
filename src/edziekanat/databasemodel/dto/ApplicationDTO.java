@@ -127,4 +127,5 @@ public class ApplicationDTO implements Serializable
     public Application_typeDTO getApplication_type(){return application_type;}
 
     public void setApplication_type(Application_typeDTO application_type){this.application_type = application_type;}
+
 }
