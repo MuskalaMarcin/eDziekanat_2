@@ -65,7 +65,7 @@
         <sourceDirectory>src</sourceDirectory>
         <resources>
             <resource>
-                <directory>src/META-INF</directory>
+                <directory>src/resources</directory>
             </resource>
         </resources>
         <pluginManagement>
