@@ -7,6 +7,7 @@
         <non-jta-data-source>java:/comp/env/jdbc/edziekanat</non-jta-data-source>
 
         <class>edziekanat.databasemodel.dto.AdministratorDTO</class>
+        <class>edziekanat.databasemodel.dto.Application_typeDTO</class>
         <class>edziekanat.databasemodel.dto.ApplicationDTO</class>
         <class>edziekanat.databasemodel.dto.ClassroomDTO</class>
         <class>edziekanat.databasemodel.dto.CourseDTO</class>

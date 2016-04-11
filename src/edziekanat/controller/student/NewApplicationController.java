@@ -13,9 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.AdministratorDAO;
 import edziekanat.databasemodel.dao.ApplicationDAO;
+import edziekanat.databasemodel.dao.Application_typeDAO;
 import edziekanat.databasemodel.dao.StudentDAO;
 import edziekanat.databasemodel.dto.AdministratorDTO;
 import edziekanat.databasemodel.dto.ApplicationDTO;
+import edziekanat.databasemodel.dto.Application_typeDTO;
 
 /**
  * Servlet inserting new application into database.
@@ -57,12 +59,13 @@ public class NewApplicationController extends HttpServlet
 	newApplication.setDispatchDate(Calendar.getInstance().getTime());
 	newApplication.setStatus("Nierozpatrzony");
 	newApplication.setAdministrator(new AdministratorDAO().getEntity(Integer.parseInt(request.getParameter("id").toString())));
+	newApplication.setApplication_type(new Application_typeDAO().getEntity(Integer.parseInt(request.getParameter("type").toString())));
 	newApplication.setStudent(
 		studentDAO.getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
 	new ApplicationDAO().insert(newApplication);
 	
-	request.setAttribute("msgshort", "Wniosek z³o¿ony");
-	request.setAttribute("msglong", "Twój wniosek zosta³ wys³any");
+	request.setAttribute("msgshort", "Wniosek z?o?ony");
+	request.setAttribute("msglong", "Tw?j wniosek zosta? wys?any");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	
     }

@@ -12,8 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.bean.LoginBean;
+import edziekanat.databasemodel.dao.ApplicationDAO;
+import edziekanat.databasemodel.dao.Application_typeDAO;
 import edziekanat.databasemodel.dao.StudentDAO;
 import edziekanat.databasemodel.dto.AdministratorDTO;
+import edziekanat.databasemodel.dto.Application_typeDTO;
 import edziekanat.databasemodel.dto.StudentsGroupDTO;
 
 /**
@@ -48,13 +51,15 @@ public class GetAdministratorsController extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	List<AdministratorDTO> admins = new LinkedList<AdministratorDTO>();
-	for (StudentsGroupDTO group : new StudentDAO()
-		.getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId())
-		.getStudentsGroup())
+	List<Application_typeDTO> appTypes = new LinkedList<Application_typeDTO>();
+	for (StudentsGroupDTO group : new StudentDAO().getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()).getStudentsGroup())
 	{
 	    admins.addAll(group.getCourse().getFaculty().getUniversity().getAdministrator());
 	}
+	appTypes = new Application_typeDAO().getApplication_types();
+
 	request.setAttribute("adminList", removeDuplicates(admins));
+	request.setAttribute("typeList",appTypes);
 	request.getRequestDispatcher("student/newapplication").forward(request, response);
     }
 

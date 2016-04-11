@@ -49,6 +49,10 @@ public class ApplicationDTO implements Serializable
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "administrator_id")
     private AdministratorDTO administrator;
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "application_type_id")
+    private Application_typeDTO application_type;
+
 
     public Integer getId()
     {
@@ -119,4 +123,9 @@ public class ApplicationDTO implements Serializable
     {
 	this.administrator = administrator;
     }
+
+    public Application_typeDTO getApplication_type(){return application_type;}
+
+    public void setApplication_type(Application_typeDTO application_type){this.application_type = application_type;}
+
 }

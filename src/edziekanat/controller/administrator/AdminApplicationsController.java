@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.ApplicationDAO;
+import edziekanat.databasemodel.dao.Application_typeDAO;
 import edziekanat.databasemodel.dto.ApplicationDTO;
 
 /**
@@ -36,10 +37,19 @@ public class AdminApplicationsController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<ApplicationDTO> appsAdmin = new ApplicationDAO().getAdminWaitingApplications(
-		((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
+        request.setAttribute("typeList", new Application_typeDAO().getApplication_types());
+        if(request.getParameter("type")== null || request.getParameter("type").equals("all"))
+        {
+            request.setAttribute("waitingApplications",new ApplicationDAO().getAdminWaitingApplications(
+                    ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
+        }
+        else
+        {
+            Integer type = Integer.parseInt(request.getParameter("type"));
+            request.setAttribute("waitingApplications",new ApplicationDAO().getAdminWaitingApplications(
+                    ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId(),type));
+        }
 
-	request.setAttribute("waitingApplications", appsAdmin);
 
 	request.getRequestDispatcher("administrator/waitingapplications.jsp").forward(request, response);
     }

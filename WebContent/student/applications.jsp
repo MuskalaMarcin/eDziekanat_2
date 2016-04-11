@@ -87,8 +87,8 @@
 									<td colspan="3">Wniosek ${varStatus.index + 1}</td>
 								</tr>
 								<tr>
-									<td>Status:</td>
-									<td>${application.status}</td>
+									<td>Status: ${application.status}</td>
+									<td>Typ: ${application.application_type.type_name}</td>
 									<td>Data z³o¿enia:</td>
 									<td><fmt:formatDate pattern="dd.MM.yyyy"
 											value="${application.dispatchDate}" /></td>

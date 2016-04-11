@@ -9,6 +9,7 @@ public final class TableNames
     public static final String PASSWORD_RESET = "password_reset";
     public static final String ADMINISTRATOR = "administrator";
     public static final String APPLICATION = "application";
+    public static final String APPLICATION_TYPE = "application_type";
     public static final String CLASSROOM = "classroom";
     public static final String COURSE = "course";
     public static final String ENROLLMENT = "enrollment";
