@@ -81,6 +81,20 @@ public class ApplicationDAO extends DAOParentClass<ApplicationDTO>
     }
 
     /**
+     * Method getting all waiting admin applications by adminid and application type
+     *
+     * @param adminId
+     * @param type
+     * @return
+     */
+    public List<ApplicationDTO> getAdminWaitingApplications(Integer adminId, Integer type)
+    {
+        return getMultipleEntities("administrator_id = '" + adminId + "' and status = 'Nierozpatrzony' and application_type_id = '"+type+"'").stream()
+                .sorted((x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate())).collect(
+                        Collectors.toList());
+    }
+
+    /**
      * Method getting list of historial applications by adminid
      *
      * @param adminId
@@ -91,5 +105,19 @@ public class ApplicationDAO extends DAOParentClass<ApplicationDTO>
 	return getMultipleEntities("administrator_id = '" + adminId + "' and status != 'Nierozpatrzony'").stream()
 			.sorted((x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()))
 			.collect(Collectors.toList());
+    }
+
+    /**
+     * Method getting list of historial applications by adminid and application type
+     *
+     * @param adminId
+     * @param type
+     * @return
+     */
+    public List<ApplicationDTO> getAdminHistoricalApplications(Integer adminId, Integer type)
+    {
+        return getMultipleEntities("administrator_id = '" + adminId + "' and status != 'Nierozpatrzony' and application_type_id = '"+type+"'").stream()
+                .sorted((x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()))
+                .collect(Collectors.toList());
     }
 }

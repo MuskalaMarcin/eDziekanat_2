@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.ApplicationDAO;
+import edziekanat.databasemodel.dao.Application_typeDAO;
 
 /**
  * Servlet implementation class ApplicationsHistoryController
@@ -31,10 +32,19 @@ public class ApplicationsHistoryController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	request.setAttribute("historicalApplications", new ApplicationDAO().getAdminHistoricalApplications(
-		((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
-
-	request.getRequestDispatcher("administrator/applicationshistory.jsp").forward(request, response);
+        request.setAttribute("typeList", new Application_typeDAO().getApplication_types());
+        if(request.getParameter("type")== null || request.getParameter("type").equals("all"))
+        {
+            request.setAttribute("historicalApplications", new ApplicationDAO().getAdminHistoricalApplications(
+                    ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
+        }
+        else
+        {
+            Integer type = Integer.parseInt(request.getParameter("type"));
+            request.setAttribute("historicalApplications", new ApplicationDAO().getAdminHistoricalApplications(
+                    ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId(),type));
+        }
+	    request.getRequestDispatcher("administrator/applicationshistory.jsp").forward(request, response);
     }
 
 }

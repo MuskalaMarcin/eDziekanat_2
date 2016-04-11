@@ -61,17 +61,30 @@
 			<div class="content">
 				<h2 class="content-subhead">Historia wniosków:</h2>
 				<center>
+					<form action="http://localhost:8080/edziekanat/adminapplicationshistory" method=post class="pure-form">
+						<c:choose>
+							<c:when test="${!empty typeList}">
+								<select name="type">
+									<option  value="all">wszystkie</option>
+									<c:forEach items="${typeList}" var="type" varStatus="varStatus2">
+										<option  value="${type.type_id}">${type.type_name}</option>
+									</c:forEach>
+								</select>
+							</c:when>
+						</c:choose>
+						<button type="submit" class="pure-button pure-input-1-2 pure-button-primary">Filtruj</button>
+					</form>
 					<c:choose>
 						<c:when test="${empty historicalApplications }">
 						Brak rozpatrzonych wcze¶niej wniosków.
 						</c:when>
 						<c:otherwise>
-
 							<table class="pure-table pure-table-bordered">
 								<thead>
 									<tr>
 										<td>Nr</td>
 										<td>Tytu³</td>
+										<td>Typ</td>
 										<td>Opis</td>
 										<td>Data nadania</td>
 										<td>Imiê i nazwisko</td>
@@ -84,6 +97,7 @@
 										<tr>
 											<td>${varStatus.index + 1 }</td>
 											<td>${app.title }</td>
+											<td>${app.application_type.type_name}</td>
 											<td>${app.content }</td>
 											<td><fmt:formatDate pattern="dd.MM.yyyy"
 													value="${app.dispatchDate }" /></td>

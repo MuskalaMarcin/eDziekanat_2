@@ -56,7 +56,6 @@ public class GetAdministratorsController extends HttpServlet
 	{
 	    admins.addAll(group.getCourse().getFaculty().getUniversity().getAdministrator());
 	}
-		//TODO: POPRAWIC
 	appTypes = new Application_typeDAO().getApplication_types();
 
 	request.setAttribute("adminList", removeDuplicates(admins));
