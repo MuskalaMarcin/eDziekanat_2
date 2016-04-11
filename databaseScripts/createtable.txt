@@ -14,7 +14,8 @@ ALTER TABLE administrator ADD CONSTRAINT administrator_PK PRIMARY KEY ( id ) ;
 CREATE TABLE app_user
   (
     login            VARCHAR(128) NOT NULL ,
-    password         VARCHAR(128) NOT NULL ,
+    password         VARCHAR(256) NOT NULL ,
+	salt 			 VARCHAR(128) NOT NULL ,
     e_mail           VARCHAR(128) NOT NULL ,
     is_active        INTEGER NOT NULL ,
     user_role        VARCHAR(64) NOT NULL ,
@@ -24,6 +25,14 @@ CREATE TABLE app_user
   ) ;
 ALTER TABLE app_user ADD CONSTRAINT users_PK PRIMARY KEY ( login ) ;
 
+CREATE TABLE password_reset
+  (
+    id            	 VARCHAR(256) NOT NULL ,
+    is_active        INTEGER NOT NULL ,
+	request_date     DATE NOT NULL,
+	app_user_login   VARCHAR(128) NOT NULL
+  ) ;
+ALTER TABLE password_reset ADD CONSTRAINT password_reset_PK PRIMARY KEY ( id ) ;
 
 CREATE TABLE application
   (
@@ -250,6 +259,9 @@ ALTER TABLE university ADD CONSTRAINT university__UN UNIQUE ( name ) ;
 
 
 ALTER TABLE administrator ADD CONSTRAINT administrator_university_FK FOREIGN KEY ( university_id ) REFERENCES university ( id ) ON
+DELETE CASCADE ;
+
+ALTER TABLE password_reset ADD CONSTRAINT password_reset_appuser_FK FOREIGN KEY ( app_user_login ) REFERENCES app_user ( login ) ON
 DELETE CASCADE ;
 
 ALTER TABLE application ADD CONSTRAINT application_administrator_FK FOREIGN KEY ( administrator_id ) REFERENCES administrator ( id ) ON

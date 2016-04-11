@@ -16,6 +16,7 @@
         <class>edziekanat.databasemodel.dto.LecturerDTO</class>
         <class>edziekanat.databasemodel.dto.MessageDTO</class>
         <class>edziekanat.databasemodel.dto.PartialMarkDTO</class>
+        <class>edziekanat.databasemodel.dto.PasswordResetDTO</class>
         <class>edziekanat.databasemodel.dto.PaymentDTO</class>
         <class>edziekanat.databasemodel.dto.ScheduledClassesDTO</class>
         <class>edziekanat.databasemodel.dto.ScholarshipDTO</class>

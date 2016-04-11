@@ -45,7 +45,7 @@ public class DeleteMaterials extends HttpServlet
 
 	    request.setAttribute("msgshort", "Usuniêto plik");
 	    request.setAttribute("msglong", "Plik " + fileName + " zosta³ usuniêty z bazy danych.");
-	    request.getRequestDispatcher("/info.jsp").forward(request, response);
+	    request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	}
 	catch (Exception e)
 	{
@@ -53,7 +53,7 @@ public class DeleteMaterials extends HttpServlet
 	    request.setAttribute("msgshort", "B³±d");
 	    request.setAttribute("msglong",
 		    "Podczas usuwania twojego pliku " + fileName + " wyst±pi³ nieznany b³±d. Przepraszamy.");
-	    request.getRequestDispatcher("/error.jsp").forward(request, response);
+	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
 
     }

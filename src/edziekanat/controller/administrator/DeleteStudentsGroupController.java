@@ -40,14 +40,14 @@ public class DeleteStudentsGroupController extends HttpServlet
 
 	    request.setAttribute("msgshort", "Usunięto grupe studencką");
 	    request.setAttribute("msglong", "Usunięto grupę studencką: " + studentsGroup.getId());
-	    request.getRequestDispatcher("info.jsp").forward(request, response);
+	    request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	}
 	catch (Exception e)
 	{
 	    request.setAttribute("msgshort", "Błąd");
 	    request.setAttribute("msglong", "Podczas usuwania grupy studenckiej"
 		    + " wystąpił nieznany błąd. Przepraszamy.");
-	    request.getRequestDispatcher("error.jsp").forward(request, response);
+	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
     }
 

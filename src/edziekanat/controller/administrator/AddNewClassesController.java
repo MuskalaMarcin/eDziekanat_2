@@ -54,7 +54,7 @@ public class AddNewClassesController extends HttpServlet
 	{
 	    request.setAttribute("msgshort", "B³±d");
 	    request.setAttribute("msglong", "Wyst±pi³ nieznany b³±d podczas parsowania daty. Przepraszamy.");
-	    request.getRequestDispatcher("error.jsp").forward(request, response);
+	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
 	if (repeat == 0)
 	{
@@ -63,7 +63,7 @@ public class AddNewClassesController extends HttpServlet
 		request.setAttribute("msgshort", "B³±d");
 		request.setAttribute("msglong",
 			"Sala jest ju¿ zajêta w godzinach które postanowi³e¶ zarezerwowaæ. Spróbuj ponownie.");
-		request.getRequestDispatcher("error.jsp").forward(request, response);
+		request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	    }
 	}
 	else
@@ -78,14 +78,14 @@ public class AddNewClassesController extends HttpServlet
 		request.setAttribute("msgshort", "B³±d");
 		request.setAttribute("msglong",
 			"W przypadku powtarzajacych siê zajêæ musisz okre¶liæ ich koñcow± datê. Spróbuj ponownie.");
-		request.getRequestDispatcher("error.jsp").forward(request, response);
+		request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	    }
 	    if (startDate.after(endDate))
 	    {
 		request.setAttribute("msgshort", "B³±d");
 		request.setAttribute("msglong",
 			"W przypadku powtarzajacych siê zajêæ data zakoñczenia powtarzania musi byæ póniejsza ni¿ rozpoczêcia. Spróbuj ponownie.");
-		request.getRequestDispatcher("error.jsp").forward(request, response);
+		request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	    }
 	    if (!new ScheduledClassesDAO().insertNewRepeatedClasses(subject, classroom, repeat, startDate, endDate,
 		    startTime))
@@ -93,12 +93,12 @@ public class AddNewClassesController extends HttpServlet
 		request.setAttribute("msgshort", "B³±d");
 		request.setAttribute("msglong",
 			"Sala jest ju¿ zajêta w godzinach które postanowi³e¶ zarezerwowaæ. Spróbuj ponownie.");
-		request.getRequestDispatcher("error.jsp").forward(request, response);
+		request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	    }
 	}
 	request.setAttribute("msgshort", "Dodano nowe zajêcia");
 	request.setAttribute("msglong", "Dodano nowe zaplanowane zajêcia z przedimotu: " + subject.getName());
-	request.getRequestDispatcher("info.jsp").forward(request, response);
+	request.getRequestDispatcher("common/info.jsp").forward(request, response);
     }
 
 }

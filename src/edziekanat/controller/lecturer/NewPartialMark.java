@@ -53,7 +53,7 @@ public class NewPartialMark extends HttpServlet
 	new PartialMarkDAO().insert(partialMark);
 	request.setAttribute("msgshort", "Ocena dodana");
 	request.setAttribute("msglong", "Nowa ocena zosta³a dodana");
-	request.getRequestDispatcher("/info.jsp").forward(request, response);
+	request.getRequestDispatcher("common/info.jsp").forward(request, response);
     }
     
 }
