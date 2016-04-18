@@ -41,6 +41,8 @@ public class StudentMarks extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	SubjectDAO subjectDAO = new SubjectDAO();
+
 	List<PartialMarkDTO> partialMarks = new LinkedList<PartialMarkDTO>();
 	if (!request.getParameter("subjectId").isEmpty())
 	{
@@ -48,8 +50,6 @@ public class StudentMarks extends HttpServlet
 		    new SubjectDAO().getEntity(Integer.parseInt(request.getParameter("subjectId"))));
 	    partialMarks = new PartialMarkDAO().getStudentMarksFromSubject(Integer.parseInt(request.getParameter("subjectId")),
 		    Integer.parseInt(request.getParameter("studentId")));
-	    Collections.sort(partialMarks, (x, y) -> y.getIssueDate().compareTo(x.getIssueDate()));
-	    request.setAttribute("partialMarks", partialMarks);
 	}
 	else
 	{
@@ -61,10 +61,12 @@ public class StudentMarks extends HttpServlet
 		partialMarks.addAll(new PartialMarkDAO().getStudentMarksFromSubject(
 			Integer.parseInt(request.getParameter("studentId")), subjects.get(i).getId()));
 	    }
-	    Collections.sort(partialMarks, (x, y) -> y.getIssueDate().compareTo(x.getIssueDate()));
 	    request.setAttribute("subject", subjects);
-	    request.setAttribute("partialMarks", partialMarks);
 	}
+
+	subjectDAO.closeEntityManager();
+	Collections.sort(partialMarks, (x, y) -> y.getIssueDate().compareTo(x.getIssueDate()));
+	request.setAttribute("partialMarks", partialMarks);
 	request.setAttribute("student",
 		new StudentDAO().getEntity(Integer.parseInt(request.getParameter("studentId"))));
 

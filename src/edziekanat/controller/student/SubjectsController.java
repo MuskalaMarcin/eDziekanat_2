@@ -43,9 +43,10 @@ public class SubjectsController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-
-	List<SubjectDTO> subjects = new SubjectDAO()
+	SubjectDAO subjectDAO = new SubjectDAO();
+	List<SubjectDTO> subjects = subjectDAO
 		.getStudentSubjects(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
+
 	if (!subjects.isEmpty())
 	{
 	    List<Integer> semesterList = new LinkedList<Integer>();
@@ -89,6 +90,8 @@ public class SubjectsController extends HttpServlet
 	{
 	    request.setAttribute("noSubjects", true);
 	}
+
+	subjectDAO.closeEntityManager();
 	request.getRequestDispatcher("student/subjects").forward(request, response);
     }
 

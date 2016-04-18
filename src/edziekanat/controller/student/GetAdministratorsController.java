@@ -37,7 +37,7 @@ public class GetAdministratorsController extends HttpServlet
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -46,26 +46,32 @@ public class GetAdministratorsController extends HttpServlet
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<AdministratorDTO> admins = new LinkedList<AdministratorDTO>();
-	List<Application_typeDTO> appTypes = new LinkedList<Application_typeDTO>();
-	for (StudentsGroupDTO group : new StudentDAO().getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()).getStudentsGroup())
+	List<AdministratorDTO> admins = new LinkedList<>();
+
+	StudentDAO studentDAO = new StudentDAO();
+	for (StudentsGroupDTO group : studentDAO.getEntity(((LoginBean) request.getSession().getAttribute("loginBean"))
+			.getPersonId()).getStudentsGroup())
 	{
 	    admins.addAll(group.getCourse().getFaculty().getUniversity().getAdministrator());
 	}
-	appTypes = new Application_typeDAO().getApplication_types();
+	studentDAO.closeEntityManager();
+
+	Application_typeDAO application_typeDAO = new Application_typeDAO();
+	List<Application_typeDTO> appTypes = application_typeDAO.getApplication_types();
+	application_typeDAO.closeEntityManager();
 
 	request.setAttribute("adminList", removeDuplicates(admins));
-	request.setAttribute("typeList",appTypes);
+	request.setAttribute("typeList", appTypes);
 	request.getRequestDispatcher("student/newapplication").forward(request, response);
     }
 
     /**
      * Removes duplicated administrators, then sorts them by surname.
-     * 
+     *
      * @param admins
      * @return
      */

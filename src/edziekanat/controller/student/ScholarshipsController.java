@@ -44,8 +44,9 @@ public class ScholarshipsController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<ScholarshipDTO> scholarships = new ScholarshipDAO().getActiveStudentScholarships(
-		((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
+	ScholarshipDAO scholarshipDAO = new ScholarshipDAO();
+	List<ScholarshipDTO> scholarships = scholarshipDAO.getActiveStudentScholarships(
+			((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
 
 	if (!scholarships.isEmpty())
 	{
@@ -53,6 +54,8 @@ public class ScholarshipsController extends HttpServlet
 	    request.setAttribute("adminNames", adminNames);
 	    request.setAttribute("ownscholarships", scholarships);
 	}
+
+	scholarshipDAO.closeEntityManager();
 	request.getRequestDispatcher("student/scholarships").forward(request, response);
     }
 

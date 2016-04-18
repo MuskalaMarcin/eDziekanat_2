@@ -2,6 +2,7 @@ package edziekanat.controller.student;
 
 import java.io.IOException;
 
+import javax.security.auth.Subject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,11 +35,16 @@ public class LearningMaterialsController extends HttpServlet
     {
 	int subjectId = Integer.parseInt(request.getParameter("subjectId"));
 
-	request.setAttribute("subjectName", new SubjectDAO().getEntity(subjectId).getName());
-	request.setAttribute("learningMaterials", new LearningMaterialsDAO().getSubjectLearningMaterials(subjectId));
-	
+	SubjectDAO subjectDAO = new SubjectDAO();
+	request.setAttribute("subjectName", subjectDAO.getEntity(subjectId).getName());
+	subjectDAO.closeEntityManager();
+
+	LearningMaterialsDAO learningMaterialsDAO = new LearningMaterialsDAO();
+	request.setAttribute("learningMaterials", learningMaterialsDAO.getSubjectLearningMaterials(subjectId));
+	learningMaterialsDAO.closeEntityManager();
+
 	request.setAttribute("semesterList",
-		request.getParameter("semesterList").replaceAll("\\[", "").replaceAll("\\]", "").split(","));
+			request.getParameter("semesterList").replaceAll("\\[", "").replaceAll("\\]", "").split(","));
 
 	request.getRequestDispatcher("/student/learningmaterials.jsp").forward(request, response);
     }

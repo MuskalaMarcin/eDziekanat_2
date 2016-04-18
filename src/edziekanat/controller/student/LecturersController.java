@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,26 +40,25 @@ public class LecturersController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<LecturerBean> lecturers = new LinkedList<LecturerBean>();
-	for (StudentsGroupDTO group : new StudentDAO()
-		.getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId())
-		.getStudentsGroup())
-	{
-	    for (SubjectDTO subject : group.getSubject())
-	    {
-		LecturerDTO lecturer = subject.getLecturer();
-		lecturers.add(new LecturerBean(lecturer.getUser().getLogin(), subject.getName(),
-			lecturer.getName(), lecturer.getSurname(), lecturer.getUser().geteMail(),
-			lecturer.getPosition(), lecturer.getAcademicDegree()));
-	    }
-	}
+	StudentDAO studentDAO = new StudentDAO();
+
+	List<LecturerBean> lecturers = studentDAO
+			.getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId())
+			.getStudentsGroup().stream().map(g -> g.getSubject()).flatMap(s -> s.stream()).map(s -> {
+			    LecturerDTO lecturer = s.getLecturer();
+			    return new LecturerBean(lecturer.getUser().getLogin(), s.getName(),
+					    lecturer.getName(), lecturer.getSurname(), lecturer.getUser().geteMail(),
+					    lecturer.getPosition(), lecturer.getAcademicDegree());
+			}).collect(Collectors.toList());
+
+	studentDAO.closeEntityManager();
 	request.setAttribute("lecturers", removeDuplicates(lecturers));
 	request.getRequestDispatcher("student/lecturers").forward(request, response);
     }
 
     /**
      * Removes duplicated lecturers and adds subjects to list, then sorts them by surname.
-     * 
+     *
      * @param lecturers
      * @return
      */
