@@ -60,7 +60,7 @@ public class ManageApplications extends HttpServlet
 			    + " wyst±pi³ nieznany b³±d. Przepraszamy.");
 	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
-
+	appDao.closeEntityManager();
     }
 
 }

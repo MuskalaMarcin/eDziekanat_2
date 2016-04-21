@@ -41,7 +41,9 @@ public class AdminTimetableController extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	Integer selectedStudentsGroupId = Integer.parseInt(
-		request.getParameter("studentsGroupId") == null ? "-1" : request.getParameter("studentsGroupId"));
+			request.getParameter("studentsGroupId") == null ?
+					"-1" :
+					request.getParameter("studentsGroupId"));
 	request.setAttribute("studentsGroupList", new StudentsGroupDAO().getAllEntities());
 	if (selectedStudentsGroupId == -1)
 	{
@@ -49,14 +51,15 @@ public class AdminTimetableController extends HttpServlet
 	}
 	else
 	{
-	    List<ScheduledClassesDTO> scheduledClassesList = new ScheduledClassesDAO().getStudentsGroupClasses(selectedStudentsGroupId);
+	    List<ScheduledClassesDTO> scheduledClassesList = new ScheduledClassesDAO()
+			    .getStudentsGroupClasses(selectedStudentsGroupId);
 
 	    Calendar calendar = Calendar.getInstance();
 	    calendar.setFirstDayOfWeek(Calendar.MONDAY);
 	    Date currentDate = calendar.getTime();
 
 	    int selectedWeek = (request.getParameter("rqweek") == null ? calendar.get(Calendar.WEEK_OF_YEAR)
-		    : (Integer.parseInt(request.getParameter("rqweek")) % 53 + 53) % 53);
+			    : (Integer.parseInt(request.getParameter("rqweek")) % 53 + 53) % 53);
 	    request.setAttribute("currentWeek", selectedWeek == calendar.get(Calendar.WEEK_OF_YEAR));
 
 	    long maxTimeDiff = 180 * 24 * 60 * 60 * 1000L; // 180 days
@@ -65,7 +68,7 @@ public class AdminTimetableController extends HttpServlet
 		Date classDate = scheduledClassesList.get(i).getDate();
 		calendar.setTime(classDate);
 		if ((Math.abs(currentDate.getTime() - classDate.getTime())) > maxTimeDiff
-			|| calendar.get(Calendar.WEEK_OF_YEAR) != selectedWeek)
+				|| calendar.get(Calendar.WEEK_OF_YEAR) != selectedWeek)
 		{
 		    scheduledClassesList.remove(i);
 		    i--;
@@ -96,8 +99,8 @@ public class AdminTimetableController extends HttpServlet
 			{
 			    ScheduledClassesDTO schedClass = scheduledClassesList.get(z);
 			    if (schedClass.getDate().getDay() == calendar.getTime().getDay()
-				    && schedClass.getDate().getHours() == calendar.getTime().getHours()
-				    && schedClass.getDate().getMinutes() == calendar.getTime().getMinutes())
+					    && schedClass.getDate().getHours() == calendar.getTime().getHours()
+					    && schedClass.getDate().getMinutes() == calendar.getTime().getMinutes())
 			    {
 				rsClasses[i - 2][j] = schedClass;
 				scheduledClassesList.remove(schedClass);

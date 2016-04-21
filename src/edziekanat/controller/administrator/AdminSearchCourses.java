@@ -23,16 +23,8 @@ public class AdminSearchCourses extends HttpServlet
     private static final long serialVersionUID = 1L;
 
     /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AdminSearchCourses()
-    {
-	super();
-    }
-
-    /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -41,20 +33,22 @@ public class AdminSearchCourses extends HttpServlet
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	String faculty = request.getParameter("searchedFaculty").toString();
+	String faculty = request.getParameter("searchedFaculty");
 	if (!faculty.isEmpty())
 	{
-	    List<FacultyDTO> faculties = new FacultyDAO().getFacultyByName(faculty);
+	    FacultyDAO facultyDAO = new FacultyDAO();
+	    List<FacultyDTO> faculties = facultyDAO.getFacultyByName(faculty);
 	    List<CourseDTO> courses = new LinkedList<CourseDTO>();
 	    for (int i = 0; i < faculties.size(); i++)
 	    {
 		courses.addAll(faculties.get(i).getCourse());
 	    }
 	    request.setAttribute("courses", courses);
+	    facultyDAO.closeEntityManager();
 	}
 	request.getRequestDispatcher("admin/courses").forward(request, response);
     }

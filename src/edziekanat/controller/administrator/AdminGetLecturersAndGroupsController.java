@@ -42,8 +42,15 @@ public class AdminGetLecturersAndGroupsController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	request.setAttribute("lecturers", new LecturerDAO().getAllEntities());
-	request.setAttribute("studentsgroup", new StudentsGroupDAO().getAllEntities());
+	LecturerDAO lecturerDAO = new LecturerDAO();
+	StudentsGroupDAO studentsGroupDAO = new StudentsGroupDAO();
+
+	request.setAttribute("lecturers", lecturerDAO.getAllEntities());
+	request.setAttribute("studentsgroup", studentsGroupDAO.getAllEntities());
+
+	lecturerDAO.closeEntityManager();
+	studentsGroupDAO.closeEntityManager();
+
 	request.getRequestDispatcher("admin/newsubject").forward(request, response);
     }
 

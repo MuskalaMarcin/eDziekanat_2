@@ -40,8 +40,12 @@ public class AddNewClassesController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	SubjectDTO subject = new SubjectDAO().getEntity(Integer.parseInt(request.getParameter("subjectId")));
-	ClassroomDTO classroom = new ClassroomDAO().getEntity(Integer.parseInt(request.getParameter("classroomId")));
+	SubjectDAO subjectDAO = new SubjectDAO();
+	ClassroomDAO classroomDAO =new ClassroomDAO();
+	ScheduledClassesDAO scheduledClassesDAO =new ScheduledClassesDAO();
+
+	SubjectDTO subject = subjectDAO.getEntity(Integer.parseInt(request.getParameter("subjectId")));
+	ClassroomDTO classroom = classroomDAO.getEntity(Integer.parseInt(request.getParameter("classroomId")));
 	Integer repeat = Integer.parseInt(request.getParameter("repeat"));
 	DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 	Integer startTime = Integer.parseInt(request.getParameter("startTime"));
@@ -58,7 +62,7 @@ public class AddNewClassesController extends HttpServlet
 	}
 	if (repeat == 0)
 	{
-	    if (!new ScheduledClassesDAO().insertNewClasses(subject, classroom, startDate, startTime))
+	    if (!scheduledClassesDAO.insertNewClasses(subject, classroom, startDate, startTime))
 	    {
 		request.setAttribute("msgshort", "B³±d");
 		request.setAttribute("msglong",
@@ -87,7 +91,7 @@ public class AddNewClassesController extends HttpServlet
 			"W przypadku powtarzajacych siê zajêæ data zakoñczenia powtarzania musi byæ póniejsza ni¿ rozpoczêcia. Spróbuj ponownie.");
 		request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	    }
-	    if (!new ScheduledClassesDAO().insertNewRepeatedClasses(subject, classroom, repeat, startDate, endDate,
+	    if (!scheduledClassesDAO.insertNewRepeatedClasses(subject, classroom, repeat, startDate, endDate,
 		    startTime))
 	    {
 		request.setAttribute("msgshort", "B³±d");
@@ -96,6 +100,11 @@ public class AddNewClassesController extends HttpServlet
 		request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	    }
 	}
+
+	scheduledClassesDAO.closeEntityManager();
+	subjectDAO.closeEntityManager();
+	classroomDAO.closeEntityManager();
+
 	request.setAttribute("msgshort", "Dodano nowe zajêcia");
 	request.setAttribute("msglong", "Dodano nowe zaplanowane zajêcia z przedimotu: " + subject.getName());
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);

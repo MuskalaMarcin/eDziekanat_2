@@ -23,15 +23,8 @@ public class NewPartialMark extends HttpServlet
     private static final long serialVersionUID = 1L;
 
     /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public NewPartialMark()
-    {
-	super();
-    }
-    /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -40,20 +33,29 @@ public class NewPartialMark extends HttpServlet
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	PartialMarkDAO partialMarkDAO = new PartialMarkDAO();
+	SubjectDAO subjectDAO = new SubjectDAO();
+	TranscriptDAO transcriptDAO = new TranscriptDAO();
+
 	PartialMarkDTO partialMark = new PartialMarkDTO();
 	partialMark.setIssueDate(Calendar.getInstance().getTime());
-	partialMark.setMark(Float.parseFloat(request.getParameter("mark").toString()));
-	partialMark.setSubject(new SubjectDAO().getEntity(Integer.parseInt(request.getParameter("subject").toString())));
-	partialMark.setTranscript(new TranscriptDAO().getEntity(Integer.parseInt(request.getParameter("transcript").toString())));
-	
-	new PartialMarkDAO().insert(partialMark);
+	partialMark.setMark(Float.parseFloat(request.getParameter("mark")));
+	partialMark.setSubject(subjectDAO.getEntity(Integer.parseInt(request.getParameter("subject"))));
+	partialMark.setTranscript(transcriptDAO.getEntity(Integer.parseInt(request.getParameter("transcript"))));
+
+	partialMarkDAO.insert(partialMark);
+
+	partialMarkDAO.closeEntityManager();
+	subjectDAO.closeEntityManager();
+	transcriptDAO.closeEntityManager();
+
 	request.setAttribute("msgshort", "Ocena dodana");
 	request.setAttribute("msglong", "Nowa ocena zosta³a dodana");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
     }
-    
+
 }

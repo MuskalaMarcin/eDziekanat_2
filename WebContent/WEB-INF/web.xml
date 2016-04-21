@@ -391,6 +391,7 @@
         <web-resource-collection>
             <web-resource-name>HomePage</web-resource-name>
             <url-pattern>/home/*</url-pattern>
+            <url-pattern>/classrooms/*</url-pattern>
             <url-pattern>/sendmessage/*</url-pattern>
             <url-pattern>/messages/*</url-pattern>
             <url-pattern>/receivedmessages/*</url-pattern>
@@ -424,7 +425,6 @@
             <url-pattern>/adminsubjects/*</url-pattern>
             <url-pattern>/adminlecturers/*</url-pattern>
             <url-pattern>/adminstudents/*</url-pattern>
-            <url-pattern>/adminclassrooms/*</url-pattern>
             <url-pattern>/marksstatistics/*</url-pattern>
             <url-pattern>/applicationsstatistics/*</url-pattern>
             <url-pattern>/scholarshipstatistics/*</url-pattern>
@@ -490,7 +490,6 @@
             <url-pattern>/lecturersearchstudents/*</url-pattern>
             <url-pattern>/lecturersearchlecturers/*</url-pattern>
             <url-pattern>/lecturerlearningmaterials/*</url-pattern>
-            <url-pattern>/lecturerclassrooms/*</url-pattern>
             <url-pattern>/deletematerial/*</url-pattern>
             <url-pattern>/addlearningmaterials/*</url-pattern>
             <url-pattern>/studentmarks/*</url-pattern>

@@ -39,10 +39,16 @@ public class AdminCoursesController extends HttpServlet
     {
 	if (request.getAttribute("courses") == null)
 	{
-	    List<CourseDTO> courses =  new CourseDAO().getAllEntities();
+	    CourseDAO courseDAO = new CourseDAO();
+	    FacultyDAO facultyDAO = new FacultyDAO();
+
+	    List<CourseDTO> courses =  courseDAO.getAllEntities();
 	    Collections.sort(courses, (x, y) -> x.getName().compareTo(y.getName()));
 	    request.setAttribute("courses", courses);
-	    request.setAttribute("faculties", new FacultyDAO().getAllEntities());
+	    request.setAttribute("faculties", facultyDAO.getAllEntities());
+
+	    facultyDAO.closeEntityManager();
+	    courseDAO.closeEntityManager();
 	}
 	else
 	{

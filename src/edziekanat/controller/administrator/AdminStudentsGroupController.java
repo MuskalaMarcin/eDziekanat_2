@@ -26,7 +26,7 @@ public class AdminStudentsGroupController extends HttpServlet
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -35,36 +35,37 @@ public class AdminStudentsGroupController extends HttpServlet
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     @SuppressWarnings("unchecked")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	List<StudentsGroupDTO> studentsGroupDTOList;
+	List<CourseDTO> courses = (List<CourseDTO>) request.getAttribute("courses");
+
 	if (request.getParameter("courseid") == null)
 	{
-	    if (request.getAttribute("courses") == null || ((List<CourseDTO>) request.getAttribute("courses")).isEmpty())
+	    if (request.getAttribute("courses") == null || courses.isEmpty())
 	    {
-		List<StudentsGroupDTO> studentsgroup =   new StudentsGroupDAO().getAllEntities();
-		Collections.sort(studentsgroup, (x, y) -> x.getCourse().getName().compareTo(y.getCourse().getName()));
-		request.setAttribute("studentsgroup", studentsgroup);
+		studentsGroupDTOList = new StudentsGroupDAO().getAllEntities();
 	    }
 	    else
 	    {
-		List<CourseDTO> courses = (List<CourseDTO>) request.getAttribute("courses");
-		List<StudentsGroupDTO> studentsgroup = new LinkedList<StudentsGroupDTO>();
-		for (int i = 0; i < courses.size(); i++)
+		studentsGroupDTOList = new LinkedList<>();
+		for (CourseDTO course : courses)
 		{
-		    studentsgroup.addAll(courses.get(i).getStudentsGroup());
+		    studentsGroupDTOList.addAll(course.getStudentsGroup());
 		}
-		request.setAttribute("studentsgroup", studentsgroup);
 	    }
 	}
 	else
 	{
 	    CourseDTO course = new CourseDAO().getEntity(Integer.parseInt(request.getParameter("courseid")));
 	    request.setAttribute("course", course);
-	    request.setAttribute("studentsgroup", course.getStudentsGroup());
+	    studentsGroupDTOList = course.getStudentsGroup();
 	}
+	Collections.sort(studentsGroupDTOList, (x, y) -> x.getCourse().getName().compareTo(y.getCourse().getName()));
+	request.setAttribute("studentsgroup", studentsGroupDTOList);
 	request.getRequestDispatcher("admin/studentgroups").forward(request, response);
     }
 

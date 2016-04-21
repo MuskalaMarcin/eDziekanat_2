@@ -39,8 +39,11 @@ public class MarksStatistics extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<TranscriptDTO> transcripts = new TranscriptDAO().getAllEntities();
-	List<FacultyDTO> faculties = new FacultyDAO().getAllEntities();
+	TranscriptDAO transcriptDAO = new TranscriptDAO();
+	FacultyDAO facultyDAO = new FacultyDAO();
+
+	List<TranscriptDTO> transcripts = transcriptDAO.getAllEntities();
+	List<FacultyDTO> faculties = facultyDAO.getAllEntities();
 	List<LinkedList<String>> results = new LinkedList<LinkedList<String>>();
 	for (FacultyDTO faculty : faculties)
 	{
@@ -108,6 +111,10 @@ public class MarksStatistics extends HttpServlet
 
 	    results.add(partialResult);
 	}
+
+	facultyDAO.closeEntityManager();
+	transcriptDAO.closeEntityManager();
+
 	request.setAttribute("marksByFaculty", results);
 	request.getRequestDispatcher("administrator/marksstatistics.jsp").forward(request, response);
     }

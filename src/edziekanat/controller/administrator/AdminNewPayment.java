@@ -35,15 +35,23 @@ public class AdminNewPayment extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	PaymentDAO paymentDAO = new PaymentDAO();
+	StudentDAO studentDAO = new StudentDAO();
+	AdministratorDAO administratorDAO = new AdministratorDAO();
+
 	PaymentDTO payment = new PaymentDTO();
 	payment.setTitle(request.getParameter("title").toString());
 	payment.setDescription(request.getParameter("description").toString());
 	payment.setAmount(Float.parseFloat(request.getParameter("amount").toString()));
 	payment.setIssueDate(Calendar.getInstance().getTime());
-	payment.setStudent(new StudentDAO().getEntity(Integer.parseInt(request.getParameter("studentid"))));
-	payment.setAdministrator(new AdministratorDAO().getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
-	new PaymentDAO().insert(payment);
-	
+	payment.setStudent(studentDAO.getEntity(Integer.parseInt(request.getParameter("studentid"))));
+	payment.setAdministrator(administratorDAO.getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
+	paymentDAO.insert(payment);
+
+	paymentDAO.closeEntityManager();
+	studentDAO.closeEntityManager();
+	administratorDAO.closeEntityManager();
+
 	request.setAttribute("msgshort", "Należność dodana");
 	request.setAttribute("msglong", "Nowa naleeżność została dodana");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);

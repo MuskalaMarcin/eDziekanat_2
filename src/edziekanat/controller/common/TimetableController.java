@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.ScheduledClassesDAO;
+import edziekanat.databasemodel.dao.ScholarshipDAO;
 import edziekanat.databasemodel.dto.ScheduledClassesDTO;
 
 /**
@@ -40,15 +41,17 @@ public class TimetableController extends HttpServlet
     @SuppressWarnings("deprecation")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	ScheduledClassesDAO scheduledClassesDAO = new ScheduledClassesDAO();
+
 	List<ScheduledClassesDTO> scheduledClassesList = null;
 	if (request.isUserInRole("student"))
 	{
-	    scheduledClassesList = new ScheduledClassesDAO()
+	    scheduledClassesList = scheduledClassesDAO
 		    .getStudentsClasses(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
 	}
 	else if (request.isUserInRole("lecturer"))
 	{
-	    scheduledClassesList = new ScheduledClassesDAO()
+	    scheduledClassesList = scheduledClassesDAO
 		    .getLecturersClasses(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
 	}
 
@@ -114,6 +117,8 @@ public class TimetableController extends HttpServlet
 	    request.setAttribute("dayDates", dayDates);
 	}
 	request.setAttribute("selectedWeek", selectedWeek);
+
+	scheduledClassesDAO.closeEntityManager();
 
 	if (request.isUserInRole("student"))
 	    request.getRequestDispatcher("student/timetable.jsp").forward(request, response);

@@ -38,12 +38,19 @@ public class AdminStudentsScholarships extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<ScholarshipDTO> scholarships = new ScholarshipDAO()
-			.getAllStudentsScholarships(Integer.parseInt(request.getParameter("studentId")));
+	ScholarshipDAO scholarshipDAO = new ScholarshipDAO();
+	StudentDAO studentDAO = new StudentDAO();
+
+	Integer studentId = Integer.parseInt(request.getParameter("studentId"));
+
+	List<ScholarshipDTO> scholarships = scholarshipDAO.getAllStudentsScholarships(studentId);
 	Collections.sort(scholarships, (x, y) -> y.getEndDate().compareTo(x.getEndDate()));
 	request.setAttribute("scholarships", scholarships);
-	request.setAttribute("student",
-			new StudentDAO().getEntity(Integer.parseInt(request.getParameter("studentId"))));
+	request.setAttribute("student", studentDAO.getEntity(studentId));
+
+	scholarshipDAO.closeEntityManager();
+	studentDAO.closeEntityManager();
+
 	request.getRequestDispatcher("administrator/studentsscholarships.jsp").forward(request, response);
     }
 

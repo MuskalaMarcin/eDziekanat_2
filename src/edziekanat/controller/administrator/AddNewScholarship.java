@@ -14,10 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.bean.LoginBean;
-import edziekanat.databasemodel.dao.AdministratorDAO;
-import edziekanat.databasemodel.dao.ScholarshipDAO;
-import edziekanat.databasemodel.dao.ScholarshipTypeDAO;
-import edziekanat.databasemodel.dao.StudentDAO;
+import edziekanat.databasemodel.dao.*;
 import edziekanat.databasemodel.dto.ScholarshipDTO;
 
 /**
@@ -43,14 +40,18 @@ public class AddNewScholarship extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	ScholarshipTypeDAO scholarshipTypeDAO = new ScholarshipTypeDAO();
+	StudentDAO studentDAO = new StudentDAO();
+	AdministratorDAO administratorDAO = new AdministratorDAO();
+	ScholarshipDAO scholarshipDAO = new ScholarshipDAO();
+
 	ScholarshipDTO scholarship = new ScholarshipDTO();
 	DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
 	scholarship.setGrantDate(Calendar.getInstance().getTime());
-	scholarship.setScholarshipType(
-		new ScholarshipTypeDAO().getScholarshipByType(request.getParameter("type").toString()));
-	scholarship.setStudentId(new StudentDAO().getEntity(Integer.parseInt(request.getParameter("studentid"))));
-	scholarship.setAdministratorId(new AdministratorDAO().getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
+	scholarship.setScholarshipType(scholarshipTypeDAO.getScholarshipByType(request.getParameter("type")));
+	scholarship.setStudentId(studentDAO.getEntity(Integer.parseInt(request.getParameter("studentid"))));
+	scholarship.setAdministratorId(administratorDAO.getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
 	try
 	{
 	    scholarship.setEndDate(format.parse(request.getParameter("endDate")));
@@ -61,7 +62,12 @@ public class AddNewScholarship extends HttpServlet
 	    request.setAttribute("msglong",
 		    "Podano b³êdn± datê. Proszê spróbowaæ ponownie.");
 	}
-	new ScholarshipDAO().insert(scholarship);
+	scholarshipDAO.insert(scholarship);
+
+	scholarshipDAO.closeEntityManager();
+	scholarshipTypeDAO.closeEntityManager();
+	studentDAO.closeEntityManager();
+	administratorDAO.closeEntityManager();
 	
 	request.setAttribute("msgshort", "Stypendium przyznane");
 	request.setAttribute("msglong", "Stypendium zosta³o przyznane");

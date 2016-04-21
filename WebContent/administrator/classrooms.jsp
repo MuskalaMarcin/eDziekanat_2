@@ -21,7 +21,7 @@
 					<li class="pure-menu-item"><a href="admintimetable"
 						class="pure-menu-link">Plan zajêæ</a></li>
 					<li class="pure-menu-item menu-item-divided"><a
-						class="pure-menu-link" href="adminclassrooms">Dostêpno¶æ
+						class="pure-menu-link" href="classrooms">Dostêpno¶æ
 							sal</a></li>
 					<c:choose>
 						<c:when test="${noClassroom == true}">
@@ -30,7 +30,7 @@
 						</c:when>
 						<c:otherwise>
 							<li class="pure-menu-item">
-								<form action="adminclassrooms" method="post">
+								<form action="classrooms" method="post">
 									<input type="hidden" name="rqweek" value="${selectedWeek - 1}">
 									<input type="hidden" name="classroomId"
 										value="${selectedClassroom.number}">
@@ -45,7 +45,7 @@
 									</c:choose>
 							</a></li>
 							<li class="pure-menu-item">
-								<form action="adminclassrooms" method="post">
+								<form action="classrooms" method="post">
 									<input type="hidden" name="classroomId"
 										value="${selectedClassroom.number}"> <input
 										type="hidden" name="rqweek" value="${selectedWeek + 1}">
@@ -92,7 +92,7 @@
 					${selectedClassroom.number}
 				</h2>
 
-				<form class="pure-form" action="adminclassrooms" method=post>
+				<form class="pure-form" action="classrooms" method=post>
 					<fieldset>
 						<center>
 							<select name="classroomId" id="state">

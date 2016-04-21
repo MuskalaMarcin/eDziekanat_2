@@ -44,8 +44,11 @@ public class AdminGetStudentsGroup extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<StudentsGroupDTO> studentsgroup = new StudentsGroupDAO().getAllEntities();
+	StudentsGroupDAO studentsGroupDAO = new StudentsGroupDAO();
+	List<StudentsGroupDTO> studentsgroup = studentsGroupDAO.getAllEntities();
 	request.setAttribute("studentsgroup", studentsgroup);
+	studentsGroupDAO.closeEntityManager();
+
 	request.getRequestDispatcher("admin/newstudent").forward(request, response);
     }
 

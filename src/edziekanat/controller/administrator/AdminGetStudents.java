@@ -41,7 +41,10 @@ public class AdminGetStudents extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	request.setAttribute("students", new StudentDAO().getAllEntities());
+	StudentDAO studentDAO = new StudentDAO();
+	request.setAttribute("students", studentDAO.getAllEntities());
+	studentDAO.closeEntityManager();
+
 	request.getRequestDispatcher("admin/newpayment").forward(request, response);
     }
 

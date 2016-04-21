@@ -22,7 +22,7 @@
 					<li class="pure-menu-item"><a href="http://localhost:8080/edziekanat/admintimetable"
 						class="pure-menu-link">Plan zajêæ</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="http://localhost:8080/edziekanat/adminclassrooms">Dostêpno¶æ sal</a></li>
+						href="http://localhost:8080/edziekanat/classrooms">Dostêpno¶æ sal</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="http://localhost:8080/edziekanat/admincourses">Kierunki</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"

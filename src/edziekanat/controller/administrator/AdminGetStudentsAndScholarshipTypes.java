@@ -20,16 +20,8 @@ public class AdminGetStudentsAndScholarshipTypes extends HttpServlet
     private static final long serialVersionUID = 1L;
 
     /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AdminGetStudentsAndScholarshipTypes()
-    {
-	super();
-    }
-
-    /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -38,12 +30,19 @@ public class AdminGetStudentsAndScholarshipTypes extends HttpServlet
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	request.setAttribute("students", new StudentDAO().getAllEntities());
-	request.setAttribute("scholarships", new ScholarshipTypeDAO().getAllEntities());
+	StudentDAO studentDAO = new StudentDAO();
+	ScholarshipTypeDAO scholarshipTypeDAO = new ScholarshipTypeDAO();
+
+	request.setAttribute("students", studentDAO.getAllEntities());
+	request.setAttribute("scholarships", scholarshipTypeDAO.getAllEntities());
+
+	studentDAO.closeEntityManager();
+	scholarshipTypeDAO.closeEntityManager();
+
 	request.getRequestDispatcher("admin/newscholarship").forward(request, response);
     }
 

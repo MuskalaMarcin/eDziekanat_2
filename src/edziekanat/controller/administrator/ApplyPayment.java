@@ -34,6 +34,7 @@ public class ApplyPayment extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	PaymentDAO paymentDAO = new PaymentDAO();
+
 	PaymentDTO payment = paymentDAO.getEntity(Integer.parseInt(request.getParameter("paymentId")));
 	try
 	{
@@ -52,6 +53,7 @@ public class ApplyPayment extends HttpServlet
 	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
 
+	paymentDAO.closeEntityManager();
     }
 
 }

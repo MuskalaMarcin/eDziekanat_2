@@ -41,8 +41,8 @@ public class ReceivedMessagesController extends HttpServlet
 	LoginBean loginBean = (LoginBean) request.getSession().getAttribute("loginBean");
 	String messagesURL = "/" + loginBean.getUserRole() + "/receivedmessages";
 
-	List<MessageDTO> receivedMsg = new MessageDAO()
-		.getMultipleEntities("receiver_id = '" + loginBean.getLogin() + "'");
+	MessageDAO messageDAO = new MessageDAO();
+	List<MessageDTO> receivedMsg = messageDAO.getMultipleEntities("receiver_id = '" + loginBean.getLogin() + "'");
 
 	if (!receivedMsg.isEmpty())
 	{
@@ -52,6 +52,8 @@ public class ReceivedMessagesController extends HttpServlet
 	    request.setAttribute("senderNames", senderNames);
 	    request.setAttribute("receivedMessages", receivedMsg);
 	}
+
+	messageDAO.closeEntityManager();
 	getServletContext().getRequestDispatcher(messagesURL).forward(request, response);
     }
 

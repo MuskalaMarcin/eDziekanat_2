@@ -34,11 +34,13 @@ public class DeleteLecturer extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	LecturerDAO lecturerDAO = new LecturerDAO();
+	UserDAO userDAO =  new UserDAO();
+
 	try
 	{
-	    LecturerDAO lecturerDAO = new LecturerDAO();
 	    LecturerDTO lecturer = lecturerDAO.getEntity(Integer.parseInt(request.getParameter("lecturerId")));
-	    UserDAO userDAO =  new UserDAO();
+
 	    UserDTO user = userDAO.getLecturerUser(lecturer.getId());
 	    userDAO.remove(user);
 	    lecturerDAO.remove(lecturer);
@@ -55,6 +57,9 @@ public class DeleteLecturer extends HttpServlet
 		    + " wystąpił nieznany błąd. Przepraszamy.");
 	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
+
+	lecturerDAO.closeEntityManager();
+	userDAO.closeEntityManager();
     }
 
 }

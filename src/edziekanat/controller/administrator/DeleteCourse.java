@@ -34,10 +34,12 @@ public class DeleteCourse extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	CourseDAO coursedao = new CourseDAO();
-	CourseDTO course = coursedao.getEntity(Integer.parseInt(request.getParameter("courseid")));
-	coursedao.remove(course);
+	CourseDAO courseDAO = new CourseDAO();
 
+	CourseDTO course = courseDAO.getEntity(Integer.parseInt(request.getParameter("courseid")));
+	courseDAO.remove(course);
+
+	courseDAO.closeEntityManager();
 	request.setAttribute("msgshort", "Usunięto kierunek");
 	request.setAttribute("msglong", "Usunięto kierunek z wydziału: " + course.getFaculty().getName());
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);

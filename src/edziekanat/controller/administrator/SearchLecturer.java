@@ -42,24 +42,27 @@ public class SearchLecturer extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	LecturerDAO lecturerDAO = new LecturerDAO();
 	String name = request.getParameter("searchedName").toString();
 	String surname = request.getParameter("searchedSurname").toString();
-	if (!name.equals(""))
+
+	List<LecturerDTO> lecturers;
+	if (!name.isEmpty())
 	{
-	    List<LecturerDTO> lecturers = new LecturerDAO().getLecturersByNameAndSurname(name, surname);
-	    request.setAttribute("lecturers", removeDuplicates(lecturers));
+	    lecturers = lecturerDAO.getLecturersByNameAndSurname(name, surname);
 	}
 	else
 	{
-	    List<LecturerDTO> lecturers = new LecturerDAO().getLecturersBySurname(surname);
-	    request.setAttribute("lecturers", removeDuplicates(lecturers));
+	    lecturers = lecturerDAO.getLecturersBySurname(surname);
 	}
+	lecturerDAO.closeEntityManager();
+	request.setAttribute("lecturers", removeDuplicates(lecturers));
 	request.getRequestDispatcher("administrator/lecturers.jsp").forward(request, response);
     }
 
     /**
      * Removes duplicated lecturers, then sorts them by surname.
-     * 
+     *
      * @param lecturers
      * @return
      */

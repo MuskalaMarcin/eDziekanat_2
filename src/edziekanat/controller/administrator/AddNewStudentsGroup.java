@@ -35,12 +35,18 @@ public class AddNewStudentsGroup extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	CourseDAO courseDAO = new CourseDAO();
+	StudentsGroupDAO studentsGroupDAO = new StudentsGroupDAO();
+
 	StudentsGroupDTO studentsgroup = new StudentsGroupDTO();
 	@SuppressWarnings("unchecked")
 	List<CourseDTO> courses = (List<CourseDTO>) request.getAttribute("courses");
 	studentsgroup.setSemester(Integer.parseInt(request.getParameter("semester").toString()));
-	studentsgroup.setCourse(new CourseDAO().getEntity(Integer.parseInt(request.getParameter("id").toString())));
-	new StudentsGroupDAO().insert(studentsgroup);
+	studentsgroup.setCourse(courseDAO.getEntity(Integer.parseInt(request.getParameter("id").toString())));
+	studentsGroupDAO.insert(studentsgroup);
+
+	studentsGroupDAO.closeEntityManager();
+	courseDAO.closeEntityManager();
 	
 	request.setAttribute("msgshort", "Grupa studencka dodana");
 	request.setAttribute("msglong", "Nowa grupa studencka została dodana");

@@ -32,7 +32,7 @@
 							nowe zajêcia</a></li>
 
 					<li class="pure-menu-item menu-item-divided"><a
-						class="pure-menu-link" href="adminclassrooms">Dostêpno¶æ sal</a></li>
+						class="pure-menu-link" href="classrooms">Dostêpno¶æ sal</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="admincourses">Kierunki</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"

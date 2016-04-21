@@ -28,7 +28,7 @@ public class StudentMarks extends HttpServlet
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -37,38 +37,44 @@ public class StudentMarks extends HttpServlet
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	SubjectDAO subjectDAO = new SubjectDAO();
+	PartialMarkDAO partialMarkDAO = new PartialMarkDAO();
+	StudentDAO studentDAO = new StudentDAO();
+
+	String subjectIdString = request.getParameter("subjectId");
+	Integer studentId = Integer.parseInt(request.getParameter("studentId"));
 
 	List<PartialMarkDTO> partialMarks = new LinkedList<PartialMarkDTO>();
-	if (!request.getParameter("subjectId").isEmpty())
+	if (!subjectIdString.isEmpty())
 	{
-	    request.setAttribute("subject",
-		    new SubjectDAO().getEntity(Integer.parseInt(request.getParameter("subjectId"))));
-	    partialMarks = new PartialMarkDAO().getStudentMarksFromSubject(Integer.parseInt(request.getParameter("subjectId")),
-		    Integer.parseInt(request.getParameter("studentId")));
+	    Integer subjectId = Integer.parseInt(subjectIdString);
+	    request.setAttribute("subject", subjectDAO.getEntity(subjectId));
+	    partialMarks = new PartialMarkDAO().getStudentMarksFromSubject(subjectId, studentId);
 	}
 	else
 	{
-	    List<SubjectDTO> subjects = new SubjectDAO().getStudentAndLecturerSubjects(
-		    Integer.parseInt(request.getParameter("studentId")),
-		    ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
-	    for (int i = 0; i < subjects.size(); i++)
+	    List<SubjectDTO> subjectsList = subjectDAO.getStudentAndLecturerSubjects(studentId,
+			    ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
+
+	    for (SubjectDTO subject: subjectsList)
 	    {
-		partialMarks.addAll(new PartialMarkDAO().getStudentMarksFromSubject(
-			Integer.parseInt(request.getParameter("studentId")), subjects.get(i).getId()));
+		partialMarks.addAll(partialMarkDAO.getStudentMarksFromSubject(studentId, subject.getId()));
 	    }
-	    request.setAttribute("subject", subjects);
+	    request.setAttribute("subject", subjectsList);
 	}
 
-	subjectDAO.closeEntityManager();
+
 	Collections.sort(partialMarks, (x, y) -> y.getIssueDate().compareTo(x.getIssueDate()));
 	request.setAttribute("partialMarks", partialMarks);
-	request.setAttribute("student",
-		new StudentDAO().getEntity(Integer.parseInt(request.getParameter("studentId"))));
+	request.setAttribute("student",studentDAO.getEntity(studentId));
+
+	partialMarkDAO.closeEntityManager();
+	subjectDAO.closeEntityManager();
+	studentDAO.closeEntityManager();
 
 	request.getRequestDispatcher("lecturer/studentmarks.jsp").forward(request, response);
     }

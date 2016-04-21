@@ -44,7 +44,7 @@ public class NewPaymentsController extends HttpServlet
 	    request.setAttribute("selectedStudent", true);
 	    request.setAttribute("student", studentDAO.getEntity(studentId));
 	}
-	
+	studentDAO.closeEntityManager();
 	request.getRequestDispatcher("administrator/newpayment.jsp").forward(request, response);
     }
 

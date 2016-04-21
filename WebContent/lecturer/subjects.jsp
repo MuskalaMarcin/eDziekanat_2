@@ -24,7 +24,7 @@
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="lecturerseelecturers">Wyk³adowcy</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="lecturerclassrooms">Dostêpno¶æ sal</a></li>
+						href="classrooms">Dostêpno¶æ sal</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="timetable">Plan zajêæ</a></li>
 					<li class="pure-menu-item pure-menu-selected"><a

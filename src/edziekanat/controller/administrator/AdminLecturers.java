@@ -39,13 +39,15 @@ public class AdminLecturers extends HttpServlet
 	List<LecturerDTO> lecturers = new LinkedList<LecturerDTO>();
 	if (request.getParameter("lecturers") == null && request.getParameter("subjectId") == null)
 	{
-	    lecturers = new LecturerDAO().getAllEntities();
-
+	    LecturerDAO lecturerDAO = new LecturerDAO();
+	    lecturers = lecturerDAO.getAllEntities();
+	    lecturerDAO.closeEntityManager();
 	}
 	else if (request.getParameter("subjectId") != null)
 	{
-	    lecturers.add(new SubjectDAO().getEntity(Integer.parseInt(request.getParameter("subjectId"))).getLecturer());
-		   
+	    SubjectDAO subjectDAO = new SubjectDAO();
+	    lecturers.add(subjectDAO.getEntity(Integer.parseInt(request.getParameter("subjectId"))).getLecturer());
+	    subjectDAO.closeEntityManager();
 	}
 	else
 	{

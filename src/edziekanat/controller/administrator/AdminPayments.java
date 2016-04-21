@@ -32,9 +32,11 @@ public class AdminPayments extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	request.setAttribute("historyPayments", new PaymentDAO()
+	PaymentDAO paymentDAO = new PaymentDAO();
+	request.setAttribute("historyPayments", paymentDAO
 		.getAdminPaymentsHistory(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
-	
+	paymentDAO.closeEntityManager();
+
 	request.getRequestDispatcher("administrator/paymentshistory.jsp").forward(request, response);
     }
 

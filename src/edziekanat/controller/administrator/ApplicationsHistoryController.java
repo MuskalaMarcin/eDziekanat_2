@@ -32,19 +32,26 @@ public class ApplicationsHistoryController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        request.setAttribute("typeList", new Application_typeDAO().getApplication_types());
-        if(request.getParameter("type")== null || request.getParameter("type").equals("all"))
-        {
-            request.setAttribute("historicalApplications", new ApplicationDAO().getAdminHistoricalApplications(
-                    ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
-        }
-        else
-        {
-            Integer type = Integer.parseInt(request.getParameter("type"));
-            request.setAttribute("historicalApplications", new ApplicationDAO().getAdminHistoricalApplications(
-                    ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId(),type));
-        }
-	    request.getRequestDispatcher("administrator/applicationshistory.jsp").forward(request, response);
+	Application_typeDAO application_typeDAO = new Application_typeDAO();
+	ApplicationDAO applicationDAO = new ApplicationDAO();
+
+	request.setAttribute("typeList", application_typeDAO.getApplication_types());
+	if (request.getParameter("type") == null || request.getParameter("type").equals("all"))
+	{
+	    request.setAttribute("historicalApplications", applicationDAO.getAdminHistoricalApplications(
+			    ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
+	}
+	else
+	{
+	    Integer type = Integer.parseInt(request.getParameter("type"));
+	    request.setAttribute("historicalApplications", applicationDAO.getAdminHistoricalApplications(
+			    ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId(), type));
+	}
+
+	application_typeDAO.closeEntityManager();
+	applicationDAO.closeEntityManager();
+
+	request.getRequestDispatcher("administrator/applicationshistory.jsp").forward(request, response);
     }
 
 }

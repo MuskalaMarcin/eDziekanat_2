@@ -40,16 +40,19 @@ public class AddNewStudent extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	StudentDAO studentDAO = new StudentDAO();
+	UserDAO userDAO = new UserDAO();
+	StudentsGroupDAO studentsGroupDAO = new StudentsGroupDAO();
+
 	StudentDTO student = new StudentDTO();
 	student.setName(request.getParameter("name"));
 	student.setSurname(request.getParameter("surname"));
 	student.setAddress(request.getParameter("address"));
 	student.setAcademicDegree(request.getParameter("academicdegree"));
-	StudentsGroupDAO studentsGroupDAO = new StudentsGroupDAO();
 	StudentsGroupDTO studentsGroup = studentsGroupDAO
 			.getEntity(Integer.parseInt(request.getParameter("studentsgroupid")));
 	student.setStudentsGroup(Arrays.asList(studentsGroup));
-	new StudentDAO().insert(student);
+	studentDAO.insert(student);
 	studentsGroup.getStudent().add(student);
 	studentsGroupDAO.update(studentsGroup);
 
@@ -62,7 +65,11 @@ public class AddNewStudent extends HttpServlet
 	user.setPassword(PasswordUtils.getSHA512PasswordHash(request.getParameter("password"), salt));
 	user.setUserRole("student");
 	user.setStudent(student);
-	new UserDAO().insert(user);
+	userDAO.insert(user);
+
+	userDAO.closeEntityManager();
+	studentDAO.closeEntityManager();
+	studentsGroupDAO.closeEntityManager();
 
 	request.setAttribute("msgshort", "Student dodany");
 	request.setAttribute("msglong", "Nowy student został dodany");
