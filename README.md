@@ -24,3 +24,4 @@ password: Haslo123<br>
 1. admin: login: "admin" password: "admin"<br>
 2. student: login: "student" password: "student"<br>
 3. lecturer login: "wykladowca" password: "wykladowca"</p>
+
