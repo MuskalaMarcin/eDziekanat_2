@@ -41,8 +41,8 @@ public class AddNewClassesController extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	SubjectDAO subjectDAO = new SubjectDAO();
-	ClassroomDAO classroomDAO =new ClassroomDAO();
-	ScheduledClassesDAO scheduledClassesDAO =new ScheduledClassesDAO();
+	ClassroomDAO classroomDAO = new ClassroomDAO();
+	ScheduledClassesDAO scheduledClassesDAO = new ScheduledClassesDAO();
 
 	SubjectDTO subject = subjectDAO.getEntity(Integer.parseInt(request.getParameter("subjectId")));
 	ClassroomDTO classroom = classroomDAO.getEntity(Integer.parseInt(request.getParameter("classroomId")));
@@ -66,8 +66,14 @@ public class AddNewClassesController extends HttpServlet
 	    {
 		request.setAttribute("msgshort", "B³±d");
 		request.setAttribute("msglong",
-			"Sala jest ju¿ zajêta w godzinach które postanowi³e¶ zarezerwowaæ. Spróbuj ponownie.");
+				"Sala jest ju¿ zajêta w godzinach które postanowi³e¶ zarezerwowaæ. Spróbuj ponownie.");
 		request.getRequestDispatcher("common/error.jsp").forward(request, response);
+	    }
+	    else
+	    {
+		request.setAttribute("msgshort", "Dodano nowe zajêcia");
+		request.setAttribute("msglong", "Dodano nowe zaplanowane zajêcia z przedmiotu: " + subject.getName());
+		request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	    }
 	}
 	else
@@ -81,33 +87,36 @@ public class AddNewClassesController extends HttpServlet
 	    {
 		request.setAttribute("msgshort", "B³±d");
 		request.setAttribute("msglong",
-			"W przypadku powtarzajacych siê zajêæ musisz okre¶liæ ich koñcow± datê. Spróbuj ponownie.");
+				"W przypadku powtarzajacych siê zajêæ musisz okre¶liæ ich koñcow± datê. Spróbuj ponownie.");
 		request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	    }
 	    if (startDate.after(endDate))
 	    {
 		request.setAttribute("msgshort", "B³±d");
 		request.setAttribute("msglong",
-			"W przypadku powtarzajacych siê zajêæ data zakoñczenia powtarzania musi byæ póniejsza ni¿ rozpoczêcia. Spróbuj ponownie.");
+				"W przypadku powtarzajacych siê zajêæ data zakoñczenia powtarzania musi byæ póniejsza ni¿ rozpoczêcia. Spróbuj ponownie.");
 		request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	    }
-	    if (!scheduledClassesDAO.insertNewRepeatedClasses(subject, classroom, repeat, startDate, endDate,
-		    startTime))
+	    else if (!scheduledClassesDAO.insertNewRepeatedClasses(subject, classroom, repeat, startDate, endDate,
+			    startTime))
 	    {
 		request.setAttribute("msgshort", "B³±d");
 		request.setAttribute("msglong",
-			"Sala jest ju¿ zajêta w godzinach które postanowi³e¶ zarezerwowaæ. Spróbuj ponownie.");
+				"Sala jest ju¿ zajêta w godzinach które postanowi³e¶ zarezerwowaæ. Spróbuj ponownie.");
 		request.getRequestDispatcher("common/error.jsp").forward(request, response);
+	    }
+	    else
+	    {
+		request.setAttribute("msgshort", "Dodano nowe zajêcia");
+		request.setAttribute("msglong", "Dodano nowe zaplanowane zajêcia z przedmiotu: " + subject.getName());
+		request.getRequestDispatcher("common/info.jsp").forward(request, response);
+
 	    }
 	}
 
 	scheduledClassesDAO.closeEntityManager();
 	subjectDAO.closeEntityManager();
 	classroomDAO.closeEntityManager();
-
-	request.setAttribute("msgshort", "Dodano nowe zajêcia");
-	request.setAttribute("msglong", "Dodano nowe zaplanowane zajêcia z przedimotu: " + subject.getName());
-	request.getRequestDispatcher("common/info.jsp").forward(request, response);
     }
 
 }

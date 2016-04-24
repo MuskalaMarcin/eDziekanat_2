@@ -51,8 +51,9 @@ public class PaymentsController extends HttpServlet
 	    request.setAttribute("historyPayments",historyPayments);
 	}
 
-	paymentDAO.closeEntityManager();
 	request.getRequestDispatcher("student/payments").forward(request, response);
+
+	paymentDAO.closeEntityManager();
     }
 
 }

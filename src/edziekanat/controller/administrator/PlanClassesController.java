@@ -39,8 +39,9 @@ public class PlanClassesController extends HttpServlet
 	request.setAttribute("subjects", studentsGroup.getSubject());
 	request.setAttribute("classrooms", studentsGroup.getCourse().getFaculty().getClassroom());
 
-	studentsGroupDAO.closeEntityManager();
 	request.getRequestDispatcher("administrator/newclasses.jsp").forward(request, response);
+
+	studentsGroupDAO.closeEntityManager();
     }
 
 }

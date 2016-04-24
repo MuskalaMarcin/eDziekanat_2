@@ -44,13 +44,13 @@ public class AddNewStudentsGroup extends HttpServlet
 	studentsgroup.setSemester(Integer.parseInt(request.getParameter("semester").toString()));
 	studentsgroup.setCourse(courseDAO.getEntity(Integer.parseInt(request.getParameter("id").toString())));
 	studentsGroupDAO.insert(studentsgroup);
-
-	studentsGroupDAO.closeEntityManager();
-	courseDAO.closeEntityManager();
 	
 	request.setAttribute("msgshort", "Grupa studencka dodana");
 	request.setAttribute("msglong", "Nowa grupa studencka została dodana");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
+
+	studentsGroupDAO.closeEntityManager();
+	courseDAO.closeEntityManager();
     }
 
 }

@@ -53,8 +53,8 @@ public class ReceivedMessagesController extends HttpServlet
 	    request.setAttribute("receivedMessages", receivedMsg);
 	}
 
-	messageDAO.closeEntityManager();
 	getServletContext().getRequestDispatcher(messagesURL).forward(request, response);
+	messageDAO.closeEntityManager();
     }
 
     private void setReceivedDate(List<MessageDTO> receivedMsg)

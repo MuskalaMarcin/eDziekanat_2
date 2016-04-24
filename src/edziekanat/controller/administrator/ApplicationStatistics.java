@@ -80,11 +80,11 @@ public class ApplicationStatistics extends HttpServlet
 	    results.add(partialResult);
 	}
 
-	facultyDAO.closeEntityManager();
-	applicationDAO.closeEntityManager();
-
 	request.setAttribute("appsByFaculty", results);
 	request.getRequestDispatcher("administrator/aplicationsstatistics.jsp").forward(request, response);
+
+	facultyDAO.closeEntityManager();
+	applicationDAO.closeEntityManager();
     }
 
 }

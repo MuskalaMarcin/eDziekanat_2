@@ -48,11 +48,11 @@ public class AdminWaitingPaymentsController extends HttpServlet
 	    paymentsAdmin.retainAll(paymentsStudent);
 	}
 
-	paymentDAO.closeEntityManager();
-
 	request.setAttribute("waitingPayments", paymentsAdmin);
 
 	request.getRequestDispatcher("administrator/waitingpayments.jsp").forward(request, response);
+
+	paymentDAO.closeEntityManager();
     }
 
 }

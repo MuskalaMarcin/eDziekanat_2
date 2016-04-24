@@ -41,19 +41,22 @@ public class LecturersController extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	StudentDAO studentDAO = new StudentDAO();
+	Integer personId = ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId();
 
-	List<LecturerBean> lecturers = studentDAO
-			.getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId())
-			.getStudentsGroup().stream().map(g -> g.getSubject()).flatMap(s -> s.stream()).map(s -> {
+	List<LecturerBean> lecturers = studentDAO.getEntity(personId).getStudentsGroup().stream()
+			.map(g -> g.getSubject()).flatMap(s -> s.stream()).map(s -> {
+
 			    LecturerDTO lecturer = s.getLecturer();
 			    return new LecturerBean(lecturer.getUser().getLogin(), s.getName(),
 					    lecturer.getName(), lecturer.getSurname(), lecturer.getUser().geteMail(),
 					    lecturer.getPosition(), lecturer.getAcademicDegree());
+
 			}).collect(Collectors.toList());
 
-	studentDAO.closeEntityManager();
 	request.setAttribute("lecturers", removeDuplicates(lecturers));
 	request.getRequestDispatcher("student/lecturers").forward(request, response);
+
+	studentDAO.closeEntityManager();
     }
 
     /**

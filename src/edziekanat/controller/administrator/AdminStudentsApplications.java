@@ -46,9 +46,10 @@ public class AdminStudentsApplications extends HttpServlet
 	request.setAttribute("appsStudent", appsStudent);
 	request.setAttribute("student", studentDAO.getEntity(studentId));
 
+	request.getRequestDispatcher("administrator/studentsapplications.jsp").forward(request, response);
+
 	studentDAO.closeEntityManager();
 	applicationDAO.closeEntityManager();
-	request.getRequestDispatcher("administrator/studentsapplications.jsp").forward(request, response);
     }
 
 }

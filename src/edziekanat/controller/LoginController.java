@@ -56,8 +56,8 @@ public class LoginController extends HttpServlet
 	{
 	    request.getSession().setAttribute("loginError", "true");
 	}
-	userDAO.closeEntityManager();
 	response.sendRedirect((String) request.getSession().getAttribute("backURL"));
+	userDAO.closeEntityManager();
     }
 
     private LoginBean getLoginBean(HttpServletRequest request, UserDAO userDAO)

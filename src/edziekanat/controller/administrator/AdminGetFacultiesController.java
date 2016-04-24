@@ -38,9 +38,10 @@ public class AdminGetFacultiesController extends HttpServlet
     {
 	FacultyDAO facultyDAO = new FacultyDAO();
 	request.setAttribute("faculties", facultyDAO.getAllEntities());
-	facultyDAO.closeEntityManager();
 
 	request.getRequestDispatcher("admin/addcourse").forward(request, response);
+
+	facultyDAO.closeEntityManager();
     }
 
 }

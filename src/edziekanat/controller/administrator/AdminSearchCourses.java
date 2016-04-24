@@ -37,10 +37,11 @@ public class AdminSearchCourses extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	FacultyDAO facultyDAO = new FacultyDAO();
+
 	String faculty = request.getParameter("searchedFaculty");
 	if (!faculty.isEmpty())
 	{
-	    FacultyDAO facultyDAO = new FacultyDAO();
 	    List<FacultyDTO> faculties = facultyDAO.getFacultyByName(faculty);
 	    List<CourseDTO> courses = new LinkedList<CourseDTO>();
 	    for (int i = 0; i < faculties.size(); i++)
@@ -48,9 +49,11 @@ public class AdminSearchCourses extends HttpServlet
 		courses.addAll(faculties.get(i).getCourse());
 	    }
 	    request.setAttribute("courses", courses);
-	    facultyDAO.closeEntityManager();
 	}
 	request.getRequestDispatcher("admin/courses").forward(request, response);
+
+
+	facultyDAO.closeEntityManager();
     }
 
 }

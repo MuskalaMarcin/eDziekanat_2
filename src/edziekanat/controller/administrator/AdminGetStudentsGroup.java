@@ -47,9 +47,10 @@ public class AdminGetStudentsGroup extends HttpServlet
 	StudentsGroupDAO studentsGroupDAO = new StudentsGroupDAO();
 	List<StudentsGroupDTO> studentsgroup = studentsGroupDAO.getAllEntities();
 	request.setAttribute("studentsgroup", studentsgroup);
-	studentsGroupDAO.closeEntityManager();
 
 	request.getRequestDispatcher("admin/newstudent").forward(request, response);
+
+	studentsGroupDAO.closeEntityManager();
     }
 
 }

@@ -49,19 +49,17 @@ public class SeeLecturersController extends HttpServlet
     @SuppressWarnings("unchecked")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	LecturerDAO lecturerDAO = new LecturerDAO();
+
 	List<LecturerDTO> lecturers = new LinkedList<LecturerDTO>();
 	if (request.getParameter("lecturers") == null)
 	{
-	    LecturerDAO lecturerDAO = new LecturerDAO();
-
 	    Integer personId = ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId();
 
 	    for (FacultyDTO faculty : lecturerDAO.getEntity(personId).getFaculty())
 	    {
 		lecturers.addAll(faculty.getLecturer());
 	    }
-
-	    lecturerDAO.closeEntityManager();
 	}
 	else
 	{
@@ -70,6 +68,8 @@ public class SeeLecturersController extends HttpServlet
 
 	request.setAttribute("lecturers", removeDuplicates(lecturers));
 	request.getRequestDispatcher("lecturer/lecturers").forward(request, response);
+
+	lecturerDAO.closeEntityManager();
     }
 
     /**

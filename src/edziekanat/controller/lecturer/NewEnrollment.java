@@ -56,13 +56,13 @@ public class NewEnrollment extends HttpServlet
 
 	enrollmentDAO.insert(enrollment);
 
-	enrollmentDAO.closeEntityManager();
-	subjectDAO.closeEntityManager();
-	transcriptDAO.closeEntityManager();
-
 	request.setAttribute("msgshort", "Wpis dodana");
 	request.setAttribute("msglong", "Nowy wpis zosta³ dodany");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
+
+	enrollmentDAO.closeEntityManager();
+	subjectDAO.closeEntityManager();
+	transcriptDAO.closeEntityManager();
     }
     
 }

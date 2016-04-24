@@ -51,8 +51,9 @@ public class SentMessagesController extends HttpServlet
 	    request.setAttribute("sentMessages", sentMsg);
 	}
 
-	messageDAO.closeEntityManager();
 	getServletContext().getRequestDispatcher(messagesURL).forward(request, response);
+
+	messageDAO.closeEntityManager();
     }
 
     private List<String> getUserNames(List<MessageDTO> allMessage, boolean isSender)

@@ -91,8 +91,8 @@ public class SubjectsController extends HttpServlet
 	    request.setAttribute("noSubjects", true);
 	}
 
-	subjectDAO.closeEntityManager();
 	request.getRequestDispatcher("student/subjects").forward(request, response);
+	subjectDAO.closeEntityManager();
     }
 
 }

@@ -54,6 +54,8 @@ public class StudentsController extends HttpServlet
 				.map(SubjectDTO::getStudents_group).flatMap(s -> s.stream())
 				.map(StudentsGroupDTO::getStudent).flatMap(s -> s.stream())
 				.collect(Collectors.toList());
+		request.setAttribute("students", removeDuplicates(students));
+		request.getRequestDispatcher("lecturer/students").forward(request, response);
 
 		lecturerDAO.closeEntityManager();
 	    }
@@ -67,13 +69,13 @@ public class StudentsController extends HttpServlet
 		students = subject.getStudents_group().stream().map(StudentsGroupDTO::getStudent)
 				.flatMap(s -> s.stream()).collect(Collectors.toList());
 
-		subjectDAO.closeEntityManager();
 		request.setAttribute("subject", subject);
+		request.setAttribute("students", removeDuplicates(students));
+		request.getRequestDispatcher("lecturer/students").forward(request, response);
+
+		subjectDAO.closeEntityManager();
 	    }
 	}
-
-	request.setAttribute("students", removeDuplicates(students));
-	request.getRequestDispatcher("lecturer/students").forward(request, response);
     }
 
     /**

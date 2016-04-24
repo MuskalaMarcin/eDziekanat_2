@@ -72,11 +72,11 @@ public class StudentMarks extends HttpServlet
 	request.setAttribute("partialMarks", partialMarks);
 	request.setAttribute("student",studentDAO.getEntity(studentId));
 
+	request.getRequestDispatcher("lecturer/studentmarks.jsp").forward(request, response);
+
 	partialMarkDAO.closeEntityManager();
 	subjectDAO.closeEntityManager();
 	studentDAO.closeEntityManager();
-
-	request.getRequestDispatcher("lecturer/studentmarks.jsp").forward(request, response);
     }
 
 }

@@ -37,10 +37,11 @@ public class PartialMarksController extends HttpServlet
 		((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId(),
 		Integer.parseInt(request.getParameter("subjectId"))));
 
-	partialMarkDAO.closeEntityManager();
 	request.setAttribute("semesterList",
 		request.getParameter("semesterList").replaceAll("\\[", "").replaceAll("\\]", "").split(","));
 	request.getRequestDispatcher("/student/partialmarks.jsp").forward(request, response);
+
+	partialMarkDAO.closeEntityManager();
     }
 
 }

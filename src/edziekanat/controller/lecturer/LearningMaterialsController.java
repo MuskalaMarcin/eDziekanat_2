@@ -41,6 +41,9 @@ public class LearningMaterialsController extends HttpServlet
 	    LearningMaterialsDAO learningMaterialsDAO = new LearningMaterialsDAO();
 	    request.setAttribute("learningMaterials",learningMaterialsDAO.getLecturerLearningMaterials(
 			    ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
+
+	    request.getRequestDispatcher("lecturer/learningmaterials.jsp").forward(request, response);
+
 	    learningMaterialsDAO.closeEntityManager();
 	}
 	else
@@ -50,9 +53,12 @@ public class LearningMaterialsController extends HttpServlet
 	    subjectDAO.closeEntityManager();
 	    request.setAttribute("learningMaterials", subject.getLearningMaterials());
 	    request.setAttribute("subject", subject);
+
+	    request.getRequestDispatcher("lecturer/learningmaterials.jsp").forward(request, response);
+
+	    subjectDAO.closeEntityManager();
 	}
 
-	request.getRequestDispatcher("lecturer/learningmaterials.jsp").forward(request, response);
     }
 
 }

@@ -39,10 +39,11 @@ public class DeleteCourse extends HttpServlet
 	CourseDTO course = courseDAO.getEntity(Integer.parseInt(request.getParameter("courseid")));
 	courseDAO.remove(course);
 
-	courseDAO.closeEntityManager();
 	request.setAttribute("msgshort", "Usunięto kierunek");
 	request.setAttribute("msglong", "Usunięto kierunek z wydziału: " + course.getFaculty().getName());
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
+
+	courseDAO.closeEntityManager();
     }
 
 }

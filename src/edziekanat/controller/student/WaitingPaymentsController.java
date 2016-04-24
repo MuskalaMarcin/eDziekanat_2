@@ -49,8 +49,8 @@ public class WaitingPaymentsController extends HttpServlet
 	    request.setAttribute("adminLogins", adminLogins);
 	}
 
-	paymentDAO.closeEntityManager();
 	request.getRequestDispatcher("student/waiting_payments").forward(request, response);
+	paymentDAO.closeEntityManager();
     }
 
 }

@@ -68,13 +68,13 @@ public class AddNewLecturer extends HttpServlet
 	user.setLecturer(lecturer);
 	userDAO.insert(user);
 
-	userDAO.closeEntityManager();
-	lecturerDAO.closeEntityManager();
-	facultyDAO.closeEntityManager();
-
 	request.setAttribute("msgshort", "Wykładowca dodany");
 	request.setAttribute("msglong", "Nowy wykładowca został dodany");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
+
+	userDAO.closeEntityManager();
+	lecturerDAO.closeEntityManager();
+	facultyDAO.closeEntityManager();
     }
 
 }

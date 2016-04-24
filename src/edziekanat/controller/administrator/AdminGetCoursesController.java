@@ -47,9 +47,10 @@ public class AdminGetCoursesController extends HttpServlet
 	CourseDAO courseDAO = new CourseDAO();
 	List<CourseDTO> courses = courseDAO.getAllEntities();
 	request.setAttribute("courses", courses);
-	courseDAO.closeEntityManager();
 
 	request.getRequestDispatcher("admin/addstudentsgroup").forward(request, response);
+
+	courseDAO.closeEntityManager();
     }
 
 }

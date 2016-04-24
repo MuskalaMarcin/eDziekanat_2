@@ -51,13 +51,13 @@ public class AddNewSubject extends HttpServlet
 	subject.setStudents_group(studentsgroup);
 	subjectDAO.insert(subject);
 
-	subjectDAO.closeEntityManager();
-	lecturerDAO.closeEntityManager();
-	studentsGroupDAO.closeEntityManager();
-
 	request.setAttribute("msgshort", "Przedmiot dodany");
 	request.setAttribute("msglong", "Nowa przedmiot został dodany");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
+
+	subjectDAO.closeEntityManager();
+	lecturerDAO.closeEntityManager();
+	studentsGroupDAO.closeEntityManager();
     }
 
 }

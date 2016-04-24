@@ -33,20 +33,21 @@ public class LearningMaterialsController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	SubjectDAO subjectDAO = new SubjectDAO();
+	LearningMaterialsDAO learningMaterialsDAO = new LearningMaterialsDAO();
 	int subjectId = Integer.parseInt(request.getParameter("subjectId"));
 
-	SubjectDAO subjectDAO = new SubjectDAO();
 	request.setAttribute("subjectName", subjectDAO.getEntity(subjectId).getName());
-	subjectDAO.closeEntityManager();
 
-	LearningMaterialsDAO learningMaterialsDAO = new LearningMaterialsDAO();
 	request.setAttribute("learningMaterials", learningMaterialsDAO.getSubjectLearningMaterials(subjectId));
-	learningMaterialsDAO.closeEntityManager();
 
 	request.setAttribute("semesterList",
 			request.getParameter("semesterList").replaceAll("\\[", "").replaceAll("\\]", "").split(","));
 
 	request.getRequestDispatcher("/student/learningmaterials.jsp").forward(request, response);
+
+	subjectDAO.closeEntityManager();
+	learningMaterialsDAO.closeEntityManager();
     }
 
 }

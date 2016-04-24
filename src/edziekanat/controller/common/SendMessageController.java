@@ -49,12 +49,12 @@ public class SendMessageController extends HttpServlet
 
 	messageDAO.insert(newMessage);
 
-	messageDAO.closeEntityManager();
-	userDAO.closeEntityManager();
-
 	request.setAttribute("msgshort", "Wys³ano wiadomo¶æ");
 	request.setAttribute("msglong", "Twoja wiadomo¶æ zosta³a wys³ana.");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
+
+	messageDAO.closeEntityManager();
+	userDAO.closeEntityManager();
     }
 
 }

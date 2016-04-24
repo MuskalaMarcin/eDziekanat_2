@@ -63,15 +63,15 @@ public class AddNewScholarship extends HttpServlet
 		    "Podano b³êdn± datê. Proszê spróbowaæ ponownie.");
 	}
 	scholarshipDAO.insert(scholarship);
+	
+	request.setAttribute("msgshort", "Stypendium przyznane");
+	request.setAttribute("msglong", "Stypendium zosta³o przyznane");
+	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
 	scholarshipDAO.closeEntityManager();
 	scholarshipTypeDAO.closeEntityManager();
 	studentDAO.closeEntityManager();
 	administratorDAO.closeEntityManager();
-	
-	request.setAttribute("msgshort", "Stypendium przyznane");
-	request.setAttribute("msglong", "Stypendium zosta³o przyznane");
-	request.getRequestDispatcher("common/info.jsp").forward(request, response);
     }
 
 }

@@ -35,9 +35,10 @@ public class AdminScholarships extends HttpServlet
 	ScholarshipDAO scholarshipDAO = new ScholarshipDAO();
 	request.setAttribute("allScholarships", scholarshipDAO.getAllActiveAdminScholarships(
 		((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
-	scholarshipDAO.closeEntityManager();
 
 	request.getRequestDispatcher("administrator/scholarships.jsp").forward(request, response);
+
+	scholarshipDAO.closeEntityManager();
     }
 
 }

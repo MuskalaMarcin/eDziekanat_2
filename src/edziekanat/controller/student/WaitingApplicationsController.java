@@ -49,7 +49,7 @@ public class WaitingApplicationsController extends HttpServlet
 	    request.setAttribute("adminLogins", adminLogins);
 	}
 
-	applicationDAO.closeEntityManager();
 	request.getRequestDispatcher("student/waiting_applications").forward(request, response);
+	applicationDAO.closeEntityManager();
     }
 }

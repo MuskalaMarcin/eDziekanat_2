@@ -90,8 +90,8 @@ public class TranscriptController extends HttpServlet
 	    request.setAttribute("noEnrollments", true);
 	}
 
-	enrollmentDAO.closeEntityManager();
 	request.getRequestDispatcher("student/transcript").forward(request, response);
+	enrollmentDAO.closeEntityManager();
     }
 
 }

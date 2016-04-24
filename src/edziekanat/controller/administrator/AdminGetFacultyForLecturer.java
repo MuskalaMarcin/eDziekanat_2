@@ -38,9 +38,10 @@ public class AdminGetFacultyForLecturer extends HttpServlet
     {
 	FacultyDAO facultyDAO = new FacultyDAO();
 	request.setAttribute("faculties", facultyDAO.getAllEntities());
-	facultyDAO.closeEntityManager();
 
 	request.getRequestDispatcher("admin/newlecturer").forward(request, response);
+
+	facultyDAO.closeEntityManager();
     }
 
 }

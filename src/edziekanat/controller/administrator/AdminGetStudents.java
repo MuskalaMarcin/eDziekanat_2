@@ -43,9 +43,10 @@ public class AdminGetStudents extends HttpServlet
     {
 	StudentDAO studentDAO = new StudentDAO();
 	request.setAttribute("students", studentDAO.getAllEntities());
-	studentDAO.closeEntityManager();
 
 	request.getRequestDispatcher("admin/newpayment").forward(request, response);
+
+	studentDAO.closeEntityManager();
     }
 
 }

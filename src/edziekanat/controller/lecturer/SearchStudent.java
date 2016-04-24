@@ -61,6 +61,9 @@ public class SearchStudent extends HttpServlet
 	    {
 		studentsList = removeDuplicates(studentDAO.getStudentsByNameAndSurname(name, surname));
 	    }
+
+	    request.setAttribute("subject", studentsList);
+	    request.getRequestDispatcher("lecturer/students").forward(request, response);
 	}
 	else
 	{
@@ -75,12 +78,14 @@ public class SearchStudent extends HttpServlet
 
 	    SubjectDAO subjectDAO = new SubjectDAO();
 	    request.setAttribute("subject", subjectDAO.getEntity(subjectId));
+
+	    request.setAttribute("subject", studentsList);
+	    request.getRequestDispatcher("lecturer/students").forward(request, response);
+
 	    subjectDAO.closeEntityManager();
 	}
 
 	studentDAO.closeEntityManager();
-	request.setAttribute("subject", studentsList);
-	request.getRequestDispatcher("lecturer/students").forward(request, response);
     }
 
     /**

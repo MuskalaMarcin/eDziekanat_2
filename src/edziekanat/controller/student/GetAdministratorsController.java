@@ -50,23 +50,25 @@ public class GetAdministratorsController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	Application_typeDAO application_typeDAO = new Application_typeDAO();
+	StudentDAO studentDAO = new StudentDAO();
+
 	List<AdministratorDTO> admins = new LinkedList<>();
 
-	StudentDAO studentDAO = new StudentDAO();
 	for (StudentsGroupDTO group : studentDAO.getEntity(((LoginBean) request.getSession().getAttribute("loginBean"))
 			.getPersonId()).getStudentsGroup())
 	{
 	    admins.addAll(group.getCourse().getFaculty().getUniversity().getAdministrator());
 	}
-	studentDAO.closeEntityManager();
 
-	Application_typeDAO application_typeDAO = new Application_typeDAO();
 	List<Application_typeDTO> appTypes = application_typeDAO.getApplication_types();
-	application_typeDAO.closeEntityManager();
 
 	request.setAttribute("adminList", removeDuplicates(admins));
 	request.setAttribute("typeList", appTypes);
 	request.getRequestDispatcher("student/newapplication").forward(request, response);
+
+	studentDAO.closeEntityManager();
+	application_typeDAO.closeEntityManager();
     }
 
     /**

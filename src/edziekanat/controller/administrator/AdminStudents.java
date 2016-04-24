@@ -44,6 +44,9 @@ public class AdminStudents extends HttpServlet
 	{
 	    StudentDAO studentDAO = new StudentDAO();
 	    students = studentDAO.getAllEntities();
+
+	    forwardRequest(request, response, students);
+
 	    studentDAO.closeEntityManager();
 	}
 	else if (request.getParameter("studentsGroupId") != null)
@@ -52,12 +55,22 @@ public class AdminStudents extends HttpServlet
 	    StudentsGroupDTO studentsGroup = studentsGroupDAO.getEntity(Integer.parseInt(studentsGroupId));
 	    students = studentsGroup.getStudent();
 	    request.setAttribute("studentsgroup", studentsGroup);
+
+	    forwardRequest(request, response, students);
+
 	    studentsGroupDAO.closeEntityManager();
 	}
 	else
 	{
 	    students = (List<StudentDTO>) request.getAttribute("students");
+
+	    forwardRequest(request, response, students);
 	}
+    }
+
+    private void forwardRequest(HttpServletRequest request, HttpServletResponse response, List<StudentDTO> students)
+		    throws ServletException, IOException
+    {
 	request.setAttribute("students", students);
 	request.getRequestDispatcher("administrator/students.jsp").forward(request, response);
     }

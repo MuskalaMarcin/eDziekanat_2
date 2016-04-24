@@ -55,9 +55,10 @@ public class SearchLecturer extends HttpServlet
 	{
 	    lecturers = lecturerDAO.getLecturersBySurname(surname);
 	}
-	lecturerDAO.closeEntityManager();
 	request.setAttribute("lecturers", removeDuplicates(lecturers));
 	request.getRequestDispatcher("administrator/lecturers.jsp").forward(request, response);
+
+	lecturerDAO.closeEntityManager();
     }
 
     /**

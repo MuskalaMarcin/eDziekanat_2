@@ -73,11 +73,11 @@ public class StudentEnrollments extends HttpServlet
 	request.setAttribute("enrollments", enrollments);
 	request.setAttribute("student", studentDAO.getEntity(Integer.parseInt(request.getParameter("studentId"))));
 
+	request.getRequestDispatcher("lecturer/studentenrollments.jsp").forward(request, response);
+
 	subjectDAO.closeEntityManager();
 	studentDAO.closeEntityManager();
 	enrollmentDAO.closeEntityManager();
-
-	request.getRequestDispatcher("lecturer/studentenrollments.jsp").forward(request, response);
     }
 
 }

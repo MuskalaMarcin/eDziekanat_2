@@ -49,11 +49,12 @@ public class AdminSubjects extends HttpServlet
 
 	}
 
-	subjectDAO.closeEntityManager();
 	Collections.sort(subjects, (x, y) -> x.getName().compareTo(y.getName()));
 	request.setAttribute("subjects", subjects);
 
 	request.getRequestDispatcher("administrator/subjects.jsp").forward(request, response);
+
+	subjectDAO.closeEntityManager();
     }
 
 }

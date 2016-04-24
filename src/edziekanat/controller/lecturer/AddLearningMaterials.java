@@ -80,7 +80,7 @@ public class AddLearningMaterials extends HttpServlet
 	learningMaterialsDAO.closeEntityManager();
     }
 
-    private static String getSubmittedFileName(Part part)
+    private String getSubmittedFileName(Part part)
     {
 	for (String cd : part.getHeader("content-disposition").split(";"))
 	{

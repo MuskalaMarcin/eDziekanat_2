@@ -55,8 +55,8 @@ public class ScholarshipsController extends HttpServlet
 	    request.setAttribute("ownscholarships", scholarships);
 	}
 
-	scholarshipDAO.closeEntityManager();
 	request.getRequestDispatcher("student/scholarships").forward(request, response);
+	scholarshipDAO.closeEntityManager();
     }
 
     private List<String> getAdminNames(List<ScholarshipDTO> allScholarships)

@@ -53,6 +53,9 @@ public class AdminApplicationsController extends HttpServlet
 	}
 
 	request.getRequestDispatcher("administrator/waitingapplications.jsp").forward(request, response);
+
+	application_typeDAO.closeEntityManager();
+	applicationDAO.closeEntityManager();
     }
 
 }

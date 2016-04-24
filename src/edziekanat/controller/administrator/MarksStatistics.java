@@ -112,11 +112,11 @@ public class MarksStatistics extends HttpServlet
 	    results.add(partialResult);
 	}
 
-	facultyDAO.closeEntityManager();
-	transcriptDAO.closeEntityManager();
-
 	request.setAttribute("marksByFaculty", results);
 	request.getRequestDispatcher("administrator/marksstatistics.jsp").forward(request, response);
+
+	facultyDAO.closeEntityManager();
+	transcriptDAO.closeEntityManager();
     }
 
 }

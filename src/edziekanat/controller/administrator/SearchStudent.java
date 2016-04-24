@@ -77,8 +77,9 @@ public class SearchStudent extends HttpServlet
 	    studentsGroupDAO.closeEntityManager();
 	}
 	request.setAttribute("students", removeDuplicates(studentDTOList));
-	studentDAO.closeEntityManager();
 	request.getRequestDispatcher("administrator/students.jsp").forward(request, response);
+
+	studentDAO.closeEntityManager();
     }
 
     /**

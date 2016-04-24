@@ -59,10 +59,10 @@ public class SearchLecturer extends HttpServlet
 	    lecturers = lecturerDAO.getLecturersBySurname(surname);
 	}
 
-	lecturerDAO.closeEntityManager();
-
 	request.setAttribute("lecturers", removeDuplicates(lecturers));
 	request.getRequestDispatcher("lecturer/lecturers").forward(request, response);
+
+	lecturerDAO.closeEntityManager();
     }
 
     /**

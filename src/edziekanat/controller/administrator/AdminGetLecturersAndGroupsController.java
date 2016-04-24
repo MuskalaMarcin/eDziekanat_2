@@ -48,10 +48,10 @@ public class AdminGetLecturersAndGroupsController extends HttpServlet
 	request.setAttribute("lecturers", lecturerDAO.getAllEntities());
 	request.setAttribute("studentsgroup", studentsGroupDAO.getAllEntities());
 
+	request.getRequestDispatcher("admin/newsubject").forward(request, response);
+
 	lecturerDAO.closeEntityManager();
 	studentsGroupDAO.closeEntityManager();
-
-	request.getRequestDispatcher("admin/newsubject").forward(request, response);
     }
 
 }

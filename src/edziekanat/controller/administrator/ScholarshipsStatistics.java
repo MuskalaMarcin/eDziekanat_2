@@ -65,11 +65,11 @@ public class ScholarshipsStatistics extends HttpServlet
 	    results.add(partialResult);
 	}
 
-	scholarshipDAO.closeEntityManager();
-	facultyDAO.closeEntityManager();
-
 	request.setAttribute("schlByFaculty", results);
 	request.getRequestDispatcher("administrator/scholarshipstatistics.jsp").forward(request, response);
+
+	scholarshipDAO.closeEntityManager();
+	facultyDAO.closeEntityManager();
     }
 
 }

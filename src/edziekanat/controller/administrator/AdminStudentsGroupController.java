@@ -47,7 +47,13 @@ public class AdminStudentsGroupController extends HttpServlet
 	{
 	    if (request.getAttribute("courses") == null || courses.isEmpty())
 	    {
-		studentsGroupDTOList = new StudentsGroupDAO().getAllEntities();
+		StudentsGroupDAO studentsGroupDAO = new StudentsGroupDAO();
+
+		studentsGroupDTOList = studentsGroupDAO.getAllEntities();
+
+		forwardRequest(request, response, studentsGroupDTOList);
+
+		studentsGroupDAO.closeEntityManager();
 	    }
 	    else
 	    {
@@ -56,14 +62,27 @@ public class AdminStudentsGroupController extends HttpServlet
 		{
 		    studentsGroupDTOList.addAll(course.getStudentsGroup());
 		}
+
+		forwardRequest(request, response, studentsGroupDTOList);
 	    }
 	}
 	else
 	{
-	    CourseDTO course = new CourseDAO().getEntity(Integer.parseInt(request.getParameter("courseid")));
+	    CourseDAO courseDAO = new CourseDAO();
+
+	    CourseDTO course = courseDAO.getEntity(Integer.parseInt(request.getParameter("courseid")));
 	    request.setAttribute("course", course);
 	    studentsGroupDTOList = course.getStudentsGroup();
+
+	    forwardRequest(request, response, studentsGroupDTOList);
+
+	    courseDAO.closeEntityManager();
 	}
+    }
+
+    private void forwardRequest(HttpServletRequest request, HttpServletResponse response,
+		    List<StudentsGroupDTO> studentsGroupDTOList) throws ServletException, IOException
+    {
 	Collections.sort(studentsGroupDTOList, (x, y) -> x.getCourse().getName().compareTo(y.getCourse().getName()));
 	request.setAttribute("studentsgroup", studentsGroupDTOList);
 	request.getRequestDispatcher("admin/studentgroups").forward(request, response);

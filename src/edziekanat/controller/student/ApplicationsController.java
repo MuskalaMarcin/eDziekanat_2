@@ -61,8 +61,9 @@ public class ApplicationsController extends HttpServlet
 	    request.setAttribute("adminLogins", adminLogins);
 	}
 
-	applicationDAO.closeEntityManager();
 	request.getRequestDispatcher("student/applications").forward(request, response);
+
+	applicationDAO.closeEntityManager();
     }
 
 }

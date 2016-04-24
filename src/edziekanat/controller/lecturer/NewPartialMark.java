@@ -49,13 +49,13 @@ public class NewPartialMark extends HttpServlet
 
 	partialMarkDAO.insert(partialMark);
 
-	partialMarkDAO.closeEntityManager();
-	subjectDAO.closeEntityManager();
-	transcriptDAO.closeEntityManager();
-
 	request.setAttribute("msgshort", "Ocena dodana");
 	request.setAttribute("msglong", "Nowa ocena zosta³a dodana");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
+
+	partialMarkDAO.closeEntityManager();
+	subjectDAO.closeEntityManager();
+	transcriptDAO.closeEntityManager();
     }
 
 }

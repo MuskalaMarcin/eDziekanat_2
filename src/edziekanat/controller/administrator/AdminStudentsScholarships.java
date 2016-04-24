@@ -48,10 +48,10 @@ public class AdminStudentsScholarships extends HttpServlet
 	request.setAttribute("scholarships", scholarships);
 	request.setAttribute("student", studentDAO.getEntity(studentId));
 
+	request.getRequestDispatcher("administrator/studentsscholarships.jsp").forward(request, response);
+
 	scholarshipDAO.closeEntityManager();
 	studentDAO.closeEntityManager();
-
-	request.getRequestDispatcher("administrator/studentsscholarships.jsp").forward(request, response);
     }
 
 }

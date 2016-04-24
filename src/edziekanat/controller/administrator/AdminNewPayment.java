@@ -48,13 +48,13 @@ public class AdminNewPayment extends HttpServlet
 	payment.setAdministrator(administratorDAO.getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
 	paymentDAO.insert(payment);
 
-	paymentDAO.closeEntityManager();
-	studentDAO.closeEntityManager();
-	administratorDAO.closeEntityManager();
-
 	request.setAttribute("msgshort", "Należność dodana");
 	request.setAttribute("msglong", "Nowa naleeżność została dodana");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
+
+	paymentDAO.closeEntityManager();
+	studentDAO.closeEntityManager();
+	administratorDAO.closeEntityManager();
     }
 
 }

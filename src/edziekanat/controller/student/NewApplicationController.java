@@ -50,7 +50,11 @@ public class NewApplicationController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	@SuppressWarnings("unchecked")
+	ApplicationDAO applicationDAO = new ApplicationDAO();
+	AdministratorDAO administratorDAO = new AdministratorDAO();
+	Application_typeDAO application_typeDAO = new Application_typeDAO();
+	StudentDAO studentDAO = new StudentDAO();
+
 	List<AdministratorDTO> adminList = (List<AdministratorDTO>) request.getAttribute("adminList");
 	ApplicationDTO newApplication = new ApplicationDTO();
 	request.setAttribute("adminList", adminList);
@@ -59,31 +63,25 @@ public class NewApplicationController extends HttpServlet
 	newApplication.setDispatchDate(Calendar.getInstance().getTime());
 	newApplication.setStatus("Nierozpatrzony");
 
-	AdministratorDAO administratorDAO = new AdministratorDAO();
 	newApplication.setAdministrator(
 			administratorDAO.getEntity(Integer.parseInt(request.getParameter("id").toString())));
 
-	Application_typeDAO application_typeDAO = new Application_typeDAO();
 	newApplication.setApplication_type(
 			application_typeDAO.getEntity(Integer.parseInt(request.getParameter("type").toString())));
 
-	StudentDAO studentDAO = new StudentDAO();
-	newApplication.setStudent(
-			studentDAO.getEntity(
+	newApplication.setStudent(studentDAO.getEntity(
 					((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
 
-	ApplicationDAO applicationDAO = new ApplicationDAO();
 	applicationDAO.insert(newApplication);
-
-	studentDAO.closeEntityManager();
-	application_typeDAO.closeEntityManager();
-	administratorDAO.closeEntityManager();
-	applicationDAO.closeEntityManager();
 
 	request.setAttribute("msgshort", "Wniosek z?o?ony");
 	request.setAttribute("msglong", "Tw?j wniosek zosta? wys?any");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
+	studentDAO.closeEntityManager();
+	application_typeDAO.closeEntityManager();
+	administratorDAO.closeEntityManager();
+	applicationDAO.closeEntityManager();
     }
 
 }

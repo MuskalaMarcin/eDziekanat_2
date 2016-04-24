@@ -48,12 +48,12 @@ public class AdminAddCourseController extends HttpServlet
 
 	courseDAO.insert(course);
 
-	courseDAO.closeEntityManager();
-	facultyDAO.closeEntityManager();
-
 	request.setAttribute("msgshort", "Kierunek dodany");
 	request.setAttribute("msglong", "Nowy kierunek został dodany");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
+
+	courseDAO.closeEntityManager();
+	facultyDAO.closeEntityManager();
     }
 
 }

@@ -40,10 +40,10 @@ public class AdminGetStudentsAndScholarshipTypes extends HttpServlet
 	request.setAttribute("students", studentDAO.getAllEntities());
 	request.setAttribute("scholarships", scholarshipTypeDAO.getAllEntities());
 
+	request.getRequestDispatcher("admin/newscholarship").forward(request, response);
+
 	studentDAO.closeEntityManager();
 	scholarshipTypeDAO.closeEntityManager();
-
-	request.getRequestDispatcher("admin/newscholarship").forward(request, response);
     }
 
 }

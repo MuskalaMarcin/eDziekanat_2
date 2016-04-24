@@ -24,7 +24,7 @@ public class AdminCoursesController extends HttpServlet
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -33,32 +33,30 @@ public class AdminCoursesController extends HttpServlet
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
+    @SuppressWarnings("unchecked")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	CourseDAO courseDAO = new CourseDAO();
+	FacultyDAO facultyDAO = new FacultyDAO();
+	List<CourseDTO> courses;
+
 	if (request.getAttribute("courses") == null)
 	{
-	    CourseDAO courseDAO = new CourseDAO();
-	    FacultyDAO facultyDAO = new FacultyDAO();
-
-	    List<CourseDTO> courses =  courseDAO.getAllEntities();
-	    Collections.sort(courses, (x, y) -> x.getName().compareTo(y.getName()));
-	    request.setAttribute("courses", courses);
+	    courses = courseDAO.getAllEntities();
 	    request.setAttribute("faculties", facultyDAO.getAllEntities());
-
-	    facultyDAO.closeEntityManager();
-	    courseDAO.closeEntityManager();
 	}
 	else
 	{
-	    @SuppressWarnings("unchecked")
-	    List<CourseDTO> courses = (List<CourseDTO>) request.getAttribute("courses");
-	    Collections.sort(courses, (x, y) -> x.getName().compareTo(y.getName()));
-	    request.setAttribute("courses", courses);
+	    courses = (List<CourseDTO>) request.getAttribute("courses");
 	    request.setAttribute("faculties", courses.get(0).getFaculty());
 	}
+	Collections.sort(courses, (x, y) -> x.getName().compareTo(y.getName()));
+	request.setAttribute("courses", courses);
 	request.getRequestDispatcher("admin/courses").forward(request, response);
-    }
 
+	facultyDAO.closeEntityManager();
+	courseDAO.closeEntityManager();
+    }
 }

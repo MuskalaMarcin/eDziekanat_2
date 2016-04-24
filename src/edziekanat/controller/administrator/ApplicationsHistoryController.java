@@ -48,10 +48,10 @@ public class ApplicationsHistoryController extends HttpServlet
 			    ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId(), type));
 	}
 
+	request.getRequestDispatcher("administrator/applicationshistory.jsp").forward(request, response);
+
 	application_typeDAO.closeEntityManager();
 	applicationDAO.closeEntityManager();
-
-	request.getRequestDispatcher("administrator/applicationshistory.jsp").forward(request, response);
     }
 
 }

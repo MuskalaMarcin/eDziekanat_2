@@ -32,13 +32,14 @@ public class NewLearningMaterials extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	LecturerDAO lecturerDAO = new LecturerDAO();
 	Integer personId =((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId();
 
-	LecturerDAO lecturerDAO = new LecturerDAO();
 	request.setAttribute("subjects", lecturerDAO.getEntity(personId).getSubject());
-	lecturerDAO.closeEntityManager();
 
 	request.getRequestDispatcher("lecturer/newlearningmaterials.jsp").forward(request, response);
+
+	lecturerDAO.closeEntityManager();
     }
 
 }

@@ -35,9 +35,10 @@ public class AdminPayments extends HttpServlet
 	PaymentDAO paymentDAO = new PaymentDAO();
 	request.setAttribute("historyPayments", paymentDAO
 		.getAdminPaymentsHistory(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
-	paymentDAO.closeEntityManager();
 
 	request.getRequestDispatcher("administrator/paymentshistory.jsp").forward(request, response);
+
+	paymentDAO.closeEntityManager();
     }
 
 }

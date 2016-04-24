@@ -56,12 +56,12 @@ public class SetNewPassword extends HttpServlet
 		user.setSalt(salt);
 		userDAO.update(user);
 
-		userDAO.closeEntityManager();
-		passwordResetDAO.closeEntityManager();
-
 		request.setAttribute("msgshort", "Zmieniono has³o");
 		request.setAttribute("msglong", "Has³o zosta³o zmienione. Mo¿esz zalogowaæ siê do systemu.");
 		request.getRequestDispatcher("common/info.jsp").forward(request, response);
+
+		userDAO.closeEntityManager();
+		passwordResetDAO.closeEntityManager();
 	    }
 	    else
 	    {

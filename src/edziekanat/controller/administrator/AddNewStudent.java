@@ -67,13 +67,13 @@ public class AddNewStudent extends HttpServlet
 	user.setStudent(student);
 	userDAO.insert(user);
 
-	userDAO.closeEntityManager();
-	studentDAO.closeEntityManager();
-	studentsGroupDAO.closeEntityManager();
-
 	request.setAttribute("msgshort", "Student dodany");
 	request.setAttribute("msglong", "Nowy student został dodany");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
+
+	userDAO.closeEntityManager();
+	studentDAO.closeEntityManager();
+	studentsGroupDAO.closeEntityManager();
     }
 
 }

@@ -40,10 +40,10 @@ public class AdminStudentPayments extends HttpServlet
 	request.setAttribute("studentPayments", paymentDAO.getAllStudentPayments(studentId));
 	request.setAttribute("student", studentDAO.getEntity(studentId));
 
+	request.getRequestDispatcher("administrator/studentpayments.jsp").forward(request, response);
+
 	studentDAO.closeEntityManager();
 	paymentDAO.closeEntityManager();
-
-	request.getRequestDispatcher("administrator/studentpayments.jsp").forward(request, response);
     }
 
 }
