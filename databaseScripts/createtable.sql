@@ -1,4 +1,4 @@
-CREATE TABLE administrator
+﻿CREATE TABLE administrator
   (
     id              INTEGER NOT NULL ,
     name            VARCHAR(256) NOT NULL ,
@@ -16,7 +16,7 @@ CREATE TABLE app_user
     login            VARCHAR(128) NOT NULL ,
     password         VARCHAR(256) NOT NULL ,
 	salt 			 VARCHAR(128) NOT NULL ,
-    e_mail           VARCHAR(128) NOT NULL ,
+    e_mail           VARCHAR(128) NOT NULL UNIQUE,
     is_active        INTEGER NOT NULL ,
     user_role        VARCHAR(64) NOT NULL ,
     lecturer_id      INTEGER ,

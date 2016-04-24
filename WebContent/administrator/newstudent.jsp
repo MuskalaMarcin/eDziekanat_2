@@ -7,9 +7,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet"
-	href="http://localhost:8080/edziekanat/resources/pure-min.css">
+	href="resources/pure-min.css">
 <link rel="stylesheet"
-	href="http://localhost:8080/edziekanat/resources/styles.css">
+	href="resources/styles.css">
 <title>eDziekanat - Dodaj studenta</title>
 </head>
 <body>

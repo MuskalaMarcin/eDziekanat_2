@@ -43,7 +43,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/target/eDziekanat_2-0.1.1-SNAPSHOT/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="D:\Programy\GIT\eDziekanat_2\target/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="eDziekanat_2/web/Web" />
     </root>
