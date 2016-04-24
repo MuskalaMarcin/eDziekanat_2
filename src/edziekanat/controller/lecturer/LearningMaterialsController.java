@@ -50,7 +50,6 @@ public class LearningMaterialsController extends HttpServlet
 	{
 	    SubjectDAO subjectDAO = new SubjectDAO();
 	    SubjectDTO subject = subjectDAO.getEntity(Integer.parseInt(subjectIdString));
-	    subjectDAO.closeEntityManager();
 	    request.setAttribute("learningMaterials", subject.getLearningMaterials());
 	    request.setAttribute("subject", subject);
 
