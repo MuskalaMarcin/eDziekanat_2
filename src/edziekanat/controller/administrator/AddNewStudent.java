@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.RollbackException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,33 +41,44 @@ public class AddNewStudent extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	StudentDTO student = new StudentDTO();
-	student.setName(request.getParameter("name"));
-	student.setSurname(request.getParameter("surname"));
-	student.setAddress(request.getParameter("address"));
-	student.setAcademicDegree(request.getParameter("academicdegree"));
-	StudentsGroupDAO studentsGroupDAO = new StudentsGroupDAO();
-	StudentsGroupDTO studentsGroup = studentsGroupDAO
-			.getEntity(Integer.parseInt(request.getParameter("studentsgroupid")));
-	student.setStudentsGroup(Arrays.asList(studentsGroup));
-	new StudentDAO().insert(student);
-	studentsGroup.getStudent().add(student);
-	studentsGroupDAO.update(studentsGroup);
+		try
+		{
+			StudentDTO student = new StudentDTO();
+			student.setName(request.getParameter("name"));
+			student.setSurname(request.getParameter("surname"));
+			student.setAddress(request.getParameter("address"));
+			student.setAcademicDegree(request.getParameter("academicdegree"));
+			StudentsGroupDAO studentsGroupDAO = new StudentsGroupDAO();
+			StudentsGroupDTO studentsGroup = studentsGroupDAO.getEntity(Integer.parseInt(request.getParameter("studentsgroupid")));
+			student.setStudentsGroup(Arrays.asList(studentsGroup));
 
-	UserDTO user = new UserDTO();
-	user.setActive(1);
-	user.seteMail(request.getParameter("email"));
-	user.setLogin(request.getParameter("login"));
-	String salt = PasswordUtils.generateSalt();
-	user.setSalt(salt);
-	user.setPassword(PasswordUtils.getSHA512PasswordHash(request.getParameter("password"), salt));
-	user.setUserRole("student");
-	user.setStudent(student);
-	new UserDAO().insert(user);
 
-	request.setAttribute("msgshort", "Student dodany");
-	request.setAttribute("msglong", "Nowy student został dodany");
-	request.getRequestDispatcher("common/info.jsp").forward(request, response);
+			UserDTO user = new UserDTO();
+			user.setActive(1);
+			user.seteMail(request.getParameter("email"));
+			user.setLogin(request.getParameter("login"));
+			String salt = PasswordUtils.generateSalt();
+			user.setSalt(salt);
+			user.setPassword(PasswordUtils.getSHA512PasswordHash(request.getParameter("password"), salt));
+			user.setUserRole("student");
+			user.setStudent(student);
+			new UserDAO().insert(user);
+
+			new StudentDAO().insert(student);
+			studentsGroup.getStudent().add(student);
+			studentsGroupDAO.update(studentsGroup);
+
+
+			request.setAttribute("msgshort", "Student dodany");
+			request.setAttribute("msglong", "Nowy student został dodany");
+			request.getRequestDispatcher("common/info.jsp").forward(request, response);
+		}
+		catch (RollbackException ex)
+		{
+			request.setAttribute("errorshort", "Błąd");
+			request.setAttribute("errorlong", "Login lub email jest już używany");
+			request.getRequestDispatcher("common/error.jsp").forward(request, response);
+		}
     }
 
 }

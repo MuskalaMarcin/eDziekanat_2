@@ -76,9 +76,9 @@ public class AddNewLecturer extends HttpServlet
 		}
 		catch (RollbackException ex)
 		{
-			request.setAttribute("msgshort", "Błąd");
-			request.setAttribute("msglong", "Login lub email jest już używany");
-			request.getRequestDispatcher("common/info.jsp").forward(request, response);
+			request.setAttribute("errorshort", "Błąd");
+			request.setAttribute("errorlong", "Login lub email jest już używany");
+			request.getRequestDispatcher("common/error.jsp").forward(request, response);
 		}
     }
 
