@@ -38,11 +38,11 @@ public class DeleteMaterials extends HttpServlet
 	{
 	    LearningMaterialsDAO lmDAO = new LearningMaterialsDAO();
 	    LearningMaterialsDTO learningMaterial = lmDAO
-		    .getEntity(Integer.parseInt(request.getParameter("materialId")));
+			    .getEntity(Integer.parseInt(request.getParameter("materialId")));
 	    fileName = learningMaterial.getName();
 	    new File(learningMaterial.getFile()).delete();
 	    lmDAO.remove(learningMaterial);
-
+	    lmDAO.closeEntityManager();
 	    request.setAttribute("msgshort", "Usuniêto plik");
 	    request.setAttribute("msglong", "Plik " + fileName + " zosta³ usuniêty z bazy danych.");
 	    request.getRequestDispatcher("common/info.jsp").forward(request, response);
@@ -52,7 +52,7 @@ public class DeleteMaterials extends HttpServlet
 	    e.printStackTrace();
 	    request.setAttribute("msgshort", "B³±d");
 	    request.setAttribute("msglong",
-		    "Podczas usuwania twojego pliku " + fileName + " wyst±pi³ nieznany b³±d. Przepraszamy.");
+			    "Podczas usuwania twojego pliku " + fileName + " wyst±pi³ nieznany b³±d. Przepraszamy.");
 	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
 

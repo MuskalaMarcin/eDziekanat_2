@@ -23,7 +23,7 @@ public class AdminStudentsApplications extends HttpServlet
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -32,16 +32,24 @@ public class AdminStudentsApplications extends HttpServlet
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<ApplicationDTO> appsStudent = new ApplicationDAO().getApplications(Integer.parseInt(request.getParameter("studentId")));
+	ApplicationDAO applicationDAO = new ApplicationDAO();
+	StudentDAO studentDAO = new StudentDAO();
+	Integer studentId = Integer.parseInt(request.getParameter("studentId"));
 
-	appsStudent.addAll(new ApplicationDAO().getWaitingApplications(Integer.parseInt(request.getParameter("studentId"))));
+	List<ApplicationDTO> appsStudent = applicationDAO.getApplications(studentId);
+	appsStudent.addAll(applicationDAO.getWaitingApplications(studentId));
+
 	request.setAttribute("appsStudent", appsStudent);
-	request.setAttribute("student", new StudentDAO().getEntity(Integer.parseInt(request.getParameter("studentId"))));
+	request.setAttribute("student", studentDAO.getEntity(studentId));
+
 	request.getRequestDispatcher("administrator/studentsapplications.jsp").forward(request, response);
+
+	studentDAO.closeEntityManager();
+	applicationDAO.closeEntityManager();
     }
 
 }

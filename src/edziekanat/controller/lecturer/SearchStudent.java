@@ -43,42 +43,54 @@ public class SearchStudent extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	String name = request.getParameter("searchedName").toString();
-	String surname = request.getParameter("searchedSurname").toString();
-	Integer subjectId = Integer
-		.parseInt(request.getParameter("subjectId").isEmpty() ? "-1" : request.getParameter("subjectId"));
+	StudentDAO studentDAO = new StudentDAO();
+
+	String name = request.getParameter("searchedName");
+	String surname = request.getParameter("searchedSurname");
+	String subjectIdString = request.getParameter("subjectId");
+	Integer subjectId = Integer.parseInt(subjectIdString.isEmpty() ? "-1" : subjectIdString);
+
+	List<StudentDTO> studentsList;
 	if (subjectId == -1)
 	{
 	    if (name.isEmpty())
 	    {
-		request.setAttribute("students", removeDuplicates(new StudentDAO().getStudentsBySurname(surname)));
+		studentsList = removeDuplicates(studentDAO.getStudentsBySurname(surname));
 	    }
 	    else
 	    {
-		request.setAttribute("students",
-			removeDuplicates(new StudentDAO().getStudentsByNameAndSurname(name, surname)));
+		studentsList = removeDuplicates(studentDAO.getStudentsByNameAndSurname(name, surname));
 	    }
+
+	    request.setAttribute("subject", studentsList);
+	    request.getRequestDispatcher("lecturer/students").forward(request, response);
 	}
 	else
 	{
 	    if (name.isEmpty())
 	    {
-		request.setAttribute("students",
-			removeDuplicates(new StudentDAO().searchStudentsInSubject(surname, subjectId)));
+		studentsList = removeDuplicates(studentDAO.searchStudentsInSubject(surname, subjectId));
 	    }
 	    else
 	    {
-		request.setAttribute("students",
-			removeDuplicates(new StudentDAO().searchStudentsInSubject(name, surname, subjectId)));
+		studentsList = removeDuplicates(studentDAO.searchStudentsInSubject(name, surname, subjectId));
 	    }
-	    request.setAttribute("subject", new SubjectDAO().getEntity(subjectId));
+
+	    SubjectDAO subjectDAO = new SubjectDAO();
+	    request.setAttribute("subject", subjectDAO.getEntity(subjectId));
+
+	    request.setAttribute("subject", studentsList);
+	    request.getRequestDispatcher("lecturer/students").forward(request, response);
+
+	    subjectDAO.closeEntityManager();
 	}
-	request.getRequestDispatcher("lecturer/students").forward(request, response);
+
+	studentDAO.closeEntityManager();
     }
 
     /**
      * Removes duplicated students, then sorts them by surname.
-     * 
+     *
      * @param students
      * @return
      */

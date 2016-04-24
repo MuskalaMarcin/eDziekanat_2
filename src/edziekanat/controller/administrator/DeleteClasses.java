@@ -33,12 +33,15 @@ public class DeleteClasses extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	ScheduledClassesDAO scDAO = new ScheduledClassesDAO();
+
 	ScheduledClassesDTO sc = scDAO.getEntity(Integer.parseInt(request.getParameter("classes")));
 	scDAO.remove(sc);
 
 	request.setAttribute("msgshort", "Usunięto zajęcia");
 	request.setAttribute("msglong", "Usunięto zaplanowane zajęcia z przedimotu: " + sc.getSubject().getName());
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
+
+	scDAO.closeEntityManager();
     }
 
 }

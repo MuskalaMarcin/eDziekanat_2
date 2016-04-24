@@ -43,6 +43,8 @@ public class SetNewPassword extends HttpServlet
 	    if (password.length() >= 5)
 	    {
 		PasswordResetDAO passwordResetDAO = new PasswordResetDAO();
+		UserDAO userDAO = new UserDAO();
+
 		PasswordResetDTO passwordResetDTO = passwordResetDAO.getEntity(resetId);
 		passwordResetDTO.setIsActive(0);
 		passwordResetDAO.update(passwordResetDTO);
@@ -52,11 +54,14 @@ public class SetNewPassword extends HttpServlet
 		String hash = PasswordUtils.getSHA512PasswordHash(password, salt);
 		user.setPassword(hash);
 		user.setSalt(salt);
-		new UserDAO().update(user);
+		userDAO.update(user);
 
 		request.setAttribute("msgshort", "Zmieniono has³o");
 		request.setAttribute("msglong", "Has³o zosta³o zmienione. Mo¿esz zalogowaæ siê do systemu.");
 		request.getRequestDispatcher("common/info.jsp").forward(request, response);
+
+		userDAO.closeEntityManager();
+		passwordResetDAO.closeEntityManager();
 	    }
 	    else
 	    {

@@ -35,18 +35,24 @@ public class AdminWaitingPaymentsController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<PaymentDTO> paymentsAdmin = new PaymentDAO().getWaitingAdminPayments(
+	PaymentDAO paymentDAO = new PaymentDAO();
+
+	List<PaymentDTO> paymentsAdmin = paymentDAO.getWaitingAdminPayments(
 			((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
-	if (request.getParameter("studentId") != null)
+
+	String studentId = request.getParameter("studentId");
+
+	if (studentId != null)
 	{
-	    List<PaymentDTO> paymentsStudent = new PaymentDAO()
-			    .getAllStudentPayments(Integer.parseInt(request.getParameter("studentId")));
+	    List<PaymentDTO> paymentsStudent = paymentDAO.getAllStudentPayments(Integer.parseInt(studentId));
 	    paymentsAdmin.retainAll(paymentsStudent);
 	}
 
 	request.setAttribute("waitingPayments", paymentsAdmin);
 
 	request.getRequestDispatcher("administrator/waitingpayments.jsp").forward(request, response);
+
+	paymentDAO.closeEntityManager();
     }
 
 }

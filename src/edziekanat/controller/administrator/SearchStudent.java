@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import edziekanat.databasemodel.dao.StudentDAO;
 import edziekanat.databasemodel.dao.StudentsGroupDAO;
 import edziekanat.databasemodel.dto.StudentDTO;
+import edziekanat.databasemodel.dto.StudentsGroupDTO;
 
 /**
  * Servlet implementation class LecturerSearchStudent
@@ -43,42 +44,47 @@ public class SearchStudent extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	String name = request.getParameter("searchedName").toString();
-	String surname = request.getParameter("searchedSurname").toString();
-	Integer studentsGroupId = Integer
-		.parseInt(request.getParameter("studentsGroupId").isEmpty() ? "-1" : request.getParameter("subjectId"));
+	StudentDAO studentDAO = new StudentDAO();
+
+	String name = request.getParameter("searchedName");
+	String surname = request.getParameter("searchedSurname");
+	Integer studentsGroupId = Integer.parseInt(request.getParameter("studentsGroupId").isEmpty() ?
+			"-1" : request.getParameter("subjectId"));
+	List<StudentDTO> studentDTOList;
 	if (studentsGroupId == -1)
 	{
 	    if (name.isEmpty())
 	    {
-		request.setAttribute("students", removeDuplicates(new StudentDAO().getStudentsBySurname(surname)));
+		studentDTOList = studentDAO.getStudentsBySurname(surname);
 	    }
 	    else
 	    {
-		request.setAttribute("students",
-			removeDuplicates(new StudentDAO().getStudentsByNameAndSurname(name, surname)));
+		studentDTOList = studentDAO.getStudentsByNameAndSurname(name, surname);
 	    }
 	}
 	else
 	{
 	    if (name.isEmpty())
 	    {
-		request.setAttribute("students",
-			removeDuplicates(new StudentDAO().searchStudentsInStudentsGroup(surname, studentsGroupId)));
+		studentDTOList = studentDAO.searchStudentsInStudentsGroup(surname, studentsGroupId);
 	    }
 	    else
 	    {
-		request.setAttribute("students", removeDuplicates(
-			new StudentDAO().searchStudentsInStudentsGroup(name, surname, studentsGroupId)));
+		studentDTOList = studentDAO.searchStudentsInStudentsGroup(name, surname, studentsGroupId);
 	    }
-	    request.setAttribute("studentsGroup", new StudentsGroupDAO().getEntity(studentsGroupId));
+	    StudentsGroupDAO studentsGroupDAO = new StudentsGroupDAO();
+	    request.setAttribute("studentsGroup", studentsGroupDAO.getEntity(studentsGroupId));
+	    studentsGroupDAO.closeEntityManager();
 	}
+	request.setAttribute("students", removeDuplicates(studentDTOList));
 	request.getRequestDispatcher("administrator/students.jsp").forward(request, response);
+
+	studentDAO.closeEntityManager();
     }
 
     /**
      * Removes duplicated students, then sorts them by surname.
-     * 
+     *
      * @param students
      * @return
      */

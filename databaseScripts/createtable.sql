@@ -33,6 +33,7 @@ CREATE TABLE password_reset
 	app_user_login   VARCHAR(128) NOT NULL
   ) ;
 ALTER TABLE password_reset ADD CONSTRAINT password_reset_PK PRIMARY KEY ( id ) ;
+
 CREATE TABLE application_type
   (
     type_id    INTEGER NOT NULL ,
@@ -232,7 +233,7 @@ CREATE TABLE students_group_subject
     students_group_id INTEGER NOT NULL ,
     subject_id        INTEGER NOT NULL
   ) ;
-
+ALTER TABLE students_group_subject ADD CONSTRAINT students_group_subject_PK PRIMARY KEY ( students_group_id, subject_id ) ;
 
 CREATE TABLE subject
   (

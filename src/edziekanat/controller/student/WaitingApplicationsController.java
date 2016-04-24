@@ -35,8 +35,10 @@ public class WaitingApplicationsController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<ApplicationDTO> waitingApplications = new ApplicationDAO()
+	ApplicationDAO applicationDAO = new ApplicationDAO();
+	List<ApplicationDTO> waitingApplications = applicationDAO
 		.getWaitingApplications(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
+
 	if (!waitingApplications.isEmpty())
 	{
 	    List<String> adminLogins = new LinkedList<String>();
@@ -46,7 +48,8 @@ public class WaitingApplicationsController extends HttpServlet
 	    request.setAttribute("waitingApplications", waitingApplications);
 	    request.setAttribute("adminLogins", adminLogins);
 	}
-	
+
 	request.getRequestDispatcher("student/waiting_applications").forward(request, response);
+	applicationDAO.closeEntityManager();
     }
 }

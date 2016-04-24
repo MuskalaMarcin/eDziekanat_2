@@ -38,29 +38,31 @@ public class LoginController extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	request.getSession().setMaxInactiveInterval(3600);
+	UserDAO userDAO = new UserDAO();
 	try
 	{
 	    String username = request.getParameter("username");
 	    String password = request.getParameter("password");
-	    UserDTO user = new UserDAO().getEntity(username);
+	    UserDTO user = userDAO.getEntity(username);
 	    if (user == null)
 		throw new ServletException();
 	    else
 	    {
 		request.login(username, PasswordUtils.getSHA512PasswordHash(password, user.getSalt()));
 	    }
-	    request.getSession().setAttribute("loginBean", getLoginBean(request));
+	    request.getSession().setAttribute("loginBean", getLoginBean(request, userDAO));
 	}
 	catch (ServletException e)
 	{
 	    request.getSession().setAttribute("loginError", "true");
 	}
 	response.sendRedirect((String) request.getSession().getAttribute("backURL"));
+	userDAO.closeEntityManager();
     }
 
-    private LoginBean getLoginBean(HttpServletRequest request)
+    private LoginBean getLoginBean(HttpServletRequest request, UserDAO userDAO)
     {
-	UserDTO user = new UserDAO().getEntity(request.getUserPrincipal().getName());
+	UserDTO user = userDAO.getEntity(request.getUserPrincipal().getName());
 	switch (user.getUserRole())
 	{
 	case "admin":

@@ -40,8 +40,12 @@ public class AddNewClassesController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	SubjectDTO subject = new SubjectDAO().getEntity(Integer.parseInt(request.getParameter("subjectId")));
-	ClassroomDTO classroom = new ClassroomDAO().getEntity(Integer.parseInt(request.getParameter("classroomId")));
+	SubjectDAO subjectDAO = new SubjectDAO();
+	ClassroomDAO classroomDAO = new ClassroomDAO();
+	ScheduledClassesDAO scheduledClassesDAO = new ScheduledClassesDAO();
+
+	SubjectDTO subject = subjectDAO.getEntity(Integer.parseInt(request.getParameter("subjectId")));
+	ClassroomDTO classroom = classroomDAO.getEntity(Integer.parseInt(request.getParameter("classroomId")));
 	Integer repeat = Integer.parseInt(request.getParameter("repeat"));
 	DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 	Integer startTime = Integer.parseInt(request.getParameter("startTime"));
@@ -52,18 +56,24 @@ public class AddNewClassesController extends HttpServlet
 	}
 	catch (ParseException e)
 	{
-	    request.setAttribute("msgshort", "B³±d");
-	    request.setAttribute("msglong", "Wyst±pi³ nieznany b³±d podczas parsowania daty. Przepraszamy.");
+	    request.setAttribute("errorshort", "B³±d");
+	    request.setAttribute("errorlong", "Wyst±pi³ nieznany b³±d podczas parsowania daty. Przepraszamy.");
 	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
 	if (repeat == 0)
 	{
-	    if (!new ScheduledClassesDAO().insertNewClasses(subject, classroom, startDate, startTime))
+	    if (!scheduledClassesDAO.insertNewClasses(subject, classroom, startDate, startTime))
 	    {
-		request.setAttribute("msgshort", "B³±d");
-		request.setAttribute("msglong",
-			"Sala jest ju¿ zajêta w godzinach które postanowi³e¶ zarezerwowaæ. Spróbuj ponownie.");
+		request.setAttribute("errorshort", "B³±d");
+		request.setAttribute("errorlong",
+				"Sala jest ju¿ zajêta w godzinach które postanowi³e¶ zarezerwowaæ lub grupa ma ju¿ w tych godzinach zajêcia. Spróbuj ponownie.");
 		request.getRequestDispatcher("common/error.jsp").forward(request, response);
+	    }
+	    else
+	    {
+		request.setAttribute("msgshort", "Dodano nowe zajêcia");
+		request.setAttribute("msglong", "Dodano nowe zaplanowane zajêcia z przedmiotu: " + subject.getName());
+		request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	    }
 	}
 	else
@@ -75,30 +85,38 @@ public class AddNewClassesController extends HttpServlet
 	    }
 	    catch (ParseException e)
 	    {
-		request.setAttribute("msgshort", "B³±d");
-		request.setAttribute("msglong",
-			"W przypadku powtarzajacych siê zajêæ musisz okre¶liæ ich koñcow± datê. Spróbuj ponownie.");
+		request.setAttribute("errorshort", "B³±d");
+		request.setAttribute("errorlong",
+				"W przypadku powtarzajacych siê zajêæ musisz okre¶liæ ich koñcow± datê. Spróbuj ponownie.");
 		request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	    }
 	    if (startDate.after(endDate))
 	    {
-		request.setAttribute("msgshort", "B³±d");
-		request.setAttribute("msglong",
-			"W przypadku powtarzajacych siê zajêæ data zakoñczenia powtarzania musi byæ póniejsza ni¿ rozpoczêcia. Spróbuj ponownie.");
+		request.setAttribute("errorshort", "B³±d");
+		request.setAttribute("errorlong",
+				"W przypadku powtarzajacych siê zajêæ data zakoñczenia powtarzania musi byæ póniejsza ni¿ rozpoczêcia. Spróbuj ponownie.");
 		request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	    }
-	    if (!new ScheduledClassesDAO().insertNewRepeatedClasses(subject, classroom, repeat, startDate, endDate,
-		    startTime))
+	    else if (!scheduledClassesDAO.insertNewRepeatedClasses(subject, classroom, repeat, startDate, endDate,
+			    startTime))
 	    {
-		request.setAttribute("msgshort", "B³±d");
-		request.setAttribute("msglong",
-			"Sala jest ju¿ zajêta w godzinach które postanowi³e¶ zarezerwowaæ. Spróbuj ponownie.");
+		request.setAttribute("errorshort", "B³±d");
+		request.setAttribute("errorlong",
+				"Sala jest ju¿ zajêta w godzinach które postanowi³e¶ zarezerwowaæ lub grupa ma ju¿ w tych godzinach zajêcia. Spróbuj ponownie.");
 		request.getRequestDispatcher("common/error.jsp").forward(request, response);
+	    }
+	    else
+	    {
+		request.setAttribute("msgshort", "Dodano nowe zajêcia");
+		request.setAttribute("msglong", "Dodano nowe zaplanowane zajêcia z przedmiotu: " + subject.getName());
+		request.getRequestDispatcher("common/info.jsp").forward(request, response);
+
 	    }
 	}
-	request.setAttribute("msgshort", "Dodano nowe zajêcia");
-	request.setAttribute("msglong", "Dodano nowe zaplanowane zajêcia z przedimotu: " + subject.getName());
-	request.getRequestDispatcher("common/info.jsp").forward(request, response);
+
+	scheduledClassesDAO.closeEntityManager();
+	subjectDAO.closeEntityManager();
+	classroomDAO.closeEntityManager();
     }
 
 }

@@ -43,14 +43,17 @@ public class AdminSearchStudentGroups extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	String course = request.getParameter("searchedCourse").toString();
+	CourseDAO courseDAO = new CourseDAO();
+
+	String course = request.getParameter("searchedCourse");
 	if (!course.isEmpty())
 	{
-	    List<CourseDTO> courses = new CourseDAO().getCourseByName(course);
-	    System.out.println(courses.isEmpty());
+	    List<CourseDTO> courses = courseDAO.getCourseByName(course);
 	    request.setAttribute("courses", courses);
 	}
 	request.getRequestDispatcher("adminstudentgroups").forward(request, response);
+
+	courseDAO.closeEntityManager();
     }
 
 }

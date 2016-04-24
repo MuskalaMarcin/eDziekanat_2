@@ -35,8 +35,10 @@ public class WaitingPaymentsController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<PaymentDTO> waitingPayments = new PaymentDAO()
+	PaymentDAO paymentDAO = new PaymentDAO();
+	List<PaymentDTO> waitingPayments = paymentDAO
 		.getWaitingPayments(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
+
 	if (!waitingPayments.isEmpty())
 	{
 	    List<String> adminLogins = new LinkedList<String>();
@@ -46,8 +48,9 @@ public class WaitingPaymentsController extends HttpServlet
 	    request.setAttribute("waitingPayments", waitingPayments);
 	    request.setAttribute("adminLogins", adminLogins);
 	}
-	
+
 	request.getRequestDispatcher("student/waiting_payments").forward(request, response);
+	paymentDAO.closeEntityManager();
     }
 
 }

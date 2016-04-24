@@ -42,13 +42,18 @@ public class PaymentsController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<PaymentDTO> historyPayments =  new PaymentDAO()
+	PaymentDAO paymentDAO = new PaymentDAO();
+	List<PaymentDTO> historyPayments =  paymentDAO
 		.getPaymentsHistory(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
+
 	if(!historyPayments.isEmpty())
 	{
 	    request.setAttribute("historyPayments",historyPayments);
 	}
+
 	request.getRequestDispatcher("student/payments").forward(request, response);
+
+	paymentDAO.closeEntityManager();
     }
 
 }

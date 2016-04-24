@@ -40,21 +40,24 @@ public class TranscriptController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<EnrollmentDTO> enrollments = new EnrollmentDAO().getAllStudentEnrollments(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
+	EnrollmentDAO enrollmentDAO = new EnrollmentDAO();
+	List<EnrollmentDTO> enrollments = enrollmentDAO.getAllStudentEnrollments(
+			((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
+
 	if (!enrollments.isEmpty())
 	{
 	    List<Integer> semesterList = new LinkedList<Integer>();
-	    for (EnrollmentDTO enrollment: enrollments)
+	    for (EnrollmentDTO enrollment : enrollments)
 	    {
 		if (!semesterList.contains(enrollment.getSubject().getSemester()))
 		{
 		    semesterList.add(enrollment.getSubject().getSemester());
 		}
 	    }
-	 
+
 	    if (request.getParameter("rqsemester") == null)
 	    {
-		
+
 		for (int i = 0; i < enrollments.size(); i++)
 		{
 		    if (enrollments.get(i).getSubject().getSemester().compareTo(semesterList.get(0)) != 0)
@@ -88,6 +91,7 @@ public class TranscriptController extends HttpServlet
 	}
 
 	request.getRequestDispatcher("student/transcript").forward(request, response);
+	enrollmentDAO.closeEntityManager();
     }
 
 }

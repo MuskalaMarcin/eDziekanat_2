@@ -37,8 +37,11 @@ public class ScholarshipsStatistics extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<ScholarshipDTO> scholarships = new ScholarshipDAO().getAllEntities();
-	List<FacultyDTO> faculties = new FacultyDAO().getAllEntities();
+	ScholarshipDAO scholarshipDAO = new ScholarshipDAO();
+	FacultyDAO facultyDAO = new FacultyDAO();
+
+	List<ScholarshipDTO> scholarships = scholarshipDAO.getAllEntities();
+	List<FacultyDTO> faculties = facultyDAO.getAllEntities();
 	List<LinkedList<String>> results = new LinkedList<LinkedList<String>>();
 	for (FacultyDTO faculty : faculties)
 	{
@@ -61,8 +64,12 @@ public class ScholarshipsStatistics extends HttpServlet
 	    partialResult.add(String.valueOf(Math.round(schlAmount / schlNumber)));
 	    results.add(partialResult);
 	}
+
 	request.setAttribute("schlByFaculty", results);
 	request.getRequestDispatcher("administrator/scholarshipstatistics.jsp").forward(request, response);
+
+	scholarshipDAO.closeEntityManager();
+	facultyDAO.closeEntityManager();
     }
 
 }

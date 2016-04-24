@@ -38,24 +38,41 @@ public class AdminStudents extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	List<StudentDTO> students;
-	if (request.getParameter("students") == null && request.getParameter("studentsGroupId") == null)
-	{
-	    students = new StudentDAO().getAllEntities();
+	String studentsGroupId = request.getParameter("studentsGroupId");
 
+	if (request.getParameter("students") == null && studentsGroupId == null)
+	{
+	    StudentDAO studentDAO = new StudentDAO();
+	    students = studentDAO.getAllEntities();
+
+	    forwardRequest(request, response, students);
+
+	    studentDAO.closeEntityManager();
 	}
 	else if (request.getParameter("studentsGroupId") != null)
 	{
-	    StudentsGroupDTO studentsGroup = new StudentsGroupDAO().getEntity(Integer.parseInt(request.getParameter("studentsGroupId")));
+	    StudentsGroupDAO studentsGroupDAO = new StudentsGroupDAO();
+	    StudentsGroupDTO studentsGroup = studentsGroupDAO.getEntity(Integer.parseInt(studentsGroupId));
 	    students = studentsGroup.getStudent();
 	    request.setAttribute("studentsgroup", studentsGroup);
+
+	    forwardRequest(request, response, students);
+
+	    studentsGroupDAO.closeEntityManager();
 	}
 	else
 	{
 	    students = (List<StudentDTO>) request.getAttribute("students");
+
+	    forwardRequest(request, response, students);
 	}
+    }
+
+    private void forwardRequest(HttpServletRequest request, HttpServletResponse response, List<StudentDTO> students)
+		    throws ServletException, IOException
+    {
 	request.setAttribute("students", students);
 	request.getRequestDispatcher("administrator/students.jsp").forward(request, response);
     }
-
 
 }
