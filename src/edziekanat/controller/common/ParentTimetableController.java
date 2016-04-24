@@ -88,6 +88,7 @@ public class ParentTimetableController extends HttpServlet
 	    request.setAttribute("emptyWeek", false);
 	    request.setAttribute("dayDates", dayDates);
 	}
+
 	request.setAttribute("selectedWeek", selectedWeek);
     }
 }
