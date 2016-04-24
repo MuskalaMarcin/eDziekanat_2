@@ -100,7 +100,6 @@
             <center>
                 <form class="pure-form pure-form-stacked" action="addnewclasses">
                     <fieldset>
-
                         <label for="sg">Grupa studencka </label>
                         <input id="sg" type="text" name="nothing" class="pure-input-1-2" style="width: 50%"
                                value="grupa: ${studentsGroup.id} kierunek: ${studentsGroup.course.name }"
