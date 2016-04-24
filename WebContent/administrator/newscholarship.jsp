@@ -87,7 +87,8 @@
 							</c:choose>
 						<p>
 						<p>
-							Data zakoñczenia: <input id="endDate" type="date" name="endDate">
+						<jsp:useBean id="now" class="java.util.Date"/>
+							Data zakoñczenia: <input id="endDate" type="date" name="endDate"  min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />" required>
 						<p>
 							<button type="submit"
 								class="pure-button pure-input-1-2 pure-button-primary">Dodaj</button>
