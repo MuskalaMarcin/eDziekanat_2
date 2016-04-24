@@ -41,45 +41,53 @@ public class AddNewLecturer extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-		try {
-			LecturerDTO lecturer = new LecturerDTO();
-			lecturer.setName(request.getParameter("name"));
-			lecturer.setSurname(request.getParameter("surname"));
-			lecturer.setAddress(request.getParameter("address"));
-			lecturer.setAcademicDegree(request.getParameter("academicdegree"));
-			lecturer.setPosition(request.getParameter("position"));
-			FacultyDAO facultyDAO = new FacultyDAO();
-			FacultyDTO faculty = facultyDAO.getEntity(Integer.parseInt(request.getParameter("facultyid")));
-			lecturer.setFaculty(Arrays.asList(faculty));
+	try
+	{
+	    FacultyDAO facultyDAO = new FacultyDAO();
+	    UserDAO userDAO = new UserDAO();
+	    LecturerDAO lecturerDAO = new LecturerDAO();
 
-			UserDTO user = new UserDTO();
-			user.setActive(1);
-			user.setLecturer(lecturer);
-			user.seteMail(request.getParameter("email"));
-			user.setLogin(request.getParameter("login"));
-			String salt = PasswordUtils.generateSalt();
-			user.setSalt(salt);
-			user.setPassword(PasswordUtils.getSHA512PasswordHash(request.getParameter("password"), salt));
-			user.setUserRole("lecturer");
-			user.setLecturer(lecturer);
+	    LecturerDTO lecturer = new LecturerDTO();
+	    lecturer.setName(request.getParameter("name"));
+	    lecturer.setSurname(request.getParameter("surname"));
+	    lecturer.setAddress(request.getParameter("address"));
+	    lecturer.setAcademicDegree(request.getParameter("academicdegree"));
+	    lecturer.setPosition(request.getParameter("position"));
 
+	    FacultyDTO faculty = facultyDAO.getEntity(Integer.parseInt(request.getParameter("facultyid")));
+	    lecturer.setFaculty(Arrays.asList(faculty));
 
-			new UserDAO().insert(user);
+	    UserDTO user = new UserDTO();
+	    user.setActive(1);
+	    user.setLecturer(lecturer);
+	    user.seteMail(request.getParameter("email"));
+	    user.setLogin(request.getParameter("login"));
+	    String salt = PasswordUtils.generateSalt();
+	    user.setSalt(salt);
+	    user.setPassword(PasswordUtils.getSHA512PasswordHash(request.getParameter("password"), salt));
+	    user.setUserRole("lecturer");
+	    user.setLecturer(lecturer);
 
-			new LecturerDAO().insert(lecturer);
-			faculty.getLecturer().add(lecturer);
-			facultyDAO.update(faculty);
+	    userDAO.insert(user);
 
-			request.setAttribute("msgshort", "Wykładowca dodany");
-			request.setAttribute("msglong", "Nowy wykładowca został dodany");
-			request.getRequestDispatcher("common/info.jsp").forward(request, response);
-		}
-		catch (RollbackException ex)
-		{
-			request.setAttribute("errorshort", "Błąd");
-			request.setAttribute("errorlong", "Login lub email jest już używany");
-			request.getRequestDispatcher("common/error.jsp").forward(request, response);
-		}
+	    lecturerDAO.insert(lecturer);
+	    faculty.getLecturer().add(lecturer);
+	    facultyDAO.update(faculty);
+
+	    request.setAttribute("msgshort", "Wykładowca dodany");
+	    request.setAttribute("msglong", "Nowy wykładowca został dodany");
+	    request.getRequestDispatcher("common/info.jsp").forward(request, response);
+
+	    lecturerDAO.closeEntityManager();
+	    userDAO.closeEntityManager();
+	    facultyDAO.closeEntityManager();
+	}
+	catch (RollbackException ex)
+	{
+	    request.setAttribute("errorshort", "Błąd");
+	    request.setAttribute("errorlong", "Login lub email jest już używany");
+	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
+	}
     }
 
 }
