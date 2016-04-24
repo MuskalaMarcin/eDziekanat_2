@@ -32,13 +32,16 @@ public class PartialMarksController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	request.setAttribute("partialMarks", new PartialMarkDAO().getStudentMarksFromSubject(
+	PartialMarkDAO partialMarkDAO = new PartialMarkDAO();
+	request.setAttribute("partialMarks", partialMarkDAO.getStudentMarksFromSubject(
 		((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId(),
 		Integer.parseInt(request.getParameter("subjectId"))));
+
 	request.setAttribute("semesterList",
 		request.getParameter("semesterList").replaceAll("\\[", "").replaceAll("\\]", "").split(","));
-	
 	request.getRequestDispatcher("/student/partialmarks.jsp").forward(request, response);
+
+	partialMarkDAO.closeEntityManager();
     }
 
 }

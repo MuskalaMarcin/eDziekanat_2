@@ -22,16 +22,8 @@ public class AdminSubjects extends HttpServlet
     private static final long serialVersionUID = 1L;
 
     /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AdminSubjects()
-    {
-	super();
-    }
-
-    /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -40,24 +32,29 @@ public class AdminSubjects extends HttpServlet
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	SubjectDAO subjectDAO = new SubjectDAO();
+	List<SubjectDTO> subjects;
+
 	if (request.getParameter("lecturerId") == null)
 	{
-	    List<SubjectDTO> subjects = new SubjectDAO().getAllEntities();
-	    Collections.sort(subjects, (x, y) -> x.getName().compareTo(y.getName()));
-	    request.setAttribute("subjects", subjects);
+	    subjects = subjectDAO.getAllEntities();
 	}
 	else
 	{
-	    List<SubjectDTO> subjects = new SubjectDAO()
-		    .getLecturerSubjects(Integer.parseInt(request.getParameter("lecturerId")));
-	    Collections.sort(subjects, (x, y) -> x.getName().compareTo(y.getName()));
-	    request.setAttribute("subjects", subjects);
+	    subjects = subjectDAO.getLecturerSubjects(Integer.parseInt(request.getParameter("lecturerId")));
+
 	}
+
+	Collections.sort(subjects, (x, y) -> x.getName().compareTo(y.getName()));
+	request.setAttribute("subjects", subjects);
+
 	request.getRequestDispatcher("administrator/subjects.jsp").forward(request, response);
+
+	subjectDAO.closeEntityManager();
     }
 
 }

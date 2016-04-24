@@ -24,7 +24,7 @@ public class AdminApplicationsController extends HttpServlet
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -33,25 +33,29 @@ public class AdminApplicationsController extends HttpServlet
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        request.setAttribute("typeList", new Application_typeDAO().getApplication_types());
-        if(request.getParameter("type")== null || request.getParameter("type").equals("all"))
-        {
-            request.setAttribute("waitingApplications",new ApplicationDAO().getAdminWaitingApplications(
-                    ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
-        }
-        else
-        {
-            Integer type = Integer.parseInt(request.getParameter("type"));
-            request.setAttribute("waitingApplications",new ApplicationDAO().getAdminWaitingApplications(
-                    ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId(),type));
-        }
+	ApplicationDAO applicationDAO = new ApplicationDAO();
+	Application_typeDAO application_typeDAO = new Application_typeDAO();
 
+	Integer personId = ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId();
+	request.setAttribute("typeList", application_typeDAO.getApplication_types());
+	if (request.getParameter("type") == null || request.getParameter("type").equals("all"))
+	{
+	    request.setAttribute("waitingApplications", applicationDAO.getAdminWaitingApplications(personId));
+	}
+	else
+	{
+	    Integer type = Integer.parseInt(request.getParameter("type"));
+	    request.setAttribute("waitingApplications", applicationDAO.getAdminWaitingApplications(personId, type));
+	}
 
 	request.getRequestDispatcher("administrator/waitingapplications.jsp").forward(request, response);
+
+	application_typeDAO.closeEntityManager();
+	applicationDAO.closeEntityManager();
     }
 
 }

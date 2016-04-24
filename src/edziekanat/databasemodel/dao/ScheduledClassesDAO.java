@@ -92,7 +92,17 @@ public class ScheduledClassesDAO extends DAOParentClass<ScheduledClassesDTO>
 	startDate.setSeconds(0);
 	for (ScheduledClassesDTO sclasses : getAllEntities())
 	{
-	    if (sclasses.getDate().equals(startDate) && sclasses.getClassroom().equals(classroom))
+	    if (sclasses.getDate().getTime() == startDate.getTime() && sclasses.getClassroom().getId()
+			    .equals(classroom.getId()))
+	    {
+		return false;
+	    }
+	}
+	for (ScheduledClassesDTO sclasses : subject.getStudents_group().stream().map(s -> s.getSubject())
+			.flatMap(s -> s.stream()).map(s -> s.getScheduledClasses()).flatMap(s -> s.stream())
+			.collect(Collectors.toList()))
+	{
+	    if (sclasses.getDate().getTime() == startDate.getTime())
 	    {
 		return false;
 	    }
@@ -133,7 +143,17 @@ public class ScheduledClassesDAO extends DAOParentClass<ScheduledClassesDTO>
 	{
 	    for (ScheduledClassesDTO sclasses : allEntities)
 	    {
-		if (sclasses.getDate().equals(newClassesDate) && sclasses.getClassroom().equals(classroom))
+		if (sclasses.getDate().getTime() == newClassesDate.getTime() && sclasses.getClassroom().getId()
+				.equals(classroom.getId()))
+		{
+		    return false;
+		}
+	    }
+	    for (ScheduledClassesDTO sclasses : subject.getStudents_group().stream().map(s -> s.getSubject())
+			    .flatMap(s -> s.stream()).map(s -> s.getScheduledClasses()).flatMap(s -> s.stream())
+			    .collect(Collectors.toList()))
+	    {
+		if (sclasses.getDate().getTime() == newClassesDate.getTime())
 		{
 		    return false;
 		}

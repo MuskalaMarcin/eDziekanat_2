@@ -40,6 +40,9 @@ public class AddLearningMaterials extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	String fileName = "no file";
+	LearningMaterialsDAO learningMaterialsDAO = new LearningMaterialsDAO();
+	SubjectDAO subjectDAO = new SubjectDAO();
+
 	try
 	{
 	    Part filePart = request.getPart("newFile");
@@ -52,14 +55,13 @@ public class AddLearningMaterials extends HttpServlet
 	    {
 		Files.copy(input, file.toPath());
 	    }
-	    
+
 	    LearningMaterialsDTO learningMaterials = new LearningMaterialsDTO();
 	    learningMaterials.setDescription(request.getParameter("description"));
 	    learningMaterials.setFile(file.toPath().toString());
 	    learningMaterials.setName(request.getParameter("name"));
-	    learningMaterials
-		    .setSubject(new SubjectDAO().getEntity(Integer.parseInt(request.getParameter("subjectId"))));
-	    new LearningMaterialsDAO().insert(learningMaterials);
+	    learningMaterials.setSubject(subjectDAO.getEntity(Integer.parseInt(request.getParameter("subjectId"))));
+	    learningMaterialsDAO.insert(learningMaterials);
 
 	    request.setAttribute("msgshort", "Dodano plik");
 	    request.setAttribute("msglong", "Nowy plik " + fileName + " zosta³ dodany do bazy danych.");
@@ -70,20 +72,23 @@ public class AddLearningMaterials extends HttpServlet
 	    e.printStackTrace();
 	    request.setAttribute("msgshort", "B³±d");
 	    request.setAttribute("msglong",
-		    "Podczas dodawania twojego pliku " + fileName + " wystapi³ nieznany b³±d. Przepraszamy.");
+			    "Podczas dodawania twojego pliku " + fileName + " wystapi³ nieznany b³±d. Przepraszamy.");
 	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
+
+	subjectDAO.closeEntityManager();
+	learningMaterialsDAO.closeEntityManager();
     }
 
-    private static String getSubmittedFileName(Part part)
+    private String getSubmittedFileName(Part part)
     {
 	for (String cd : part.getHeader("content-disposition").split(";"))
 	{
 	    if (cd.trim().startsWith("filename"))
 	    {
 		String fileName = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
-		return fileName.substring(fileName.lastIndexOf('/') + 1).substring(fileName.lastIndexOf('\\') + 1); // MSIE
-														    // fix.
+		return fileName.substring(fileName.lastIndexOf('/') + 1)
+				.substring(fileName.lastIndexOf('\\') + 1); // MSIE fix.
 	    }
 	}
 	return null;

@@ -35,18 +35,25 @@ public class AdminAddCourseController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	FacultyDAO facultyDAO = new FacultyDAO();
+	CourseDAO courseDAO = new CourseDAO();
+
 	CourseDTO course = new CourseDTO();
 	@SuppressWarnings("unchecked")
 	List<FacultyDTO> faculties = (List<FacultyDTO>) request.getAttribute("faculties");
 	request.setAttribute("faculties", faculties);
 	course.setName(request.getParameter("name"));
-	course.setFaculty(new FacultyDAO().getEntity(Integer.parseInt(request.getParameter("id").toString())));
-	course.setStationary(Integer.parseInt(request.getParameter("stationary").toString()));
-	
-	new CourseDAO().insert(course);
+	course.setFaculty(facultyDAO.getEntity(Integer.parseInt(request.getParameter("id"))));
+	course.setStationary(Integer.parseInt(request.getParameter("stationary")));
+
+	courseDAO.insert(course);
+
 	request.setAttribute("msgshort", "Kierunek dodany");
 	request.setAttribute("msglong", "Nowy kierunek został dodany");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
+
+	courseDAO.closeEntityManager();
+	facultyDAO.closeEntityManager();
     }
 
 }

@@ -48,6 +48,7 @@ public class ResetPassword extends HttpServlet
 	    request.setAttribute("resetid", resetId);
 	    request.getRequestDispatcher("common/newpasswordform.jsp").forward(request, response);
 	}
+	passwordResetDAO.closeEntityManager();
     }
 
     /**

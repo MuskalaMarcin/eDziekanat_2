@@ -37,8 +37,11 @@ public class ApplicationStatistics extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<ApplicationDTO> applications = new ApplicationDAO().getAllEntities();
-	List<FacultyDTO> faculties = new FacultyDAO().getAllEntities();
+	ApplicationDAO applicationDAO = new ApplicationDAO();
+	FacultyDAO facultyDAO = new FacultyDAO();
+
+	List<ApplicationDTO> applications = applicationDAO.getAllEntities();
+	List<FacultyDTO> faculties = facultyDAO.getAllEntities();
 	List<LinkedList<String>> results = new LinkedList<LinkedList<String>>();
 	for (FacultyDTO faculty : faculties)
 	{
@@ -76,8 +79,12 @@ public class ApplicationStatistics extends HttpServlet
 	    partialResult.add(rejected.toString());
 	    results.add(partialResult);
 	}
+
 	request.setAttribute("appsByFaculty", results);
 	request.getRequestDispatcher("administrator/aplicationsstatistics.jsp").forward(request, response);
+
+	facultyDAO.closeEntityManager();
+	applicationDAO.closeEntityManager();
     }
 
 }

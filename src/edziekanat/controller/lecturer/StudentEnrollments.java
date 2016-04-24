@@ -28,7 +28,7 @@ public class StudentEnrollments extends HttpServlet
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -37,39 +37,47 @@ public class StudentEnrollments extends HttpServlet
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	SubjectDAO subjectDAO = new SubjectDAO();
+	StudentDAO studentDAO = new StudentDAO();
+	EnrollmentDAO enrollmentDAO = new EnrollmentDAO();
+
 	List<EnrollmentDTO> enrollments = new LinkedList<EnrollmentDTO>();
-	if (!request.getParameter("subjectId").isEmpty())
+
+	String subjectIdString = request.getParameter("subjectId");
+	Integer studentId = Integer.parseInt(request.getParameter("studentId"));
+
+	if (!subjectIdString.isEmpty())
 	{
-	    request.setAttribute("subject",
-		    new SubjectDAO().getEntity(Integer.parseInt(request.getParameter("subjectId"))));
-	    enrollments = new EnrollmentDAO().getStudentEnrollmentsFromSubject(
-		    Integer.parseInt(request.getParameter("subjectId")),
-		    Integer.parseInt(request.getParameter("studentId")));
-	    Collections.sort(enrollments, (x, y) -> y.getIssueDate().compareTo(x.getIssueDate()));
-	    request.setAttribute("enrollments", enrollments);
+	    Integer subjectId = Integer.parseInt(subjectIdString);
+	    request.setAttribute("subject", subjectDAO.getEntity(subjectId));
+	    enrollments = enrollmentDAO.getStudentEnrollmentsFromSubject(subjectId, studentId);
 	}
 	else
 	{
-	    List<SubjectDTO> subjects = new SubjectDAO().getStudentAndLecturerSubjects(
-		    Integer.parseInt(request.getParameter("studentId")),
-		    ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
-	    for (int i = 0; i < subjects.size(); i++)
+	    List<SubjectDTO> subjectsList = new SubjectDAO().getStudentAndLecturerSubjects(studentId,
+			    ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
+
+	    for (SubjectDTO subject : subjectsList)
 	    {
-		enrollments.addAll(new EnrollmentDAO().getStudentEnrollmentsFromSubject(
-			Integer.parseInt(request.getParameter("studentId")), subjects.get(i).getId()));
+		enrollments.addAll(new EnrollmentDAO().getStudentEnrollmentsFromSubject(studentId, subject.getId()));
 	    }
-	    Collections.sort(enrollments, (x, y) -> y.getIssueDate().compareTo(x.getIssueDate()));
-	    request.setAttribute("subject", subjects);
-	    request.setAttribute("enrollments", enrollments);
+
+	    request.setAttribute("subject", subjectsList);
 	}
-	request.setAttribute("student",
-		new StudentDAO().getEntity(Integer.parseInt(request.getParameter("studentId"))));
+
+	Collections.sort(enrollments, (x, y) -> y.getIssueDate().compareTo(x.getIssueDate()));
+	request.setAttribute("enrollments", enrollments);
+	request.setAttribute("student", studentDAO.getEntity(Integer.parseInt(request.getParameter("studentId"))));
 
 	request.getRequestDispatcher("lecturer/studentenrollments.jsp").forward(request, response);
+
+	subjectDAO.closeEntityManager();
+	studentDAO.closeEntityManager();
+	enrollmentDAO.closeEntityManager();
     }
 
 }

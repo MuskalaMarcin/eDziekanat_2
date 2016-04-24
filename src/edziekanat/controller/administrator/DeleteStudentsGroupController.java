@@ -32,9 +32,9 @@ public class DeleteStudentsGroupController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	StudentsGroupDAO sgDAO = new StudentsGroupDAO();
 	try
 	{
-	    StudentsGroupDAO sgDAO = new StudentsGroupDAO();
 	    StudentsGroupDTO studentsGroup = sgDAO.getEntity(Integer.parseInt(request.getParameter("studentsGroupId")));
 	    sgDAO.remove(studentsGroup);
 
@@ -49,6 +49,7 @@ public class DeleteStudentsGroupController extends HttpServlet
 		    + " wystąpił nieznany błąd. Przepraszamy.");
 	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
+	sgDAO.closeEntityManager();
     }
 
 }

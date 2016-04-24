@@ -25,7 +25,7 @@
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="lecturerseelecturers">Wyk³adowcy</a></li>
 					<li class="pure-menu-item menu-item-divided"><a
-						class="pure-menu-link" href="lecturerclassrooms">Dostêpno¶æ
+						class="pure-menu-link" href="classrooms">Dostêpno¶æ
 							sal</a></li>
 					<c:choose>
 						<c:when test="${noClassroom == true}">
@@ -34,7 +34,7 @@
 						</c:when>
 						<c:otherwise>
 							<li class="pure-menu-item">
-								<form action="lecturerclassrooms" method="post">
+								<form action="classrooms" method="post">
 									<input type="hidden" name="rqweek" value="${selectedWeek - 1}">
 									<input type="hidden" name="classroomId"
 										value="${selectedClassroom.number}">
@@ -49,7 +49,7 @@
 									</c:choose>
 							</a></li>
 							<li class="pure-menu-item">
-								<form action="lecturerclassrooms" method="post">
+								<form action="classrooms" method="post">
 									<input type="hidden" name="classroomId"
 										value="${selectedClassroom.number}"> <input
 										type="hidden" name="rqweek" value="${selectedWeek + 1}">
@@ -83,7 +83,7 @@
 				</h2>
 
 				<form class="pure-form"
-					action="lecturerclassrooms" method=post>
+					action="classrooms" method=post>
 					<fieldset>
 						<center>
 							<select name="classroomId" id="state">

@@ -26,7 +26,7 @@ public class AdminStudentsGroupController extends HttpServlet
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -35,36 +35,56 @@ public class AdminStudentsGroupController extends HttpServlet
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     @SuppressWarnings("unchecked")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	List<StudentsGroupDTO> studentsGroupDTOList;
+	List<CourseDTO> courses = (List<CourseDTO>) request.getAttribute("courses");
+
 	if (request.getParameter("courseid") == null)
 	{
-	    if (request.getAttribute("courses") == null || ((List<CourseDTO>) request.getAttribute("courses")).isEmpty())
+	    if (request.getAttribute("courses") == null || courses.isEmpty())
 	    {
-		List<StudentsGroupDTO> studentsgroup =   new StudentsGroupDAO().getAllEntities();
-		Collections.sort(studentsgroup, (x, y) -> x.getCourse().getName().compareTo(y.getCourse().getName()));
-		request.setAttribute("studentsgroup", studentsgroup);
+		StudentsGroupDAO studentsGroupDAO = new StudentsGroupDAO();
+
+		studentsGroupDTOList = studentsGroupDAO.getAllEntities();
+
+		forwardRequest(request, response, studentsGroupDTOList);
+
+		studentsGroupDAO.closeEntityManager();
 	    }
 	    else
 	    {
-		List<CourseDTO> courses = (List<CourseDTO>) request.getAttribute("courses");
-		List<StudentsGroupDTO> studentsgroup = new LinkedList<StudentsGroupDTO>();
-		for (int i = 0; i < courses.size(); i++)
+		studentsGroupDTOList = new LinkedList<>();
+		for (CourseDTO course : courses)
 		{
-		    studentsgroup.addAll(courses.get(i).getStudentsGroup());
+		    studentsGroupDTOList.addAll(course.getStudentsGroup());
 		}
-		request.setAttribute("studentsgroup", studentsgroup);
+
+		forwardRequest(request, response, studentsGroupDTOList);
 	    }
 	}
 	else
 	{
-	    CourseDTO course = new CourseDAO().getEntity(Integer.parseInt(request.getParameter("courseid")));
+	    CourseDAO courseDAO = new CourseDAO();
+
+	    CourseDTO course = courseDAO.getEntity(Integer.parseInt(request.getParameter("courseid")));
 	    request.setAttribute("course", course);
-	    request.setAttribute("studentsgroup", course.getStudentsGroup());
+	    studentsGroupDTOList = course.getStudentsGroup();
+
+	    forwardRequest(request, response, studentsGroupDTOList);
+
+	    courseDAO.closeEntityManager();
 	}
+    }
+
+    private void forwardRequest(HttpServletRequest request, HttpServletResponse response,
+		    List<StudentsGroupDTO> studentsGroupDTOList) throws ServletException, IOException
+    {
+	Collections.sort(studentsGroupDTOList, (x, y) -> x.getCourse().getName().compareTo(y.getCourse().getName()));
+	request.setAttribute("studentsgroup", studentsGroupDTOList);
 	request.getRequestDispatcher("admin/studentgroups").forward(request, response);
     }
 

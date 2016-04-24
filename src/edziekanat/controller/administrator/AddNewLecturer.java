@@ -40,16 +40,19 @@ public class AddNewLecturer extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	FacultyDAO facultyDAO = new FacultyDAO();
+	LecturerDAO lecturerDAO = new LecturerDAO();
+	UserDAO userDAO = new UserDAO();
+
 	LecturerDTO lecturer = new LecturerDTO();
 	lecturer.setName(request.getParameter("name"));
 	lecturer.setSurname(request.getParameter("surname"));
 	lecturer.setAddress(request.getParameter("address"));
 	lecturer.setAcademicDegree(request.getParameter("academicdegree"));
 	lecturer.setPosition(request.getParameter("position"));
-	FacultyDAO facultyDAO = new FacultyDAO();
 	FacultyDTO faculty =facultyDAO.getEntity(Integer.parseInt(request.getParameter("facultyid")));
 	lecturer.setFaculty(Arrays.asList(faculty));
-	new LecturerDAO().insert(lecturer);
+	lecturerDAO.insert(lecturer);
 	faculty.getLecturer().add(lecturer);
 	facultyDAO.update(faculty);
 
@@ -63,11 +66,15 @@ public class AddNewLecturer extends HttpServlet
 	user.setPassword(PasswordUtils.getSHA512PasswordHash(request.getParameter("password"), salt));
 	user.setUserRole("lecturer");
 	user.setLecturer(lecturer);
-	new UserDAO().insert(user);
+	userDAO.insert(user);
 
 	request.setAttribute("msgshort", "Wykładowca dodany");
 	request.setAttribute("msglong", "Nowy wykładowca został dodany");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
+
+	userDAO.closeEntityManager();
+	lecturerDAO.closeEntityManager();
+	facultyDAO.closeEntityManager();
     }
 
 }

@@ -34,19 +34,30 @@ public class LearningMaterialsController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	if (request.getParameter("subjectId") == null)
+	String subjectIdString = request.getParameter("subjectId");
+
+	if (subjectIdString == null)
 	{
-	    request.setAttribute("learningMaterials", new LearningMaterialsDAO().getLecturerLearningMaterials(
-		    ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
+	    LearningMaterialsDAO learningMaterialsDAO = new LearningMaterialsDAO();
+	    request.setAttribute("learningMaterials",learningMaterialsDAO.getLecturerLearningMaterials(
+			    ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
+
+	    request.getRequestDispatcher("lecturer/learningmaterials.jsp").forward(request, response);
+
+	    learningMaterialsDAO.closeEntityManager();
 	}
 	else
 	{
-	    SubjectDTO subject = new SubjectDAO().getEntity(Integer.parseInt(request.getParameter("subjectId")));
+	    SubjectDAO subjectDAO = new SubjectDAO();
+	    SubjectDTO subject = subjectDAO.getEntity(Integer.parseInt(subjectIdString));
 	    request.setAttribute("learningMaterials", subject.getLearningMaterials());
 	    request.setAttribute("subject", subject);
+
+	    request.getRequestDispatcher("lecturer/learningmaterials.jsp").forward(request, response);
+
+	    subjectDAO.closeEntityManager();
 	}
 
-	request.getRequestDispatcher("lecturer/learningmaterials.jsp").forward(request, response);
     }
 
 }

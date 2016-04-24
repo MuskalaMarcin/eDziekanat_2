@@ -43,7 +43,7 @@ public abstract class DAOParentClass<T>
 	return entityManager.createNativeQuery(query, entityClass).getResultList();
     }
 
-    protected void closeEntityManager()
+    public void closeEntityManager()
     {
 	entityManager.close();
     }

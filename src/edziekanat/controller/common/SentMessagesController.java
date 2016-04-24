@@ -40,7 +40,9 @@ public class SentMessagesController extends HttpServlet
 	LoginBean loginBean = (LoginBean) request.getSession().getAttribute("loginBean");
 	String messagesURL = "/" + loginBean.getUserRole() + "/sentmessages";
 
-	List<MessageDTO> sentMsg = new MessageDAO().getMultipleEntities("sender_id = '" + loginBean.getLogin() + "'");
+	MessageDAO messageDAO = new MessageDAO();
+	List<MessageDTO> sentMsg = messageDAO.getMultipleEntities("sender_id = '" + loginBean.getLogin() + "'");
+
 	if (!sentMsg.isEmpty())
 	{
 	    Collections.sort(sentMsg, (x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()));
@@ -48,8 +50,10 @@ public class SentMessagesController extends HttpServlet
 	    request.setAttribute("receiverNames", receiverNames);
 	    request.setAttribute("sentMessages", sentMsg);
 	}
-	
+
 	getServletContext().getRequestDispatcher(messagesURL).forward(request, response);
+
+	messageDAO.closeEntityManager();
     }
 
     private List<String> getUserNames(List<MessageDTO> allMessage, boolean isSender)

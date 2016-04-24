@@ -32,7 +32,7 @@ public class SubjectsController extends HttpServlet
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -41,14 +41,17 @@ public class SubjectsController extends HttpServlet
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<SubjectDTO> subjects = new SubjectDAO().getLecturerSubjects(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
+	SubjectDAO subjectDAO = new SubjectDAO();
+	List<SubjectDTO> subjects = subjectDAO.getLecturerSubjects(
+			((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
+
 	if (!subjects.isEmpty())
 	{
-	    Collections.sort(subjects, (x,y)->x.getName().compareTo(y.getName()));
+	    Collections.sort(subjects, (x, y) -> x.getName().compareTo(y.getName()));
 	    request.setAttribute("subjects", subjects);
 	    request.setAttribute("noSubjects", false);
 	}
@@ -56,7 +59,10 @@ public class SubjectsController extends HttpServlet
 	{
 	    request.setAttribute("noSubjects", true);
 	}
+
 	request.getRequestDispatcher("lecturer/subjects").forward(request, response);
+
+	subjectDAO.closeEntityManager();
     }
 
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,43 +41,46 @@ public class StudentsController extends HttpServlet
     @SuppressWarnings("unchecked")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<StudentDTO> students = new LinkedList<StudentDTO>();
-	if (request.getParameter("students") == null && request.getParameter("subjectId") == null)
+	List<StudentDTO> students = (List<StudentDTO>) request.getAttribute("students");
+	if (students == null)
 	{
-	    for (SubjectDTO subject : new LecturerDAO()
-		    .getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()).getSubject())
+	    if (request.getParameter("subjectId") == null)
 	    {
-		for (StudentsGroupDTO group : subject.getStudents_group())
-		{
-		    students.addAll(group.getStudent());
-		}
+		LecturerDAO lecturerDAO = new LecturerDAO();
+
+		students = lecturerDAO
+				.getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId())
+				.getSubject().stream()
+				.map(SubjectDTO::getStudents_group).flatMap(s -> s.stream())
+				.map(StudentsGroupDTO::getStudent).flatMap(s -> s.stream())
+				.collect(Collectors.toList());
+		request.setAttribute("students", removeDuplicates(students));
+		request.getRequestDispatcher("lecturer/students").forward(request, response);
+
+		lecturerDAO.closeEntityManager();
 	    }
-	    request.setAttribute("students", removeDuplicates(students));
-	    request.getRequestDispatcher("lecturer/students").forward(request, response);
-	}
-	else if (request.getParameter("students") == null && request.getParameter("subjectId") != null)
-	{
-	    SubjectDTO subject = new SubjectDAO()
-		    .getEntity(Integer.parseInt(request.getParameter("subjectId").toString()));
-	    for (StudentsGroupDTO group : subject.getStudents_group())
+	    else
 	    {
-		students.addAll(group.getStudent());
+		SubjectDAO subjectDAO = new SubjectDAO();
+
+		SubjectDTO subject = subjectDAO
+				.getEntity(Integer.parseInt(request.getParameter("subjectId").toString()));
+
+		students = subject.getStudents_group().stream().map(StudentsGroupDTO::getStudent)
+				.flatMap(s -> s.stream()).collect(Collectors.toList());
+
+		request.setAttribute("subject", subject);
+		request.setAttribute("students", removeDuplicates(students));
+		request.getRequestDispatcher("lecturer/students").forward(request, response);
+
+		subjectDAO.closeEntityManager();
 	    }
-	    request.setAttribute("students", removeDuplicates(students));
-	    request.setAttribute("subject", subject);
-	    request.getRequestDispatcher("lecturer/students").forward(request, response);
-	}
-	else
-	{
-	    students = (List<StudentDTO>) request.getAttribute("students");
-	    request.setAttribute("students", removeDuplicates(students));
-	    request.getRequestDispatcher("lecturer/students").forward(request, response);
 	}
     }
 
     /**
      * Removes duplicated students, then sorts them by surname.
-     * 
+     *
      * @param students
      * @return
      */

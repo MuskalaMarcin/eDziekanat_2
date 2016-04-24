@@ -27,7 +27,7 @@
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="http://localhost:8080/edziekanat/lecturerseelecturers">Wyk³adowcy</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="http://localhost:8080/edziekanat/lecturerclassrooms">Dostêpno¶æ
+						href="http://localhost:8080/edziekanat/classrooms">Dostêpno¶æ
 							sal</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="http://localhost:8080/edziekanat/timetable">Plan zajêæ</a></li>

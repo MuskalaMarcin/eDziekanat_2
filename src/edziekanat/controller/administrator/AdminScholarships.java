@@ -32,10 +32,13 @@ public class AdminScholarships extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	request.setAttribute("allScholarships", new ScholarshipDAO().getAllActiveAdminScholarships(
+	ScholarshipDAO scholarshipDAO = new ScholarshipDAO();
+	request.setAttribute("allScholarships", scholarshipDAO.getAllActiveAdminScholarships(
 		((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
 
 	request.getRequestDispatcher("administrator/scholarships.jsp").forward(request, response);
+
+	scholarshipDAO.closeEntityManager();
     }
 
 }

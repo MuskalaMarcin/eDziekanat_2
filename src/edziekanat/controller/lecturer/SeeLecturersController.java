@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.bean.LoginBean;
+import edziekanat.databasemodel.dao.FacultyDAO;
 import edziekanat.databasemodel.dao.LecturerDAO;
 import edziekanat.databasemodel.dto.FacultyDTO;
 import edziekanat.databasemodel.dto.LecturerDTO;
@@ -34,7 +35,7 @@ public class SeeLecturersController extends HttpServlet
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -43,33 +44,37 @@ public class SeeLecturersController extends HttpServlet
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     @SuppressWarnings("unchecked")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	LecturerDAO lecturerDAO = new LecturerDAO();
+
 	List<LecturerDTO> lecturers = new LinkedList<LecturerDTO>();
 	if (request.getParameter("lecturers") == null)
 	{
-	    for (FacultyDTO faculty : new LecturerDAO()
-		    .getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()).getFaculty())
+	    Integer personId = ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId();
+
+	    for (FacultyDTO faculty : lecturerDAO.getEntity(personId).getFaculty())
 	    {
 		lecturers.addAll(faculty.getLecturer());
 	    }
-	    request.setAttribute("lecturers", removeDuplicates(lecturers));
-	    request.getRequestDispatcher("lecturer/lecturers").forward(request, response);
 	}
 	else
 	{
 	    lecturers = (List<LecturerDTO>) request.getAttribute("lecturers");
-	    request.setAttribute("lecturers", removeDuplicates(lecturers));
-	    request.getRequestDispatcher("lecturer/lecturers").forward(request, response);
 	}
+
+	request.setAttribute("lecturers", removeDuplicates(lecturers));
+	request.getRequestDispatcher("lecturer/lecturers").forward(request, response);
+
+	lecturerDAO.closeEntityManager();
     }
 
     /**
      * Removes duplicated administrators, then sorts them by surname.
-     * 
+     *
      * @param lecturers
      * @return
      */

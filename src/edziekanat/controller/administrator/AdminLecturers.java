@@ -36,16 +36,17 @@ public class AdminLecturers extends HttpServlet
     @SuppressWarnings("unchecked")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	SubjectDAO subjectDAO = new SubjectDAO();
+	LecturerDAO lecturerDAO = new LecturerDAO();
+
 	List<LecturerDTO> lecturers = new LinkedList<LecturerDTO>();
 	if (request.getParameter("lecturers") == null && request.getParameter("subjectId") == null)
 	{
-	    lecturers = new LecturerDAO().getAllEntities();
-
+	    lecturers = lecturerDAO.getAllEntities();
 	}
 	else if (request.getParameter("subjectId") != null)
 	{
-	    lecturers.add(new SubjectDAO().getEntity(Integer.parseInt(request.getParameter("subjectId"))).getLecturer());
-		   
+	    lecturers.add(subjectDAO.getEntity(Integer.parseInt(request.getParameter("subjectId"))).getLecturer());
 	}
 	else
 	{
@@ -53,6 +54,9 @@ public class AdminLecturers extends HttpServlet
 	}
 	request.setAttribute("lecturers", lecturers);
 	request.getRequestDispatcher("administrator/lecturers.jsp").forward(request, response);
+
+	subjectDAO.closeEntityManager();
+	lecturerDAO.closeEntityManager();
     }
 
 }

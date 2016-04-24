@@ -37,19 +37,27 @@ public class AddNewSubject extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	LecturerDAO lecturerDAO = new LecturerDAO();
+	StudentsGroupDAO studentsGroupDAO = new StudentsGroupDAO();
+	SubjectDAO subjectDAO = new SubjectDAO();
+
 	SubjectDTO subject = new SubjectDTO();
 	subject.setName(request.getParameter("name").toString());
 	subject.setSemester(Integer.parseInt(request.getParameter("semester").toString()));
 	subject.setECTS(Integer.parseInt(request.getParameter("ECTS").toString()));
-	subject.setLecturer(new LecturerDAO().getEntity(Integer.parseInt(request.getParameter("lecturerid").toString())));
+	subject.setLecturer(lecturerDAO.getEntity(Integer.parseInt(request.getParameter("lecturerid"))));
 	List<StudentsGroupDTO> studentsgroup = new LinkedList<StudentsGroupDTO>();
-	studentsgroup.add(new StudentsGroupDAO().getEntity(Integer.parseInt(request.getParameter("studentsgroupid").toString())));
+	studentsgroup.add(studentsGroupDAO.getEntity(Integer.parseInt(request.getParameter("studentsgroupid"))));
 	subject.setStudents_group(studentsgroup);
-	new SubjectDAO().insert(subject);
-	
+	subjectDAO.insert(subject);
+
 	request.setAttribute("msgshort", "Przedmiot dodany");
 	request.setAttribute("msglong", "Nowa przedmiot został dodany");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
+
+	subjectDAO.closeEntityManager();
+	lecturerDAO.closeEntityManager();
+	studentsGroupDAO.closeEntityManager();
     }
 
 }

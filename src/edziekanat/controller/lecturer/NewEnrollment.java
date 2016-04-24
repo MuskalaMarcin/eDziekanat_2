@@ -44,16 +44,25 @@ public class NewEnrollment extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	EnrollmentDAO enrollmentDAO = new EnrollmentDAO();
+	SubjectDAO subjectDAO = new SubjectDAO();
+	TranscriptDAO transcriptDAO = new TranscriptDAO();
+
 	EnrollmentDTO enrollment = new EnrollmentDTO();
 	enrollment.setIssueDate(Calendar.getInstance().getTime());
 	enrollment.setMark(Float.parseFloat(request.getParameter("mark").toString()));
-	enrollment.setSubjectId(new SubjectDAO().getEntity(Integer.parseInt(request.getParameter("subject").toString())));
-	enrollment.setTranscriptId(new TranscriptDAO().getEntity(Integer.parseInt(request.getParameter("transcript").toString())));
-	
-	new EnrollmentDAO().insert(enrollment);
+	enrollment.setSubjectId(subjectDAO.getEntity(Integer.parseInt(request.getParameter("subject").toString())));
+	enrollment.setTranscriptId(transcriptDAO.getEntity(Integer.parseInt(request.getParameter("transcript").toString())));
+
+	enrollmentDAO.insert(enrollment);
+
 	request.setAttribute("msgshort", "Wpis dodana");
 	request.setAttribute("msglong", "Nowy wpis zosta³ dodany");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
+
+	enrollmentDAO.closeEntityManager();
+	subjectDAO.closeEntityManager();
+	transcriptDAO.closeEntityManager();
     }
     
 }

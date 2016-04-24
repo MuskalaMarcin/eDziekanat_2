@@ -36,6 +36,8 @@ public class SendMessageController extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	UserDAO userDAO = new UserDAO();
+	MessageDAO messageDAO = new MessageDAO();
+
 	MessageDTO newMessage = new MessageDTO();
 
 	newMessage.setContent(request.getParameter("content"));
@@ -45,11 +47,14 @@ public class SendMessageController extends HttpServlet
 		.setSender(userDAO.getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getLogin()));
 	newMessage.setTitle(request.getParameter("msgtitle"));
 
-	new MessageDAO().insert(newMessage);
+	messageDAO.insert(newMessage);
 
 	request.setAttribute("msgshort", "Wys³ano wiadomo¶æ");
 	request.setAttribute("msglong", "Twoja wiadomo¶æ zosta³a wys³ana.");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
+
+	messageDAO.closeEntityManager();
+	userDAO.closeEntityManager();
     }
 
 }

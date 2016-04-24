@@ -2,6 +2,7 @@ package edziekanat.controller.student;
 
 import java.io.IOException;
 
+import javax.security.auth.Subject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,15 +33,21 @@ public class LearningMaterialsController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	SubjectDAO subjectDAO = new SubjectDAO();
+	LearningMaterialsDAO learningMaterialsDAO = new LearningMaterialsDAO();
 	int subjectId = Integer.parseInt(request.getParameter("subjectId"));
 
-	request.setAttribute("subjectName", new SubjectDAO().getEntity(subjectId).getName());
-	request.setAttribute("learningMaterials", new LearningMaterialsDAO().getSubjectLearningMaterials(subjectId));
-	
+	request.setAttribute("subjectName", subjectDAO.getEntity(subjectId).getName());
+
+	request.setAttribute("learningMaterials", learningMaterialsDAO.getSubjectLearningMaterials(subjectId));
+
 	request.setAttribute("semesterList",
-		request.getParameter("semesterList").replaceAll("\\[", "").replaceAll("\\]", "").split(","));
+			request.getParameter("semesterList").replaceAll("\\[", "").replaceAll("\\]", "").split(","));
 
 	request.getRequestDispatcher("/student/learningmaterials.jsp").forward(request, response);
+
+	subjectDAO.closeEntityManager();
+	learningMaterialsDAO.closeEntityManager();
     }
 
 }

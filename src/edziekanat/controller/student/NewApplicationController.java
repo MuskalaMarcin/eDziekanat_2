@@ -34,9 +34,10 @@ public class NewApplicationController extends HttpServlet
     {
 	super();
     }
+
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -45,12 +46,15 @@ public class NewApplicationController extends HttpServlet
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     *      response)
+     * response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+	ApplicationDAO applicationDAO = new ApplicationDAO();
+	AdministratorDAO administratorDAO = new AdministratorDAO();
+	Application_typeDAO application_typeDAO = new Application_typeDAO();
 	StudentDAO studentDAO = new StudentDAO();
-	@SuppressWarnings("unchecked")
+
 	List<AdministratorDTO> adminList = (List<AdministratorDTO>) request.getAttribute("adminList");
 	ApplicationDTO newApplication = new ApplicationDTO();
 	request.setAttribute("adminList", adminList);
@@ -58,16 +62,26 @@ public class NewApplicationController extends HttpServlet
 	newApplication.setContent(request.getParameter("content"));
 	newApplication.setDispatchDate(Calendar.getInstance().getTime());
 	newApplication.setStatus("Nierozpatrzony");
-	newApplication.setAdministrator(new AdministratorDAO().getEntity(Integer.parseInt(request.getParameter("id").toString())));
-	newApplication.setApplication_type(new Application_typeDAO().getEntity(Integer.parseInt(request.getParameter("type").toString())));
-	newApplication.setStudent(
-		studentDAO.getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
-	new ApplicationDAO().insert(newApplication);
-	
+
+	newApplication.setAdministrator(
+			administratorDAO.getEntity(Integer.parseInt(request.getParameter("id").toString())));
+
+	newApplication.setApplication_type(
+			application_typeDAO.getEntity(Integer.parseInt(request.getParameter("type").toString())));
+
+	newApplication.setStudent(studentDAO.getEntity(
+					((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
+
+	applicationDAO.insert(newApplication);
+
 	request.setAttribute("msgshort", "Wniosek z?o?ony");
 	request.setAttribute("msglong", "Tw?j wniosek zosta? wys?any");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
-	
+
+	studentDAO.closeEntityManager();
+	application_typeDAO.closeEntityManager();
+	administratorDAO.closeEntityManager();
+	applicationDAO.closeEntityManager();
     }
-    
+
 }

@@ -32,12 +32,16 @@ public class PlanClassesController extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	StudentsGroupDTO studentsGroup = new StudentsGroupDAO().getEntity(Integer.parseInt(request.getParameter("studentsGroupId")));
+	StudentsGroupDAO studentsGroupDAO = new StudentsGroupDAO();
+
+	StudentsGroupDTO studentsGroup =studentsGroupDAO.getEntity(Integer.parseInt(request.getParameter("studentsGroupId")));
 	request.setAttribute("studentsGroup", studentsGroup);
 	request.setAttribute("subjects", studentsGroup.getSubject());
 	request.setAttribute("classrooms", studentsGroup.getCourse().getFaculty().getClassroom());
-	
+
 	request.getRequestDispatcher("administrator/newclasses.jsp").forward(request, response);
+
+	studentsGroupDAO.closeEntityManager();
     }
 
 }

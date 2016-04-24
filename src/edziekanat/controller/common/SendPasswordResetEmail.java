@@ -40,7 +40,9 @@ public class SendPasswordResetEmail extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	UserDTO user = new UserDAO().getUserByLoginOrEmail(request.getParameter("login-email"));
+	UserDAO userDAO = new UserDAO();
+	UserDTO user = userDAO.getUserByLoginOrEmail(request.getParameter("login-email"));
+
 	if (user == null)
 	{
 	    request.setAttribute("resetError", "true");
@@ -73,6 +75,8 @@ public class SendPasswordResetEmail extends HttpServlet
 		request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	    }
 	}
+
+	userDAO.closeEntityManager();
     }
 
     private String constructEmailBody(String resetUrl)
@@ -122,6 +126,8 @@ public class SendPasswordResetEmail extends HttpServlet
 	passwordResetDTO.setRequestDate(new Date());
 	passwordResetDTO.setUser(user);
 	passwordResetDAO.insert(passwordResetDTO);
+
+	passwordResetDAO.closeEntityManager();
 
 	return passwordResetDTO;
     }

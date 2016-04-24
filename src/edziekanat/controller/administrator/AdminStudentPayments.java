@@ -32,10 +32,18 @@ public class AdminStudentPayments extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	request.setAttribute("studentPayments", new PaymentDAO().getAllStudentPayments(Integer.parseInt(request.getParameter("studentId"))));
-	request.setAttribute("student", new StudentDAO().getEntity(Integer.parseInt(request.getParameter("studentId"))));
+	PaymentDAO paymentDAO = new PaymentDAO();
+	StudentDAO studentDAO = new StudentDAO();
+
+	Integer studentId = Integer.parseInt(request.getParameter("studentId"));
+
+	request.setAttribute("studentPayments", paymentDAO.getAllStudentPayments(studentId));
+	request.setAttribute("student", studentDAO.getEntity(studentId));
 
 	request.getRequestDispatcher("administrator/studentpayments.jsp").forward(request, response);
+
+	studentDAO.closeEntityManager();
+	paymentDAO.closeEntityManager();
     }
 
 }
