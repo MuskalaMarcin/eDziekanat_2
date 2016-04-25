@@ -98,21 +98,19 @@
 							</c:forEach>
 						</table>
 
-                    <div class="btn-toolbar" role="toolbar">
+                    <div style="margin-top: 10px" class="btn-toolbar" role="toolbar">
                         <div class="btn-group" role="group" aria-label="1">
                             <c:forEach begin="1" end="${pagesNumber}" varStatus="loop">
-                                <form action="sentmessages" method=post>
+                                <c:choose>
+                                    <c:when test="${(loop.index-1)==currentPage}">
+                                        <form style="width:30px;height:30px;padding:0" class="btn btn-primary" action="sentmessages" method=post>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <form style="width:30px;height:30px;padding:0" class="btn btn-default" action="sentmessages" method=post>
+                                    </c:otherwise>
+                                </c:choose>
                                     <input type="hidden" name="getPage" value="${loop.index - 1}">
-                                    <c:choose>
-                                        <c:when test="${(loop.index-1)==currentPage}">
-                                            <button type="submit" class="btn btn-primary">${loop.index}</button>
-                                            dadasda
-                                        </c:when>
-                                        <c:otherwise>
-                                            <button type="submit" class="btn btn-default">${loop.index}</button>
-                                            tutaj
-                                        </c:otherwise>
-                                    </c:choose>
+                                    <button style="margin:0px; padding: 0; border:0;background: none; width: 30px; height: 30px" type="submit">${loop.index}</button>
                                 </form>
                             </c:forEach>
                         </div>

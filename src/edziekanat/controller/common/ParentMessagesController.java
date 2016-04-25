@@ -44,6 +44,7 @@ public abstract class ParentMessagesController extends HttpServlet
 	List<MessageDTO> msg = messageDAO.getMultipleEntities(query);
 	if (!msg.isEmpty())
 	{
+	    Collections.sort(msg, (x, y) -> y.getId().compareTo(x.getId()));
 	    Collections.sort(msg, (x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()));
 	    int pagesNumber = msg.size() / msgPerPages + ((msg.size() % msgPerPages > 0) ? 1 : 0);
 	    String requestPageString = request.getParameter("getPage");
