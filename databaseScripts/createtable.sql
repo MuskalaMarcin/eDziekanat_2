@@ -1,4 +1,4 @@
-﻿CREATE TABLE administrator
+CREATE TABLE administrator
   (
     id              INTEGER NOT NULL ,
     name            VARCHAR(256) NOT NULL ,
@@ -16,7 +16,7 @@ CREATE TABLE app_user
     login            VARCHAR(128) NOT NULL ,
     password         VARCHAR(256) NOT NULL ,
 	salt 			 VARCHAR(128) NOT NULL ,
-    e_mail           VARCHAR(128) NOT NULL UNIQUE,
+    e_mail           VARCHAR(128) NOT NULL ,
     is_active        INTEGER NOT NULL ,
     user_role        VARCHAR(64) NOT NULL ,
     lecturer_id      INTEGER ,
@@ -33,7 +33,6 @@ CREATE TABLE password_reset
 	app_user_login   VARCHAR(128) NOT NULL
   ) ;
 ALTER TABLE password_reset ADD CONSTRAINT password_reset_PK PRIMARY KEY ( id ) ;
-
 CREATE TABLE application_type
   (
     type_id    INTEGER NOT NULL ,
@@ -45,8 +44,8 @@ CREATE TABLE application
   (
     id    INTEGER NOT NULL ,
     title VARCHAR(256) NOT NULL ,
-    content TEXT NOT NULL ,
     dispatch_date    DATE NOT NULL ,
+    content TEXT NOT NULL ,
     status           VARCHAR(256) NOT NULL ,
     student_id       INTEGER NOT NULL ,
     administrator_id INTEGER NOT NULL ,
@@ -152,13 +151,6 @@ CREATE TABLE news
   ) ;
 ALTER TABLE news ADD CONSTRAINT news_PK PRIMARY KEY ( id ) ;
 
-CREATE TABLE news_app_user
-  (
-    news_id INTEGER NOT NULL ,
-    app_user_login VARCHAR(256) NOT NULL
-  ) ;
-ALTER TABLE news_app_user ADD CONSTRAINT news_app_user_PK PRIMARY KEY ( news_id, app_user_login ) ;
-
 CREATE TABLE partial_mark
   (
     id            INTEGER NOT NULL ,
@@ -249,7 +241,7 @@ CREATE TABLE students_group_subject
     students_group_id INTEGER NOT NULL ,
     subject_id        INTEGER NOT NULL
   ) ;
-ALTER TABLE students_group_subject ADD CONSTRAINT students_group_subject_PK PRIMARY KEY ( students_group_id, subject_id ) ;
+
 
 CREATE TABLE subject
   (

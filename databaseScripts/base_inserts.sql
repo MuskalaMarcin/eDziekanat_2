@@ -1229,9 +1229,7 @@ Insert into MESSAGE (ID, TITLE, CONTENT, DISPATCH_DATE, RECEIVE_DATE, SENDER_ID,
 
 Insert into NEWS (ID, TITLE, CONTENT, DISPATCH_DATE, SENDER_ID) values (nextval('news_id_seq'), 'Termin podbijania legitymacji', 'Termin podbijania legitymacji studenckich na semestr letni mija z dniem 30 marca 2016.', '2016-03-03', 'admin');
 Insert into NEWS (ID, TITLE, CONTENT, DISPATCH_DATE, SENDER_ID) values (nextval('news_id_seq'), 'Dni wolne od zajęć dydaktycznych', 'Dziekanat uczelni ogłasza dni: 2-4 maja 2016 jako wolne od zajęć dydaktycznych. ', '2016-03-30', 'admin');
-
-Insert into NEWS_APP_USER (NEWS_ID, APP_USER_LOGIN) values ('1','admin');
-Insert into NEWS_APP_USER (NEWS_ID, APP_USER_LOGIN) values ('2','admin');
+Insert into NEWS (ID, TITLE, CONTENT, DISPATCH_DATE, SENDER_ID) values (nextval('news_id_seq'), 'Godziny Rektorskie', 'Rektor PK ustanowił godziny wolne od zajęć dydaktycznych w dniu 21.04.2016. od godz. 10.00 do 13.30', '2016-04-03', 'admin');
 
 Insert into APPLICATION_TYPE (TYPE_ID, TYPE_NAME) values (nextval('application_type_id_seq'), 'stypendium socjalne');
 Insert into APPLICATION_TYPE (TYPE_ID, TYPE_NAME) values (nextval('application_type_id_seq'), 'stypendium ministra edukacji');
