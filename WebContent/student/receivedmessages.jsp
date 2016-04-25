@@ -6,11 +6,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
-	<link rel="stylesheet" href="resources/pure-min.css">
-	<link rel="stylesheet" href="resources/bootstrap/bootstrap.min.css">
-	<link rel="stylesheet" href="resources/styles.css">
-	<script src="resources/jquery/jquery-2.2.3.js"></script>
-	<script src="resources/bootstrap/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="resources/pure-min.css">
+    <link rel="stylesheet" href="resources/styles.css">
+    <link rel="stylesheet" href="resources/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="resources/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/bootstrap/bootstrap-datepicker3.standalone.css">
+    <link rel="stylesheet" href="resources/bootstrap/bootstrap-theme.css">
+    <link rel="stylesheet" href="resources/bootstrap/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="resources/bootstrap/normalize.css">
+    <link rel="stylesheet" href="resources/pure-min.css">
+    <link rel="stylesheet" href="resources/styles.css">
+    <script type='text/javascript' src="resources/jquery/jquery-2.2.3.js"></script>
+    <script type='text/javascript' src="resources/bootstrap/bootstrap.js"></script>
+    <script type='text/javascript' src="resources/bootstrap/bootstrap.min.js"></script>
+    <script type='text/javascript' src="resources/bootstrap/bootstrap-datepicker.js"></script>
+    <script type='text/javascript' src="resources/bootstrap/npm.js"></script>
 <title>eDziekanat - Skrzynka odbiorcza</title>
 </head>
 <body>
@@ -59,37 +69,42 @@
 						<p>Skrzynka odbiorcza jest pusta.</p>
 					</c:when>
 					<c:otherwise>
-						<table class="responseTable">
-							<c:forEach items="${receivedMessages}" var="msg"
-								varStatus="varStatus">
-								<a data-toggle="collapse" data-target="#demo${varStatus.index + 1}" >
-									<c:choose>
-									<c:when test="${empty msg.receiveDate}">
-									<div class="nieodebrane">
-										</c:when>
-										<c:otherwise>
-										<div class="odebrane">
-											</c:otherwise>
-											</c:choose>
-										<div class="tytul">${varStatus.index + 1}.${msg.title }</div>
-										<div class="data"><fmt:formatDate pattern="dd.MM.yyyy" value="${msg.dispatchDate}"/></div>
-										<div class="nadawca">${senderNames[varStatus.index]}</div>
-
-									</div>
-								</a>
-								<div class="tresc" id="demo${varStatus.index + 1}" class="collapse">${msg.content}
-									<div class="przycisk">
-										<form action="student/newmessage" method=post>
-											<input type="hidden" name="receiverLogin"
-												   value="${msg.sender.login}"> <input type="hidden"
-																					   name="title" value="${msg.title }"> <input
-												class="pure-button pure-input-1-2 pure-button-primary"
-												type="submit" value="Odpowiedz">
-										</form>
-									</div>
-								</div>
-							</c:forEach>
-						</table>
+                        <div class="panel-group" id="accordion1">
+                            <c:forEach items="${receivedMessages}" var="msg"
+                                       varStatus="varStatus">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse"
+                                         data-parent="#accordion1" data-target="#collapseOne${varStatus.index}">
+                                        <h4 class="panel-title"><c:choose>
+                                            <c:when test="${empty msg.receiveDate}">
+                                            <div class="nieodebrane">
+                                                </c:when>
+                                                <c:otherwise>
+                                                <div class="odebrane">
+                                                    </c:otherwise>
+                                                    </c:choose>
+                                                    <div class="tytul">${varStatus.index + 1 + (currentPage*10)}. ${msg.title }</div>
+                                                    <div class="data"><fmt:formatDate pattern="dd.MM.yyyy" value="${msg.dispatchDate}"/></div>
+                                                    <div class="nadawca">${senderNames[varStatus.index]}</div>
+                                                </div>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne${varStatus.index}" class="panel-collapse collapse">
+                                        <div class="panel-body"> ${msg.content}
+                                            <div id="deletenews" align="right">
+                                                <form action="student/newmessage" method=post>
+                                                    <input type="hidden" name="receiverLogin"
+                                                           value="${msg.sender.login}"> <input type="hidden"
+                                                                                               name="title" value="${msg.title }"> <input
+                                                        class="pure-button pure-input-1-2 pure-button-primary"
+                                                        type="submit" value="Odpowiedz">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
 
 						<div style="margin-top: 10px" class="btn-toolbar" role="toolbar">
 							<div class="btn-group" role="group" aria-label="1">

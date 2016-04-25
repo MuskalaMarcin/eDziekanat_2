@@ -69,38 +69,42 @@
 						<p>Skrzynka odbiorcza jest pusta.</p>
 					</c:when>
 					<c:otherwise>
-						<table class="responseTable">
-							<c:forEach items="${receivedMessages}" var="msg"
-								varStatus="varStatus">
-								<a data-toggle="collapse" data-target="#demo${varStatus.index + 1}" >
-									<c:choose>
-									<c:when test="${empty msg.receiveDate}">
-									<div class="nieodebrane">
-										</c:when>
-										<c:otherwise>
-										<div class="odebrane">
-											</c:otherwise>
-											</c:choose>
-										<div class="tytul">${varStatus.index + 1}.${msg.title }</div>
-										<div class="data"><fmt:formatDate pattern="dd.MM.yyyy" value="${msg.dispatchDate}"/></div>
-										<div class="nadawca">${senderNames[varStatus.index]}</div>
-
-									</div>
-								</a>
-								<div class="tresc" id="demo${varStatus.index + 1}" class="collapse">${msg.content}
-									<div class="przycisk">
-										<form action="admin/newmessage" method=post>
-											<input type="hidden" name="receiverLogin"
-												   value="${msg.sender.login}"> <input type="hidden"
-																					   name="title" value="${msg.title }"> <input
-												class="pure-button pure-input-1-2 pure-button-primary"
-												type="submit" value="Odpowiedz">
-										</form>
-									</div>
-								</div>
-
-							</c:forEach>
-						</table>
+                        <div class="panel-group" id="accordion1">
+                            <c:forEach items="${receivedMessages}" var="msg"
+                                       varStatus="varStatus">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse"
+                                         data-parent="#accordion1" data-target="#collapseOne${varStatus.index}">
+                                        <h4 class="panel-title"><c:choose>
+                                            <c:when test="${empty msg.receiveDate}">
+                                            <div class="nieodebrane">
+                                                </c:when>
+                                                <c:otherwise>
+                                                <div class="odebrane">
+                                                    </c:otherwise>
+                                                    </c:choose>
+                                                    <div class="tytul">${varStatus.index + 1 + (currentPage*10)}. ${msg.title }</div>
+                                                    <div class="data"><fmt:formatDate pattern="dd.MM.yyyy" value="${msg.dispatchDate}"/></div>
+                                                    <div class="nadawca">${senderNames[varStatus.index]}</div>
+                                                </div>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne${varStatus.index}" class="panel-collapse collapse">
+                                        <div class="panel-body"> ${msg.content}
+                                            <div id="deletenews" align="right">
+                                                <form action="administrator/newmessage" method=post>
+                                                    <input type="hidden" name="receiverLogin"
+                                                           value="${msg.sender.login}"> <input type="hidden"
+                                                                                               name="title" value="${msg.title }"> <input
+                                                        class="pure-button pure-input-1-2 pure-button-primary"
+                                                        type="submit" value="Odpowiedz">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
 
 						<div style="margin-top: 10px" class="btn-toolbar" role="toolbar">
 							<div class="btn-group" role="group" aria-label="1">

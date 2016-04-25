@@ -59,38 +59,42 @@
 						<p>Skrzynka nadawcza jest pusta.</p>
 					</c:when>
 					<c:otherwise>
-						<table class="responseTable">
-							<c:forEach items="${sentMessages}" var="msg"
-								varStatus="varStatus">
-								<a data-toggle="collapse" data-target="#demo${varStatus.index + 1}" >
-									<c:choose>
-									<c:when test="${empty msg.receiveDate}">
-									<div class="nieodebrane">
-										</c:when>
-										<c:otherwise>
-										<div class="odebrane">
-											</c:otherwise>
-											</c:choose>
-										<div class="tytul">${varStatus.index + 1}.${msg.title }</div>
-										<div class="data"><fmt:formatDate pattern="dd.MM.yyyy" value="${msg.dispatchDate}"/></div>
-										<div class="nadawca">${receiverNames[varStatus.index]}</div>
-									</div>
-								</a>
-								<div class="tresc" id="demo${varStatus.index + 1}" class="collapse">${msg.content}
-									<div class="doreczenie">
-										<c:choose>
-											<c:when test="${empty msg.receiveDate}">Nie dostarczono.</c:when>
-											<c:otherwise>
-												<fmt:formatDate pattern="dd.MM.yyyy"
-																value="${msg.receiveDate}" />
-											</c:otherwise>
-										</c:choose>
-									</div>
-								</div>
-							</c:forEach>
-							</div>
-						</table>
-
+                        <div class="panel-group" id="accordion1">
+                            <c:forEach items="${sentMessages}" var="msg"
+                                       varStatus="varStatus">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse"
+                                         data-parent="#accordion1" data-target="#collapseOne${varStatus.index}">
+                                        <h4 class="panel-title"><c:choose>
+                                            <c:when test="${empty msg.receiveDate}">
+                                            <div class="nieodebrane">
+                                                </c:when>
+                                                <c:otherwise>
+                                                <div class="odebrane">
+                                                    </c:otherwise>
+                                                    </c:choose>
+                                                    <div class="tytul">${varStatus.index + 1 + (currentPage*10)}. ${msg.title }</div>
+                                                    <div class="data"><fmt:formatDate pattern="dd.MM.yyyy" value="${msg.dispatchDate}"/></div>
+                                                    <div class="nadawca">${receiverNames[varStatus.index]}</div>
+                                                </div>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne${varStatus.index}" class="panel-collapse collapse">
+                                        <div class="panel-body"> ${msg.content}
+                                            <div id="deletenews" align="right">
+                                                <c:choose>
+                                                    <c:when test="${empty msg.receiveDate}">Nie dostarczono.</c:when>
+                                                    <c:otherwise>
+                                                        Dostarczono: <fmt:formatDate pattern="dd.MM.yyyy"
+                                                                                     value="${msg.receiveDate}" />
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
 			<div style="margin-top: 10px" class="btn-toolbar" role="toolbar">
 				<div class="btn-group" role="group" aria-label="1">
 					<c:forEach begin="1" end="${pagesNumber}" varStatus="loop">
