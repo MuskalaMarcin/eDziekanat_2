@@ -6,8 +6,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
-<link rel="stylesheet" href="resources/pure-min.css">
-<link rel="stylesheet" href="resources/styles.css">
+    <link rel="stylesheet" href="resources/pure-min.css">
+    <link rel="stylesheet" href="resources/styles.css">
+    <link rel="stylesheet" href="resources/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="resources/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/bootstrap/bootstrap-datepicker3.standalone.css">
+    <link rel="stylesheet" href="resources/bootstrap/bootstrap-theme.css">
+    <link rel="stylesheet" href="resources/bootstrap/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="resources/bootstrap/normalize.css">
+    <link rel="stylesheet" href="resources/pure-min.css">
+    <link rel="stylesheet" href="resources/styles.css">
+    <script type='text/javascript' src="resources/jquery/jquery-2.2.3.js"></script>
+    <script type='text/javascript' src="resources/bootstrap/bootstrap.js"></script>
+    <script type='text/javascript' src="resources/bootstrap/bootstrap.min.js"></script>
+    <script type='text/javascript' src="resources/bootstrap/bootstrap-datepicker.js"></script>
+    <script type='text/javascript' src="resources/bootstrap/npm.js"></script>
 <title>eDziekanat - Skrzynka odbiorcza</title>
 </head>
 <body>
@@ -56,38 +69,60 @@
 						<p>Skrzynka odbiorcza jest pusta.</p>
 					</c:when>
 					<c:otherwise>
-						<table class="responseTable">
-							<c:forEach items="${receivedMessages}" var="msg"
-								varStatus="varStatus">
-								<tr class="grayRow">
-									<td id="respond">
-										<form action="student/newmessage" method=post>
-											<input type="hidden" name="receiverLogin"
-												value="${msg.sender.login}"> <input type="hidden"
-												name="title" value="${msg.title }"> <input
-												class="pure-button pure-input-1-2 pure-button-primary"
-												type="submit" value="Odpowiedz">
-										</form>
-									</td>
-									<td colspan="3">Wiadomość ${varStatus.index + 1}</td>
-								</tr>
-								<tr>
-									<td>Nadawca:</td>
-									<td>${senderNames[varStatus.index]}</td>
-									<td>Data nadania:</td>
-									<td><fmt:formatDate pattern="dd.MM.yyyy"
-											value="${msg.dispatchDate}" /></td>
-								</tr>
-								<tr>
-									<td width="150px">Tytuł:</td>
-									<td colspan="3">${msg.title}</td>
-								</tr>
-								<tr>
-									<td>Treść:</td>
-									<td id="content" colspan="3">${msg.content}</td>
-								</tr>
-							</c:forEach>
-						</table>
+                        <div class="panel-group" id="accordion1">
+                            <c:forEach items="${receivedMessages}" var="msg"
+                                       varStatus="varStatus">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse"
+                                         data-parent="#accordion1" data-target="#collapseOne${varStatus.index}">
+                                        <h4 class="panel-title"><c:choose>
+                                            <c:when test="${empty msg.receiveDate}">
+                                            <div class="nieodebrane">
+                                                </c:when>
+                                                <c:otherwise>
+                                                <div class="odebrane">
+                                                    </c:otherwise>
+                                                    </c:choose>
+                                                    <div class="tytul">${varStatus.index + 1 + (currentPage*10)}. ${msg.title }</div>
+                                                    <div class="data"><fmt:formatDate pattern="dd.MM.yyyy" value="${msg.dispatchDate}"/></div>
+                                                    <div class="nadawca">${senderNames[varStatus.index]}</div>
+                                                </div>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne${varStatus.index}" class="panel-collapse collapse">
+                                        <div class="panel-body"> ${msg.content}
+                                            <div id="deletenews" align="right">
+                                                <form action="student/newmessage" method=post>
+                                                    <input type="hidden" name="receiverLogin"
+                                                           value="${msg.sender.login}"> <input type="hidden"
+                                                                                               name="title" value="${msg.title }"> <input
+                                                        class="pure-button pure-input-1-2 pure-button-primary"
+                                                        type="submit" value="Odpowiedz">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+
+						<div style="margin-top: 10px; margin-left: 47%" class="btn-toolbar" role="toolbar">
+							<div class="btn-group" role="group" aria-label="1">
+								<c:forEach begin="1" end="${pagesNumber}" varStatus="loop">
+								<c:choose>
+								<c:when test="${(loop.index-1)==currentPage}">
+								<form style="width:30px;height:30px;padding:0" class="btn btn-primary" action="receivedmessages" method=post>
+									</c:when>
+									<c:otherwise>
+									<form style="width:30px;height:30px;padding:0" class="btn btn-default" action="receivedmessages" method=post>
+										</c:otherwise>
+										</c:choose>
+										<input type="hidden" name="getPage" value="${loop.index - 1}">
+										<button style="margin:0px; padding: 0; border:0;background: none; width: 30px; height: 30px" type="submit">${loop.index}</button>
+									</form>
+									</c:forEach>
+							</div>
+						</div>
 					</c:otherwise>
 				</c:choose>
 			</div>

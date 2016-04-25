@@ -174,3 +174,44 @@ td#respond {
 .linkButtonSelected {
 	color: #fff;
 }
+.odebrane {
+	color: black;
+	overflow:auto;
+	margin-bottom: 2px;
+
+}
+.nieodebrane {
+	color: black;
+	overflow:auto;
+	margin-bottom: 2px;
+}
+.belka {
+	background-color: gray;
+	color: black;
+	overflow:auto;
+	margin-bottom: 2px;
+}
+.tytul{
+	float: left;
+	margin-right: 25px;
+	clear: both;
+}
+.nadawca{
+	float: right;
+	margin-right: 25px;
+}
+.data{
+	float: right;
+}
+.tresc{
+	float: none;
+	text-align: center;
+	display: none;
+	overflow:auto;
+}
+.przycisk{
+	float: right;
+}
+.doreczenie{
+	float: right;
+}

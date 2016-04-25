@@ -1,15 +1,14 @@
 package edziekanat.controller.administrator;
 
-import java.io.IOException;
+import edziekanat.databasemodel.dao.ScheduledClassesDAO;
+import edziekanat.databasemodel.dto.ScheduledClassesDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import edziekanat.databasemodel.dao.ScheduledClassesDAO;
-import edziekanat.databasemodel.dto.ScheduledClassesDTO;
+import java.io.IOException;
 
 /**
  * Servlet implementation class DeleteClasses
@@ -38,7 +37,7 @@ public class DeleteClasses extends HttpServlet
 	scDAO.remove(sc);
 
 	request.setAttribute("msgshort", "Usunięto zajęcia");
-	request.setAttribute("msglong", "Usunięto zaplanowane zajęcia z przedimotu: " + sc.getSubject().getName());
+	request.setAttribute("msglong", "Usunięto zaplanowane zajęcia z przedmiotu: " + sc.getSubject().getName());
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
 	scDAO.closeEntityManager();

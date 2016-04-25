@@ -21,17 +21,8 @@ import edziekanat.databasemodel.dto.UserDTO;
  * Servlet implementation class MessageController
  */
 @WebServlet("/receivedmessages")
-public class ReceivedMessagesController extends HttpServlet
+public class ReceivedMessagesController extends ParentMessagesController
 {
-    private static final long serialVersionUID = 1L;
-
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {
-	doPost(request, response);
-    }
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -42,11 +33,10 @@ public class ReceivedMessagesController extends HttpServlet
 	String messagesURL = "/" + loginBean.getUserRole() + "/receivedmessages";
 
 	MessageDAO messageDAO = new MessageDAO();
-	List<MessageDTO> receivedMsg = messageDAO.getMultipleEntities("receiver_id = '" + loginBean.getLogin() + "'");
+	List<MessageDTO> receivedMsg = getMessages(request, messageDAO, loginBean.getLogin(), false);
 
 	if (!receivedMsg.isEmpty())
 	{
-	    Collections.sort(receivedMsg, (x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()));
 	    setReceivedDate(receivedMsg);
 	    List<String> senderNames = getUserNames(receivedMsg, true);
 	    request.setAttribute("senderNames", senderNames);
@@ -63,33 +53,10 @@ public class ReceivedMessagesController extends HttpServlet
 	MessageDAO messageDAO = new MessageDAO();
 	receivedMsg.forEach(msg -> {
 	    if (msg.getReceiveDate() == null)
-	    {	
+	    {
 		msg.setReceiveDate(calendar.getTime());
 		messageDAO.update(msg);
 	    }
 	});
     }
-
-    private List<String> getUserNames(List<MessageDTO> allMessage, boolean isSender)
-    {
-	List<String> userNames = new LinkedList<String>();
-	allMessage.forEach(message -> {
-	    UserDTO user = null;
-	    user = isSender ? message.getSender() : message.getReceiver();
-	    switch (user.getUserRole())
-	    {
-	    case "admin":
-		userNames.add(user.getAdministrator().getName() + " " + user.getAdministrator().getSurname());
-		break;
-	    case "student":
-		userNames.add(user.getStudent().getName() + " " + user.getStudent().getSurname());
-		break;
-	    case "lecturer":
-		userNames.add(user.getLecturer().getName() + " " + user.getLecturer().getSurname());
-		break;
-	    }
-	});
-	return userNames;
-    }
-
 }
