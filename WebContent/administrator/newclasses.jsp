@@ -7,20 +7,15 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
     <link rel="stylesheet" href="resources/pure-min.css">
+    <link rel="stylesheet" href="resources/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/bootstrap/bootstrap-datepicker3.standalone.css">
+    <script src="resources/jquery/jquery-2.2.3.js"></script>
+    <script src="resources/bootstrap/bootstrap.min.js"></script>
+    <script src="resources/bootstrap/bootstrap-datepicker.js"></script>
     <link rel="stylesheet" href="resources/styles.css">
     <title>eDziekanat - Administrator - Nowe zajęcia</title>
 
     <script type="text/javascript">
-        function setMinDate() {
-            var startDateInput = document.getElementById("startDate");
-            var endDateInput = document.getElementById("endDate");
-            var minDate = new Date(startDateInput.value);
-            var repeatValue = document.getElementById("repeat").value;
-
-            minDate.setDate(minDate.getDate() + (repeatValue * 7));
-            endDateInput.setAttribute("min", minDate.getFullYear() + "-" + ("0" + (minDate.getMonth() + 1)).slice(-2) + "-" + ("0" + minDate.getDate()).slice(-2));
-        }
-
         function showHideEndDate() {
             var endDateLabel = document.getElementById("endDateLabel");
             var endDateInput = document.getElementById("endDate");
@@ -29,18 +24,30 @@
                 endDateLabel.style.display = "block";
                 endDateInput.style.display = "block";
                 endDateInput.required = true;
-                setMinDate()
             }
             else {
                 endDateLabel.style.display = "none";
                 endDateInput.style.display = "none";
                 endDateInput.required = false;
-                endDateInput.set("");
             }
+        }
+
+        function setDatePicker() {
+            var minDate = new Date();
+            $('#datepicker').datepicker({
+                language: "pl",
+                format: "dd.mm.yyyy",
+                startDate: ("0" + minDate.getDate()).slice(-2) + "." + ("0" + (minDate.getMonth() + 1)).slice(-2) + "." + minDate.getFullYear(),
+                daysOfWeekDisabled: "0,6",
+                autoclose: true,
+                orientation: "bottom auto",
+                todayHighlight: true,
+                toggleActive: true
+            });
         }
     </script>
 </head>
-<body>
+<body onload="setDatePicker()">
 <div id="layout">
     <div id="menu">
         <div class="pure-menu">
@@ -59,7 +66,7 @@
                         <button class="linkButton " type="submit">Pokaż plan</button>
                     </form>
                 </li>
-                <li class="pure-menu-item"><a class="pure-menu-link" href="#">Zaplanuj
+                <li class="pure-menu-item pure-menu-selected"><a class="pure-menu-link" href="#">Zaplanuj
                     nowe zajęcia</a></li>
 
                 <li class="pure-menu-item menu-item-divided"><a
@@ -100,6 +107,7 @@
             <center>
                 <form class="pure-form pure-form-stacked" action="addnewclasses">
                     <fieldset>
+
                         <label for="sg">Grupa studencka </label>
                         <input id="sg" type="text" name="nothing" class="pure-input-1-2" style="width: 50%"
                                value="grupa: ${studentsGroup.id} kierunek: ${studentsGroup.course.name }"
@@ -116,12 +124,16 @@
                                         ${classroom.number} typ: ${classroom.type }</option>
                             </c:forEach>
                         </select>
-                        <label for="startDate">Data rozpoczęcia </label>
-                        <jsp:useBean id="now" class="java.util.Date"/>
-                        <input id="startDate" type="date" name="startDate" onchange="setMinDate()"
-                               min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />" required>
+
+                        <label for="repeat">Powtarzaj </label>
+                        <select style="width:219px" name="repeat" id="repeat" onchange="showHideEndDate()">
+                            <option value="0">Nie powtarzaj</option>
+                            <option value="1">Co tydzień</option>
+                            <option value="2">Co dwa tygodnie</option>
+                        </select>
+
                         <label for="startTime">Godzina rozpoczęcia</label>
-                        <select style="width:188px" name="startTime" id="startTime">
+                        <select style="width:219px" name="startTime" id="startTime">
                             <option value="0">7:30</option>
                             <option value="1">9:15</option>
                             <option value="2">11:00</option>
@@ -131,16 +143,15 @@
                             <option value="6">18:00</option>
                             <option value="7">19:45</option>
                         </select>
-                        <label for="repeat">Powtarzaj </label>
-                        <select style="width:188px" name="repeat" id="repeat" onchange="showHideEndDate()">
-                            <option value="0">Nie powtarzaj</option>
-                            <option value="1">Co tydzień</option>
-                            <option value="2">Co dwa tygodnie</option>
-                        </select>
-                        <label id="endDateLabel" for="endDate" style="display: none">Data zakończenia </label>
-                        <input id="endDate" type="date" name="endDate" style="display: none"
-                               min="<fmt:formatDate pattern="yyyy-MM-dd" value="${now}" />">
+
+                        <div style="width: 219px" class="input-daterange input-group" id="datepicker">
+                            <label id="startDateLabel" for="startDate">Data rozpoczęcia </label>
+                            <input id="startDate" style="width: 219px; border-radius: 4px" type="text" class="input-sm form-control pure-input-1-2 " name="startDate" required/>
+                            <label id="endDateLabel" style="display:none" for="endDate">Data zakończenia </label>
+                            <input id="endDate" style="width: 219px; display:none; border-radius: 4px" type="text" class="input-sm form-control pure-input-1-2 " name="endDate"/>
+                        </div>
                     </fieldset>
+
                     <button type=" submit"
                             class="pure-button pure-input-1-2 pure-button-primary">Wyślij
                     </button>

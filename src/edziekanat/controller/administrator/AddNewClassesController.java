@@ -47,7 +47,7 @@ public class AddNewClassesController extends HttpServlet
 	SubjectDTO subject = subjectDAO.getEntity(Integer.parseInt(request.getParameter("subjectId")));
 	ClassroomDTO classroom = classroomDAO.getEntity(Integer.parseInt(request.getParameter("classroomId")));
 	Integer repeat = Integer.parseInt(request.getParameter("repeat"));
-	DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+	DateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
 	Integer startTime = Integer.parseInt(request.getParameter("startTime"));
 	Date startDate = null;
 	try
