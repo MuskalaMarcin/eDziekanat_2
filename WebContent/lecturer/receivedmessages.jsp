@@ -64,16 +64,18 @@
 							<c:forEach items="${receivedMessages}" var="msg"
 								varStatus="varStatus">
 								<a data-toggle="collapse" data-target="#demo${varStatus.index + 1}" >
-									<c:when test="${empty msg.receiveDate}">
-									<div class="nieodebrane">
-									</c:when>
-										<c:otherwise>
-										<div class="odebrane">
-										</c:otherwise>
+<%--									<d:choose>
+										<d:when test="${empty msg.receiveDate}">
+											&lt;%&ndash;<div class="nieodebrane">&ndash;%&gt;value="${msg.receiveDate}"
+										</d:when>
+										<d:otherwise>
+											&lt;%&ndash;<div class="odebrane">&ndash;%&gt;value="${msg.receiveDate}"
+										</d:otherwise>
+									</d:choose>--%>
+												<div class="belka">
 										<div class="tytul">${varStatus.index + 1}.${msg.title }</div>
 										<div class="data"><fmt:formatDate pattern="dd.MM.yyyy" value="${msg.dispatchDate}"/></div>
 										<div class="nadawca">${senderNames[varStatus.index]}</div>
-
 									</div>
 								</a>
 								<div class="tresc" id="demo${varStatus.index + 1}" class="collapse">${msg.content}

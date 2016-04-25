@@ -178,10 +178,16 @@ td#respond {
 	background-color: lightcoral;
 	color: black;
 	overflow:auto;
-	margin-bottom: 2px;
+
 }
 .nieodebrane {
 	background-color: lightgreen;
+	color: black;
+	overflow:auto;
+
+}
+.belka {
+	background-color: gray;
 	color: black;
 	overflow:auto;
 	margin-bottom: 2px;
@@ -202,7 +208,6 @@ td#respond {
 	background-color: lightgray;
 	color: black;
 	float: none;
-	margin-bottom: 2px;
 	text-align: center;
 	display: none;
 	overflow:auto;

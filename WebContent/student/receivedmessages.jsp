@@ -63,7 +63,13 @@
 							<c:forEach items="${receivedMessages}" var="msg"
 								varStatus="varStatus">
 								<a data-toggle="collapse" data-target="#demo${varStatus.index + 1}" >
-									<div class="belka">
+										<%--									<d:when test="${empty msg.receiveDate}">
+                                                                            <div class="nieodebrane">
+                                                                                </d:when>
+                                                                                <d:otherwise>
+                                                                                <div class="odebrane">
+                                                                                    </d:otherwise>--%>
+												<div class="belka">
 										<div class="tytul">${varStatus.index + 1}.${msg.title }</div>
 										<div class="data"><fmt:formatDate pattern="dd.MM.yyyy" value="${msg.dispatchDate}"/></div>
 										<div class="nadawca">${senderNames[varStatus.index]}</div>
@@ -81,33 +87,6 @@
 										</form>
 									</div>
 								</div>
-							<%--	<tr class="grayRow">
-									<td id="respond">
-										<form action="student/newmessage" method=post>
-											<input type="hidden" name="receiverLogin"
-												value="${msg.sender.login}"> <input type="hidden"
-												name="title" value="${msg.title }"> <input
-												class="pure-button pure-input-1-2 pure-button-primary"
-												type="submit" value="Odpowiedz">
-										</form>
-									</td>
-									<td colspan="3">Wiadomo¶æ ${varStatus.index + 1}</td>
-								</tr>
-								<tr>
-									<td>Nadawca:</td>
-									<td>${senderNames[varStatus.index]}</td>
-									<td>Data nadania:</td>
-									<td><fmt:formatDate pattern="dd.MM.yyyy"
-											value="${msg.dispatchDate}" /></td>
-								</tr>
-								<tr>
-									<td width="150px">Tytu³:</td>
-									<td colspan="3">${msg.title}</td>
-								</tr>
-								<tr>
-									<td>Tre¶æ:</td>
-									<td id="content" colspan="3">${msg.content}</td>
-								</tr>--%>
 							</c:forEach>
 						</table>
 					</c:otherwise>

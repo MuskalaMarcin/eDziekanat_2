@@ -71,7 +71,13 @@
 							<c:forEach items="${receivedMessages}" var="msg"
 								varStatus="varStatus">
 								<a data-toggle="collapse" data-target="#demo${varStatus.index + 1}" >
-									<div class="belka">
+<%--									<d:when test="${empty msg.receiveDate}">
+									<div class="nieodebrane">
+										</d:when>
+										<d:otherwise>
+										<div class="odebrane">
+											</d:otherwise>--%>
+												<div class="belka">
 										<div class="tytul">${varStatus.index + 1}.${msg.title }</div>
 										<div class="data"><fmt:formatDate pattern="dd.MM.yyyy" value="${msg.dispatchDate}"/></div>
 										<div class="nadawca">${senderNames[varStatus.index]}</div>
@@ -80,7 +86,7 @@
 								</a>
 								<div class="tresc" id="demo${varStatus.index + 1}" class="collapse">${msg.content}
 									<div class="przycisk">
-										<form action="administrator/newmessage" method=post>
+										<form action="admin/newmessage" method=post>
 											<input type="hidden" name="receiverLogin"
 												   value="${msg.sender.login}"> <input type="hidden"
 																					   name="title" value="${msg.title }"> <input
