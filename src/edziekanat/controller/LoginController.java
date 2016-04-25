@@ -1,20 +1,24 @@
 package edziekanat.controller;
 
-import java.io.IOException;
+import edziekanat.bean.LoginBean;
+import edziekanat.databasemodel.dao.NewsDAO;
+import edziekanat.databasemodel.dao.UserDAO;
+import edziekanat.databasemodel.dto.AdministratorDTO;
+import edziekanat.databasemodel.dto.LecturerDTO;
+import edziekanat.databasemodel.dto.NewsDTO;
+import edziekanat.databasemodel.dto.StudentDTO;
+import edziekanat.databasemodel.dto.UserDTO;
+import edziekanat.utilities.PasswordUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import edziekanat.bean.LoginBean;
-import edziekanat.databasemodel.dao.UserDAO;
-import edziekanat.databasemodel.dto.AdministratorDTO;
-import edziekanat.databasemodel.dto.LecturerDTO;
-import edziekanat.databasemodel.dto.StudentDTO;
-import edziekanat.databasemodel.dto.UserDTO;
-import edziekanat.utilities.PasswordUtils;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Servlet maintaing logging in to application.
@@ -50,6 +54,10 @@ public class LoginController extends HttpServlet
 	    {
 		request.login(username, PasswordUtils.getSHA512PasswordHash(password, user.getSalt()));
 	    }
+	    List<NewsDTO> news = getNews();
+	    System.out.println(news.size());
+	    request.getSession().setAttribute("news", news);
+	    request.getSession().setAttribute("senderNames", getUserNames(news));
 	    request.getSession().setAttribute("loginBean", getLoginBean(request, userDAO));
 	}
 	catch (ServletException e)
@@ -83,5 +91,31 @@ public class LoginController extends HttpServlet
 	default:
 	    return null;
 	}
+    }
+
+    private List<NewsDTO> getNews()
+    {
+	NewsDAO newsdao = new NewsDAO();
+	List<NewsDTO> news = newsdao.getAllEntities();
+
+	if (!news.isEmpty())
+	{
+	    Collections.sort(news, (x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()));
+	}
+	else {
+	    System.out.println("PUSTO PUSTO PUSTO");
+	}
+	return news;
+    }
+
+    private List<String> getUserNames(List<NewsDTO> allNews)
+    {
+	List<String> userNames = new LinkedList<>();
+	allNews.forEach(news -> {
+	    UserDTO user = null;
+	    user = news.getSender();
+	    userNames.add(user.getAdministrator().getName() + " " + user.getAdministrator().getSurname());
+	});
+	return userNames;
     }
 }

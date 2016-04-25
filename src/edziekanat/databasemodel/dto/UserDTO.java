@@ -1,6 +1,6 @@
 package edziekanat.databasemodel.dto;
 
-import java.util.List;
+import edziekanat.databasemodel.TableNames;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -8,11 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import edziekanat.databasemodel.TableNames;
+import java.util.List;
 
 /**
  *  Data transfer object representing user entity.
@@ -53,6 +53,8 @@ public class UserDTO
     private List<MessageDTO> received_message;
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<PasswordResetDTO> passwordResets;
+    @OneToMany(mappedBy = "sender", fetch = FetchType.LAZY)
+    private List<NewsDTO> news;
 
     public String getLogin()
     {
@@ -182,5 +184,15 @@ public class UserDTO
     public void setPasswordResets(List<PasswordResetDTO> passwordResets)
     {
 	this.passwordResets = passwordResets;
+    }
+
+    public List<NewsDTO> getNews()
+    {
+	return news;
+    }
+
+    public void setNews(List<NewsDTO> news)
+    {
+	this.news = news;
     }
 }

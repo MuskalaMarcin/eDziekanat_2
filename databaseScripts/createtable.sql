@@ -130,7 +130,7 @@ CREATE TABLE lecturer
 ALTER TABLE lecturer ADD CONSTRAINT lecturer_PK PRIMARY KEY ( id ) ;
 
 
-CREATE TABLE MESSAGE
+CREATE TABLE message
   (
     id    INTEGER NOT NULL ,
     title VARCHAR(256) NOT NULL ,
@@ -140,8 +140,24 @@ CREATE TABLE MESSAGE
     sender_id     VARCHAR(256) NOT NULL ,
     receiver_id   VARCHAR(256) NOT NULL
   ) ;
-ALTER TABLE MESSAGE ADD CONSTRAINT message_PK PRIMARY KEY ( id ) ;
+ALTER TABLE message ADD CONSTRAINT message_PK PRIMARY KEY ( id ) ;
 
+CREATE TABLE news
+  (
+    id    INTEGER NOT NULL ,
+    title VARCHAR(256) NOT NULL ,
+    content TEXT NOT NULL ,
+    dispatch_date DATE NOT NULL ,
+    sender_id     VARCHAR(256) NOT NULL 
+  ) ;
+ALTER TABLE news ADD CONSTRAINT news_PK PRIMARY KEY ( id ) ;
+
+CREATE TABLE news_app_user
+  (
+    news_id INTEGER NOT NULL ,
+    app_user_login VARCHAR(256) NOT NULL
+  ) ;
+ALTER TABLE news_app_user ADD CONSTRAINT news_app_user_PK PRIMARY KEY ( news_id, app_user_login ) ;
 
 CREATE TABLE partial_mark
   (
@@ -305,10 +321,13 @@ DELETE CASCADE ;
 ALTER TABLE learning_materials ADD CONSTRAINT learning_materials_subject_FK FOREIGN KEY ( subject_id ) REFERENCES subject ( id ) ON
 DELETE CASCADE ;
 
-ALTER TABLE MESSAGE ADD CONSTRAINT message_users_FK FOREIGN KEY ( sender_id ) REFERENCES app_user ( login ) ON
+ALTER TABLE message ADD CONSTRAINT message_users_FK FOREIGN KEY ( sender_id ) REFERENCES app_user ( login ) ON
 DELETE CASCADE ;
 
-ALTER TABLE MESSAGE ADD CONSTRAINT message_users_FKv1 FOREIGN KEY ( receiver_id ) REFERENCES app_user ( login ) ON
+ALTER TABLE message ADD CONSTRAINT message_users_FKv1 FOREIGN KEY ( receiver_id ) REFERENCES app_user ( login ) ON
+DELETE CASCADE ;
+
+ALTER TABLE news ADD CONSTRAINT news_users_FK FOREIGN KEY ( sender_id ) REFERENCES app_user ( login ) ON
 DELETE CASCADE ;
 
 ALTER TABLE partial_mark ADD CONSTRAINT partial_mark_subject_FK FOREIGN KEY ( subject_id ) REFERENCES subject ( id ) ON

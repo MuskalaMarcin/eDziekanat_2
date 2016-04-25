@@ -1,11 +1,10 @@
 package edziekanat.databasemodel.dao;
 
-import java.util.List;
+import edziekanat.listener.StartupListener;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-
-import edziekanat.listener.StartupListener;
+import java.util.List;
 
 /**
  * Abstract class containing common methods and fields for DAO classes.
