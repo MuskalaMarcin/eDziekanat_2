@@ -7,7 +7,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet" href="resources/pure-min.css">
+<link rel="stylesheet" href="resources/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="resources/styles.css">
+<script src="resources/jquery/jquery-2.2.3.js"></script>
+<script src="resources/bootstrap/bootstrap.min.js"></script>
 <title>eDziekanat - Wykładowca - Skrzynka nadawcza</title>
 </head>
 <body>
@@ -56,32 +59,32 @@
 						<table class="responseTable">
 							<c:forEach items="${sentMessages}" var="msg"
 								varStatus="varStatus">
-								<tr class="grayRow">
-									<td colspan="6">Wiadomość ${varStatus.index + 1}</td>
-								</tr>
-								<tr>
-									<td>Odbiorca:</td>
-									<td>${receiverNames[varStatus.index]}</td>
-									<td>Data wysłania:</td>
-									<td><fmt:formatDate pattern="dd.MM.yyyy"
-											value="${msg.dispatchDate}" /></td>
-									<td>Data dostarczenia:</td>
-									<td><c:choose>
+								<a data-toggle="collapse" data-target="#demo${varStatus.index + 1}" >
+									<c:choose>
+									<c:when test="${empty msg.receiveDate}">
+									<div class="nieodebrane">
+										</c:when>
+										<c:otherwise>
+										<div class="odebrane">
+											</c:otherwise>
+											</c:choose>
+										<div class="tytul">${varStatus.index + 1}.${msg.title }</div>
+										<div class="data"><fmt:formatDate pattern="dd.MM.yyyy" value="${msg.dispatchDate}"/></div>
+										<div class="nadawca">${receiverNames[varStatus.index]}</div>
+									</div>
+								</a>
+								<div class="tresc" id="demo${varStatus.index + 1}" class="collapse">${msg.content}
+									<div class="doreczenie">
+										<c:choose>
 											<c:when test="${empty msg.receiveDate}">Nie dostarczono.</c:when>
 											<c:otherwise>
 												<fmt:formatDate pattern="dd.MM.yyyy"
-													value="${msg.receiveDate}" />
+																value="${msg.receiveDate}" />
 											</c:otherwise>
-										</c:choose></td>
-								</tr>
-								<tr>
-									<td width="150px">Tytuł:</td>
-									<td colspan="5">${msg.title }</td>
-								</tr>
-								<tr>
-									<td>Treść:</td>
-									<td colspan="5" id="content">${msg.content }</td>
-								</tr>
+										</c:choose>
+									</div>
+								</div>
+
 							</c:forEach>
 						</table>
 					</c:otherwise>
