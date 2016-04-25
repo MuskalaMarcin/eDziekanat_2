@@ -93,7 +93,7 @@
                             </c:forEach>
                         </div>
 
-						<div style="margin-top: 10px" class="btn-toolbar" role="toolbar">
+						<div style="margin-top: 10; margin-left: 47%" class="btn-toolbar" role="toolbar">
 							<div class="btn-group" role="group" aria-label="1">
 								<c:forEach begin="1" end="${pagesNumber}" varStatus="loop">
 								<c:choose>
