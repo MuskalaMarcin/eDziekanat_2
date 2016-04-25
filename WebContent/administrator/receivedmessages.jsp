@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-2"
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-2"
 	pageEncoding="ISO-8859-2"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -6,8 +6,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
-<link rel="stylesheet" href="resources/pure-min.css">
-<link rel="stylesheet" href="resources/styles.css">
+	<link rel="stylesheet" href="resources/pure-min.css">
+	<link rel="stylesheet" href="resources/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="resources/styles.css">
+	<script src="resources/jquery/jquery-2.2.3.js"></script>
+	<script src="resources/bootstrap/bootstrap.min.js"></script>
 <title>eDziekanat - Skrzynka odbiorcza</title>
 </head>
 <body>
@@ -67,7 +70,27 @@
 						<table class="responseTable">
 							<c:forEach items="${receivedMessages}" var="msg"
 								varStatus="varStatus">
-								<tr class="grayRow">
+								<a data-toggle="collapse" data-target="#demo${varStatus.index + 1}" >
+									<div class="belka">
+										<div class="tytul">${varStatus.index + 1}.${msg.title }</div>
+										<div class="data"><fmt:formatDate pattern="dd.MM.yyyy" value="${msg.dispatchDate}"/></div>
+										<div class="nadawca">${senderNames[varStatus.index]}</div>
+
+									</div>
+								</a>
+								<div class="tresc" id="demo${varStatus.index + 1}" class="collapse">${msg.content}
+									<div class="przycisk">
+										<form action="administrator/newmessage" method=post>
+											<input type="hidden" name="receiverLogin"
+												   value="${msg.sender.login}"> <input type="hidden"
+																					   name="title" value="${msg.title }"> <input
+												class="pure-button pure-input-1-2 pure-button-primary"
+												type="submit" value="Odpowiedz">
+										</form>
+									</div>
+								</div>
+
+								<%--<tr class="grayRow">
 									<td id="respond">
 										<form action="lecturer/newmessage" method=post>
 											<input type="hidden" name="receiverLogin"
@@ -93,7 +116,7 @@
 								<tr>
 									<td>Treść:</td>
 									<td id="content" colspan="3">${msg.content}</td>
-								</tr>
+								</tr>--%>
 							</c:forEach>
 						</table>
 					</c:otherwise>
