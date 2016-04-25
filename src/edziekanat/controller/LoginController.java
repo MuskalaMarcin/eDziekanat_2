@@ -1,13 +1,5 @@
 package edziekanat.controller;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.UserDAO;
 import edziekanat.databasemodel.dto.AdministratorDTO;
@@ -15,6 +7,13 @@ import edziekanat.databasemodel.dto.LecturerDTO;
 import edziekanat.databasemodel.dto.StudentDTO;
 import edziekanat.databasemodel.dto.UserDTO;
 import edziekanat.utilities.PasswordUtils;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Servlet maintaing logging in to application.
@@ -50,6 +49,7 @@ public class LoginController extends HttpServlet
 	    {
 		request.login(username, PasswordUtils.getSHA512PasswordHash(password, user.getSalt()));
 	    }
+
 	    request.getSession().setAttribute("loginBean", getLoginBean(request, userDAO));
 	}
 	catch (ServletException e)
@@ -84,4 +84,5 @@ public class LoginController extends HttpServlet
 	    return null;
 	}
     }
+
 }

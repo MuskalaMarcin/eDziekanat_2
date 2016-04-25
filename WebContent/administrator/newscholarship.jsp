@@ -45,6 +45,8 @@
 						class="pure-menu-link" href="adminapplications">Wnioski</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="receivedmessages">Historia komunikatów</a></li>
+                    <li class="pure-menu-item"><a class="pure-menu-link"
+                                                  href="news">Og³oszenia</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="logout">Wyloguj</a></li>
 				</ul>

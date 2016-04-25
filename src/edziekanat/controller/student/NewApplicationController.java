@@ -1,15 +1,5 @@
 package edziekanat.controller.student;
 
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.List;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.AdministratorDAO;
 import edziekanat.databasemodel.dao.ApplicationDAO;
@@ -17,7 +7,15 @@ import edziekanat.databasemodel.dao.Application_typeDAO;
 import edziekanat.databasemodel.dao.StudentDAO;
 import edziekanat.databasemodel.dto.AdministratorDTO;
 import edziekanat.databasemodel.dto.ApplicationDTO;
-import edziekanat.databasemodel.dto.Application_typeDTO;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.List;
 
 /**
  * Servlet inserting new application into database.
@@ -76,6 +74,14 @@ public class NewApplicationController extends HttpServlet
 
 	request.setAttribute("msgshort", "Wniosek z?o?ony");
 	request.setAttribute("msglong", "Tw?j wniosek zosta? wys?any");
+	newApplication.setAdministrator(new AdministratorDAO().getEntity(Integer.parseInt(request.getParameter("id").toString())));
+	newApplication.setApplication_type(new Application_typeDAO().getEntity(Integer.parseInt(request.getParameter("type").toString())));
+	newApplication.setStudent(
+		studentDAO.getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
+	new ApplicationDAO().insert(newApplication);
+	
+	request.setAttribute("msgshort", "Wniosek z³o¿ony");
+	request.setAttribute("msglong", "Twój wniosek zosta³ wys³any");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
 	studentDAO.closeEntityManager();

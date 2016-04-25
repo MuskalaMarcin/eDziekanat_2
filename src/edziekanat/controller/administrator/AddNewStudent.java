@@ -1,17 +1,5 @@
 package edziekanat.controller.administrator;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.persistence.RollbackException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import edziekanat.databasemodel.dao.StudentDAO;
 import edziekanat.databasemodel.dao.StudentsGroupDAO;
 import edziekanat.databasemodel.dao.UserDAO;
@@ -19,6 +7,15 @@ import edziekanat.databasemodel.dto.StudentDTO;
 import edziekanat.databasemodel.dto.StudentsGroupDTO;
 import edziekanat.databasemodel.dto.UserDTO;
 import edziekanat.utilities.PasswordUtils;
+
+import javax.persistence.RollbackException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Servlet implementation class AddNewStudent
@@ -73,7 +70,7 @@ public class AddNewStudent extends HttpServlet
 	    studentsGroupDAO.update(studentsGroup);
 
 	    request.setAttribute("msgshort", "Student dodany");
-	    request.setAttribute("msglong", "Nowy student zosta≈Ç dodany");
+	    request.setAttribute("msglong", "Nowy student zosta≥ dodany");
 	    request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
 	    studentsGroupDAO.closeEntityManager();
@@ -82,8 +79,8 @@ public class AddNewStudent extends HttpServlet
 	}
 	catch (RollbackException ex)
 	{
-	    request.setAttribute("errorshort", "B≈ÇƒÖd");
-	    request.setAttribute("errorlong", "Login lub email jest ju≈º u≈ºywany");
+	    request.setAttribute("errorshort", "B≥±d");
+	    request.setAttribute("errorlong", "Login lub email jest juø uøywany");
 	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
     }

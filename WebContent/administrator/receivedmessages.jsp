@@ -50,7 +50,9 @@
 							odbiorcza</a></li>
 					<li class="pure-menu-item"><a href="sentmessages"
 						class="pure-menu-link">Skrzynka nadawcza</a></li>
-					<li class="pure-menu-item  menu-item-divided"><a href="logout"
+                    <li class="pure-menu-item  menu-item-divided"><a class="pure-menu-link"
+                                                  href="news">Og³oszenia</a></li>
+					<li class="pure-menu-item"><a href="logout"
 						class="pure-menu-link">Wyloguj</a></li>
 				</ul>
 			</div>

@@ -109,6 +109,10 @@
         <jsp-file>/lecturer/students.jsp</jsp-file>
     </servlet>
     <servlet>
+        <servlet-name>LecturerNews</servlet-name>
+        <jsp-file>/lecturer/news.jsp</jsp-file>
+    </servlet>
+    <servlet>
         <servlet-name>LecturerSearchLecturers</servlet-name>
     </servlet>
     <servlet>
@@ -159,6 +163,14 @@
         <jsp-file>/administrator/newsubject.jsp</jsp-file>
     </servlet>
     <servlet>
+        <servlet-name>AdminNews</servlet-name>
+        <jsp-file>/administrator/news.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminNewNews</servlet-name>
+        <jsp-file>/administrator/newnews.jsp</jsp-file>
+    </servlet>
+    <servlet>
         <servlet-name>AdminSearchCourses</servlet-name>
     </servlet>
     <servlet>
@@ -201,6 +213,10 @@
     <servlet>
         <servlet-name>SendResetEmail</servlet-name>
         <jsp-file>/common/passwordresetform.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>StudentNews</servlet-name>
+        <jsp-file>/student/news.jsp</jsp-file>
     </servlet>
 
     <!-- Servlet mappings -->
@@ -297,6 +313,10 @@
         <url-pattern>/lecturer/searchstudents</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>LecturerNews</servlet-name>
+        <url-pattern>/lecturer/news</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AdminReceivedMessages</servlet-name>
         <url-pattern>/admin/receivedmessages</url-pattern>
     </servlet-mapping>
@@ -361,6 +381,14 @@
         <url-pattern>/admin/studentgroups</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>AdminNews</servlet-name>
+        <url-pattern>/admin/news</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminNewNews</servlet-name>
+        <url-pattern>/admin/newnews</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>StudentPayments</servlet-name>
         <url-pattern>/student/payments</url-pattern>
     </servlet-mapping>
@@ -383,6 +411,10 @@
     <servlet-mapping>
         <servlet-name>StudentTranscript</servlet-name>
         <url-pattern>/student/transcript</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StudentNews</servlet-name>
+        <url-pattern>/student/news</url-pattern>
     </servlet-mapping>
 
     <!-- Security constraints -->
@@ -438,6 +470,8 @@
             <url-pattern>/admingetstudentsandscholarshiptypes/*</url-pattern>
             <url-pattern>/admingetstudents/*</url-pattern>
             <url-pattern>/adminapplications/*</url-pattern>
+            <url-pattern>/admin/newnews/*</url-pattern>
+            <url-pattern>/adminaddnews/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>admin</role-name>

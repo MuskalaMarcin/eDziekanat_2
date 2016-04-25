@@ -1,17 +1,5 @@
 package edziekanat.controller.administrator;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.persistence.RollbackException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import edziekanat.databasemodel.dao.FacultyDAO;
 import edziekanat.databasemodel.dao.LecturerDAO;
 import edziekanat.databasemodel.dao.UserDAO;
@@ -19,6 +7,15 @@ import edziekanat.databasemodel.dto.FacultyDTO;
 import edziekanat.databasemodel.dto.LecturerDTO;
 import edziekanat.databasemodel.dto.UserDTO;
 import edziekanat.utilities.PasswordUtils;
+
+import javax.persistence.RollbackException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Servlet implementation class AddNewLecturer
@@ -74,8 +71,8 @@ public class AddNewLecturer extends HttpServlet
 	    faculty.getLecturer().add(lecturer);
 	    facultyDAO.update(faculty);
 
-	    request.setAttribute("msgshort", "Wyk≈Çadowca dodany");
-	    request.setAttribute("msglong", "Nowy wyk≈Çadowca zosta≈Ç dodany");
+	    request.setAttribute("msgshort", "Wyk≥adowca dodany");
+	    request.setAttribute("msglong", "Nowy wyk≥adowca zosta≥ dodany");
 	    request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
 	    lecturerDAO.closeEntityManager();
@@ -84,8 +81,8 @@ public class AddNewLecturer extends HttpServlet
 	}
 	catch (RollbackException ex)
 	{
-	    request.setAttribute("errorshort", "B≈ÇƒÖd");
-	    request.setAttribute("errorlong", "Login lub email jest ju≈º u≈ºywany");
+	    request.setAttribute("errorshort", "B≥±d");
+	    request.setAttribute("errorlong", "Login lub email jest juø uøywany");
 	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
     }

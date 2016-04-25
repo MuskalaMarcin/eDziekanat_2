@@ -18,6 +18,7 @@ public final class TableNames
     public static final String LEARNING_MATERIALS = "learning_materials";
     public static final String LECTURER = "lecturer";
     public static final String MESSAGE = "message";
+    public static final String NEWS = "news";
     public static final String PARTIAL_MARK = "partial_mark";
     public static final String PAYMENT = "payment";
     public static final String SCHEDULED_CLASSES = "scheduled_classes";
