@@ -1,19 +1,18 @@
 package edziekanat.controller.administrator;
 
-import java.io.IOException;
-import java.util.Calendar;
+import edziekanat.bean.LoginBean;
+import edziekanat.databasemodel.dao.AdministratorDAO;
+import edziekanat.databasemodel.dao.PaymentDAO;
+import edziekanat.databasemodel.dao.StudentDAO;
+import edziekanat.databasemodel.dto.PaymentDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import edziekanat.bean.LoginBean;
-import edziekanat.databasemodel.dao.AdministratorDAO;
-import edziekanat.databasemodel.dao.PaymentDAO;
-import edziekanat.databasemodel.dao.StudentDAO;
-import edziekanat.databasemodel.dto.PaymentDTO;
+import java.io.IOException;
+import java.util.Calendar;
 /**
  * Servlet implementation class AdminNewPayment
  */
@@ -48,8 +47,8 @@ public class AdminNewPayment extends HttpServlet
 	payment.setAdministrator(administratorDAO.getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));
 	paymentDAO.insert(payment);
 
-	request.setAttribute("msgshort", "Nale≈ºno≈õƒá dodana");
-	request.setAttribute("msglong", "Nowa nalee≈ºno≈õƒá zosta≈Ça dodana");
+	request.setAttribute("msgshort", "Naleøno∂Ê dodana");
+	request.setAttribute("msglong", "Nowa naleeøno∂Ê zosta≥a dodana");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
 	paymentDAO.closeEntityManager();

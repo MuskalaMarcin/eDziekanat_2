@@ -1,18 +1,17 @@
 package edziekanat.controller.administrator;
 
-import java.io.IOException;
-import java.util.List;
+import edziekanat.databasemodel.dao.CourseDAO;
+import edziekanat.databasemodel.dao.FacultyDAO;
+import edziekanat.databasemodel.dto.CourseDTO;
+import edziekanat.databasemodel.dto.FacultyDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import edziekanat.databasemodel.dao.CourseDAO;
-import edziekanat.databasemodel.dao.FacultyDAO;
-import edziekanat.databasemodel.dto.CourseDTO;
-import edziekanat.databasemodel.dto.FacultyDTO;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Servlet implementation class AdminAddCourseController
@@ -49,7 +48,7 @@ public class AdminAddCourseController extends HttpServlet
 	courseDAO.insert(course);
 
 	request.setAttribute("msgshort", "Kierunek dodany");
-	request.setAttribute("msglong", "Nowy kierunek zosta≈Ç dodany");
+	request.setAttribute("msglong", "Nowy kierunek zosta≥ dodany");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
 	courseDAO.closeEntityManager();

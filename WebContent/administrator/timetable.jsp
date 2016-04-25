@@ -82,6 +82,8 @@
 						href="adminapplications">Wnioski</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="receivedmessages">Historia komunikatów</a></li>
+                    <li class="pure-menu-item"><a class="pure-menu-link"
+                                                  href="news">Og³oszenia</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="logout">Wyloguj</a></li>
 				</ul>
@@ -151,7 +153,7 @@
 											</form>
 										</c:if></td>
 									<td>${rsClasses[1][0].subject.name}<br> <c:if
-											test="${rsClasses[1][0] != null}">sala: ${rsClasses[1][0].classroom.number}	
+											test="${rsClasses[1][0] != null}">sala: ${rsClasses[1][0].classroom.number}
 											<form action="deleteclasses" method=post>
 												<input type="hidden" name="classes"
 													value="${rsClasses[1][0].id}"> <input

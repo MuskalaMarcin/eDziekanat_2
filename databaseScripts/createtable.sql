@@ -1,4 +1,4 @@
-﻿CREATE TABLE administrator
+CREATE TABLE administrator
   (
     id              INTEGER NOT NULL ,
     name            VARCHAR(256) NOT NULL ,
@@ -16,7 +16,7 @@ CREATE TABLE app_user
     login            VARCHAR(128) NOT NULL ,
     password         VARCHAR(256) NOT NULL ,
 	salt 			 VARCHAR(128) NOT NULL ,
-    e_mail           VARCHAR(128) NOT NULL UNIQUE,
+    e_mail           VARCHAR(128) NOT NULL ,
     is_active        INTEGER NOT NULL ,
     user_role        VARCHAR(64) NOT NULL ,
     lecturer_id      INTEGER ,
@@ -33,7 +33,6 @@ CREATE TABLE password_reset
 	app_user_login   VARCHAR(128) NOT NULL
   ) ;
 ALTER TABLE password_reset ADD CONSTRAINT password_reset_PK PRIMARY KEY ( id ) ;
-
 CREATE TABLE application_type
   (
     type_id    INTEGER NOT NULL ,
@@ -45,8 +44,8 @@ CREATE TABLE application
   (
     id    INTEGER NOT NULL ,
     title VARCHAR(256) NOT NULL ,
-    content TEXT NOT NULL ,
     dispatch_date    DATE NOT NULL ,
+    content TEXT NOT NULL ,
     status           VARCHAR(256) NOT NULL ,
     student_id       INTEGER NOT NULL ,
     administrator_id INTEGER NOT NULL ,
@@ -130,7 +129,7 @@ CREATE TABLE lecturer
 ALTER TABLE lecturer ADD CONSTRAINT lecturer_PK PRIMARY KEY ( id ) ;
 
 
-CREATE TABLE MESSAGE
+CREATE TABLE message
   (
     id    INTEGER NOT NULL ,
     title VARCHAR(256) NOT NULL ,
@@ -140,8 +139,17 @@ CREATE TABLE MESSAGE
     sender_id     VARCHAR(256) NOT NULL ,
     receiver_id   VARCHAR(256) NOT NULL
   ) ;
-ALTER TABLE MESSAGE ADD CONSTRAINT message_PK PRIMARY KEY ( id ) ;
+ALTER TABLE message ADD CONSTRAINT message_PK PRIMARY KEY ( id ) ;
 
+CREATE TABLE news
+  (
+    id    INTEGER NOT NULL ,
+    title VARCHAR(256) NOT NULL ,
+    content TEXT NOT NULL ,
+    dispatch_date DATE NOT NULL ,
+    sender_id     VARCHAR(256) NOT NULL 
+  ) ;
+ALTER TABLE news ADD CONSTRAINT news_PK PRIMARY KEY ( id ) ;
 
 CREATE TABLE partial_mark
   (
@@ -233,7 +241,7 @@ CREATE TABLE students_group_subject
     students_group_id INTEGER NOT NULL ,
     subject_id        INTEGER NOT NULL
   ) ;
-ALTER TABLE students_group_subject ADD CONSTRAINT students_group_subject_PK PRIMARY KEY ( students_group_id, subject_id ) ;
+
 
 CREATE TABLE subject
   (
@@ -305,10 +313,13 @@ DELETE CASCADE ;
 ALTER TABLE learning_materials ADD CONSTRAINT learning_materials_subject_FK FOREIGN KEY ( subject_id ) REFERENCES subject ( id ) ON
 DELETE CASCADE ;
 
-ALTER TABLE MESSAGE ADD CONSTRAINT message_users_FK FOREIGN KEY ( sender_id ) REFERENCES app_user ( login ) ON
+ALTER TABLE message ADD CONSTRAINT message_users_FK FOREIGN KEY ( sender_id ) REFERENCES app_user ( login ) ON
 DELETE CASCADE ;
 
-ALTER TABLE MESSAGE ADD CONSTRAINT message_users_FKv1 FOREIGN KEY ( receiver_id ) REFERENCES app_user ( login ) ON
+ALTER TABLE message ADD CONSTRAINT message_users_FKv1 FOREIGN KEY ( receiver_id ) REFERENCES app_user ( login ) ON
+DELETE CASCADE ;
+
+ALTER TABLE news ADD CONSTRAINT news_users_FK FOREIGN KEY ( sender_id ) REFERENCES app_user ( login ) ON
 DELETE CASCADE ;
 
 ALTER TABLE partial_mark ADD CONSTRAINT partial_mark_subject_FK FOREIGN KEY ( subject_id ) REFERENCES subject ( id ) ON

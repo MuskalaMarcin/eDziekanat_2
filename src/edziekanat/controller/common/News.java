@@ -1,5 +1,6 @@
-package edziekanat.controller;
+package edziekanat.controller.common;
 
+import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.NewsDAO;
 import edziekanat.databasemodel.dto.NewsDTO;
 import edziekanat.databasemodel.dto.UserDTO;
@@ -15,16 +16,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Servlet redirecting users visiting homepage to login page if they're not
- * logged in or specified for their role homepage.
+ * Servlet implementation class AdminNews
  */
-@WebServlet("/home")
-public class HomeController extends HttpServlet
+@WebServlet("/news")
+public class News extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Not used GET method redirecting to POST.
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -32,28 +32,25 @@ public class HomeController extends HttpServlet
     }
 
     /**
-     * POST method redirecting user to selected homepage
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	NewsDAO newsdao = new NewsDAO();
-	List<NewsDTO> news = getNews(newsdao);
-	request.getSession().setAttribute("news", news);
-	request.getSession().setAttribute("senderNames", getUserNames(news));
-	if (request.isUserInRole("admin")) response.sendRedirect("admin");
-	else if (request.isUserInRole("student")) response.sendRedirect("student");
-	else if (request.isUserInRole("lecturer")) response.sendRedirect("lecturer");
-	newsdao.closeEntityManager();
-    }
+	LoginBean loginBean = (LoginBean) request.getSession().getAttribute("loginBean");
+	String messagesURL = "/" + loginBean.getUserRole() + "/news";
 
-    private List<NewsDTO> getNews(NewsDAO newsdao)
-    {
+	NewsDAO newsdao = new NewsDAO();
 	List<NewsDTO> news = newsdao.getAllEntities();
+
 	if (!news.isEmpty())
 	{
 	    Collections.sort(news, (x, y) -> y.getDispatchDate().compareTo(x.getDispatchDate()));
+	    List<String> senderNames = getUserNames(news);
+	    request.setAttribute("senderNames", senderNames);
+	    request.setAttribute("news", news);
 	}
-	return news;
+	getServletContext().getRequestDispatcher(messagesURL).forward(request, response);
+	newsdao.closeEntityManager();
     }
 
     private List<String> getUserNames(List<NewsDTO> allNews)
@@ -66,5 +63,4 @@ public class HomeController extends HttpServlet
 	});
 	return userNames;
     }
-
 }

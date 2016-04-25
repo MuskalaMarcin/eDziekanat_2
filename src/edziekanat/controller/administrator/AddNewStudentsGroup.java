@@ -1,18 +1,17 @@
 package edziekanat.controller.administrator;
 
-import java.io.IOException;
-import java.util.List;
+import edziekanat.databasemodel.dao.CourseDAO;
+import edziekanat.databasemodel.dao.StudentsGroupDAO;
+import edziekanat.databasemodel.dto.CourseDTO;
+import edziekanat.databasemodel.dto.StudentsGroupDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import edziekanat.databasemodel.dao.CourseDAO;
-import edziekanat.databasemodel.dao.StudentsGroupDAO;
-import edziekanat.databasemodel.dto.CourseDTO;
-import edziekanat.databasemodel.dto.StudentsGroupDTO;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Servlet implementation class AddNewStudentsGroup
@@ -46,7 +45,7 @@ public class AddNewStudentsGroup extends HttpServlet
 	studentsGroupDAO.insert(studentsgroup);
 	
 	request.setAttribute("msgshort", "Grupa studencka dodana");
-	request.setAttribute("msglong", "Nowa grupa studencka zosta≈Ça dodana");
+	request.setAttribute("msglong", "Nowa grupa studencka zosta≥a dodana");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
 	studentsGroupDAO.closeEntityManager();

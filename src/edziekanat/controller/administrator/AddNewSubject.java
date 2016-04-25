@@ -1,20 +1,19 @@
 package edziekanat.controller.administrator;
 
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
+import edziekanat.databasemodel.dao.LecturerDAO;
+import edziekanat.databasemodel.dao.StudentsGroupDAO;
+import edziekanat.databasemodel.dao.SubjectDAO;
+import edziekanat.databasemodel.dto.StudentsGroupDTO;
+import edziekanat.databasemodel.dto.SubjectDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import edziekanat.databasemodel.dao.LecturerDAO;
-import edziekanat.databasemodel.dao.StudentsGroupDAO;
-import edziekanat.databasemodel.dao.SubjectDAO;
-import edziekanat.databasemodel.dto.StudentsGroupDTO;
-import edziekanat.databasemodel.dto.SubjectDTO;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Servlet implementation class AddNewSubject
@@ -56,7 +55,7 @@ public class AddNewSubject extends HttpServlet
 	});
 
 	request.setAttribute("msgshort", "Przedmiot dodany");
-	request.setAttribute("msglong", "Nowa przedmiot zosta≈Ç dodany");
+	request.setAttribute("msglong", "Nowa przedmiot zosta≥ dodany");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
 	subjectDAO.closeEntityManager();

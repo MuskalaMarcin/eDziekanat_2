@@ -1227,6 +1227,10 @@ Insert into MESSAGE (ID, TITLE, CONTENT, DISPATCH_DATE, RECEIVE_DATE, SENDER_ID,
 Insert into MESSAGE (ID, TITLE, CONTENT, DISPATCH_DATE, RECEIVE_DATE, SENDER_ID, RECEIVER_ID) values (nextval('message_id_seq'), 'Godziny przyjęć dziekanatu', 'Szanowna Pani Magister...', '2013-12-09', '2013-12-09', 'SBartoszMiły','AJadwigaOdpowiedzialna');
 Insert into MESSAGE (ID, TITLE, CONTENT, DISPATCH_DATE, RECEIVE_DATE, SENDER_ID, RECEIVER_ID) values (nextval('message_id_seq'), 'Podbicie legitymacji', 'Ostateczny termin podbicia legitymacji: 30.10.2015 r.', '2015-10-09', '2015-10-09', 'admin','student');
 
+Insert into NEWS (ID, TITLE, CONTENT, DISPATCH_DATE, SENDER_ID) values (nextval('news_id_seq'), 'Termin podbijania legitymacji', 'Termin podbijania legitymacji studenckich na semestr letni mija z dniem 30 marca 2016.', '2016-03-03', 'admin');
+Insert into NEWS (ID, TITLE, CONTENT, DISPATCH_DATE, SENDER_ID) values (nextval('news_id_seq'), 'Dni wolne od zajęć dydaktycznych', 'Dziekanat uczelni ogłasza dni: 2-4 maja 2016 jako wolne od zajęć dydaktycznych. ', '2016-03-30', 'admin');
+Insert into NEWS (ID, TITLE, CONTENT, DISPATCH_DATE, SENDER_ID) values (nextval('news_id_seq'), 'Godziny Rektorskie', 'Rektor PK ustanowił godziny wolne od zajęć dydaktycznych w dniu 21.04.2016. od godz. 10.00 do 13.30', '2016-04-03', 'admin');
+
 Insert into APPLICATION_TYPE (TYPE_ID, TYPE_NAME) values (nextval('application_type_id_seq'), 'stypendium socjalne');
 Insert into APPLICATION_TYPE (TYPE_ID, TYPE_NAME) values (nextval('application_type_id_seq'), 'stypendium ministra edukacji');
 Insert into APPLICATION_TYPE (TYPE_ID, TYPE_NAME) values (nextval('application_type_id_seq'), 'miejsce w akademiku');
