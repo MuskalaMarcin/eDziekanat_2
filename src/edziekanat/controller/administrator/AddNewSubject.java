@@ -50,6 +50,10 @@ public class AddNewSubject extends HttpServlet
 	studentsgroup.add(studentsGroupDAO.getEntity(Integer.parseInt(request.getParameter("studentsgroupid"))));
 	subject.setStudents_group(studentsgroup);
 	subjectDAO.insert(subject);
+	studentsgroup.forEach(sg -> {
+	    sg.getSubject().add(subject);
+	    studentsGroupDAO.update(sg);
+	});
 
 	request.setAttribute("msgshort", "Przedmiot dodany");
 	request.setAttribute("msglong", "Nowa przedmiot został dodany");
