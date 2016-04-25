@@ -178,13 +178,14 @@ td#respond {
 	background-color: lightcoral;
 	color: black;
 	overflow:auto;
+	margin-bottom: 2px;
 
 }
 .nieodebrane {
 	background-color: lightgreen;
 	color: black;
 	overflow:auto;
-
+	margin-bottom: 2px;
 }
 .belka {
 	background-color: gray;
@@ -213,5 +214,8 @@ td#respond {
 	overflow:auto;
 }
 .przycisk{
+	float: right;
+}
+.doreczenie{
 	float: right;
 }
