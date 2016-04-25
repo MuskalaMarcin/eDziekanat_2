@@ -125,6 +125,14 @@
 								</tr>--%>
 							</c:forEach>
 						</table>
+
+						<div class="btn-toolbar" role="toolbar">
+							<div class="btn-group" role="group" aria-label="1">
+								<c:forEach begin="0" end="${pagesNumber + 1}" varStatus="loop">
+									<button type="submit" class="btn btn-default">${loop.index + 1}</button>
+								</c:forEach>
+							</div>
+						</div>
 					</c:otherwise>
 				</c:choose>
 			</div>
