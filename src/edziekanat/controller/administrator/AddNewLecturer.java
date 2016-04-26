@@ -7,6 +7,8 @@ import edziekanat.databasemodel.dto.FacultyDTO;
 import edziekanat.databasemodel.dto.LecturerDTO;
 import edziekanat.databasemodel.dto.UserDTO;
 import edziekanat.utilities.PasswordUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.hibernate.exception.ConstraintViolationException;
 
 import javax.persistence.RollbackException;
 import javax.servlet.ServletException;
@@ -54,6 +56,8 @@ public class AddNewLecturer extends HttpServlet
 	    FacultyDTO faculty = facultyDAO.getEntity(Integer.parseInt(request.getParameter("facultyid")));
 	    lecturer.setFaculty(Arrays.asList(faculty));
 
+	    lecturerDAO.insert(lecturer);
+
 	    UserDTO user = new UserDTO();
 	    user.setActive(1);
 	    user.setLecturer(lecturer);
@@ -67,7 +71,6 @@ public class AddNewLecturer extends HttpServlet
 
 	    userDAO.insert(user);
 
-	    lecturerDAO.insert(lecturer);
 	    faculty.getLecturer().add(lecturer);
 	    facultyDAO.update(faculty);
 
@@ -81,10 +84,16 @@ public class AddNewLecturer extends HttpServlet
 	}
 	catch (RollbackException ex)
 	{
-	    request.setAttribute("errorshort", "B³±d");
-	    request.setAttribute("errorlong", "Login lub email jest ju¿ u¿ywany");
-	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
+	    if (ExceptionUtils.indexOfThrowable(ex, ConstraintViolationException.class) > 0)
+	    {
+		request.setAttribute("errorshort", "B³±d");
+		request.setAttribute("errorlong", "Login lub email jest ju¿ u¿ywany");
+		request.getRequestDispatcher("common/error.jsp").forward(request, response);
+	    }
+	    else
+	    {
+		ex.printStackTrace();
+	    }
 	}
     }
-
 }

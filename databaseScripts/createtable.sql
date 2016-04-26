@@ -1,4 +1,4 @@
-CREATE TABLE administrator
+﻿CREATE TABLE administrator
   (
     id              INTEGER NOT NULL ,
     name            VARCHAR(256) NOT NULL ,
@@ -24,6 +24,7 @@ CREATE TABLE app_user
     administrator_id INTEGER
   ) ;
 ALTER TABLE app_user ADD CONSTRAINT users_PK PRIMARY KEY ( login ) ;
+ALTER TABLE app_user ADD CONSTRAINT users_UN UNIQUE ( e_mail ) ;
 
 CREATE TABLE password_reset
   (
@@ -33,6 +34,7 @@ CREATE TABLE password_reset
 	app_user_login   VARCHAR(128) NOT NULL
   ) ;
 ALTER TABLE password_reset ADD CONSTRAINT password_reset_PK PRIMARY KEY ( id ) ;
+
 CREATE TABLE application_type
   (
     type_id    INTEGER NOT NULL ,
@@ -44,8 +46,8 @@ CREATE TABLE application
   (
     id    INTEGER NOT NULL ,
     title VARCHAR(256) NOT NULL ,
-    dispatch_date    DATE NOT NULL ,
     content TEXT NOT NULL ,
+    dispatch_date    DATE NOT NULL ,
     status           VARCHAR(256) NOT NULL ,
     student_id       INTEGER NOT NULL ,
     administrator_id INTEGER NOT NULL ,
@@ -241,7 +243,7 @@ CREATE TABLE students_group_subject
     students_group_id INTEGER NOT NULL ,
     subject_id        INTEGER NOT NULL
   ) ;
-
+ALTER TABLE students_group_subject ADD CONSTRAINT students_group_subject_PK PRIMARY KEY ( students_group_id, subject_id ) ;
 
 CREATE TABLE subject
   (

@@ -92,6 +92,8 @@
                 <li class="pure-menu-item"><a class="pure-menu-link"
                                               href="receivedmessages">Historia komunikatów</a></li>
                 <li class="pure-menu-item"><a class="pure-menu-link"
+                                              href="news">Og³oszenia</a></li>
+                <li class="pure-menu-item"><a class="pure-menu-link"
                                               href="logout">Wyloguj</a></li>
             </ul>
         </div>
@@ -125,7 +127,6 @@
                             </c:forEach>
                         </select>
 
-<<<<<<< Updated upstream
                         <label for="repeat">Powtarzaj </label>
                         <select style="width:219px" name="repeat" id="repeat" onchange="showHideEndDate()">
                             <option value="0">Nie powtarzaj</option>
@@ -144,87 +145,6 @@
                             <option value="6">18:00</option>
                             <option value="7">19:45</option>
                         </select>
-=======
-					<li class="pure-menu-item menu-item-divided"><a
-						class="pure-menu-link" href="adminclassrooms">Dostêpno¶æ sal</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="admincourses">Kierunki</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminstudentgroups">Grupy studenckie</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminlecturers">Wyk³adowcy</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminsubjects">Przedmioty</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminstudents">Studenci</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="marksstatistics">Statystyki</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminscholarships">Stypendia</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminpayments">Nale¿no¶ci</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminapplications">Wnioski</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="receivedmessages">Historia komunikatów</a></li>
-                    <li class="pure-menu-item"><a class="pure-menu-link"
-                                                  href="news">Og³oszenia</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="logout">Wyloguj</a></li>
-				</ul>
-			</div>
-		</div>
-		<div id="main">
-			<div class="header">
-				<h1>eDziekanat</h1>
-				<h2>Twój wirtualny dziekanat.</h2>
-			</div>
-			<div class="content">
-				<h2 class="content-subhead">Nowe zajêcia dla grupy:
-					${studentsGroup.id} kierunek: ${studentsGroup.course.name }</h2>
-				<center>
-					<form class="pure-form pure-form-stacked" action="addnewclasses"
-						method=post>
-						<fieldset>
-
-							<label for="sg">Grupa studencka </label> <input id="sg"
-								type="text" name="nothing" class="pure-input-1-2"
-								style="width: 50%"
-								value="Grupa: ${studentsGroup.id} - Kierunek: ${studentsGroup.course.name}"
-								disabled> <label for="state">Przedmiot </label> <select
-								name="subjectId" style="width: 50%" id="state">
-								<c:forEach items="${subjects}" var="subject">
-									<option value="${subject.id}">${subject.name}</option>
-								</c:forEach>
-							</select> <label for="classstate">Sala </label> <select style="width: 50%"
-								name="classroomId" id="classstate">
-								<c:forEach items="${classrooms}" var="classroom">
-									<option value="${classroom.id}">Nr:
-										${classroom.number} typ: ${classroom.type }</option>
-								</c:forEach>
-							</select> <label for="startDate">Data rozpoczêcia </label> <input
-								id="startDate" type="date" name="startDate" required> 
-								<label for="startTime">Godzina rozpoczêcia</label>
-							<select style="width:188px" name="startTime" id="startTime">
-										<option value="0">7:30</option>
-										<option value="1">9:15</option>
-										<option value="2">11:00</option>
-										<option value="3">12:45</option>
-										<option value="4">14:30</option>
-										<option value="5">16:15</option>
-										<option value="6">18:00</option>
-										<option value="7">19:45</option>
-								</select>
-							<label for="repeat">Powtarzaj </label>
-								 <select style="width:188px" name="repeat" id="repeat">
-										<option value="0">Nie powtarzaj</option>
-										<option value="1">Co tydzieñ</option>
-										<option value="2">Co dwa tygodnie</option>
-								</select>
-							<label for="endDate">Data zakoñczenia </label>
-							<input id="endDate" type="date" name="endDate">
-						</fieldset>
->>>>>>> Stashed changes
 
                         <div style="width: 219px" class="input-daterange input-group" id="datepicker">
                             <label id="startDateLabel" for="startDate">Data rozpoczêcia </label>
