@@ -168,7 +168,7 @@
 								   data-content="kierunek: <c:forEach items="${rsClasses[4][0].subject.students_group}" var="item">
                                         ${item.course.name}</c:forEach>">${rsClasses[4][0].subject.name}<br></a></c:if></td>
 						</tr>
-						<tr>
+						<tr class="pure-table-odd">
 							<td>9<sup>15</sup> - 10<sup>45</sup></td>
 							<td><c:if
 									test="${rsClasses[0][1] != null}">
@@ -224,7 +224,7 @@
 								   data-content="kierunek: <c:forEach items="${rsClasses[4][2].subject.students_group}" var="item">
                                         ${item.course.name}</c:forEach>">${rsClasses[4][2].subject.name}<br></a></c:if></td>
 						</tr>
-						<tr>
+						<tr class="pure-table-odd">
 							<td>12<sup>45</sup> - 14<sup>15</sup></td>
 							<td><c:if
 									test="${rsClasses[0][3] != null}">
@@ -280,7 +280,7 @@
 								   data-content="kierunek: <c:forEach items="${rsClasses[4][4].subject.students_group}" var="item">
                                         ${item.course.name}</c:forEach>">${rsClasses[4][4].subject.name}<br></a></c:if></td>
 						</tr>
-						<tr>
+						<tr class="pure-table-odd">
 							<td>16<sup>15</sup> - 17<sup>45</sup></td>
 							<td><c:if
 									test="${rsClasses[0][5] != null}">
@@ -335,7 +335,7 @@
 								<a data-toggle="popover" title="grupa: <c:forEach items="${rsClasses[4][6].subject.students_group}" var="item">${item.id} </c:forEach>"
 								   data-content="kierunek: <c:forEach items="${rsClasses[4][6].subject.students_group}" var="item">
                                         ${item.course.name}</c:forEach>">${rsClasses[4][6].subject.name}<br></a></c:if></td>
-						<tr>
+						<tr class="pure-table-odd">
 							<td>19<sup>45</sup> - 21<sup>15</sup></td>
 							<td><c:if
 									test="${rsClasses[0][7] != null}">
