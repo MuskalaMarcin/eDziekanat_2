@@ -50,7 +50,30 @@
 			</div>
 			<div class="content">
 				<h2 class="content-subhead">Moje dane:</h2>
-
+				<p>
+					<c:choose>
+						<c:when test="${editing == \"true\"}">
+							<form action="http://localhost:8080/edziekanat/studentmydata" method=post class="pure-form">
+							Imiê: <input type="text" name="name" value="${studentData.name}" required/><br>
+							Nazwisko: <input type="text" name="surname" value="${studentData.surname}" required/><br>
+							E-mail: <input type="text" name="email" value="${studentData.user.eMail}" required/><br>
+							Adres: <input type="text" name="address" value="${studentData.address}" required/><br>
+							<input type="submit" value="Zapisz dane" name="save"/>
+							</form>
+						</c:when>
+					</c:choose>
+					<c:choose>
+						<c:when test="${editing == \"false\"}">
+							<form action="http://localhost:8080/edziekanat/studentmydata" method=post class="pure-form">
+								Imiê: <b>${studentData.name}</b>  <br>
+								Nazwisko: <b>${studentData.surname}</b><br>
+								E-mail: <b>${studentData.user.eMail}</b><br>
+								Adres: <b> ${studentData.address} </b><br>
+								<input type="submit" value="Edytuj dane" name="edit"/>
+							</form
+						</c:when>
+					</c:choose>
+				</p>
 			</div>
 		</div>
 	</div>

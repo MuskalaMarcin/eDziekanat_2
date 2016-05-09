@@ -94,7 +94,6 @@
                     E-mail: <b> ${loginBean.eMail} </b><br>
                     Poziom uprawnieñ: <b>${loginBean.userRole}</b><br>
                     Adres: <b> ${loginBean.address} </b><br>
-                    <input type="button" value="Zmieñ dane" id="btnEdit"/>
                 </p>
 			</div>
 		</div>
