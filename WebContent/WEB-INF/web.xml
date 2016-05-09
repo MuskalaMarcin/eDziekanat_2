@@ -453,6 +453,7 @@
             <url-pattern>/receivedmessages/*</url-pattern>
             <url-pattern>/sentmessages/*</url-pattern>
             <url-pattern>/timetable/*</url-pattern>
+            <url-pattern>/password/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>*</role-name>
