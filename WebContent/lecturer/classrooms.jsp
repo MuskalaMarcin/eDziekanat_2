@@ -19,77 +19,79 @@
     <title>eDziekanat - Dostêpno¶æ sali</title>
 </head>
 <body onload="setDatePicker()">
-	<div id="layout">
-		<div id="menu">
-			<div class="pure-menu">
-				<a class="pure-menu-heading" href="home">eDziekanat</a>
-				<ul class="pure-menu-list">
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="lecturer">Strona g³ówna</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="lecturerlearningmaterials">Materia³y dydaktyczne</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="lecturerseestudents">Studenci</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="lecturerseelecturers">Wyk³adowcy</a></li>
-					<li class="pure-menu-item menu-item-divided"><a
-						class="pure-menu-link" href="classrooms">Dostêpno¶æ
-							sal</a></li>
-					<c:choose>
-						<c:when test="${noClassroom == true}">
-							<li class="pure-menu-item pure-menu-selected"><a
-								class="pure-menu-link" href="#">Wybierz salê</a></li>
-						</c:when>
-						<c:otherwise>
-							<li class="pure-menu-item">
-								<form action="classrooms" method="post">
-									<input type="hidden" name="rqweek" value="${selectedWeek - 1}">
-									<input type="hidden" name="classroomId"
-										value="${selectedClassroom.number}">
-									<button class="linkButton " type="submit">Poprzedni
-										tydzieñ</button>
-								</form>
-							</li>
-							<li class="pure-menu-item pure-menu-selected"><a href="#"
-								class="pure-menu-link"> <c:choose>
-										<c:when test="${currentWeek == true}">Aktualny tydzieñ</c:when>
-										<c:otherwise>Tydzieñ ${selectedWeek}</c:otherwise>
-									</c:choose>
-							</a></li>
-							<li class="pure-menu-item">
-								<form action="classrooms" method="post">
-									<input type="hidden" name="classroomId"
-										value="${selectedClassroom.number}"> <input
-										type="hidden" name="rqweek" value="${selectedWeek + 1}">
-									<button class="linkButton" type="submit">Nastêpny
-										tydzieñ</button>
-								</form>
-							</li>
-						</c:otherwise>
-					</c:choose>
-					<li class="pure-menu-item menu-item-divided"><a
-						href="timetable" class="pure-menu-link">Plan zajêæ</a></li>
-					<li class="pure-menu-item "><a class="pure-menu-link"
-						href="lecturersubjects">Moje przedmioty</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="receivedmessages">Historia komunikatów</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link" href="lecturermydata">Moje dane</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="logout">Wyloguj</a></li>
-				</ul>
-			</div>
-		</div>
-		<div id="main">
-			<div class="header">
-				<h1>eDziekanat</h1>
-				<h2>Twój wirtualny dziekanat.</h2>
-			</div>
-			<div class="content">
-				<h2 class="content-subhead">
-					Dostêpno¶æ sali: ${selectedClassroom.faculty.name}
-					<c:if test="${!empty selectedClassroom }"> sala: </c:if>
-					${selectedClassroom.number}
-				</h2>
+<div id="layout">
+    <div id="menu">
+        <div class="pure-menu">
+            <a class="pure-menu-heading" href="home">eDziekanat</a>
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item"><a class="pure-menu-link"
+                                              href="lecturer">Strona g³ówna</a></li>
+                <li class="pure-menu-item"><a class="pure-menu-link"
+                                              href="lecturerlearningmaterials">Materia³y dydaktyczne</a></li>
+                <li class="pure-menu-item"><a class="pure-menu-link"
+                                              href="lecturerseestudents">Studenci</a></li>
+                <li class="pure-menu-item"><a class="pure-menu-link"
+                                              href="lecturerseelecturers">Wyk³adowcy</a></li>
+                <li class="pure-menu-item menu-item-divided"><a
+                        class="pure-menu-link" href="classrooms">Dostêpno¶æ
+                    sal</a></li>
+                <c:choose>
+                    <c:when test="${noClassroom == true}">
+                        <li class="pure-menu-item pure-menu-selected"><a
+                                class="pure-menu-link" href="#">Wybierz salê</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="pure-menu-item">
+                            <form action="classrooms" method="post">
+                                <input type="hidden" name="rqweek" value="${selectedWeek - 1}">
+                                <input type="hidden" name="classroomId"
+                                       value="${selectedClassroom.number}">
+                                <button class="linkButton " type="submit">Poprzedni
+                                    tydzieñ
+                                </button>
+                            </form>
+                        </li>
+                        <li class="pure-menu-item pure-menu-selected"><a href="#"
+                                                                         class="pure-menu-link"> <c:choose>
+                            <c:when test="${currentWeek == true}">Aktualny tydzieñ</c:when>
+                            <c:otherwise>Tydzieñ ${selectedWeek}</c:otherwise>
+                        </c:choose>
+                        </a></li>
+                        <li class="pure-menu-item">
+                            <form action="classrooms" method="post">
+                                <input type="hidden" name="classroomId"
+                                       value="${selectedClassroom.number}"> <input
+                                    type="hidden" name="rqweek" value="${selectedWeek + 1}">
+                                <button class="linkButton" type="submit">Nastêpny
+                                    tydzieñ
+                                </button>
+                            </form>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
+                <li class="pure-menu-item menu-item-divided"><a
+                        href="timetable" class="pure-menu-link">Plan zajêæ</a></li>
+                <li class="pure-menu-item "><a class="pure-menu-link"
+                                               href="lecturersubjects">Moje przedmioty</a></li>
+                <li class="pure-menu-item"><a class="pure-menu-link"
+                                              href="receivedmessages">Historia komunikatów</a></li>
+                <li class="pure-menu-item"><a class="pure-menu-link" href="lecturermydata">Moje dane</a></li>
+                <li class="pure-menu-item"><a class="pure-menu-link"
+                                              href="logout">Wyloguj</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="main">
+        <div class="header">
+            <h1>eDziekanat</h1>
+            <h2>Twój wirtualny dziekanat.</h2>
+        </div>
+        <div class="content">
+            <h2 class="content-subhead">
+                Dostêpno¶æ sali: ${selectedClassroom.faculty.name}
+                <c:if test="${!empty selectedClassroom }"> sala: </c:if>
+                ${selectedClassroom.number}
+            </h2>
 
             <form class="pure-form"
                   action="classrooms" method=post>
@@ -109,7 +111,20 @@
                     </center>
                 </fieldset>
             </form>
-            <br> <br>
+            <br>
+            <c:if test="${successMsg != null}">
+                <div class="alert alert-success fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Sukces!</strong> ${successMsg}
+                </div>
+            </c:if>
+            <c:if test="${errorMsg != null}">
+                <div class="alert alert-danger fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>B³±d!</strong> ${errorMsg}
+                </div>
+            </c:if>
+            <br>
             <c:choose>
                 <c:when test="${noClassroom == true}">
                     <center>Wybierz salê z powy¿szej listy.</center>
@@ -143,6 +158,9 @@
                                                    data-content="${groups[j.index][i.index]}<br />${courses[j.index][i.index]}<br />${lecturers[j.index][i.index]}">
                                                         ${rsClasses[j.index][i.index].subject.name}</a>
                                             </c:when>
+                                            <c:when test="${reservation[j.index][i.index] != null}">
+                                                Rezerwacja
+                                            </c:when>
                                             <c:otherwise>
                                                 <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
                                                         data-target="#modalWindow${i.index}${j.index}">Zarezerwuj
@@ -159,6 +177,10 @@
 
                                                             <form class="form-horizontal" role="form" method="post"
                                                                   action="reserveclasses">
+                                                                <input type="hidden" name="classroomId"
+                                                                       value="${selectedClassroom.number}">
+                                                                <input type="hidden" name="rqweek"
+                                                                       value="${selectedWeek}">
                                                                 <div class="modal-body">
                                                                     <div class="form-group">
                                                                         <label class="col-sm-3 control-label"
@@ -209,7 +231,8 @@
                                                                             rozpoczêcia</label>
                                                                         <div class="col-sm-9">
                                                                             <select class="form-control"
-                                                                                    name="startTime" id="startTime" disabled>
+                                                                                    name="startTime" id="startTime"
+                                                                                    disabled>
                                                                                 <option value="${i.index}">
                                                                                     <fmt:formatDate pattern="H:mm"
                                                                                                     value="${classesStart[i.index]}"/></option>
@@ -220,14 +243,16 @@
 
                                                                     <div class="input-daterange input-group"
                                                                          id="datepicker">
-                                                                        <label class="col-sm-3 control-label" id="startDateLabel" for="startDate">Data
+                                                                        <label class="col-sm-3 control-label"
+                                                                               id="startDateLabel" for="startDate">Data
                                                                             rozpoczêcia </label>
                                                                         <input id="startDate"
                                                                                style="width: 219px; border-radius: 4px"
                                                                                type="text"
                                                                                class="col-sm-9 input-sm form-control pure-input-1-2 "
                                                                                name="startDate" required/>
-                                                                        <label class="col-sm-3 control-label" id="endDateLabel"
+                                                                        <label class="col-sm-3 control-label"
+                                                                               id="endDateLabel"
                                                                                style="display:none" for="endDate">Data
                                                                             zakoñczenia </label>
                                                                         <input id="endDate"

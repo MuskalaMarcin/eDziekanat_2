@@ -21,6 +21,7 @@ public final class TableNames
     public static final String NEWS = "news";
     public static final String PARTIAL_MARK = "partial_mark";
     public static final String PAYMENT = "payment";
+    public static final String RESERVATION_REQUEST = "reservation_request";
     public static final String SCHEDULED_CLASSES = "scheduled_classes";
     public static final String SCHOLARSHIP = "scholarship";
     public static final String SCHOLARSHIP_TYPE = "scholarship_type";
