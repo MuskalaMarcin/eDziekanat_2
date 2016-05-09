@@ -21,7 +21,6 @@
     <script type='text/javascript' src="resources/bootstrap/bootstrap.min.js"></script>
     <script type='text/javascript' src="resources/bootstrap/bootstrap-datepicker.js"></script>
     <script type='text/javascript' src="resources/bootstrap/npm.js"></script>
-
 <title>eDziekanat - Strona g³ówna</title>
 </head>
 <body>
@@ -48,8 +47,6 @@
 						class="pure-menu-link">Wyk³adowcy</a></li>
 					<li class="pure-menu-item"><a href="receivedmessages"
 						class="pure-menu-link">Historia komunikatów</a></li>
-                    <li class="pure-menu-item"><a href="studentmydata"
-                        class="pure-menu-link">Moje dane</a></li>
 					<li class="pure-menu-item"><a href="logout"
 						class="pure-menu-link">Wyloguj</a>
 				</ul>
@@ -88,13 +85,11 @@
                 </c:choose>
                 <h2 class="content-subhead">Zalogowano jako:</h2>
                 <p>
-                    Login: <b> ${loginBean.login} </b><br>
-                    Imiê i nazwisko: <b>${loginBean.name} ${loginBean.surname} </b><br>
-                    Stopieñ naukowy: <b>${loginBean.academicDegree} </b><br>
-                    E-mail: <b> ${loginBean.eMail} </b><br>
-                    Poziom uprawnieñ: <b>${loginBean.userRole}</b><br>
-                    Adres: <b> ${loginBean.address} </b><br>
-                    <input type="button" value="Zmieñ dane" id="btnEdit"/>
+                    Login: <b> ${loginBean.login} </b><br> Imiê i nazwisko: <b>${loginBean.name}
+                    ${loginBean.surname} </b><br> Stopieñ naukowy: <b>
+                    ${loginBean.academicDegree} </b><br> E-mail: <b>
+                    ${loginBean.eMail} </b><br> Poziom uprawnieñ: <b>${loginBean.userRole}
+                </b><br> Adres: <b> ${loginBean.address} </b><br>
                 </p>
 			</div>
 		</div>
