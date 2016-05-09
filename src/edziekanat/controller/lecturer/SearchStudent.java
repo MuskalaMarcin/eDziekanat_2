@@ -1,18 +1,17 @@
 package edziekanat.controller.lecturer;
 
-import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
+import edziekanat.databasemodel.dao.StudentDAO;
+import edziekanat.databasemodel.dao.SubjectDAO;
+import edziekanat.databasemodel.dto.StudentDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import edziekanat.databasemodel.dao.StudentDAO;
-import edziekanat.databasemodel.dao.SubjectDAO;
-import edziekanat.databasemodel.dto.StudentDTO;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Servlet used in searching students.
@@ -62,7 +61,7 @@ public class SearchStudent extends HttpServlet
 		studentsList = removeDuplicates(studentDAO.getStudentsByNameAndSurname(name, surname));
 	    }
 
-	    request.setAttribute("subject", studentsList);
+	    request.setAttribute("students", studentsList);
 	    request.getRequestDispatcher("lecturer/students").forward(request, response);
 	}
 	else
@@ -78,8 +77,7 @@ public class SearchStudent extends HttpServlet
 
 	    SubjectDAO subjectDAO = new SubjectDAO();
 	    request.setAttribute("subject", subjectDAO.getEntity(subjectId));
-
-	    request.setAttribute("subject", studentsList);
+	    request.setAttribute("students", studentsList);
 	    request.getRequestDispatcher("lecturer/students").forward(request, response);
 
 	    subjectDAO.closeEntityManager();

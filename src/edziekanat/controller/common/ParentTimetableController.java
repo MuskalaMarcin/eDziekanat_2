@@ -1,6 +1,11 @@
 package edziekanat.controller.common;
 
+import com.sun.deploy.net.HttpRequest;
+import edziekanat.databasemodel.dto.CourseDTO;
+import edziekanat.databasemodel.dto.LecturerDTO;
 import edziekanat.databasemodel.dto.ScheduledClassesDTO;
+import edziekanat.databasemodel.dto.StudentsGroupDTO;
+import sun.util.resources.ar.CalendarData_ar;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by Marcin on 24.04.2016.
@@ -59,7 +65,9 @@ public class ParentTimetableController extends HttpServlet
 	    calendar.setTime(new Date());
 	    calendar.set(Calendar.WEEK_OF_YEAR, selectedWeek);
 	    ScheduledClassesDTO[][] rsClasses = new ScheduledClassesDTO[5][8];
-	    List<Date> dayDates = new LinkedList<Date>();
+	    List<Date> dayDates = new LinkedList<>();
+	    List<Date> classesStart = new LinkedList<>();
+	    List<Date> classesEnd = new LinkedList<>();
 	    for (int i = 2; i < 7; i++)
 	    {
 		calendar.set(Calendar.DAY_OF_WEEK, i);
@@ -81,14 +89,76 @@ public class ParentTimetableController extends HttpServlet
 			}
 			z++;
 		    }
+		    if (i == 2)
+		    {
+			classesStart.add(calendar.getTime());
+			calendar.add(Calendar.HOUR_OF_DAY, 1);
+			calendar.add(Calendar.MINUTE, 30);
+			classesEnd.add(calendar.getTime());
+		    }
 		}
 		dayDates.add(calendar.getTime());
 	    }
+
+	    generateCourseAndGroupsMsg(request, rsClasses);
+
+	    request.setAttribute("classesStart", classesStart);
+	    request.setAttribute("classesEnd", classesEnd);
 	    request.setAttribute("rsClasses", rsClasses);
 	    request.setAttribute("emptyWeek", false);
 	    request.setAttribute("dayDates", dayDates);
 	}
 
 	request.setAttribute("selectedWeek", selectedWeek);
+    }
+
+    private void generateCourseAndGroupsMsg(HttpServletRequest request, ScheduledClassesDTO[][] rsClasses)
+    {
+	String[][] courses = new String[5][8];
+	String[][] groups = new String[5][8];
+	String[][] lecturers = new String[5][8];
+	for (int i = 0; i < rsClasses.length; i++)
+	{
+	    for (int j = 0; j < rsClasses[i].length; j++)
+	    {
+		ScheduledClassesDTO classesDTO = rsClasses[i][j];
+		if (classesDTO != null)
+		{
+		    List<StudentsGroupDTO> studentsGroupDTOList = classesDTO.getSubject().getStudents_group();
+		    Set<CourseDTO> courseDTOList = studentsGroupDTOList.stream().map(StudentsGroupDTO::getCourse)
+				    .collect(Collectors.toSet());
+		    StringBuffer groupMsg = new StringBuffer();
+		    if (studentsGroupDTOList.size() > 1)
+		    {
+			groupMsg.append("grupy: ");
+			studentsGroupDTOList.forEach(sg -> groupMsg.append(sg.getId() + ", "));
+			groupMsg.delete(groupMsg.length() - 2, groupMsg.length());
+		    }
+		    else
+		    {
+			groupMsg.append("grupa: " + studentsGroupDTOList.get(0).getId());
+		    }
+		    groups[i][j] = groupMsg.toString();
+		    StringBuffer courseMsg = new StringBuffer();
+		    if (courseDTOList.size() > 1)
+		    {
+			courseMsg.append("kierunki: ");
+			courseDTOList.forEach(c -> courseMsg.append(c.getName() + ", "));
+			courseMsg.delete(groupMsg.length() - 2, groupMsg.length());
+		    }
+		    else
+		    {
+			courseMsg.append("kierunek: " + courseDTOList.iterator().next().getName());
+		    }
+		    courses[i][j] = courseMsg.toString();
+
+		    LecturerDTO lecturerDTO = classesDTO.getSubject().getLecturer();
+		    lecturers[i][j] = "wyk³adowca: " + lecturerDTO.getName() + " " + lecturerDTO.getSurname();
+		}
+	    }
+	}
+	request.setAttribute("lecturers", lecturers);
+	request.setAttribute("courses", courses);
+	request.setAttribute("groups", groups);
     }
 }
