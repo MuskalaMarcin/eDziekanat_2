@@ -23,6 +23,8 @@
 					<li class="pure-menu-item"><a
 						href="http://localhost:8080/edziekanat/studenttranscript"
 						class="pure-menu-link">Indeks</a></li>
+                    <li class="pure-menu-item"><a href="studentacademicrecordcard"
+                        class="pure-menu-link">Karta przebiegu studiów</a></li>
 					<li class="pure-menu-item"><a
 						href="http://localhost:8080/edziekanat/timetable"
 						class="pure-menu-link">Plan zajêæ</a></li>
