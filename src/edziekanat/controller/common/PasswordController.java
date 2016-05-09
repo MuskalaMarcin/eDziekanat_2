@@ -60,7 +60,6 @@ public class PasswordController extends HttpServlet {
                         request.setAttribute("msglong", "Has³o zosta³o zmienione.");
                         request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
-                        userDAO.closeEntityManager();
                     } else {
                         request.setAttribute("errorshort", "B³±d");
                         request.setAttribute("errorlong", "Minimalna d³ugo¶æ has³a to 5 znaków.");
@@ -90,7 +89,7 @@ public class PasswordController extends HttpServlet {
         {
             request.getRequestDispatcher("student/changepassword.jsp").forward(request, response);
         }
-
+        userDAO.closeEntityManager();
     }
 
 }
