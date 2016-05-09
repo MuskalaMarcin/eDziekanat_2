@@ -59,6 +59,7 @@
                                               href="#">Og³oszenia</a></li>
                 <li class="pure-menu-item"><a class="pure-menu-link"
                                               href="admin/newnews">Nowe og³oszenie</a></li>
+                <li class="pure-menu-item"><a class="pure-menu-link" href="adminmydata">Moje dane</a></li>
                 <li class="pure-menu-item menu-item-divided"><a class="pure-menu-link"
                                               href="logout">Wyloguj</a></li>
             </ul>

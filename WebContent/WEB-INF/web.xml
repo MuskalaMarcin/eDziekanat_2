@@ -226,6 +226,10 @@
         <servlet-name>lecturermydata</servlet-name>
         <jsp-file>/lecturer/lecturer_my_data.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>adminmydata</servlet-name>
+        <jsp-file>/administrator/admin_my_data.jsp</jsp-file>
+    </servlet>
 
     <!-- Servlet mappings -->
     <servlet-mapping>
@@ -431,6 +435,10 @@
     <servlet-mapping>
         <servlet-name>lecturermydata</servlet-name>
         <url-pattern>/lecturer/lecturer_my_data</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminmydata</servlet-name>
+        <url-pattern>/administrator/admin_my_data</url-pattern>
     </servlet-mapping>
 
     <!-- Security constraints -->
