@@ -33,7 +33,9 @@
 							</form>
 						</li>
 					</c:forEach>
-					<li class="pure-menu-item  menu-item-divided"><a
+                    <li class="pure-menu-item menu-item-divided"><a href="studentacademicrecordcard"
+                        class="pure-menu-link">Karta przebiegu studiów</a></li>
+					<li class="pure-menu-item"><a
 						href="timetable" class="pure-menu-link">Plan zajêæ</a></li>
 					<li class="pure-menu-item"><a href="studentsubjects"
 						class="pure-menu-link">Moje przedmioty</a></li>
