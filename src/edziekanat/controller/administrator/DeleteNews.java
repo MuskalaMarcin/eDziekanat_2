@@ -46,7 +46,7 @@ public class DeleteNews extends HttpServlet
 	catch (Exception e)
 	{
 	    request.setAttribute("errorshort", "B³±d");
-	    request.setAttribute("errorlong", "Podczas usuwania wyk³adowcy"
+	    request.setAttribute("errorlong", "Podczas usuwania newsu"
 			    + " wyst±pi³ nieznany b³±d. Przepraszamy.");
 	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
