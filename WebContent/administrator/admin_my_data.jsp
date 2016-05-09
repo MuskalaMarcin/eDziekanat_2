@@ -48,6 +48,8 @@
 					<li class="pure-menu-item menu-item-divided">
 					<li class="pure-menu-item"><a href="adminmydata"
 												  class="pure-menu-item pure-menu-selected">Moje dane</a></li>
+					<li class="pure-menu-item"><a href="password"
+												  class="pure-menu-link">Zmiana has³a</a></li>
 					<li class="pure-menu-item menu-item-divided">
 					<li class="pure-menu-item"><a class="pure-menu-link"
 												  href="logout">Wyloguj</a></li>
