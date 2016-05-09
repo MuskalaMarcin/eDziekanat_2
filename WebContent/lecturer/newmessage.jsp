@@ -41,7 +41,9 @@
 						class="pure-menu-link">Historia komunikatów</a></li>
 					<li class="pure-menu-item  pure-menu-selected"><a href="#"
 						class="pure-menu-link">Nowa wiadomo¶æ</a></li>
-					<li class="pure-menu-item menu-item-divided"><a
+					<li class="pure-menu-item menu-item-divided">
+					<li class="pure-menu-item"><a class="pure-menu-link" href="lecturermydata">Moje dane</a></li>
+							<a
 						href="http://localhost:8080/edziekanat/logout"
 						class="pure-menu-link">Wyloguj</a>
 				</ul>
