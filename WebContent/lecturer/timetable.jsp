@@ -52,6 +52,7 @@
 						class="pure-menu-link" href="lecturersubjects">Moje przedmioty</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="receivedmessages">Historia komunikatów</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link" href="lecturermydata">Moje dane</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="logout">Wyloguj</a></li>
 				</ul>

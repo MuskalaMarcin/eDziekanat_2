@@ -218,6 +218,18 @@
         <servlet-name>StudentNews</servlet-name>
         <jsp-file>/student/news.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>studentmydata</servlet-name>
+        <jsp-file>/student/my_data.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>lecturermydata</servlet-name>
+        <jsp-file>/lecturer/lecturer_my_data.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>adminmydata</servlet-name>
+        <jsp-file>/administrator/admin_my_data.jsp</jsp-file>
+    </servlet>
 
     <!-- Servlet mappings -->
     <servlet-mapping>
@@ -416,6 +428,18 @@
         <servlet-name>StudentNews</servlet-name>
         <url-pattern>/student/news</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>studentmydata</servlet-name>
+        <url-pattern>/student/my_data</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>lecturermydata</servlet-name>
+        <url-pattern>/lecturer/lecturer_my_data</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminmydata</servlet-name>
+        <url-pattern>/administrator/admin_my_data</url-pattern>
+    </servlet-mapping>
 
     <!-- Security constraints -->
     <security-constraint>
@@ -501,6 +525,7 @@
             <url-pattern>/student/newmessage/*</url-pattern>
             <url-pattern>/studentwaitingapplications/*</url-pattern>
             <url-pattern>/studentwaitingpayments/*</url-pattern>
+            <url-pattern>/studentmydata/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>student</role-name>
@@ -528,6 +553,7 @@
             <url-pattern>/addlearningmaterials/*</url-pattern>
             <url-pattern>/studentmarks/*</url-pattern>
             <url-pattern>/studentenrollments/*</url-pattern>
+            <url-pattern>/lecturermydata/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>lecturer</role-name>
