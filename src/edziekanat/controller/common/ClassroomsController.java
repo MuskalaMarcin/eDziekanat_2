@@ -2,7 +2,9 @@ package edziekanat.controller.common;
 
 import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.ClassroomDAO;
+import edziekanat.databasemodel.dao.LecturerDAO;
 import edziekanat.databasemodel.dto.ClassroomDTO;
+import edziekanat.databasemodel.dto.LecturerDTO;
 import edziekanat.databasemodel.dto.ScheduledClassesDTO;
 
 import javax.servlet.ServletException;
@@ -50,7 +52,12 @@ public class ClassroomsController extends ParentTimetableController
 
 	if (request.isUserInRole("lecturer"))
 	{
+	    LecturerDAO lecturerDAO = new LecturerDAO();
+	    LecturerDTO lecturerDTO = lecturerDAO.getEntity(loginBean.getPersonId());
+	    request.setAttribute("subjects", lecturerDTO.getSubject());
 	    request.getRequestDispatcher("lecturer/classrooms.jsp").forward(request, response);
+
+	    lecturerDAO.closeEntityManager();
 	}
 	else if (request.isUserInRole("admin"))
 	{

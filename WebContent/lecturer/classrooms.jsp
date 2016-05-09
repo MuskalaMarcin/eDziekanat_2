@@ -13,9 +13,12 @@
     <link rel="stylesheet" href="resources/bootstrap/bootstrap.min.css">
     <script src="resources/jquery/jquery-2.2.3.js"></script>
     <script src="resources/bootstrap/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="resources/bootstrap/bootstrap-datepicker3.standalone.css">
+    <script src="resources/bootstrap/bootstrap-datepicker.js"></script>
+    <script src="resources/timetable.js"></script>
     <title>eDziekanat - Dostêpno¶æ sali</title>
 </head>
-<body>
+<body onload="setDatePicker()">
 <div id="layout">
     <div id="menu">
         <div class="pure-menu">
@@ -109,11 +112,6 @@
             </form>
             <br> <br>
             <c:choose>
-                <c:when test="${emptyWeek == true}">
-                    <center>Plan zajêæ na ${selectedWeek} tydzieñ roku dla sali ${selectedClassroom.number} jest
-                        pusty.
-                    </center>
-                </c:when>
                 <c:when test="${noClassroom == true}">
                     <center>Wybierz salê z powy¿szej listy.</center>
                 </c:when>
@@ -138,13 +136,123 @@
                                 </td>
                                 <c:forEach begin="0" end="4" varStatus="j">
                                     <td>
-                                        <c:if test="${rsClasses[j.index][i.index] != null}">
-                                            <a data-toggle="popover" data-trigger="focus" tabindex="0"
-                                               data-placement="auto bottom" data-html="true"
-                                               title="${rsClasses[j.index][i.index].subject.name}"
-                                               data-content="${groups[j.index][i.index]}<br />${courses[j.index][i.index]}<br />${lecturers[j.index][i.index]}">
-                                                    ${rsClasses[j.index][i.index].subject.name}</a>
-                                        </c:if>
+                                        <c:choose>
+                                            <c:when test="${rsClasses[j.index][i.index] != null}">
+                                                <a data-toggle="popover" data-trigger="focus" tabindex="0"
+                                                   data-placement="auto bottom" data-html="true"
+                                                   title="${rsClasses[j.index][i.index].subject.name}"
+                                                   data-content="${groups[j.index][i.index]}<br />${courses[j.index][i.index]}<br />${lecturers[j.index][i.index]}">
+                                                        ${rsClasses[j.index][i.index].subject.name}</a>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
+                                                        data-target="#modalWindow${i.index}${j.index}">Zarezerwuj
+                                                </button>
+                                                <div class="modal fade" id="modalWindow${i.index}${j.index}"
+                                                     role="dialog">
+                                                    <div class="modal-dialog" style="width: 700px">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close"
+                                                                        data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">Zarezerwuj salê</h4>
+                                                            </div>
+
+                                                            <form class="form-horizontal" role="form" method="post"
+                                                                  action="reserveclasses">
+                                                                <div class="modal-body">
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-3 control-label"
+                                                                               for="subjectId">Przedmiot</label>
+                                                                        <div class="col-sm-9">
+                                                                            <select class="form-control" id="subjectId"
+                                                                                    name="subjectId">
+                                                                                <c:forEach items="${subjects}"
+                                                                                           var="subject">
+                                                                                    <option value="${subject.id}">${subject.name}</option>
+                                                                                </c:forEach>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-3 control-label"
+                                                                               for="classroomId">Sala</label>
+                                                                        <div class="col-sm-9">
+                                                                            <select class="form-control"
+                                                                                    id="classroomId" name="classroomId"
+                                                                                    disabled>
+                                                                                <option value="${selectedClassroom.id}">
+                                                                                    Nr: ${selectedClassroom.number}
+                                                                                    typ: ${selectedClassroom.type }</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-3 control-label"
+                                                                               for="repeat">Powtarzaj</label>
+                                                                        <div class="col-sm-9">
+                                                                            <select class="form-control" name="repeat"
+                                                                                    id="repeat"
+                                                                                    onchange="showHideEndDate()">
+                                                                                <option value="0">Nie powtarzaj</option>
+                                                                                <option value="1">Co tydzieñ</option>
+                                                                                <option value="2">Co dwa tygodnie
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-3 control-label"
+                                                                               for="startTime">Godzina
+                                                                            rozpoczêcia</label>
+                                                                        <div class="col-sm-9">
+                                                                            <select class="form-control"
+                                                                                    name="startTime" id="startTime" disabled>
+                                                                                <option value="${i.index}">
+                                                                                    <fmt:formatDate pattern="H:mm"
+                                                                                                    value="${classesStart[i.index]}"/></option>
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="input-daterange input-group"
+                                                                         id="datepicker">
+                                                                        <label class="col-sm-3 control-label" id="startDateLabel" for="startDate">Data
+                                                                            rozpoczêcia </label>
+                                                                        <input id="startDate"
+                                                                               style="width: 219px; border-radius: 4px"
+                                                                               type="text"
+                                                                               class="col-sm-9 input-sm form-control pure-input-1-2 "
+                                                                               name="startDate" required/>
+                                                                        <label class="col-sm-3 control-label" id="endDateLabel"
+                                                                               style="display:none" for="endDate">Data
+                                                                            zakoñczenia </label>
+                                                                        <input id="endDate"
+                                                                               style="width: 219px; display:none; border-radius: 4px"
+                                                                               type="text"
+                                                                               class="col-sm-9 input-sm form-control pure-input-1-2 "
+                                                                               name="endDate"/>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default"
+                                                                            data-dismiss="modal">Anuluj
+                                                                    </button>
+                                                                    <button type="submit" class="btn btn-primary">
+                                                                        Wy¶lij
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </td>
                                 </c:forEach>
                             </tr>
