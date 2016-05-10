@@ -46,9 +46,7 @@ public class ClassroomsController extends ParentTimetableController
 	    List<ScheduledClassesDTO> scheduledClassesList = selectedClassroom.getScheduledClasses();
 	    List<ReservationRequestDTO> reservationRequestList = selectedClassroom.getReservation_request();
 
-	    getClassesAndDates(request, scheduledClassesList);
-
-	    int selectedWeek = Integer.parseInt(request.getParameter("selectedWeek"));
+	    int selectedWeek = getClassesAndDates(request, scheduledClassesList);
 	    filterReservations(reservationRequestList, selectedWeek);
 	    setReservations(reservationRequestList, request, selectedWeek);
 
@@ -84,7 +82,13 @@ public class ClassroomsController extends ParentTimetableController
 	    ReservationRequestDTO reservationRequestDTO = reservationRequestList.get(i);
 	    Date startDate = reservationRequestDTO.getClassesDate();
 	    calendar.setTime(startDate);
-	    if ((Math.abs(currentDate.getTime() - startDate.getTime())) > maxTimeDiff
+	    if (reservationRequestDTO.getStatus().equals("denied") || reservationRequestDTO.getStatus()
+			    .equals("accepted"))
+	    {
+		reservationRequestList.remove(i);
+		i--;
+	    }
+	    else if ((Math.abs(currentDate.getTime() - startDate.getTime())) > maxTimeDiff
 			    || calendar.get(Calendar.WEEK_OF_YEAR) != selectedWeek)
 	    {
 		if (reservationRequestDTO.getRepeatClasses().equals(0))
@@ -118,6 +122,8 @@ public class ClassroomsController extends ParentTimetableController
 	calendar.setFirstDayOfWeek(Calendar.MONDAY);
 	calendar.setTime(new Date());
 	calendar.set(Calendar.WEEK_OF_YEAR, selectedWeek);
+	System.out.println("start");
+	System.out.println(reservationRequestList.size());
 
 	ReservationRequestDTO[][] reservations = new ReservationRequestDTO[5][8];
 	for (int i = 2; i < 7; i++)
@@ -139,6 +145,27 @@ public class ClassroomsController extends ParentTimetableController
 			reservationRequestList.remove(res);
 			break;
 		    }
+		    else if (res.getRepeatClasses() > 0)
+		    {
+			Calendar calendar2 = Calendar.getInstance();
+			calendar2.setFirstDayOfWeek(Calendar.MONDAY);
+			calendar2.setTime(res.getClassesDate());
+
+			while (calendar2.getTime().compareTo(res.getClassesEndDate()) < 0
+					&& calendar2.get(Calendar.WEEK_OF_YEAR) != selectedWeek)
+			{
+			    calendar2.add(Calendar.DAY_OF_YEAR, 7 * res.getRepeatClasses());
+			}
+			if (calendar2.getTime().getDay() == calendar.getTime().getDay()
+					&& calendar2.getTime().getHours() == calendar.getTime().getHours()
+					&& calendar2.getTime().getMinutes() == calendar.getTime().getMinutes())
+			{
+			    reservations[i - 2][j] = res;
+			    reservationRequestList.remove(res);
+			    break;
+			}
+		    }
+		    System.out.println("i " + i + " j " + j + " z "+ z);
 		    z++;
 		}
 	    }

@@ -32,7 +32,7 @@ public class ParentTimetableController extends HttpServlet
 	doPost(request, response);
     }
 
-    protected void getClassesAndDates(HttpServletRequest request, List<ScheduledClassesDTO> scheduledClassesList)
+    protected int getClassesAndDates(HttpServletRequest request, List<ScheduledClassesDTO> scheduledClassesList)
     {
 	Calendar calendar = Calendar.getInstance();
 	calendar.setFirstDayOfWeek(Calendar.MONDAY);
@@ -58,6 +58,8 @@ public class ParentTimetableController extends HttpServlet
 	    createClassesTable(request, calendar, scheduledClassesList);
 	    request.setAttribute("emptyWeek", false);
 	}
+
+	return selectedWeek;
     }
 
     @SuppressWarnings("deprecated")
