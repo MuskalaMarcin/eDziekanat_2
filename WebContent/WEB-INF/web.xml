@@ -552,6 +552,7 @@
             <url-pattern>/lecturerlearningmaterials/*</url-pattern>
             <url-pattern>/deletematerial/*</url-pattern>
             <url-pattern>/addlearningmaterials/*</url-pattern>
+            <url-pattern>/myapplications/*</url-pattern>
             <url-pattern>/studentmarks/*</url-pattern>
             <url-pattern>/studentenrollments/*</url-pattern>
             <url-pattern>/lecturermydata/*</url-pattern>

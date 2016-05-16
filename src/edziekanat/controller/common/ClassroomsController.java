@@ -122,55 +122,49 @@ public class ClassroomsController extends ParentTimetableController
 	calendar.setFirstDayOfWeek(Calendar.MONDAY);
 	calendar.setTime(new Date());
 	calendar.set(Calendar.WEEK_OF_YEAR, selectedWeek);
-	System.out.println("start");
-	System.out.println(reservationRequestList.size());
 
 	ReservationRequestDTO[][] reservations = new ReservationRequestDTO[5][8];
-	for (int i = 2; i < 7; i++)
+	for (int i = 2; i < 7 && !reservationRequestList.isEmpty(); i++)
 	{
 	    calendar.set(Calendar.DAY_OF_WEEK, i);
-	    for (int j = 0; j < hours.size(); j++)
+	    for (int j = 0; j < hours.size() && !reservationRequestList.isEmpty(); j++)
 	    {
 		calendar.set(Calendar.HOUR_OF_DAY, hours.get(j));
 		calendar.set(Calendar.MINUTE, minutes.get(j));
-		int z = 0;
-		while (z < reservationRequestList.size())
+
+		for (ListIterator<ReservationRequestDTO> it = reservationRequestList.listIterator(); it
+				.hasNext(); )
 		{
-		    ReservationRequestDTO res = reservationRequestList.get(z);
-		    if (res.getClassesDate().getDay() == calendar.getTime().getDay()
-				    && res.getClassesDate().getHours() == calendar.getTime().getHours()
-				    && res.getClassesDate().getMinutes() == calendar.getTime().getMinutes())
+		    ReservationRequestDTO current = it.next();
+		    if (current.getClassesDate().getDay() == calendar.getTime().getDay()
+				    && current.getClassesDate().getHours() == calendar.getTime().getHours()
+				    && current.getClassesDate().getMinutes() == calendar.getTime().getMinutes())
 		    {
-			reservations[i - 2][j] = res;
-			reservationRequestList.remove(res);
-			break;
+			reservations[i - 2][j] = current;
+			it.remove();
 		    }
-		    else if (res.getRepeatClasses() > 0)
+		    else if (current.getRepeatClasses() > 0)
 		    {
 			Calendar calendar2 = Calendar.getInstance();
 			calendar2.setFirstDayOfWeek(Calendar.MONDAY);
-			calendar2.setTime(res.getClassesDate());
+			calendar2.setTime(current.getClassesDate());
 
-			while (calendar2.getTime().compareTo(res.getClassesEndDate()) < 0
+			while (calendar2.getTime().compareTo(current.getClassesEndDate()) < 0
 					&& calendar2.get(Calendar.WEEK_OF_YEAR) != selectedWeek)
 			{
-			    calendar2.add(Calendar.DAY_OF_YEAR, 7 * res.getRepeatClasses());
+			    calendar2.add(Calendar.DAY_OF_YEAR, 7 * current.getRepeatClasses());
 			}
 			if (calendar2.getTime().getDay() == calendar.getTime().getDay()
 					&& calendar2.getTime().getHours() == calendar.getTime().getHours()
 					&& calendar2.getTime().getMinutes() == calendar.getTime().getMinutes())
 			{
-			    reservations[i - 2][j] = res;
-			    reservationRequestList.remove(res);
-			    break;
+			    reservations[i - 2][j] = current;
+			    it.remove();
 			}
 		    }
-		    System.out.println("i " + i + " j " + j + " z "+ z);
-		    z++;
 		}
 	    }
 	}
-
 	request.setAttribute("reservations", reservations);
     }
 }

@@ -21,15 +21,24 @@ public class ReservationRequestDAO extends DAOParentClass<ReservationRequestDTO>
 	return entityManager.find(ReservationRequestDTO.class, id);
     }
 
-    public List<ReservationRequestDTO> getClassesFromSubject(Integer subjectId)
+    public List<ReservationRequestDTO> getReservationsFromSubject(Integer subjectId)
     {
 	return getAllEntities().stream().filter(p -> p.getSubject().getId().equals(subjectId))
+			.sorted((x, y) -> y.getRequestDate().compareTo(x.getRequestDate()))
 			.collect(Collectors.toList());
     }
 
-    public List<ReservationRequestDTO> getClassesFromClassroom(Integer classroomId)
+    public List<ReservationRequestDTO> getReservationsFromClassroom(Integer classroomId)
     {
 	return getAllEntities().stream().filter(p -> p.getClassroom().getId().equals(classroomId))
+			.sorted((x, y) -> y.getRequestDate().compareTo(x.getRequestDate()))
+			.collect(Collectors.toList());
+    }
+
+    public List<ReservationRequestDTO> getLecturersReservations(Integer lecturerId)
+    {
+	return getAllEntities().stream().filter(p -> p.getSubject().getLecturer().getId().equals(lecturerId))
+			.sorted((x, y) -> y.getRequestDate().compareTo(x.getRequestDate()))
 			.collect(Collectors.toList());
     }
 }

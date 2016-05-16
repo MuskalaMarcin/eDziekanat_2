@@ -69,7 +69,9 @@
                         </li>
                     </c:otherwise>
                 </c:choose>
-                <li class="pure-menu-item menu-item-divided"><a
+                <li class="pure-menu-item"><a
+                        class="pure-menu-link" href="myreservations">Moje rezerwacje</a></li>
+                <li class="pure-menu-item  menu-item-divided"><a
                         href="timetable" class="pure-menu-link">Plan zajêæ</a></li>
                 <li class="pure-menu-item "><a class="pure-menu-link"
                                                href="lecturersubjects">Moje przedmioty</a></li>
@@ -87,11 +89,11 @@
             <h2>Twój wirtualny dziekanat.</h2>
         </div>
         <div class="content">
-            <h2 class="content-subhead">
+            <h3 class="content-subhead">
                 Dostêpno¶æ sali: ${selectedClassroom.faculty.name}
                 <c:if test="${!empty selectedClassroom }"> sala: </c:if>
                 ${selectedClassroom.number}
-            </h2>
+            </h3>
 
             <form class="pure-form"
                   action="classrooms" method=post>
@@ -158,8 +160,14 @@
                                                    data-content="${groups[j.index][i.index]}<br />${courses[j.index][i.index]}<br />${lecturers[j.index][i.index]}">
                                                         ${rsClasses[j.index][i.index].subject.name}</a>
                                             </c:when>
-                                            <c:when test="${reservation[j.index][i.index] != null}">
-                                                Rezerwacja
+                                            <c:when test="${reservations[j.index][i.index] != null}">
+                                                <a data-toggle="popover" data-trigger="focus" tabindex="0"
+                                                   data-placement="auto bottom" data-html="true"
+                                                   title="REZERWACJA"
+                                                   data-content="Przedmiot: ${reservations[j.index][i.index].subject.name}<br />
+                                                   Wyk³adowca: ${reservations[j.index][i.index].subject.lecturer.name}
+                                                   ${reservations[j.index][i.index].subject.lecturer.surname}">
+                                                    REZERWACJA</a>
                                             </c:when>
                                             <c:otherwise>
                                                 <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
