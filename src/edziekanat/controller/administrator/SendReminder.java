@@ -34,7 +34,6 @@ public class SendReminder extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-		//if(request.getParameter("send") == null) {
 			PaymentDAO paymentDAO = new PaymentDAO();
 			PaymentDTO payment = paymentDAO.getEntity(Integer.parseInt(request.getParameter("paymentId")));
 
@@ -42,22 +41,6 @@ public class SendReminder extends HttpServlet
 
 			request.getRequestDispatcher("admin/sendreminder").forward(request, response);
 			paymentDAO.closeEntityManager();
-		/*
-		}
-		else
-		{
-			StudentDAO studentDAO = new StudentDAO();
-			StudentDTO student = studentDAO.getEntity(Integer.parseInt(request.getParameter("recieverID")));
-			String content = request.getParameter("content");
-			String title = request.getParameter("title");
-
-			request.setAttribute("content",content);
-			request.setAttribute("msgreceiver",student.getUser().getLogin());
-			request.setAttribute("msgtitle",title);
-			request.getRequestDispatcher("admin/sendmessage").forward(request, response);
-			studentDAO.closeEntityManager();
-		}
-		*/
     }
 
 }
