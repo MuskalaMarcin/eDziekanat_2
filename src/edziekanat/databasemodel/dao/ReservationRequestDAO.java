@@ -29,6 +29,7 @@ public class ReservationRequestDAO extends DAOParentClass<ReservationRequestDTO>
     public List<ReservationRequestDTO> getReservationsFromSubject(Integer subjectId)
     {
 	return getAllEntities().stream().filter(p -> p.getSubject().getId().equals(subjectId))
+			.sorted((x, y) -> y.getId().compareTo(x.getId()))
 			.sorted((x, y) -> y.getRequestDate().compareTo(x.getRequestDate()))
 			.collect(Collectors.toList());
     }
@@ -36,6 +37,7 @@ public class ReservationRequestDAO extends DAOParentClass<ReservationRequestDTO>
     public List<ReservationRequestDTO> getReservationsFromClassroom(Integer classroomId)
     {
 	return getAllEntities().stream().filter(p -> p.getClassroom().getId().equals(classroomId))
+			.sorted((x, y) -> y.getId().compareTo(x.getId()))
 			.sorted((x, y) -> y.getRequestDate().compareTo(x.getRequestDate()))
 			.collect(Collectors.toList());
     }
@@ -43,6 +45,7 @@ public class ReservationRequestDAO extends DAOParentClass<ReservationRequestDTO>
     public List<ReservationRequestDTO> getLecturersReservations(Integer lecturerId)
     {
 	return getAllEntities().stream().filter(p -> p.getSubject().getLecturer().getId().equals(lecturerId))
+			.sorted((x, y) -> y.getId().compareTo(x.getId()))
 			.sorted((x, y) -> y.getRequestDate().compareTo(x.getRequestDate()))
 			.collect(Collectors.toList());
     }
@@ -69,7 +72,8 @@ public class ReservationRequestDAO extends DAOParentClass<ReservationRequestDTO>
 	    {
 		return false;
 	    }
-	    if (reservations.stream().filter(s -> s.getClassesDate().compareTo(startDate) == 0).findAny().isPresent())
+	    if (reservations.stream().filter(r -> !r.getStatus().equals("rejected"))
+			    .filter(s -> s.getClassesDate().compareTo(startDate) == 0).findAny().isPresent())
 	    {
 		return false;
 	    }
@@ -108,5 +112,21 @@ public class ReservationRequestDAO extends DAOParentClass<ReservationRequestDTO>
 	insert(newReservation);
 
 	return true;
+    }
+
+    public List<ReservationRequestDTO> getWaitingReservations()
+    {
+	return getAllEntities().stream().filter(r -> r.getStatus().equals("sent"))
+			.sorted((x, y) -> y.getId().compareTo(x.getId()))
+			.sorted((x, y) -> y.getRequestDate().compareTo(x.getRequestDate()))
+			.collect(Collectors.toList());
+    }
+
+    public List<ReservationRequestDTO> getHistoryOfReservations()
+    {
+	return getAllEntities().stream().filter(r -> !r.getStatus().equals("sent"))
+			.sorted((x, y) -> y.getId().compareTo(x.getId()))
+			.sorted((x, y) -> y.getRequestDate().compareTo(x.getRequestDate()))
+			.collect(Collectors.toList());
     }
 }

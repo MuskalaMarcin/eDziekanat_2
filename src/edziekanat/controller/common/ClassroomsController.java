@@ -83,7 +83,7 @@ public class ClassroomsController extends ParentTimetableController
 	    ReservationRequestDTO reservationRequestDTO = reservationRequestList.get(i);
 	    Date startDate = reservationRequestDTO.getClassesDate();
 	    calendar.setTime(startDate);
-	    if (reservationRequestDTO.getStatus().equals("denied") || reservationRequestDTO.getStatus()
+	    if (reservationRequestDTO.getStatus().equals("rejected") || reservationRequestDTO.getStatus()
 			    .equals("accepted"))
 	    {
 		reservationRequestList.remove(i);

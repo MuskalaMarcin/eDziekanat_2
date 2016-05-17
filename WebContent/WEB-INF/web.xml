@@ -467,6 +467,7 @@
         <web-resource-collection>
             <web-resource-name>AdminsPages</web-resource-name>
             <url-pattern>/admin/*</url-pattern>
+            <url-pattern>/adminreservations/*</url-pattern>
             <url-pattern>/admin/newmessage/*</url-pattern>
             <url-pattern>/administrator/sentmessages/*</url-pattern>
             <url-pattern>/administrator/receivedmessages/*</url-pattern>

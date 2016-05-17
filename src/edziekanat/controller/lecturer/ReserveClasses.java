@@ -34,16 +34,16 @@ public class ReserveClasses extends HttpServlet
 	try
 	{
 	    DateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH);
+	    Integer repeat = Integer.parseInt(request.getParameter("repeat"));
+	    Integer startTime = Integer.parseInt(request.getParameter("startTime"));
 	    Date startDate = format.parse(request.getParameter("startDate"));
 	    Date endDate = null;
 	    String endDateString = request.getParameter("endDate");
-	    if (!StringUtils.isEmpty(endDateString))
+	    if (!StringUtils.isEmpty(endDateString) && repeat > 0)
 	    {
 		endDate = format.parse(endDateString);
 	    }
 
-	    Integer repeat = Integer.parseInt(request.getParameter("repeat"));
-	    Integer startTime = Integer.parseInt(request.getParameter("startTime"));
 	    SubjectDTO subject = subjectDAO.getEntity(Integer.parseInt(request.getParameter("subjectId")));
 	    ClassroomDTO classroom = classroomDAO.getEntity(Integer.parseInt(request.getParameter("classroomId")));
 
