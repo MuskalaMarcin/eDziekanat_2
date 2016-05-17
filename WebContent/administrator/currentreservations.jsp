@@ -79,6 +79,12 @@
                     <strong>Sukces!</strong> ${successMsg}
                 </div>
             </c:if>
+            <c:if test="${warningMsg != null}">
+                <div class="alert alert-warning fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Ostrze¿enie!</strong> ${warningMsg}
+                </div>
+            </c:if>
             <c:if test="${errorMsg != null}">
                 <div class="alert alert-danger fade in">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>

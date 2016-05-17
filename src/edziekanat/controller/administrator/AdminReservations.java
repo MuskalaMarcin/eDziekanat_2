@@ -48,6 +48,11 @@ public class AdminReservations extends HttpServlet
 	    {
 		request.setAttribute("errorMsg", errorMsg);
 	    }
+	    String warningMsg = request.getParameter("warningMsg");
+	    if (warningMsg != null)
+	    {
+		request.setAttribute("warningMsg", errorMsg);
+	    }
 	}
 
 	int pagesNumber = reservationRequestsList.size() / resPerPages + ((reservationRequestsList.size() % resPerPages

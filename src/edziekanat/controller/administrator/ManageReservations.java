@@ -63,7 +63,7 @@ public class ManageReservations extends HttpServlet
 	    else if (StringUtils.equals(action, "rejected"))
 	    {
 		reservation.setStatus("rejected");
-		request.setAttribute("successMsg", "Odrzucono wybrany wniosek.");
+		request.setAttribute("warningMsg", "Odrzucono wybrany wniosek.");
 	    }
 
 	    reservationRequestDAO.update(reservation);
@@ -96,7 +96,7 @@ public class ManageReservations extends HttpServlet
 	    }
 	    calendar.add(Calendar.DAY_OF_YEAR, 7 * reservation.getRepeatClasses());
 	}
-	while (calendar.getTime().compareTo(reservation.getClassesEndDate()) < 0);
+	while (calendar.getTime().compareTo(reservation.getClassesEndDate()) <= 0);
 
 	calendar.setTime(reservation.getClassesDate());
 	do
@@ -109,7 +109,7 @@ public class ManageReservations extends HttpServlet
 	    scheduledClassesDAO.insert(newClasses);
 	    calendar.add(Calendar.DAY_OF_YEAR, 7 * reservation.getRepeatClasses());
 	}
-	while (calendar.getTime().compareTo(reservation.getClassesEndDate()) < 0);
+	while (calendar.getTime().compareTo(reservation.getClassesEndDate()) <= 0);
 	reservation.setStatus("accepted");
 	return true;
     }

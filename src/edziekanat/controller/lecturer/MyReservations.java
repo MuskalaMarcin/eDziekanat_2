@@ -49,7 +49,7 @@ public class MyReservations extends HttpServlet
 		reservationRequestDTOList.remove(reservation);
 
 		request.setAttribute("deletedReservation", true);
-		request.setAttribute("successMsg", "Twoja rezerwacja o id: " + reservationId + " zosta³a usuniêta.");
+		request.setAttribute("warningMsg", "Twoja rezerwacja o id: " + reservationId + " zosta³a usuniêta.");
 	    }
 	    catch (Exception e)
 	    {

@@ -72,8 +72,8 @@ public class ReservationRequestDAO extends DAOParentClass<ReservationRequestDTO>
 	    {
 		return false;
 	    }
-	    if (reservations.stream().filter(r -> !r.getStatus().equals("rejected"))
-			    .filter(s -> s.getClassesDate().compareTo(startDate) == 0).findAny().isPresent())
+	    if (reservations.stream().filter(s -> s.getClassesDate().compareTo(startDate) == 0)
+			    .filter(r -> !r.getStatus().equals("rejected")).findAny().isPresent())
 	    {
 		return false;
 	    }
@@ -91,14 +91,14 @@ public class ReservationRequestDAO extends DAOParentClass<ReservationRequestDTO>
 		{
 		    return false;
 		}
-		if (reservations.stream().filter(s -> s.getClassesDate().compareTo(calendar.getTime()) == 0).findAny()
-				.isPresent())
+		if (reservations.stream().filter(s -> s.getClassesDate().compareTo(calendar.getTime()) == 0)
+				.filter(r -> !r.getStatus().equals("rejected")).findAny().isPresent())
 		{
 		    return false;
 		}
 		calendar.add(Calendar.DAY_OF_YEAR, 7 * repeat);
 	    }
-	    while (calendar.getTime().compareTo(endDate) < 0);
+	    while (calendar.getTime().compareTo(endDate) <= 0);
 	}
 
 	ReservationRequestDTO newReservation = new ReservationRequestDTO();
