@@ -231,6 +231,10 @@
         <jsp-file>/administrator/admin_my_data.jsp</jsp-file>
     </servlet>
 
+    <servlet>
+        <servlet-name>sendreminder</servlet-name>
+        <jsp-file>/administrator/send_reminder.jsp</jsp-file>
+    </servlet>
     <!-- Servlet mappings -->
     <servlet-mapping>
         <servlet-name>SendResetEmail</servlet-name>
@@ -440,6 +444,11 @@
         <servlet-name>adminmydata</servlet-name>
         <url-pattern>/administrator/admin_my_data</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>sendreminder</servlet-name>
+        <url-pattern>/admin/sendreminder</url-pattern>
+    </servlet-mapping>
+
 
     <!-- Security constraints -->
     <security-constraint>
@@ -476,6 +485,7 @@
             <url-pattern>/adminpayments/*</url-pattern>
             <url-pattern>/adminwaitingpayments/*</url-pattern>
             <url-pattern>/applypayment/*</url-pattern>
+            <url-pattern>/sendreminder/*</url-pattern>
             <url-pattern>/admincourses/*</url-pattern>
             <url-pattern>/adminaddcourses/*</url-pattern>
             <url-pattern>/adminstudentgroups/*</url-pattern>
