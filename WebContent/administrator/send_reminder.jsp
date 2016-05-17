@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet" href="resources/pure-min.css">
 <link rel="stylesheet" href="resources/styles.css">
-<title>eDziekanat - Historia płatności</title>
+<title>eDziekanat - Wysyłanie ponagleń</title>
 </head>
 <body>
 	<div id="layout">
@@ -63,55 +63,25 @@
 				<h2>Twój wirtualny dziekanat.</h2>
 			</div>
 			<div class="content">
-				<h2 class="content-subhead">Oczekujące należności:</h2>
+				<h2 class="content-subhead">Wysyłanie ponaglenia</h2>
 				<center>
 					<c:choose>
-						<c:when test="${empty waitingPayments }">
-						Brak wcześniejszych płatności.
+						<c:when test="${empty payment }">
+							BŁĄD.
 						</c:when>
 						<c:otherwise>
-							<table class="pure-table pure-table-bordered">
-								<thead>
-									<tr>
-										<td>Nr</td>
-										<td>Tytuł</td>
-										<td>Opis</td>
-										<td>Kwota</td>
-										<td>Data nadania</td>
-										<td>Imię i nazwisko</td>
-										<td>Potwierdź płatność</td>
-										<td>Wyślij ponaglenie</td>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${waitingPayments}" var="payment"
-										varStatus="varStatus">
-										<tr>
-											<td>${varStatus.index + 1 }</td>
-											<td>${payment.title }</td>
-											<td>${payment.description}</td>
-											<td>${payment.amount }</td>
-											<td><fmt:formatDate pattern="dd.MM.yyyy"
-													value="${payment.issueDate }" /></td>
-											<td>${payment.student.name } ${payment.student.surname }</td>
-											<td><form action="applypayment" method=post>
-													<input type="hidden" name="paymentId" value="${payment.id}">
-													<input type="hidden" name="studentId"
-														value="${payment.student.id }"> <input
-														class="pure-button pure-input-1-2 pure-button-primary"
-														type="submit" value="Potwierdź płatność">
-												</form></td>
-											<td><form action="sendreminder" method=post>
-												<input type="hidden" name="paymentId" value="${payment.id}">
-												<input type="hidden" name="studentId"
-													   value="${payment.student.id }"> <input
-													class="pure-button pure-input-1-2 pure-button-primary"
-													type="submit" value="Wyślij ponaglenie">
-											</form></td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
+							<h3 class="content-subhead">Adresat ponaglenia:<b> ${payment.student.name} ${payment.student.surname}</b></h3>
+							<h5 class="content-subhead">Treść:</h5>
+							<form action="sendmessage" method="post" class="pure-form">
+								<input type="hidden" name="send" value="true">
+								<input type="hidden" name="msgreceiver" value="${payment.student.user.login}">
+								<fieldset class="pure-group">
+								<input type="text" name="msgtitle" class="pure-input-1-2" value="Ponaglenie"/>
+								<textarea name="content" rows="6" class="pure-input-1-2" required>Dnia ${payment.issueDate} została wystawiona płatność na kwotę ${payment.amount} złotych tytułem ${payment.title}. Prosimy o jak najszybsze uiszczenie opłaty.</textarea>
+									</fieldset>
+								<input class="pure-button pure-input-1-2 pure-button-primary"
+										type="submit" value="Wyślij">
+							</form>
 						</c:otherwise>
 					</c:choose>
 				</center>
