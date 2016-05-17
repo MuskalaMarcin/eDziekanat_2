@@ -100,7 +100,7 @@
                                             Brak
                                         </c:when>
                                         <c:otherwise>
-                                            <fmt:formatDate pattern="dd.MM.yyyy H:mm" value="${res.classesEndDate }"/>
+                                            <fmt:formatDate pattern="H:mm dd.MM.yyyy" value="${res.classesEndDate }"/>
                                         </c:otherwise>
                                     </c:choose>
                                 </td>

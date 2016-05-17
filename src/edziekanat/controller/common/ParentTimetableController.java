@@ -1,6 +1,7 @@
 package edziekanat.controller.common;
 
 import com.sun.deploy.net.HttpRequest;
+import edziekanat.databasemodel.dao.ScheduledClassesDAO;
 import edziekanat.databasemodel.dto.CourseDTO;
 import edziekanat.databasemodel.dto.LecturerDTO;
 import edziekanat.databasemodel.dto.ScheduledClassesDTO;
@@ -21,8 +22,6 @@ import java.util.stream.Collectors;
 public class ParentTimetableController extends HttpServlet
 {
     protected static final long serialVersionUID = 1L;
-    protected static final List<Integer> hours = Arrays.asList(7, 9, 11, 12, 14, 16, 18, 19);
-    protected static final List<Integer> minutes = Arrays.asList(30, 15, 0, 45, 30, 15, 0, 45);
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -70,10 +69,10 @@ public class ParentTimetableController extends HttpServlet
 	for (int i = 2; i < 7; i++)
 	{
 	    calendar.set(Calendar.DAY_OF_WEEK, i);
-	    for (int j = 0; j < hours.size(); j++)
+	    for (int j = 0; j < ScheduledClassesDAO.hours.size(); j++)
 	    {
-		calendar.set(Calendar.HOUR_OF_DAY, hours.get(j));
-		calendar.set(Calendar.MINUTE, minutes.get(j));
+		calendar.set(Calendar.HOUR_OF_DAY, ScheduledClassesDAO.hours.get(j));
+		calendar.set(Calendar.MINUTE, ScheduledClassesDAO.minutes.get(j));
 		int z = 0;
 		while (z < scheduledClassesList.size())
 		{
@@ -104,10 +103,10 @@ public class ParentTimetableController extends HttpServlet
 	for (int i = 2; i < 7; i++)
 	{
 	    calendar.set(Calendar.DAY_OF_WEEK, i);
-	    for (int j = 0; j < hours.size(); j++)
+	    for (int j = 0; j < ScheduledClassesDAO.hours.size(); j++)
 	    {
-		calendar.set(Calendar.HOUR_OF_DAY, hours.get(j));
-		calendar.set(Calendar.MINUTE, minutes.get(j));
+		calendar.set(Calendar.HOUR_OF_DAY, ScheduledClassesDAO.hours.get(j));
+		calendar.set(Calendar.MINUTE, ScheduledClassesDAO.minutes.get(j));
 
 		if (i == 2)
 		{

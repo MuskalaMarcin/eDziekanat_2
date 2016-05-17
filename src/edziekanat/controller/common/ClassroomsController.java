@@ -3,6 +3,7 @@ package edziekanat.controller.common;
 import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.ClassroomDAO;
 import edziekanat.databasemodel.dao.LecturerDAO;
+import edziekanat.databasemodel.dao.ScheduledClassesDAO;
 import edziekanat.databasemodel.dto.ClassroomDTO;
 import edziekanat.databasemodel.dto.LecturerDTO;
 import edziekanat.databasemodel.dto.ReservationRequestDTO;
@@ -104,7 +105,8 @@ public class ClassroomsController extends ParentTimetableController
 			calendar.add(Calendar.DAY_OF_YEAR, 7 * reservationRequestDTO.getRepeatClasses());
 		    }
 		    if ((Math.abs(currentDate.getTime() - startDate.getTime())) > maxTimeDiff
-				    || calendar.get(Calendar.WEEK_OF_YEAR) != selectedWeek)
+				    || calendar.get(Calendar.WEEK_OF_YEAR) != selectedWeek
+				    || calendar.getTime().compareTo(reservationRequestDTO.getClassesEndDate()) > 0)
 		    {
 			reservationRequestList.remove(i);
 			i--;
@@ -127,10 +129,10 @@ public class ClassroomsController extends ParentTimetableController
 	for (int i = 2; i < 7 && !reservationRequestList.isEmpty(); i++)
 	{
 	    calendar.set(Calendar.DAY_OF_WEEK, i);
-	    for (int j = 0; j < hours.size() && !reservationRequestList.isEmpty(); j++)
+	    for (int j = 0; j < ScheduledClassesDAO.hours.size() && !reservationRequestList.isEmpty(); j++)
 	    {
-		calendar.set(Calendar.HOUR_OF_DAY, hours.get(j));
-		calendar.set(Calendar.MINUTE, minutes.get(j));
+		calendar.set(Calendar.HOUR_OF_DAY, ScheduledClassesDAO.hours.get(j));
+		calendar.set(Calendar.MINUTE, ScheduledClassesDAO.minutes.get(j));
 
 		for (ListIterator<ReservationRequestDTO> it = reservationRequestList.listIterator(); it
 				.hasNext(); )
@@ -156,7 +158,8 @@ public class ClassroomsController extends ParentTimetableController
 			}
 			if (calendar2.getTime().getDay() == calendar.getTime().getDay()
 					&& calendar2.getTime().getHours() == calendar.getTime().getHours()
-					&& calendar2.getTime().getMinutes() == calendar.getTime().getMinutes())
+					&& calendar2.getTime().getMinutes() == calendar.getTime().getMinutes() &&
+					calendar2.getTime().compareTo(current.getClassesEndDate()) < 0)
 			{
 			    reservations[i - 2][j] = current;
 			    it.remove();
