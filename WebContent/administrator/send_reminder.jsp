@@ -40,9 +40,11 @@
 						class="pure-menu-link" href="#">Nale¿no¶ci</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="adminpayments">Historia nale¿no¶ci</a></li>
-					<li class="pure-menu-item  pure-menu-selected"><a
+					<li class="pure-menu-item"><a
 						class="pure-menu-link" href="adminwaitingpayments">Oczekuj±ce
 							nale¿no¶ci</a></li>
+					<li class="pure-menu-item  pure-menu-selected"><a
+							class="pure-menu-link" href="#">Wy¶lij ponaglenie</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="admingetstudents">Dodaj nale¿no¶æ</a></li>
 					<li class="pure-menu-item menu-item-divided"><a
@@ -71,13 +73,12 @@
 						</c:when>
 						<c:otherwise>
 							<h3 class="content-subhead">Adresat ponaglenia:<b> ${payment.student.name} ${payment.student.surname}</b></h3>
-							<h5 class="content-subhead">Tre¶æ:</h5>
 							<form action="sendmessage" method="post" class="pure-form">
 								<input type="hidden" name="send" value="true">
 								<input type="hidden" name="msgreceiver" value="${payment.student.user.login}">
 								<fieldset class="pure-group">
 								<input type="text" name="msgtitle" class="pure-input-1-2" value="Ponaglenie"/>
-								<textarea name="content" rows="6" class="pure-input-1-2" required>Dnia ${payment.issueDate} zosta³a wystawiona p³atno¶æ na kwotê ${payment.amount} z³otych tytu³em ${payment.title}. Prosimy o jak najszybsze uiszczenie op³aty.</textarea>
+								<textarea name="content" rows="6" class="pure-input-1-2" required>Dnia ${payment.issueDate} zosta³a wystawiona p³atno¶æ na kwotê ${payment.amount} z³otych tytu³em "${payment.title}". Prosimy o jak najszybsze uiszczenie op³aty.</textarea>
 									</fieldset>
 								<input class="pure-button pure-input-1-2 pure-button-primary"
 										type="submit" value="Wy¶lij">

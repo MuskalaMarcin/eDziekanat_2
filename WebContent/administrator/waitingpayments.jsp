@@ -103,9 +103,7 @@
 												</form></td>
 											<td><form action="sendreminder" method=post>
 												<input type="hidden" name="paymentId" value="${payment.id}">
-												<input type="hidden" name="studentId"
-													   value="${payment.student.id }"> <input
-													class="pure-button pure-input-1-2 pure-button-primary"
+												<input class="pure-button pure-input-1-2 pure-button-primary"
 													type="submit" value="Wy¶lij ponaglenie">
 											</form></td>
 										</tr>
