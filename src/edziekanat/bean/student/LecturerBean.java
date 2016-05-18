@@ -13,13 +13,15 @@ public class LecturerBean implements Serializable
     private String eMail;
     private String position;
     private String academicDegree;
+    private String consultationInfo;
+    private String website;
     
     public LecturerBean(){
 	super();
     }
     
     public LecturerBean(String login, String subject, String name, String surname, String eMail, String position,
-	    String academicDegree)
+	    String academicDegree, String consultationInfo, String website)
     {
 	super();
 	this.login = login;
@@ -29,6 +31,8 @@ public class LecturerBean implements Serializable
 	this.eMail = eMail;
 	this.position = position;
 	this.academicDegree = academicDegree;
+	this.consultationInfo = consultationInfo;
+	this.website = website;
     }
 
     public String getLogin()
@@ -99,5 +103,25 @@ public class LecturerBean implements Serializable
     public void setAcademicDegree(String academicDegree)
     {
         this.academicDegree = academicDegree;
-    }  
+    }
+
+    public String getWebsite()
+    {
+	return website;
+    }
+
+    public void setWebsite(String website)
+    {
+	this.website = website;
+    }
+
+    public String getConsultationInfo()
+    {
+	return consultationInfo;
+    }
+
+    public void setConsultationInfo(String consultationInfo)
+    {
+	this.consultationInfo = consultationInfo;
+    }
 }

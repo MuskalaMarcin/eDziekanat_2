@@ -1,23 +1,19 @@
 package edziekanat.controller.student;
 
-import java.io.IOException;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
+import edziekanat.bean.LoginBean;
+import edziekanat.bean.student.LecturerBean;
+import edziekanat.databasemodel.dao.StudentDAO;
+import edziekanat.databasemodel.dto.LecturerDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import edziekanat.bean.LoginBean;
-import edziekanat.bean.student.LecturerBean;
-import edziekanat.databasemodel.dao.StudentDAO;
-import edziekanat.databasemodel.dto.LecturerDTO;
-import edziekanat.databasemodel.dto.StudentsGroupDTO;
-import edziekanat.databasemodel.dto.SubjectDTO;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Servlet getting all lecturers that teach the student.
@@ -49,7 +45,8 @@ public class LecturersController extends HttpServlet
 			    LecturerDTO lecturer = s.getLecturer();
 			    return new LecturerBean(lecturer.getUser().getLogin(), s.getName(),
 					    lecturer.getName(), lecturer.getSurname(), lecturer.getUser().geteMail(),
-					    lecturer.getPosition(), lecturer.getAcademicDegree());
+					    lecturer.getPosition(), lecturer.getAcademicDegree(),
+					    lecturer.getConsultationInfo(), lecturer.getWebsite());
 
 			}).collect(Collectors.toList());
 

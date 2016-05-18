@@ -215,3 +215,7 @@ td#respond {
 .doreczenie{
 	float: right;
 }
+
+.newLine {
+    clear:both;
+}

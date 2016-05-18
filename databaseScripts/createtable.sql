@@ -126,7 +126,9 @@ CREATE TABLE lecturer
     surname         VARCHAR(256) NOT NULL ,
     address         VARCHAR(512) NOT NULL ,
     academic_degree VARCHAR(256) NOT NULL ,
-    position        VARCHAR(256) NOT NULL
+    position        VARCHAR(256) NOT NULL ,
+    website         VARCHAR(256) ,
+    consultation_info VARCHAR(256)
   ) ;
 ALTER TABLE lecturer ADD CONSTRAINT lecturer_PK PRIMARY KEY ( id ) ;
 

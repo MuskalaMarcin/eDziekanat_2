@@ -23,7 +23,7 @@
                                               class="pure-menu-link">Strona g³ówna</a></li>
                 <li class="pure-menu-item"><a href="studenttranscript"
                                               class="pure-menu-link">Indeks</a></li>
-                <li class="pure-menu-item"><a href="studentacademicrecordcard"
+                <li class="pure-menu-item pure-menu-selected"><a href="studentacademicrecordcard"
                                               class="pure-menu-link">Karta przebiegu studiów</a></li>
                 <li class="pure-menu-item"><a href="timetable"
                                               class="pure-menu-link">Plan zajêæ</a></li>
@@ -38,6 +38,8 @@
                                               class="pure-menu-link">Wyk³adowcy</a></li>
                 <li class="pure-menu-item"><a href="receivedmessages"
                                               class="pure-menu-link">Historia komunikatów</a></li>
+                <li class="pure-menu-item"><a href="studentmydata"
+                                              class="pure-menu-link">Moje dane</a></li>
                 <li class="pure-menu-item"><a href="logout"
                                               class="pure-menu-link">Wyloguj</a>
             </ul>

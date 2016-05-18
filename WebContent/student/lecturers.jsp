@@ -5,8 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
-<link rel="stylesheet" href="resources/pure-min.css">
-<link rel="stylesheet" href="resources/styles.css">
+    <link rel="stylesheet" href="resources/pure-min.css">
+    <link rel="stylesheet" href="resources/styles.css">
+    <link rel="stylesheet" href="resources/bootstrap/bootstrap.css">
+    <script type='text/javascript' src="resources/jquery/jquery-2.2.3.js"></script>
+    <script type='text/javascript' src="resources/bootstrap/bootstrap.js"></script>
 <title>eDziekanat - Wykładowcy</title>
 </head>
 <body>
@@ -49,34 +52,49 @@
 			</div>
 			<div class="content">
 				<h2 class="content-subhead">Wykładowcy:</h2>
-				<table class="responseTable">
-					<tr class="grayRow">
-						<td>Imię</td>
-						<td>Nazwisko</td>
-						<td>Stopień naukowy</td>
-						<td>Stanowisko</td>
-						<td>e-Mail</td>
-						<td>Przedmiot(y)</td>
-					</tr>
-					<c:forEach items="${lecturers}" var="lecturer">
-						<tr>
-							<td>${lecturer.name}</td>
-							<td>${lecturer.surname}</td>
-							<td>${lecturer.academicDegree}</td>
-							<td>${lecturer.position}</td>
-							<td>${lecturer.eMail}</td>
-							<td>${lecturer.subject}</td>
-							<td id="respond">
-								<form action="student/newmessage" method=post>
-									<input type="hidden" name="receiverLogin"
-										value="${lecturer.login}"> <input
-										class="pure-button pure-input-1-2 pure-button-primary"
-										type="submit" value="Kontakt">
-								</form>
-							</td>
-						</tr>
-					</c:forEach>
-				</table>
+                <c:choose>
+                    <c:when test="${empty lecturers}">
+                        <p>Brak informacji o wykładowcach do wyświetlenia.</p>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="panel-group" id="accordion1">
+                            <c:forEach items="${lecturers}" var="lecturer"
+                                       varStatus="varStatus">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading accordion-toggle collapsed" data-toggle="collapse"
+                                         data-parent="#accordion1" data-target="#collapseOne${varStatus.index}">
+                                        <h4 class="panel-title">
+                                            <div class="text-left" style="display: inline">${lecturer.academicDegree}
+                                                    ${lecturer.name} ${lecturer.surname}
+                                            </div>
+
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne${varStatus.index}" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="newLine">Stanowisko: ${lecturer.position}</div>
+                                            <div class="newLine">
+                                                Przedmiot/y: ${lecturer.subject}
+                                            </div>
+                                            <div class="newLine">Email: ${lecturer.eMail}</div>
+                                            <div class="newLine">Strona internetowa: ${lecturer.website}</div>
+                                            <div class="newLine">Konsultacje: ${lecturer.consultationInfo}</div>
+                                            <div style="display: inline; float: right">
+                                                <form action="student/newmessage" method=post>
+                                                    <input type="hidden" name="receiverLogin"
+                                                           value="${lecturer.login}">
+                                                    <button type="submit" class="btn btn-success btn-md">
+                                                        <span class="glyphicon glyphicon-envelope"></span> Kontakt
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
 			</div>
 		</div>
 	</div>
