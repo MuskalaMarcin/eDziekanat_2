@@ -1134,6 +1134,7 @@ Insert into STUDENTS_GROUP_SUBJECT (STUDENTS_GROUP_ID, SUBJECT_ID) values ('6','
 Insert into STUDENTS_GROUP_SUBJECT (STUDENTS_GROUP_ID, SUBJECT_ID) values ('7','7');
 Insert into STUDENTS_GROUP_SUBJECT (STUDENTS_GROUP_ID, SUBJECT_ID) values ('8','8');
 Insert into STUDENTS_GROUP_SUBJECT (STUDENTS_GROUP_ID, SUBJECT_ID) values ('9','9');
+Insert into STUDENTS_GROUP_SUBJECT (STUDENTS_GROUP_ID, SUBJECT_ID) values ('1','10');
 Insert into STUDENTS_GROUP_SUBJECT (STUDENTS_GROUP_ID, SUBJECT_ID) values ('10','1');
 
 Insert into TRANSCRIPT (ID,ISSUE_DATE,STUDENT_ID,STUDENTS_GROUP_ID) values (nextval('transcript_id_seq'), '2013-09-25', '1', '1');
@@ -1204,6 +1205,10 @@ Insert into PARTIAL_MARK (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) value
 Insert into PARTIAL_MARK (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('partial_mark_id_seq'), '3', '2014-12-09', '4', '4');
 Insert into PARTIAL_MARK (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('partial_mark_id_seq'), '4', '2013-12-09', '3', '5');
 
+Insert into reservation_request (ID, subject_id, classroom_id, request_date, classes_date, classes_end_date, repeat_classes, status) values (nextval('reservation_request_id_seq'), '1', '1', '2015-04-23', TO_TIMESTAMP('2016/05/03 11:00:00', 'yyyy/mm/dd hh24:mi:ss'), null, '0', 'sent');
+Insert into reservation_request (ID, subject_id, classroom_id, request_date, classes_date, classes_end_date, repeat_classes, status) values (nextval('reservation_request_id_seq'), '1', '1', '2015-04-26', TO_TIMESTAMP('2016/05/16 7:30:00', 'yyyy/mm/dd hh24:mi:ss'), null, '0', 'sent');
+Insert into reservation_request (ID, subject_id, classroom_id, request_date, classes_date, classes_end_date, repeat_classes, status) values (nextval('reservation_request_id_seq'), '1', '1', '2015-05-01', TO_TIMESTAMP('2016/05/17 11:00:00', 'yyyy/mm/dd hh24:mi:ss'), TO_TIMESTAMP('2016/06/17 11:00:00', 'yyyy/mm/dd hh24:mi:ss'), '1', 'sent');
+	
 Insert into SCHOLARSHIP_TYPE (TYPE, REQUIREMENTS, AMOUNT) values ('Stypendium rektora', 'Średnia ocen z poprzedniego roku powyżej 4.0', '500');
 Insert into SCHOLARSHIP_TYPE (TYPE, REQUIREMENTS, AMOUNT) values ('Stypendium socjalne', 'Dochód na członka rodziny poniżej 700 zł', '460');
 Insert into SCHOLARSHIP_TYPE (TYPE, REQUIREMENTS, AMOUNT) values ('Stypendium dla osób niepełnosprawnych', 'Zaświadczenie o niepełnosprawności', '340');

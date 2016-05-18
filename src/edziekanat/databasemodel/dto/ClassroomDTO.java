@@ -44,6 +44,8 @@ public class ClassroomDTO implements Serializable
     private FacultyDTO faculty;
     @OneToMany(mappedBy = "classroom", fetch = FetchType.LAZY)
     private List<ScheduledClassesDTO> scheduled_classes;
+    @OneToMany(mappedBy = "classroom", fetch = FetchType.LAZY)
+    private List<ReservationRequestDTO> reservation_request;
 
     public Integer getId()
     {
@@ -103,5 +105,15 @@ public class ClassroomDTO implements Serializable
     public void setNumber(Integer number)
     {
 	this.number = number;
+    }
+
+    public List<ReservationRequestDTO> getReservation_request()
+    {
+        return reservation_request;
+    }
+
+    public void setReservation_request(List<ReservationRequestDTO> reservation_request)
+    {
+        this.reservation_request = reservation_request;
     }
 }

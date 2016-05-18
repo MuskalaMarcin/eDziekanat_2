@@ -18,8 +18,8 @@ import edziekanat.databasemodel.dto.SubjectDTO;
 @SuppressWarnings("deprecation")
 public class ScheduledClassesDAO extends DAOParentClass<ScheduledClassesDTO>
 {
-    final List<Integer> hours = Arrays.asList(7, 9, 11, 12, 14, 16, 18, 19);
-    final List<Integer> minutes = Arrays.asList(30, 15, 0, 45, 30, 15, 0, 45);
+    public static final List<Integer> hours = Arrays.asList(7, 9, 11, 12, 14, 16, 18, 19);
+    public static final List<Integer> minutes = Arrays.asList(30, 15, 0, 45, 30, 15, 0, 45);
 
     public ScheduledClassesDAO()
     {
