@@ -1,11 +1,10 @@
 package edziekanat.controller.common;
 
-import com.sun.deploy.net.HttpRequest;
+import edziekanat.databasemodel.dao.ScheduledClassesDAO;
 import edziekanat.databasemodel.dto.CourseDTO;
 import edziekanat.databasemodel.dto.LecturerDTO;
 import edziekanat.databasemodel.dto.ScheduledClassesDTO;
 import edziekanat.databasemodel.dto.StudentsGroupDTO;
-import sun.util.resources.ar.CalendarData_ar;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -30,17 +29,104 @@ public class ParentTimetableController extends HttpServlet
 	doPost(request, response);
     }
 
-    @SuppressWarnings("deprecated")
-    protected void getClassesAndDates(HttpServletRequest request, List<ScheduledClassesDTO> scheduledClassesList)
+    protected int getClassesAndDates(HttpServletRequest request, List<ScheduledClassesDTO> scheduledClassesList)
     {
 	Calendar calendar = Calendar.getInstance();
 	calendar.setFirstDayOfWeek(Calendar.MONDAY);
-	Date currentDate = calendar.getTime();
 
 	int selectedWeek = (request.getParameter("rqweek") == null ? calendar.get(Calendar.WEEK_OF_YEAR)
 			: (Integer.parseInt(request.getParameter("rqweek")) % 53 + 53) % 53);
 	request.setAttribute("currentWeek", selectedWeek == calendar.get(Calendar.WEEK_OF_YEAR));
+	request.setAttribute("selectedWeek", selectedWeek);
 
+	calendar.setTime(new Date());
+	calendar.set(Calendar.WEEK_OF_YEAR, selectedWeek);
+
+	filterClasses(scheduledClassesList, selectedWeek);
+
+	setTimeAndDates(request, calendar);
+
+	if (scheduledClassesList.isEmpty())
+	{
+	    request.setAttribute("emptyWeek", true);
+	}
+	else
+	{
+	    createClassesTable(request, calendar, scheduledClassesList);
+	    request.setAttribute("emptyWeek", false);
+	}
+
+	return selectedWeek;
+    }
+
+    @SuppressWarnings("deprecated")
+    private void createClassesTable(HttpServletRequest request, Calendar calendar,
+		    List<ScheduledClassesDTO> scheduledClassesList)
+    {
+	ScheduledClassesDTO[][] rsClasses = new ScheduledClassesDTO[5][8];
+	for (int i = 2; i < 7; i++)
+	{
+	    calendar.set(Calendar.DAY_OF_WEEK, i);
+	    for (int j = 0; j < ScheduledClassesDAO.hours.size(); j++)
+	    {
+		calendar.set(Calendar.HOUR_OF_DAY, ScheduledClassesDAO.hours.get(j));
+		calendar.set(Calendar.MINUTE, ScheduledClassesDAO.minutes.get(j));
+		int z = 0;
+		while (z < scheduledClassesList.size())
+		{
+		    ScheduledClassesDTO schedClass = scheduledClassesList.get(z);
+		    if (schedClass.getDate().getDay() == calendar.getTime().getDay()
+				    && schedClass.getDate().getHours() == calendar.getTime().getHours()
+				    && schedClass.getDate().getMinutes() == calendar.getTime().getMinutes())
+		    {
+			rsClasses[i - 2][j] = schedClass;
+			scheduledClassesList.remove(schedClass);
+			break;
+		    }
+		    z++;
+		}
+	    }
+	}
+
+	generateCourseAndGroupsMsg(request, rsClasses);
+
+	request.setAttribute("rsClasses", rsClasses);
+    }
+
+    private void setTimeAndDates(HttpServletRequest request, Calendar calendar)
+    {
+	List<Date> dayDates = new LinkedList<>();
+	List<Date> classesStart = new LinkedList<>();
+	List<Date> classesEnd = new LinkedList<>();
+	for (int i = 2; i < 7; i++)
+	{
+	    calendar.set(Calendar.DAY_OF_WEEK, i);
+	    for (int j = 0; j < ScheduledClassesDAO.hours.size(); j++)
+	    {
+		calendar.set(Calendar.HOUR_OF_DAY, ScheduledClassesDAO.hours.get(j));
+		calendar.set(Calendar.MINUTE, ScheduledClassesDAO.minutes.get(j));
+
+		if (i == 2)
+		{
+		    classesStart.add(calendar.getTime());
+		    calendar.add(Calendar.HOUR_OF_DAY, 1);
+		    calendar.add(Calendar.MINUTE, 30);
+		    classesEnd.add(calendar.getTime());
+		}
+	    }
+	    dayDates.add(calendar.getTime());
+	}
+
+	request.setAttribute("classesStart", classesStart);
+	request.setAttribute("classesEnd", classesEnd);
+	request.setAttribute("dayDates", dayDates);
+    }
+
+    private void filterClasses(List<ScheduledClassesDTO> scheduledClassesList, int selectedWeek)
+    {
+	Calendar calendar = Calendar.getInstance();
+	calendar.setFirstDayOfWeek(Calendar.MONDAY);
+	Date currentDate = calendar.getTime();
 	long maxTimeDiff = 180 * 24 * 60 * 60 * 1000L; // 180 days
 	for (int i = 0; i < scheduledClassesList.size(); i++)
 	{
@@ -53,63 +139,7 @@ public class ParentTimetableController extends HttpServlet
 		i--;
 	    }
 	}
-	if (scheduledClassesList.isEmpty())
-	{
-	    request.setAttribute("emptyWeek", true);
-	}
-	else
-	{
-	    Collections.sort(scheduledClassesList, (y, x) -> x.getDate().compareTo(y.getDate()));
-	    final List<Integer> hours = Arrays.asList(7, 9, 11, 12, 14, 16, 18, 19);
-	    final List<Integer> minutes = Arrays.asList(30, 15, 0, 45, 30, 15, 0, 45);
-	    calendar.setTime(new Date());
-	    calendar.set(Calendar.WEEK_OF_YEAR, selectedWeek);
-	    ScheduledClassesDTO[][] rsClasses = new ScheduledClassesDTO[5][8];
-	    List<Date> dayDates = new LinkedList<>();
-	    List<Date> classesStart = new LinkedList<>();
-	    List<Date> classesEnd = new LinkedList<>();
-	    for (int i = 2; i < 7; i++)
-	    {
-		calendar.set(Calendar.DAY_OF_WEEK, i);
-		for (int j = 0; j < hours.size(); j++)
-		{
-		    calendar.set(Calendar.HOUR_OF_DAY, hours.get(j));
-		    calendar.set(Calendar.MINUTE, minutes.get(j));
-		    int z = 0;
-		    while (z < scheduledClassesList.size())
-		    {
-			ScheduledClassesDTO schedClass = scheduledClassesList.get(z);
-			if (schedClass.getDate().getDay() == calendar.getTime().getDay()
-					&& schedClass.getDate().getHours() == calendar.getTime().getHours()
-					&& schedClass.getDate().getMinutes() == calendar.getTime().getMinutes())
-			{
-			    rsClasses[i - 2][j] = schedClass;
-			    scheduledClassesList.remove(schedClass);
-			    break;
-			}
-			z++;
-		    }
-		    if (i == 2)
-		    {
-			classesStart.add(calendar.getTime());
-			calendar.add(Calendar.HOUR_OF_DAY, 1);
-			calendar.add(Calendar.MINUTE, 30);
-			classesEnd.add(calendar.getTime());
-		    }
-		}
-		dayDates.add(calendar.getTime());
-	    }
-
-	    generateCourseAndGroupsMsg(request, rsClasses);
-
-	    request.setAttribute("classesStart", classesStart);
-	    request.setAttribute("classesEnd", classesEnd);
-	    request.setAttribute("rsClasses", rsClasses);
-	    request.setAttribute("emptyWeek", false);
-	    request.setAttribute("dayDates", dayDates);
-	}
-
-	request.setAttribute("selectedWeek", selectedWeek);
+	Collections.sort(scheduledClassesList, (y, x) -> x.getDate().compareTo(y.getDate()));
     }
 
     private void generateCourseAndGroupsMsg(HttpServletRequest request, ScheduledClassesDTO[][] rsClasses)

@@ -14,8 +14,6 @@
     <link rel="stylesheet" href="resources/bootstrap/bootstrap-theme.css">
     <link rel="stylesheet" href="resources/bootstrap/bootstrap-theme.min.css">
     <link rel="stylesheet" href="resources/bootstrap/normalize.css">
-    <link rel="stylesheet" href="resources/pure-min.css">
-    <link rel="stylesheet" href="resources/styles.css">
     <script type='text/javascript' src="resources/jquery/jquery-2.2.3.js"></script>
     <script type='text/javascript' src="resources/bootstrap/bootstrap.js"></script>
     <script type='text/javascript' src="resources/bootstrap/bootstrap.min.js"></script>

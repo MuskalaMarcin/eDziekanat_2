@@ -177,6 +177,18 @@ CREATE TABLE payment
   ) ;
 ALTER TABLE payment ADD CONSTRAINT payment_PK PRIMARY KEY ( id ) ;
 
+CREATE TABLE reservation_request
+  (
+    id	INTEGER NOT NULL ,
+    subject_id	INTEGER NOT NULL,
+	classroom_id	INTEGER NOT NULL ,
+	request_date	DATE NOT NULL ,
+	classes_date TIMESTAMP (0) NOT NULL ,
+	classes_end_date TIMESTAMP (0) ,
+	repeat_classes INTEGER NOT NULL,
+	status VARCHAR(256) NOT NULL
+  ) ;
+ALTER TABLE reservation_request ADD CONSTRAINT reservation_request_PK PRIMARY KEY ( id ) ;
 
 CREATE TABLE scheduled_classes
   (
@@ -333,6 +345,12 @@ DELETE CASCADE ;
 ALTER TABLE payment ADD CONSTRAINT payment_administrator_FK FOREIGN KEY ( administrator_id ) REFERENCES administrator ( id ) ;
 
 ALTER TABLE payment ADD CONSTRAINT payment_student_FK FOREIGN KEY ( student_id ) REFERENCES student ( id ) ON
+DELETE CASCADE ;
+
+ALTER TABLE reservation_request ADD CONSTRAINT reservation_request_subject_FK FOREIGN KEY ( subject_id ) REFERENCES subject ( id ) ON
+DELETE CASCADE ;
+
+ALTER TABLE reservation_request ADD CONSTRAINT reservation_request_classroom_FK FOREIGN KEY ( classroom_id ) REFERENCES classroom ( id ) ON
 DELETE CASCADE ;
 
 ALTER TABLE scheduled_classes ADD CONSTRAINT scheduled_classes_classroom_FK FOREIGN KEY ( classroom_id ) REFERENCES classroom ( id ) ON
