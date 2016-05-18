@@ -73,7 +73,7 @@
 								Nazwisko: <b>${lecturerData.surname}</b><br>
 								E-mail: <b>${lecturerData.user.eMail}</b><br>
 								Adres: <b> ${lecturerData.address} </b><br>
-                                Strona internetowa: <b> ${lecturerData.website} </b><br>
+                                Strona internetowa: <b> <a href="http://${lecturerData.website}">${lecturerData.website}</a> </b><br>
                                 Informacje o konsultacjach: <b> ${lecturerData.consultationInfo} </b><br>
 								<input type="submit" value="Edytuj dane" name="edit"/>
 							</form

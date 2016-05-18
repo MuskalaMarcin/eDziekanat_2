@@ -74,11 +74,31 @@
                                         <div class="panel-body">
                                             <div class="newLine">Stanowisko: ${lecturer.position}</div>
                                             <div class="newLine">
-                                                Przedmiot/y: ${lecturer.subject}
+                                                Przedmiot/y:
+                                                <c:choose>
+                                                    <c:when test="${empty lecturer.subject}">Brak</c:when>
+                                                    <c:otherwise>
+                                                        ${subject.name}
+                                                    </c:otherwise>
+                                                </c:choose>
                                             </div>
                                             <div class="newLine">Email: ${lecturer.eMail}</div>
-                                            <div class="newLine">Strona internetowa: ${lecturer.website}</div>
-                                            <div class="newLine">Konsultacje: ${lecturer.consultationInfo}</div>
+                                            <div class="newLine">Strona internetowa:
+                                                <c:choose>
+                                                    <c:when test="${empty lecturer.website}">Brak</c:when>
+                                                    <c:otherwise>
+                                                        <a href="http://${lecturer.website}">${lecturer.website}</a>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </div>
+                                            <div class="newLine">Konsultacje:
+                                                <c:choose>
+                                                    <c:when test="${empty lecturer.consultationInfo}">Brak</c:when>
+                                                    <c:otherwise>
+                                                        ${lecturer.consultationInfo}
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </div>
                                             <div style="display: inline; float: right">
                                                 <form action="student/newmessage" method=post>
                                                     <input type="hidden" name="receiverLogin"
