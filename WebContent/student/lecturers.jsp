@@ -78,11 +78,15 @@
                                                 <c:choose>
                                                     <c:when test="${empty lecturer.subject}">Brak</c:when>
                                                     <c:otherwise>
-                                                        ${subject.name}
+                                                        <c:forEach items="${lecturer.subject}" var="subject"
+                                                                   varStatus="status">
+                                                            ${subject.name}<c:if test="${not empty
+                                                            lecturer.subject[status.index+1].name}">, </c:if>
+                                                        </c:forEach>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </div>
-                                            <div class="newLine">Email: ${lecturer.eMail}</div>
+                                            <div class="newLine">Email: ${lecturer.user.eMail}</div>
                                             <div class="newLine">Strona internetowa:
                                                 <c:choose>
                                                     <c:when test="${empty lecturer.website}">Brak</c:when>
@@ -102,7 +106,7 @@
                                             <div style="display: inline; float: right">
                                                 <form action="student/newmessage" method=post>
                                                     <input type="hidden" name="receiverLogin"
-                                                           value="${lecturer.login}">
+                                                           value="${lecturer.user.login}">
                                                     <button type="submit" class="btn btn-success btn-md">
                                                         <span class="glyphicon glyphicon-envelope"></span> Kontakt
                                                     </button>
