@@ -1025,7 +1025,7 @@ insert into app_user (login, password, salt, e_mail, is_active, user_role, lectu
 
 insert into classroom (id, nr, capacity, type, faculty_id, available) values (nextval('classroom_id_seq'), 1, 175, 'laboratorium', 1, 'true');
 insert into classroom (id, nr, capacity, type, faculty_id, available) values (nextval('classroom_id_seq'), 2, 57, 'sala dydaktyczna', 1, 'true');
-insert into classroom (id, nr, capacity, type, faculty_id, available) values (nextval('classroom_id_seq'), 3, 38, 'laboratorium komputerowe', 1, 'true');
+insert into classroom (id, nr, capacity, type, faculty_id, available) values (nextval('classroom_id_seq'), 3, 38, 'laboratorium komputerowe', 1, 'false');
 insert into classroom (id, nr, capacity, type, faculty_id, available) values (nextval('classroom_id_seq'), 4, 106, 'laboratorium', 1, 'true');
 insert into classroom (id, nr, capacity, type, faculty_id, available) values (nextval('classroom_id_seq'), 5, 43, 'sala dydaktyczna', 1, 'true');
 insert into classroom (id, nr, capacity, type, faculty_id, available) values (nextval('classroom_id_seq'), 6, 214, 'laboratorium', 1, 'true');

@@ -35,7 +35,14 @@
                         <button class="linkButton" type="submit">Historia rezerwacji</button>
                     </form>
                 </li>
-                <li class="pure-menu-item menu-item-divided"><a class="pure-menu-link" href="admincourses">
+                <li class="pure-menu-item">
+                    <form action="adminlockclassroom" method="post">
+                        <button class="linkButton" type="submit">Blokuj salê
+                        </button>
+                    </form>
+                </li>
+                <li class="pure-menu-item menu-item-divided">
+                    <a class="pure-menu-link" href="admincourses">
                     Kierunki</a></li>
                 <li class="pure-menu-item"><a class="pure-menu-link"
                                               href="adminstudentgroups">Grupy studenckie</a></li>

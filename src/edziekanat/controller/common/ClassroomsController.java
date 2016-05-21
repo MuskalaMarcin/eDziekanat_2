@@ -58,6 +58,7 @@ public class ClassroomsController extends ParentTimetableController
 		}
 		else
 		{
+			request.setAttribute("selectedClassroom", selectedClassroom);
 			request.setAttribute("noClassroom", false);
 			request.setAttribute("available",false);
 		}
