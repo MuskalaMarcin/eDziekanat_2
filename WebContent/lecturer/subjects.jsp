@@ -89,6 +89,14 @@
 													type="submit" value="Materia³y">
 											</form>
 										</td>
+										<td width="166px">
+											<form action="lecturergroupmessage" method=post>
+												<input type="hidden" name="subject" value="${subject.id}">
+												<input
+														class="pure-button pure-input-1-2 pure-button-primary"
+														type="submit" value="Wiadomo¶æ do grupy">
+											</form>
+										</td>
 									</tr>
 								</c:forEach>
 							</table>
