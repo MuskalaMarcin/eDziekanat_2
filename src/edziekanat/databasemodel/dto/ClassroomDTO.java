@@ -46,6 +46,8 @@ public class ClassroomDTO implements Serializable
     private List<ScheduledClassesDTO> scheduled_classes;
     @OneToMany(mappedBy = "classroom", fetch = FetchType.LAZY)
     private List<ReservationRequestDTO> reservation_request;
+    @Column(name = "available")
+    private boolean available;
 
     public Integer getId()
     {
@@ -115,5 +117,12 @@ public class ClassroomDTO implements Serializable
     public void setReservation_request(List<ReservationRequestDTO> reservation_request)
     {
         this.reservation_request = reservation_request;
+    }
+
+    public boolean getAvailable(){return available;}
+
+    public void setAvailable(boolean available)
+    {
+        this.available = available;
     }
 }

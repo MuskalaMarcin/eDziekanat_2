@@ -44,15 +44,23 @@ public class ClassroomsController extends ParentTimetableController
 	else
 	{
 	    ClassroomDTO selectedClassroom = classroomDAO.getEntity(selectedClassroomId);
-	    List<ScheduledClassesDTO> scheduledClassesList = selectedClassroom.getScheduledClasses();
-	    List<ReservationRequestDTO> reservationRequestList = selectedClassroom.getReservation_request();
+		if(selectedClassroom.getAvailable()) {
+			List<ScheduledClassesDTO> scheduledClassesList = selectedClassroom.getScheduledClasses();
+			List<ReservationRequestDTO> reservationRequestList = selectedClassroom.getReservation_request();
 
-	    int selectedWeek = getClassesAndDates(request, scheduledClassesList);
-	    filterReservations(reservationRequestList, selectedWeek);
-	    setReservations(reservationRequestList, request, selectedWeek);
+			int selectedWeek = getClassesAndDates(request, scheduledClassesList);
+			filterReservations(reservationRequestList, selectedWeek);
+			setReservations(reservationRequestList, request, selectedWeek);
 
-	    request.setAttribute("selectedClassroom", selectedClassroom);
-	    request.setAttribute("noClassroom", false);
+			request.setAttribute("selectedClassroom", selectedClassroom);
+			request.setAttribute("noClassroom", false);
+			request.setAttribute("available",true);
+		}
+		else
+		{
+			request.setAttribute("noClassroom", false);
+			request.setAttribute("available",false);
+		}
 	}
 
 	if (request.isUserInRole("lecturer"))
