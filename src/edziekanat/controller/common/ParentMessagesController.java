@@ -88,4 +88,26 @@ public abstract class ParentMessagesController extends HttpServlet
 	});
 	return userNames;
     }
+
+	protected String getUserName(MessageDTO message, boolean isSender)
+	{
+		String userName = "";
+
+		UserDTO user = null;
+		user = isSender ? message.getSender() : message.getReceiver();
+		switch (user.getUserRole())
+		{
+			case "admin":
+				userName = user.getAdministrator().getName() + " " + user.getAdministrator().getSurname();
+				break;
+			case "student":
+				userName = user.getStudent().getName() + " " + user.getStudent().getSurname();
+				break;
+			case "lecturer":
+				userName = user.getLecturer().getName() + " " + user.getLecturer().getSurname();
+				break;
+		}
+
+		return userName;
+	}
 }

@@ -73,6 +73,7 @@ public class LecturerGroupMessage extends HttpServlet
 				newMessage.setSender(userDAO.getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getLogin()));
 				newMessage.setTitle(request.getParameter("msgtitle"));
 				newMessage.setContent(request.getParameter("content"));
+				newMessage.setGroup(studentsGroup);
 				messageDAO.insert(newMessage);
 			}
 			userDAO.closeEntityManager();

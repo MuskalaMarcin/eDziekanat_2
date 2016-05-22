@@ -1,6 +1,7 @@
 package edziekanat.controller.common;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -35,9 +36,30 @@ public class SentMessagesController extends ParentMessagesController
 
 	if (!sentMsg.isEmpty())
 	{
-	    List<String> receiverNames = getUserNames(sentMsg, false);
+		List<MessageDTO> sentMsgToSend = new ArrayList<>();
+		List<String> receiverNames = new ArrayList<>();
+		String lasttitle = "";
+		String lastcontent = "";
+		for(MessageDTO message:sentMsg)
+		{
+			if(message.getGroup()== null)
+			{
+				sentMsgToSend.add(message);
+				receiverNames.add(getUserName(message,false));
+			}
+			else
+			{
+				if(!message.getTitle().equals(lasttitle) && !message.getContent().equals(lastcontent))
+				{
+					lasttitle = message.getTitle();
+					lastcontent = message.getContent();
+					sentMsgToSend.add(message);
+					receiverNames.add("Grupa "+message.getGroup().getId().toString());
+				}
+			}
+		}
 	    request.setAttribute("receiverNames", receiverNames);
-	    request.setAttribute("sentMessages", sentMsg);
+	    request.setAttribute("sentMessages", sentMsgToSend);
 	}
 
 	getServletContext().getRequestDispatcher(messagesURL).forward(request, response);
