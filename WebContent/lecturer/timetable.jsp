@@ -102,17 +102,40 @@
                                 <c:forEach begin="0" end="4" varStatus="j">
                                     <td>
                                         <c:if test="${rsClasses[j.index][i.index] != null}">
-                                            <a data-toggle="popover" data-trigger="focus" tabindex="0"
+                                            <a data-toggle="popover" data-trigger="click" tabindex="0"
                                                data-placement="auto bottom" data-html="true"
                                                title="${rsClasses[j.index][i.index].subject.name}"
                                                data-content="${groups[j.index][i.index]}<br />
                                                ${courses[j.index][i.index]}<br />
                                                sala: ${rsClasses[j.index][i.index].classroom.number}<br />
+                                               <div id='seeTopic'>
                                                temat:
                                                <c:choose>
                                                     <c:when test="${rsClasses[j.index][i.index].topic == null}">Brak</c:when>
                                                     <c:otherwise>${rsClasses[j.index][i.index].topic}</c:otherwise>
-                                                </c:choose>
+                                                </c:choose><br>
+                                                <center>
+                                                <button type='button' class='btn btn-warning btn-sm'>Edytuj</button>
+                                                </center>
+                                                </div>
+                                                <div id='editTopic' style='display:none'>
+                                                 <form class='form-horizontal' role='form'>
+                                                    <div class='form-group'>
+                                                        <label style='font-weight: normal !important' class='control-label col-sm-2' for='topic'>temat: </label>
+                                                <div class='col-sm-10'>
+                                                    <input type='topic' class='form-control' id='topic' placeholder='     <c:choose>
+                                               <c:when test="${rsClasses[j.index][i.index].topic == null}">Brak</c:when>
+                                                <c:otherwise>${rsClasses[j.index][i.index].topic}</c:otherwise>
+                                            </c:choose>'>
+                                                </div>
+                                            </div>
+                                            <center>
+                                              <div class='form-group'>
+                                               <button type='submit' class='btn btn-success btn-sm'>Zapisz</button>
+                                              </div>
+                                              </center>
+                                            </form>
+                                                </div>
                                                ">
                                                     ${rsClasses[j.index][i.index].subject.name}
                                             </a>
