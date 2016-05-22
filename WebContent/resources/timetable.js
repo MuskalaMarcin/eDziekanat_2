@@ -8,7 +8,7 @@ function showHideEndDate(iIndex, jIndex) {
         endDateId += "_" + iIndex + "_" + jIndex;
         repeatId += "_" + iIndex + "_" + jIndex;
     }
-    
+
     var endDateLabel = document.getElementById(endDateLabelId);
     var endDateInput = document.getElementById(endDateId);
 
@@ -51,3 +51,12 @@ function setMultipleDatePickers() {
         toggleActive: true
     });
 }
+
+function showTopicSettings() {
+
+}
+
+function saveTopic() {
+    
+}
+

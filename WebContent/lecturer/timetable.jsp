@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="resources/bootstrap/bootstrap.min.css">
     <script src="resources/jquery/jquery-2.2.3.js"></script>
     <script src="resources/bootstrap/bootstrap.min.js"></script>
+    <script src="resources/timetable.js"></script>
     <title>eDziekanat - Plan zajêæ</title>
 </head>
 <body>
