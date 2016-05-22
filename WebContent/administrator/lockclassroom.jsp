@@ -102,6 +102,7 @@
                             <td>${varStatus.index+1}</td>
                             <td>${classroom.faculty.name}</td>
                             <td>${classroom.type} ${classroom.number}</td>
+
                             <td>
                                 <c:choose>
                                     <c:when test="${classroom.available == true}">
@@ -112,7 +113,21 @@
                                     </c:otherwise>
                                 </c:choose>
                             </td>
-                            <td>DERP</td>
+                            <td>
+                                <form action="adminlockclassroom" method="post">
+                                    <input type="hidden" name="classroomid" value="${classroom.id}"/>
+                                    <c:choose>
+                                        <c:when test="${classroom.available == true}">
+                                            <input type="submit" name="action" value="Zablokuj" class="pure-button pure-button-primary" />
+
+                                        </c:when>
+                                        <c:otherwise>
+                                            <input type="submit" name="action" value="Odblokuj" class="pure-button pure-button-primary" />
+
+                                        </c:otherwise>
+                                    </c:choose>
+                                </form>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>

@@ -24,7 +24,7 @@ import edziekanat.databasemodel.TableNames;
  */
 @Entity
 @Table(name = TableNames.CLASSROOM)
-public class ClassroomDTO implements Serializable
+public class ClassroomDTO implements Serializable,Comparable
 {
     private static final long serialVersionUID = 1L;
 
@@ -124,5 +124,23 @@ public class ClassroomDTO implements Serializable
     public void setAvailable(boolean available)
     {
         this.available = available;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        ClassroomDTO other = (ClassroomDTO)o;
+        if(this.number < other.number)
+        {
+            return -1;
+        }
+        else if(this.number == other.number)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
+
     }
 }

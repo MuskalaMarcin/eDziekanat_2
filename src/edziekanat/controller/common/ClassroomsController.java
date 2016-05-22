@@ -34,8 +34,9 @@ public class ClassroomsController extends ParentTimetableController
 	Integer selectedClassroomId = Integer.parseInt(
 			request.getParameter("classroomId") == null ? "-1" : request.getParameter("classroomId"));
 	LoginBean loginBean = ((LoginBean) request.getSession().getAttribute("loginBean"));
-
-	request.setAttribute("classroomsList", classroomDAO.getLecturerClassrooms(loginBean.getPersonId()));
+	List<ClassroomDTO> classroomsToSend = classroomDAO.getLecturerClassrooms(loginBean.getPersonId());
+	Collections.sort(classroomsToSend);
+	request.setAttribute("classroomsList", classroomsToSend);
 
 	if (selectedClassroomId == -1)
 	{

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -36,9 +37,28 @@ public class AdminBlockClassrooms extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         ClassroomDAO classroomDAO = new ClassroomDAO();
+        String action = request.getParameter("action");
+        if(action!= null)
+        {
+            int classroomid = Integer.parseInt(request.getParameter("classroomid"));
+            ClassroomDTO classroom = classroomDAO.getEntity(classroomid);
+            if(action.equals("Odblokuj"))
+            {
+                classroom.setAvailable(true);
+            }
+            else if(action.equals("Zablokuj"))
+            {
+                classroom.setAvailable(false);
+            }
+            classroomDAO.update(classroom);
+        }
+
         LoginBean loginBean = ((LoginBean) request.getSession().getAttribute("loginBean"));
-        request.setAttribute("classrooms", classroomDAO.getLecturerClassrooms(loginBean.getPersonId()));
+        List<ClassroomDTO> classrooms = classroomDAO.getLecturerClassrooms(loginBean.getPersonId());
+        Collections.sort(classrooms);
+        request.setAttribute("classrooms", classrooms);
         classroomDAO.closeEntityManager();
+
 	    request.getRequestDispatcher("administrator/lockclassroom.jsp").forward(request, response);
     }
 
