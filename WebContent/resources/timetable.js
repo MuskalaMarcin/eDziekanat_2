@@ -52,11 +52,62 @@ function setMultipleDatePickers() {
     });
 }
 
-function showTopicSettings() {
+function showTopicSettings(j, i) {
+    var currentTopicDivId = "seeTopic_" + j + "_" + i;
+    var topicSettingsDivId = "editTopic_" + j + "_" + i;
 
+    var currentTopicDiv = document.getElementById(currentTopicDivId);
+    var topicSettingsDiv = document.getElementById(topicSettingsDivId);
+
+    currentTopicDiv.style.display = "none";
+    topicSettingsDiv.style.display = "block";
 }
 
-function saveTopic() {
-    
+function saveTopic(j, i, classId) {
+    var popoverId = "popover_" + j + "_" + i;
+    var currentTopicDivId = "seeTopic_" + j + "_" + i;
+    var topicSettingsDivId = "editTopic_" + j + "_" + i;
+    var topicId = "topic_" + j + "_" + i;
+    var topicValueId = "topicValue_" + j + "_" + i;
+
+    var currentTopicDiv = document.getElementById(currentTopicDivId);
+    var topicSettingsDiv = document.getElementById(topicSettingsDivId);
+    var popover = document.getElementById(popoverId);
+
+    var newTopicDiv = document.getElementById(topicId);
+    var valueTopicDiv = document.getElementById(topicValueId);
+
+    var previousTopic = valueTopicDiv.textContent;
+    var newTopic = newTopicDiv.value;
+
+    var params = {
+        previousTopic: previousTopic,
+        newTopic: newTopic,
+        classesId: classId
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "settopic",
+        contentType: "application/json",
+        data: JSON.stringify(params),
+        success: function (response) {
+            if (response != "error") {
+                var previousContent = popover.getAttribute("data-content");
+                var content = previousContent.replace(previousTopic, response);
+                newTopicDiv.setAttribute("placeholder", response);
+                popover.setAttribute("data-content", content);
+                newTopicDiv.value = "";
+                valueTopicDiv.innerHTML = response;
+            }
+            else
+            {
+                currentTopicDiv.appendChild(document.createTextNode("Podczas przetwarzania wyst±pi³ b³±d"));
+            }
+        }
+    });
+
+    currentTopicDiv.style.display = "block";
+    topicSettingsDiv.style.display = "none";
 }
 

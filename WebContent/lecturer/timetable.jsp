@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="resources/bootstrap/bootstrap.min.css">
     <script src="resources/jquery/jquery-2.2.3.js"></script>
     <script src="resources/bootstrap/bootstrap.min.js"></script>
-    <script src="resources/timetable.js"></script>
+    <script src="resources/timetable.js" charset="ISO-8859-2"></script>
     <title>eDziekanat - Plan zajêæ</title>
 </head>
 <body>
@@ -103,35 +103,37 @@
                                     <td>
                                         <c:if test="${rsClasses[j.index][i.index] != null}">
                                             <a data-toggle="popover" data-trigger="click" tabindex="0"
-                                               data-placement="auto bottom" data-html="true"
+                                               data-placement="auto bottom" data-html="true" id = "popover_${j.index}_${i.index}"
                                                title="${rsClasses[j.index][i.index].subject.name}"
                                                data-content="${groups[j.index][i.index]}<br />
                                                ${courses[j.index][i.index]}<br />
                                                sala: ${rsClasses[j.index][i.index].classroom.number}<br />
-                                               <div id='seeTopic'>
+                                               <div id='seeTopic_${j.index}_${i.index}'>
                                                temat:
                                                <c:choose>
-                                                    <c:when test="${rsClasses[j.index][i.index].topic == null}">Brak</c:when>
-                                                    <c:otherwise>${rsClasses[j.index][i.index].topic}</c:otherwise>
-                                                </c:choose><br>
+                                                    <c:when test="${rsClasses[j.index][i.index].topic == null}"><div style='display: inline-block' id='topicValue_${j.index}_${i.index}'>Brak</div></c:when>
+                                                    <c:otherwise><div style='display: inline-block' id='topicValue_${j.index}_${i.index}'>${rsClasses[j.index][i.index].topic}</div></c:otherwise>
+                                                </c:choose>
+                                                <br>
                                                 <center>
-                                                <button type='button' class='btn btn-warning btn-sm'>Edytuj</button>
+                                                <button type='button' class='btn btn-warning btn-sm' onclick='showTopicSettings(${j.index},${i.index})' style='margin: 10px'>Edytuj</button>
                                                 </center>
                                                 </div>
-                                                <div id='editTopic' style='display:none'>
+                                                <div id='editTopic_${j.index}_${i.index}' style='display:none'>
                                                  <form class='form-horizontal' role='form'>
                                                     <div class='form-group'>
-                                                        <label style='font-weight: normal !important' class='control-label col-sm-2' for='topic'>temat: </label>
+                                                        <label style='font-weight: normal !important' class='control-label col-sm-2' for='topic_${j.index}_${i.index}'>temat: </label>
                                                 <div class='col-sm-10'>
-                                                    <input type='topic' class='form-control' id='topic' placeholder='     <c:choose>
-                                               <c:when test="${rsClasses[j.index][i.index].topic == null}">Brak</c:when>
-                                                <c:otherwise>${rsClasses[j.index][i.index].topic}</c:otherwise>
-                                            </c:choose>'>
+                                                    <input accept-charset='ISO-8859-2' type='text' class='form-control' id='topic_${j.index}_${i.index}'
+                                                    <c:choose>
+                                               <c:when test="${rsClasses[j.index][i.index].topic == null}">placeholder='Brak'</c:when>
+                                                <c:otherwise>placeholder='${rsClasses[j.index][i.index].topic}'</c:otherwise>
+                                            </c:choose>>
                                                 </div>
                                             </div>
                                             <center>
-                                              <div class='form-group'>
-                                               <button type='submit' class='btn btn-success btn-sm'>Zapisz</button>
+                                              <div class='form-group' style='margin-bottom: 10px'>
+                                               <button type='button' class='btn btn-success btn-sm' onclick='saveTopic(${j.index},${i.index},${rsClasses[j.index][i.index].id})'>Zapisz</button>
                                               </div>
                                               </center>
                                             </form>
@@ -153,6 +155,10 @@
 </div>
 <script>
     $('[data-toggle="popover"]').popover();
+
+    $('[data-toggle="popover"]').on('click', function (e) {
+        $('[data-toggle="popover"]').not(this).popover('hide');
+    });
 </script>
 </body>
 </html>
