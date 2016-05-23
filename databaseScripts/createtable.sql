@@ -62,7 +62,8 @@ CREATE TABLE classroom
     nr         INTEGER NOT NULL ,
     capacity   INTEGER NOT NULL ,
     type       VARCHAR(256) NOT NULL ,
-    faculty_id INTEGER NOT NULL
+    faculty_id INTEGER NOT NULL ,
+    available  BOOLEAN NOT NULL
   ) ;
 ALTER TABLE classroom ADD CONSTRAINT classroom_PK PRIMARY KEY ( id ) ;
 
