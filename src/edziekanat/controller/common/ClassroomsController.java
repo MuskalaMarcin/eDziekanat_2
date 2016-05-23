@@ -34,8 +34,9 @@ public class ClassroomsController extends ParentTimetableController
 	Integer selectedClassroomId = Integer.parseInt(
 			request.getParameter("classroomId") == null ? "-1" : request.getParameter("classroomId"));
 	LoginBean loginBean = ((LoginBean) request.getSession().getAttribute("loginBean"));
-
-	request.setAttribute("classroomsList", classroomDAO.getLecturerClassrooms(loginBean.getPersonId()));
+	List<ClassroomDTO> classroomsToSend = classroomDAO.getLecturerClassrooms(loginBean.getPersonId());
+	Collections.sort(classroomsToSend);
+	request.setAttribute("classroomsList", classroomsToSend);
 
 	if (selectedClassroomId == -1)
 	{
@@ -44,15 +45,24 @@ public class ClassroomsController extends ParentTimetableController
 	else
 	{
 	    ClassroomDTO selectedClassroom = classroomDAO.getEntity(selectedClassroomId);
-	    List<ScheduledClassesDTO> scheduledClassesList = selectedClassroom.getScheduledClasses();
-	    List<ReservationRequestDTO> reservationRequestList = selectedClassroom.getReservation_request();
+		if(selectedClassroom.getAvailable()) {
+			List<ScheduledClassesDTO> scheduledClassesList = selectedClassroom.getScheduledClasses();
+			List<ReservationRequestDTO> reservationRequestList = selectedClassroom.getReservation_request();
 
-	    int selectedWeek = getClassesAndDates(request, scheduledClassesList);
-	    filterReservations(reservationRequestList, selectedWeek);
-	    setReservations(reservationRequestList, request, selectedWeek);
+			int selectedWeek = getClassesAndDates(request, scheduledClassesList);
+			filterReservations(reservationRequestList, selectedWeek);
+			setReservations(reservationRequestList, request, selectedWeek);
 
-	    request.setAttribute("selectedClassroom", selectedClassroom);
-	    request.setAttribute("noClassroom", false);
+			request.setAttribute("selectedClassroom", selectedClassroom);
+			request.setAttribute("noClassroom", false);
+			request.setAttribute("available",true);
+		}
+		else
+		{
+			request.setAttribute("selectedClassroom", selectedClassroom);
+			request.setAttribute("noClassroom", false);
+			request.setAttribute("available",false);
+		}
 	}
 
 	if (request.isUserInRole("lecturer"))
