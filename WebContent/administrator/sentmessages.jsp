@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/styles.css">
 <script src="resources/jquery/jquery-2.2.3.js"></script>
-<script src="resources/ja/bootstrap.min.js"></script>
+<script src="resources/js/bootstrap.min.js"></script>
 <title>eDziekanat - Wyk³adowca - Skrzynka nadawcza</title>
 </head>
 <body>
