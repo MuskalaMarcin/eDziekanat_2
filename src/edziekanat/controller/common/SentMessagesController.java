@@ -37,29 +37,52 @@ public class SentMessagesController extends ParentMessagesController
 	if (!sentMsg.isEmpty())
 	{
 		List<MessageDTO> sentMsgToSend = new ArrayList<>();
-		List<String> receiverNames = new ArrayList<>();
+		List<List<String>> receiverNames = new ArrayList<>();
+		List<String> name = new ArrayList<>();
 		String lasttitle = "";
 		String lastcontent = "";
-		for(MessageDTO message:sentMsg)
+		int messageCounter = 0;
+		while(messageCounter < sentMsg.size()-1)
 		{
-			if(message.getGroup()== null)
+			if(sentMsg.get(messageCounter).getGroup()== null)
 			{
-				sentMsgToSend.add(message);
-				receiverNames.add(getUserName(message,false));
+
+				name = new ArrayList<>();
+				name.add(getUserName(sentMsg.get(messageCounter),false));
+				receiverNames.add(name);
+				sentMsgToSend.add(sentMsg.get(messageCounter));
+				name = new ArrayList<>();
+				messageCounter++;
 			}
 			else
 			{
-				if(!message.getTitle().equals(lasttitle) && !message.getContent().equals(lastcontent))
+				lasttitle = sentMsg.get(messageCounter).getTitle();
+				lastcontent = sentMsg.get(messageCounter).getContent();
+				name = new ArrayList<>();
+				name.add("Grupa "+sentMsg.get(messageCounter).getGroup().getId().toString());
+				sentMsgToSend.add(sentMsg.get(messageCounter));
+				messageCounter++;
+				while(sentMsg.get(messageCounter).getTitle().equals(lasttitle) && sentMsg.get(messageCounter).getContent().equals(lastcontent) && messageCounter < sentMsg.size()-1)
 				{
-					lasttitle = message.getTitle();
-					lastcontent = message.getContent();
-					sentMsgToSend.add(message);
-					receiverNames.add("Grupa "+message.getGroup().getId().toString());
+					String recStatus;
+					if(sentMsg.get(messageCounter).getReceiveDate() == null)
+					{
+						recStatus = "nie";
+					}
+					else
+					{
+						recStatus = sentMsg.get(messageCounter).getReceiveDate().toString();
+					}
+					name.add(getUserName(sentMsg.get(messageCounter).getReceiver())+" - otrzymano: "+recStatus);
+					messageCounter++;
 				}
+				receiverNames.add(name);
 			}
 		}
-	    request.setAttribute("receiverNames", receiverNames);
-	    request.setAttribute("sentMessages", sentMsgToSend);
+
+		
+		request.setAttribute("receiverNames", receiverNames);
+		request.setAttribute("sentMessages", sentMsgToSend);
 	}
 
 	getServletContext().getRequestDispatcher(messagesURL).forward(request, response);

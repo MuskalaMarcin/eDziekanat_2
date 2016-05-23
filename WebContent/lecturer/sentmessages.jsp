@@ -73,7 +73,7 @@
                                                     </c:choose>
                                                     <div class="tytul">${varStatus.index + 1 + (currentPage*10)}. ${msg.title }</div>
                                                     <div class="data"><fmt:formatDate pattern="dd.MM.yyyy" value="${msg.dispatchDate}"/></div>
-                                                    <div class="nadawca">${receiverNames[varStatus.index]}</div>
+                                                    <div class="nadawca">${receiverNames[varStatus.index][0]}</div>
                                                 </div>
                                         </h4>
                                     </div>
@@ -81,11 +81,22 @@
                                         <div class="panel-body"> ${msg.content}
                                             <div id="deletenews" align="right">
                                                 <c:choose>
-                                                    <c:when test="${empty msg.receiveDate}">Nie dostarczono.</c:when>
-                                                    <c:otherwise>
-                                                        Dostarczono: <fmt:formatDate pattern="dd.MM.yyyy"
-                                                                        value="${msg.receiveDate}" />
-                                                    </c:otherwise>
+													<c:when test="${receiverNames[varStatus.index][1] != null}">
+														<select >
+															<c:forEach items="${receiverNames[varStatus.index]}" var="reciever" varStatus="recieverNum">
+																<option >${reciever}</option>
+															</c:forEach>
+														</select>
+													</c:when>
+													<c:otherwise>
+														<c:choose>
+															<c:when test="${empty msg.receiveDate}">Nie dostarczono.</c:when>
+															<c:otherwise>
+																Dostarczono: <fmt:formatDate pattern="dd.MM.yyyy"
+																							 value="${msg.receiveDate}" />
+															</c:otherwise>
+														</c:choose>
+													</c:otherwise>
                                                 </c:choose>
                                             </div>
                                         </div>
