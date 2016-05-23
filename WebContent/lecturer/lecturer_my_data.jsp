@@ -59,6 +59,9 @@
 							Nazwisko: <input type="text" name="surname" value="${lecturerData.surname}" required/><br>
 							E-mail: <input type="text" name="email" value="${lecturerData.user.eMail}" required/><br>
 							Adres: <input type="text" name="address" value="${lecturerData.address}" required/><br>
+                            Strona internetowa: <input type="text" name="website" value="${lecturerData.website}"/><br>
+                            Informacje o konsultacjach:
+                                <input type="text" name="consultationInfo" value="${lecturerData.consultationInfo}"/><br>
 							<input type="submit" value="Zapisz dane" name="save"/>
 							</form>
 						</c:when>
@@ -70,6 +73,8 @@
 								Nazwisko: <b>${lecturerData.surname}</b><br>
 								E-mail: <b>${lecturerData.user.eMail}</b><br>
 								Adres: <b> ${lecturerData.address} </b><br>
+                                Strona internetowa: <b> <a href="http://${lecturerData.website}">${lecturerData.website}</a> </b><br>
+                                Informacje o konsultacjach: <b> ${lecturerData.consultationInfo} </b><br>
 								<input type="submit" value="Edytuj dane" name="edit"/>
 							</form
 						</c:when>

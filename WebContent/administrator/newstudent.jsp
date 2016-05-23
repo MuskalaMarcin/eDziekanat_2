@@ -58,8 +58,9 @@
 						href="http://localhost:8080/edziekanat/receivedmessages">Historia
 							komunikatów</a></li>
                     <li class="pure-menu-item"><a class="pure-menu-link"
-                                                  href="news">Og³oszenia</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link" href="adminmydata">Moje dane</a></li>
+                        href="http://localhost:8080/edziekanat/news">Og³oszenia</a></li>
+					<li class="pure-menu-item"><a class="pure-menu-link"
+                        href="http://localhost:8080/edziekanat/adminmydata">Moje dane</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="logout">Wyloguj</a></li>
 				</ul>

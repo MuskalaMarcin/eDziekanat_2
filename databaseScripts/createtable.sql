@@ -62,7 +62,8 @@ CREATE TABLE classroom
     nr         INTEGER NOT NULL ,
     capacity   INTEGER NOT NULL ,
     type       VARCHAR(256) NOT NULL ,
-    faculty_id INTEGER NOT NULL
+    faculty_id INTEGER NOT NULL ,
+    available  BOOLEAN NOT NULL
   ) ;
 ALTER TABLE classroom ADD CONSTRAINT classroom_PK PRIMARY KEY ( id ) ;
 
@@ -126,7 +127,9 @@ CREATE TABLE lecturer
     surname         VARCHAR(256) NOT NULL ,
     address         VARCHAR(512) NOT NULL ,
     academic_degree VARCHAR(256) NOT NULL ,
-    position        VARCHAR(256) NOT NULL
+    position        VARCHAR(256) NOT NULL ,
+    website         VARCHAR(256) ,
+    consultation_info VARCHAR(256)
   ) ;
 ALTER TABLE lecturer ADD CONSTRAINT lecturer_PK PRIMARY KEY ( id ) ;
 

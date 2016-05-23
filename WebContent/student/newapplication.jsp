@@ -45,7 +45,7 @@
                                               class="pure-menu-link">Wyk³adowcy</a></li>
                 <li class="pure-menu-item"><a href="http://localhost:8080/edziekanat/messages"
                                               class="pure-menu-link">Historia komunikatów</a></li>
-                <li class="pure-menu-item"><a href="studentmydata"
+                <li class="pure-menu-item"><a href="http://localhost:8080/edziekanat/studentmydata"
                                               class="pure-menu-link">Moje dane</a></li>
                 <li class="pure-menu-item"><a href="http://localhost:8080/edziekanat/logout"
                                               class="pure-menu-link">Wyloguj</a>

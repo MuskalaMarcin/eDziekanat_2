@@ -8,9 +8,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
     <link rel="stylesheet" href="resources/pure-min.css">
     <link rel="stylesheet" href="resources/styles.css">
-    <link rel="stylesheet" href="resources/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="resources/css/bootstrap.css">
+    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="resources/css/normalize.css">
     <script type='text/javascript' src="resources/jquery/jquery-2.2.3.js"></script>
-    <script type='text/javascript' src="resources/bootstrap/bootstrap.js"></script>
+    <script type='text/javascript' src="resources/js/bootstrap.min.js"></script>
     <title>eDziekanat - Karta przebiegu studiów</title>
 </head>
 <body>
@@ -23,7 +26,7 @@
                                               class="pure-menu-link">Strona główna</a></li>
                 <li class="pure-menu-item"><a href="studenttranscript"
                                               class="pure-menu-link">Indeks</a></li>
-                <li class="pure-menu-item"><a href="studentacademicrecordcard"
+                <li class="pure-menu-item pure-menu-selected"><a href="studentacademicrecordcard"
                                               class="pure-menu-link">Karta przebiegu studiów</a></li>
                 <li class="pure-menu-item"><a href="timetable"
                                               class="pure-menu-link">Plan zajęć</a></li>
@@ -38,6 +41,8 @@
                                               class="pure-menu-link">Wykładowcy</a></li>
                 <li class="pure-menu-item"><a href="receivedmessages"
                                               class="pure-menu-link">Historia komunikatów</a></li>
+                <li class="pure-menu-item"><a href="studentmydata"
+                                              class="pure-menu-link">Moje dane</a></li>
                 <li class="pure-menu-item"><a href="logout"
                                               class="pure-menu-link">Wyloguj</a>
             </ul>
