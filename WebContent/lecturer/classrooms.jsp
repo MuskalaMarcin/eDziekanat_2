@@ -10,11 +10,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="resources/pure-min.css">
     <link rel="stylesheet" href="resources/styles.css">
-    <link rel="stylesheet" href="resources/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
     <script src="resources/jquery/jquery-2.2.3.js"></script>
-    <script src="resources/bootstrap/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="resources/bootstrap/bootstrap-datepicker3.standalone.css">
-    <script src="resources/bootstrap/bootstrap-datepicker.js"></script>
+    <script src="resources/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="resources/css/bootstrap-datepicker3.standalone.css">
+    <script src="resources/js/bootstrap-datepicker.js"></script>
     <script src="resources/timetable.js"></script>
     <title>eDziekanat - Dostêpno¶æ sali</title>
 </head>

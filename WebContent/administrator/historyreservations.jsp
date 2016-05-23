@@ -10,9 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="resources/pure-min.css">
     <link rel="stylesheet" href="resources/styles.css">
-    <link rel="stylesheet" href="resources/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
     <script src="resources/jquery/jquery-2.2.3.js"></script>
-    <script src="resources/bootstrap/bootstrap.min.js"></script>
+    <script src="resources/js/bootstrap.min.js"></script>
     <title>eDziekanat - Historia rezerwacji</title>
 </head>
 <body>

@@ -42,6 +42,10 @@ public class LecturerDTO implements Serializable
     private String position;
     @Column(name = "academic_degree")
     private String academicDegree;
+    @Column(name = "website")
+    private String website;
+    @Column(name = "consultation_info")
+    private String consultationInfo;
     @OneToMany(mappedBy = "lecturer", fetch = FetchType.LAZY)
     private List<SubjectDTO> subject;
     @OneToOne(mappedBy = "lecturer", fetch = FetchType.LAZY)
@@ -137,5 +141,25 @@ public class LecturerDTO implements Serializable
     public void setFaculty(List<FacultyDTO> faculty)
     {
 	this.faculty = faculty;
+    }
+
+    public String getConsultationInfo()
+    {
+	return consultationInfo;
+    }
+
+    public void setConsultationInfo(String consultationInfo)
+    {
+	this.consultationInfo = consultationInfo;
+    }
+
+    public String getWebsite()
+    {
+	return website;
+    }
+
+    public void setWebsite(String website)
+    {
+	this.website = website;
     }
 }
