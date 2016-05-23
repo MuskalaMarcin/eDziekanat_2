@@ -7,10 +7,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
 <link rel="stylesheet" href="resources/pure-min.css">
-<link rel="stylesheet" href="resources/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/styles.css">
 <script src="resources/jquery/jquery-2.2.3.js"></script>
-<script src="resources/bootstrap/bootstrap.min.js"></script>
+<script src="resources/js/bootstrap.min.js"></script>
 <title>eDziekanat - Wykładowca - Skrzynka nadawcza</title>
 </head>
 <body>
@@ -49,9 +49,8 @@
 						class="pure-menu-link">Skrzynka odbiorcza</a></li>
 					<li class="pure-menu-item pure-menu-selected"><a
 						href="sentmessages" class="pure-menu-link">Skrzynka nadawcza</a></li>
-                    <li class="pure-menu-item"><a class="pure-menu-link"
-                                                  href="news">Ogłoszenia</a></li>
-					<li class="pure-menu-item   menu-item-divided">
+                    <li class="pure-menu-item menu-item-divided"><a class="pure-menu-link"
+                        href="news">Ogłoszenia</a></li>
                     <li class="pure-menu-item"><a class="pure-menu-link" href="adminmydata">Moje dane</a></li><a
 						href="logout" class="pure-menu-link">Wyloguj</a></li>
 				</ul>
