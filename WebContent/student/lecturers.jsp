@@ -7,9 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
     <link rel="stylesheet" href="resources/pure-min.css">
     <link rel="stylesheet" href="resources/styles.css">
-    <link rel="stylesheet" href="resources/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="resources/css/bootstrap.css">
     <script type='text/javascript' src="resources/jquery/jquery-2.2.3.js"></script>
-    <script type='text/javascript' src="resources/bootstrap/bootstrap.js"></script>
+    <script type='text/javascript' src="resources/js/bootstrap.js"></script>
 <title>eDziekanat - Wykładowcy</title>
 </head>
 <body>
