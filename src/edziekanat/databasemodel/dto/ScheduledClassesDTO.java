@@ -39,6 +39,8 @@ public class ScheduledClassesDTO implements Serializable
     private Date date;
     @Column(name = "duration")
     private Integer duration;
+    @Column(name = "topic")
+    private String topic;
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "classroom_id")
     private ClassroomDTO classroom;
@@ -74,6 +76,16 @@ public class ScheduledClassesDTO implements Serializable
     public void setDuration(Integer duration)
     {
 	this.duration = duration;
+    }
+
+    public String getTopic()
+    {
+        return topic;
+    }
+
+    public void setTopic(String topic)
+    {
+        this.topic = topic;
     }
 
     public ClassroomDTO getClassroom()

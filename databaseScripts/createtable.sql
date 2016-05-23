@@ -197,6 +197,7 @@ CREATE TABLE scheduled_classes
     id           INTEGER NOT NULL ,
     classes_date TIMESTAMP (0) NOT NULL ,
     duration     INTEGER NOT NULL ,
+	topic 		 TEXT,
     classroom_id INTEGER NOT NULL ,
     subject_id   INTEGER NOT NULL
   ) ;
