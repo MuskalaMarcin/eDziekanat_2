@@ -10,95 +10,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="resources/pure-min.css">
     <link rel="stylesheet" href="resources/styles.css">
-    <link rel="stylesheet" href="resources/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
     <script src="resources/jquery/jquery-2.2.3.js"></script>
-    <script src="resources/bootstrap/bootstrap.min.js"></script>
+    <script src="resources/js/bootstrap.min.js"></script>
     <title>eDziekanat - Dostêpno¶æ sali</title>
 </head>
 <body>
-	<div id="layout">
-		<div id="menu">
-			<div class="pure-menu">
-				<a class="pure-menu-heading" href="home">eDziekanat</a>
-				<ul class="pure-menu-list">
-					<li class="pure-menu-item"><a href="admin"
-						class="pure-menu-link">Strona g³ówna</a></li>
-					<li class="pure-menu-item"><a href="admintimetable"
-						class="pure-menu-link">Plan zajêæ</a></li>
-					<li class="pure-menu-item menu-item-divided"><a
-						class="pure-menu-link" href="classrooms">Dostêpno¶æ
-							sal</a></li>
-					<c:choose>
-						<c:when test="${noClassroom == true}">
-							<li class="pure-menu-item pure-menu-selected"><a
-								class="pure-menu-link" href="#">Wybierz salê</a></li>
-						</c:when>
-						<c:otherwise>
-							<li class="pure-menu-item">
-								<form action="classrooms" method="post">
-									<input type="hidden" name="rqweek" value="${selectedWeek - 1}">
-									<input type="hidden" name="classroomId"
-										value="${selectedClassroom.number}">
-									<button class="linkButton " type="submit">Poprzedni
-										tydzieñ</button>
-								</form>
-							</li>
-							<li class="pure-menu-item pure-menu-selected"><a href="#"
-								class="pure-menu-link"> <c:choose>
-										<c:when test="${currentWeek == true}">Aktualny tydzieñ</c:when>
-										<c:otherwise>Tydzieñ ${selectedWeek}</c:otherwise>
-									</c:choose>
-							</a></li>
-							<li class="pure-menu-item">
-								<form action="classrooms" method="post">
-									<input type="hidden" name="classroomId"
-										value="${selectedClassroom.number}"> <input
-										type="hidden" name="rqweek" value="${selectedWeek + 1}">
-									<button class="linkButton" type="submit">Nastêpny
-										tydzieñ</button>
-								</form>
-							</li>
-						</c:otherwise>
-					</c:choose>
-					<li class="pure-menu-item menu-item-divided"><a
-						class="pure-menu-link" href="admincourses">Kierunki</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminstudentgroups">Grupy studenckie</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminlecturers">Wyk³adowcy</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminsubjects">Przedmioty</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminstudents">Studenci</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="marksstatistics">Statystyki</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminscholarships">Stypendia</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminpayments">Nale¿no¶ci</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="adminapplications">Wnioski</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="receivedmessages">Historia komunikatów</a></li>
-                    <li class="pure-menu-item"><a class="pure-menu-link"
-                                                  href="news">Og³oszenia</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link" href="adminmydata">Moje dane</a></li>
-					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="logout">Wyloguj</a></li>
-				</ul>
-			</div>
-		</div>
-		<div id="main">
-			<div class="header">
-				<h1>eDziekanat</h1>
-				<h2>Twój wirtualny dziekanat.</h2>
-			</div>
-			<div class="content">
-				<h2 class="content-subhead">
-					Dostêpno¶æ sali: ${selectedClassroom.faculty.name}
-					<c:if test="${!empty selectedClassroom }"> sala: </c:if>
-					${selectedClassroom.number}
-				</h2>
+<div id="layout">
+    <div id="menu">
+        <div class="pure-menu">
+            <a class="pure-menu-heading" href="home">eDziekanat</a>
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item"><a href="admin"
+                                              class="pure-menu-link">Strona g³ówna</a></li>
+                <li class="pure-menu-item"><a href="admintimetable"
+                                              class="pure-menu-link">Plan zajêæ</a></li>
+                <li class="pure-menu-item menu-item-divided"><a
+                        class="pure-menu-link" href="classrooms">Dostêpno¶æ
+                    sal</a></li>
+                <c:choose>
+                    <c:when test="${noClassroom == true}">
+                        <li class="pure-menu-item pure-menu-selected"><a
+                                class="pure-menu-link" href="#">Wybierz salê</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="pure-menu-item">
+                            <form action="classrooms" method="post">
+                                <input type="hidden" name="rqweek" value="${selectedWeek - 1}">
+                                <input type="hidden" name="classroomId"
+                                       value="${selectedClassroom.number}">
+                                <button class="linkButton " type="submit">Poprzedni
+                                    tydzieñ
+                                </button>
+                            </form>
+                        </li>
+                        <li class="pure-menu-item pure-menu-selected"><a href="#"
+                                                                         class="pure-menu-link"> <c:choose>
+                            <c:when test="${currentWeek == true}">Aktualny tydzieñ</c:when>
+                            <c:otherwise>Tydzieñ ${selectedWeek}</c:otherwise>
+                        </c:choose>
+                        </a></li>
+                        <li class="pure-menu-item">
+                            <form action="classrooms" method="post">
+                                <input type="hidden" name="classroomId"
+                                       value="${selectedClassroom.number}"> <input
+                                    type="hidden" name="rqweek" value="${selectedWeek + 1}">
+                                <button class="linkButton" type="submit">Nastêpny
+                                    tydzieñ
+                                </button>
+                            </form>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
+                <li class="pure-menu-item"><a
+                        class="pure-menu-link" href="adminreservations">Oczekuj±ce rezerwacje</a></li>
+                <li class="pure-menu-item">
+                    <form action="adminreservations" method="post">
+                        <input type="hidden" name="action"
+                               value="history">
+                        <button class="linkButton" type="submit">Historia rezerwacji
+                        </button>
+                    </form>
+                </li>
+                <li class="pure-menu-item menu-item-divided"><a
+                        class="pure-menu-link" href="admincourses">Kierunki</a></li>
+                <li class="pure-menu-item"><a class="pure-menu-link"
+                                              href="adminstudentgroups">Grupy studenckie</a></li>
+                <li class="pure-menu-item"><a class="pure-menu-link"
+                                              href="adminlecturers">Wyk³adowcy</a></li>
+                <li class="pure-menu-item"><a class="pure-menu-link"
+                                              href="adminsubjects">Przedmioty</a></li>
+                <li class="pure-menu-item"><a class="pure-menu-link"
+                                              href="adminstudents">Studenci</a></li>
+                <li class="pure-menu-item"><a class="pure-menu-link"
+                                              href="marksstatistics">Statystyki</a></li>
+                <li class="pure-menu-item"><a class="pure-menu-link"
+                                              href="adminscholarships">Stypendia</a></li>
+                <li class="pure-menu-item"><a class="pure-menu-link"
+                                              href="adminpayments">Nale¿no¶ci</a></li>
+                <li class="pure-menu-item"><a class="pure-menu-link"
+                                              href="adminapplications">Wnioski</a></li>
+                <li class="pure-menu-item"><a class="pure-menu-link"
+                                              href="receivedmessages">Historia komunikatów</a></li>
+                <li class="pure-menu-item"><a class="pure-menu-link"
+                                              href="news">Og³oszenia</a></li>
+                <li class="pure-menu-item"><a class="pure-menu-link" href="adminmydata">Moje dane</a></li>
+                <li class="pure-menu-item"><a class="pure-menu-link"
+                                              href="logout">Wyloguj</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="main">
+        <div class="header">
+            <h1>eDziekanat</h1>
+            <h2>Twój wirtualny dziekanat.</h2>
+        </div>
+        <div class="content">
+            <h2 class="content-subhead">
+                Dostêpno¶æ sali: ${selectedClassroom.faculty.name}
+                <c:if test="${!empty selectedClassroom }"> sala: </c:if>
+                ${selectedClassroom.number}
+            </h2>
 
             <form class="pure-form" action="classrooms" method=post>
                 <fieldset>
@@ -146,13 +158,23 @@
                                 </td>
                                 <c:forEach begin="0" end="4" varStatus="j">
                                     <td>
-                                        <c:if test="${rsClasses[j.index][i.index] != null}">
-                                            <a data-toggle="popover" data-trigger="focus" tabindex="0"
-                                               data-placement="auto bottom" data-html="true"
-                                               title="${rsClasses[j.index][i.index].subject.name}"
-                                               data-content="${groups[j.index][i.index]}<br />${courses[j.index][i.index]}<br />${lecturers[j.index][i.index]}">
-                                                    ${rsClasses[j.index][i.index].subject.name}</a>
-                                        </c:if>
+                                        <c:choose>
+                                            <c:when test="${rsClasses[j.index][i.index] != null}">
+                                                <a data-toggle="popover" data-trigger="focus" tabindex="0"
+                                                   data-placement="auto bottom" data-html="true"
+                                                   title="${rsClasses[j.index][i.index].subject.name}"
+                                                   data-content="${groups[j.index][i.index]}<br />${courses[j.index][i.index]}<br />${lecturers[j.index][i.index]}">
+                                                        ${rsClasses[j.index][i.index].subject.name}</a>
+                                            </c:when>
+                                            <c:when test="${reservations[j.index][i.index] != null}">
+                                                <a data-toggle="popover" data-trigger="focus" tabindex="0"
+                                                   data-placement="auto bottom" data-html="true" title="REZERWACJA"
+                                                   data-content="Przedmiot: ${reservations[j.index][i.index].subject.name}<br />
+                                                   Wyk³adowca: ${reservations[j.index][i.index].subject.lecturer.name}
+                                                   ${reservations[j.index][i.index].subject.lecturer.surname}">
+                                                    REZERWACJA</a>
+                                            </c:when>
+                                        </c:choose>
                                     </td>
                                 </c:forEach>
                             </tr>

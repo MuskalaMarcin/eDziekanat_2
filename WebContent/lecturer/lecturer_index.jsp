@@ -8,19 +8,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
     <link rel="stylesheet" href="resources/pure-min.css">
     <link rel="stylesheet" href="resources/styles.css">
-    <link rel="stylesheet" href="resources/bootstrap/bootstrap.css">
-    <link rel="stylesheet" href="resources/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="resources/bootstrap/bootstrap-datepicker3.standalone.css">
-    <link rel="stylesheet" href="resources/bootstrap/bootstrap-theme.css">
-    <link rel="stylesheet" href="resources/bootstrap/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="resources/bootstrap/normalize.css">
-    <link rel="stylesheet" href="resources/pure-min.css">
-    <link rel="stylesheet" href="resources/styles.css">
+    <link rel="stylesheet" href="resources/css/bootstrap.css">
+    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="resources/css/normalize.css">
     <script type='text/javascript' src="resources/jquery/jquery-2.2.3.js"></script>
-    <script type='text/javascript' src="resources/bootstrap/bootstrap.js"></script>
-    <script type='text/javascript' src="resources/bootstrap/bootstrap.min.js"></script>
-    <script type='text/javascript' src="resources/bootstrap/bootstrap-datepicker.js"></script>
-    <script type='text/javascript' src="resources/bootstrap/npm.js"></script>
+    <script type='text/javascript' src="resources/js/bootstrap.min.js"></script>
 <title>eDziekanat - Wykładowca - Strona główna</title>
 </head>
 <body>

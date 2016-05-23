@@ -1,9 +1,7 @@
 package edziekanat.controller.administrator;
 
 import edziekanat.databasemodel.dao.PaymentDAO;
-import edziekanat.databasemodel.dao.StudentDAO;
 import edziekanat.databasemodel.dto.PaymentDTO;
-import edziekanat.databasemodel.dto.StudentDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Calendar;
 
 /**
  * Servlet implementation class ApplyPayments
@@ -26,7 +23,7 @@ public class SendReminder extends HttpServlet
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-		doPost(request, response);
+	doPost(request, response);
     }
 
     /**
@@ -34,13 +31,13 @@ public class SendReminder extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-			PaymentDAO paymentDAO = new PaymentDAO();
-			PaymentDTO payment = paymentDAO.getEntity(Integer.parseInt(request.getParameter("paymentId")));
+	PaymentDAO paymentDAO = new PaymentDAO();
+	PaymentDTO payment = paymentDAO.getEntity(Integer.parseInt(request.getParameter("paymentId")));
 
-			request.setAttribute("payment", payment);
+	request.setAttribute("payment", payment);
 
-			request.getRequestDispatcher("admin/sendreminder").forward(request, response);
-			paymentDAO.closeEntityManager();
+	request.getRequestDispatcher("admin/sendreminder").forward(request, response);
+	paymentDAO.closeEntityManager();
     }
 
 }

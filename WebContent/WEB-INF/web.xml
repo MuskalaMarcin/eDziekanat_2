@@ -484,6 +484,7 @@
         <web-resource-collection>
             <web-resource-name>AdminsPages</web-resource-name>
             <url-pattern>/admin/*</url-pattern>
+            <url-pattern>/adminreservations/*</url-pattern>
             <url-pattern>/admin/newmessage/*</url-pattern>
             <url-pattern>/administrator/sentmessages/*</url-pattern>
             <url-pattern>/administrator/receivedmessages/*</url-pattern>
@@ -570,6 +571,7 @@
             <url-pattern>/lecturerlearningmaterials/*</url-pattern>
             <url-pattern>/deletematerial/*</url-pattern>
             <url-pattern>/addlearningmaterials/*</url-pattern>
+            <url-pattern>/myapplications/*</url-pattern>
             <url-pattern>/studentmarks/*</url-pattern>
             <url-pattern>/studentenrollments/*</url-pattern>
             <url-pattern>/lecturermydata/*</url-pattern>
