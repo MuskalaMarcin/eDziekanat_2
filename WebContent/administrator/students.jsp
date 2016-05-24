@@ -34,7 +34,7 @@
 					<li class="pure-menu-item pure-menu-selected"><a
 						class="pure-menu-link" href="adminstudents">Przegl±daj</a></li>
 					<li class="pure-menu-item"><a class="pure-menu-link"
-						href="admingetstudentsgroup">Dodaj studenta</a></li>
+						href="admingetstudentsgroup?option=new">Dodaj studenta</a></li>
 					<li class="pure-menu-item menu-item-divided">
 					<li class="pure-menu-item"><a class="pure-menu-link"
 						href="marksstatistics">Statystyki</a></li>
@@ -124,6 +124,20 @@
 													class="pure-button pure-input-1-2 pure-button-primary"
 													type="submit" value="Kontakt">
 											</form>
+										<td width="70px" id="respond">
+											<form action="admingetstudentsgroup" method=post>
+												<input type="hidden" name="studentId"
+													   value="${student.getId()}">
+												<input type="hidden" name="option" value="move">	<input
+													class="pure-button pure-input-1-2 pure-button-primary"
+													type="submit" value="Przenie¶">
+											</form>
+										<td width="70px" id="respond">
+											<form action="deletestudent" method=post>
+												<input type="hidden" name="studentId"
+													   value="${student.getId()}"> <input
+													class="pure-button pure-input-1-2 pure-button-primary"
+													type="submit" style="background-color: red" value="Usuñ">
 										</td>
 									</tr>
 								</c:forEach>
