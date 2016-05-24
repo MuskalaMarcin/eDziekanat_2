@@ -37,16 +37,15 @@ public class DeleteStudentsGroupController extends HttpServlet
 	{
 	    StudentsGroupDTO studentsGroup = sgDAO.getEntity(Integer.parseInt(request.getParameter("studentsGroupId")));
 	    sgDAO.remove(studentsGroup);
-
-	    request.setAttribute("msgshort", "UsuniÄ™to grupe studenckÄ…");
-	    request.setAttribute("msglong", "UsuniÄ™to grupÄ™ studenckÄ…: " + studentsGroup.getId());
+		request.setAttribute("msgshort", "Usuniêto grupê studenck±");
+		request.setAttribute("msglong", "Usuniêto grupê studenck±: " + studentsGroup.getId());
 	    request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	}
 	catch (Exception e)
 	{
-	    request.setAttribute("msgshort", "BÅ‚Ä…d");
+	    request.setAttribute("msgshort", "B³±d");
 	    request.setAttribute("msglong", "Podczas usuwania grupy studenckiej"
-		    + " wystÄ…piÅ‚ nieznany bÅ‚Ä…d. Przepraszamy.");
+		    + " wyst±pi³ nieznany b³±d. Przepraszamy.");
 	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
 	sgDAO.closeEntityManager();
