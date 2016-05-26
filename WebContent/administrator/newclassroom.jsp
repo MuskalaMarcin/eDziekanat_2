@@ -10,9 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="resources/pure-min.css">
     <link rel="stylesheet" href="resources/styles.css">
-    <link rel="stylesheet" href="resources/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
     <script src="resources/jquery/jquery-2.2.3.js"></script>
-    <script src="resources/bootstrap/bootstrap.min.js"></script>
+    <script src="resources/js/bootstrap.min.js"></script>
     <title>eDziekanat - Dostêpno¶æ sali</title>
 </head>
 <body>
@@ -28,9 +28,8 @@
                 <li class="pure-menu-item menu-item-divided"><a
                         class="pure-menu-link" href="classrooms">Dostêpno¶æ
                     sal</a></li>
-                        <li class="pure-menu-item"><a
-                                class="pure-menu-link" href="classrooms">Wybierz salê</a></li>
-
+                <li class="pure-menu-item"><a
+                        class="pure-menu-link" href="classrooms">Wybierz salê</a></li>
                 <li class="pure-menu-item"><a
                         class="pure-menu-link" href="adminreservations">Oczekuj±ce rezerwacje</a></li>
                 <li class="pure-menu-item">
@@ -41,9 +40,13 @@
                         </button>
                     </form>
                 </li>
-                <li class="pure-menu-item"><a
-                        class="pure-menu-link" href="adminaddclassroom">Dodaj salê</a></li>
                 <li class="pure-menu-item pure-menu-selected">
+                    <form action="#" method="post">
+                        <button class="linkButton" type="submit">Dodaj salê
+                        </button>
+                    </form>
+                </li>
+                <li class="pure-menu-item">
                     <form action="adminlockclassroom" method="post">
                         <button class="linkButton" type="submit">Blokuj/usuñ salê
                         </button>
@@ -83,69 +86,53 @@
             <h2>Twój wirtualny dziekanat.</h2>
         </div>
         <div class="content">
-            <h2 class="content-subhead">
-                Zablokuj salê
-            </h2>
+            <h2 class="content-subhead">Dodaj now± salê:</h2>
+            <p></p>
+            <p></p>
             <center>
-                <table class="pure-table pure-table-bordered">
-                    <thead>
-                    <tr>
-                        <td>Lp.</td>
-                        <td>Wydzia³</td>
-                        <td>Sala</td>
-                        <td>Status</td>
-                        <td>Blokada</td>
-                        <td>Usuniêcie</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${classrooms}" var="classroom"
-                               varStatus="varStatus">
-                        <tr>
-                            <td>${varStatus.index+1}</td>
-                            <td>${classroom.faculty.name}</td>
-                            <td>${classroom.type} ${classroom.number}</td>
-
-                            <td>
-                                <c:choose>
-                                    <c:when test="${classroom.available == true}">
-                                        <p class="text-success">Dostêpna</p>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <p class="alert-danger">Niedostêpna</p>
-                                    </c:otherwise>
-                                </c:choose>
-                            </td>
-                            <td>
-                                <form action="adminlockclassroom" method="post">
-                                    <input type="hidden" name="classroomid" value="${classroom.id}"/>
-                                    <c:choose>
-                                        <c:when test="${classroom.available == true}">
-                                            <input type="submit" name="action" value="Zablokuj" class="pure-button pure-button-primary" />
-                                        </c:when>
-                                        <c:otherwise>
-                                            <input type="submit" name="action" value="Odblokuj" class="pure-button pure-button-primary" />
-                                        </c:otherwise>
-                                    </c:choose>
-                                </form>
-
-                            </td>
-                            <td>
-                                <form action="deleteclassroom" method="post">
-                                    <input type="hidden" name="classroomId" value="${classroom.id}"/>
-                                    <input type="submit" name="action" value="Usuñ" style="background-color: red" class="pure-button pure-button-primary" />
-                                </form>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
+                <form action="http://localhost:8080/edziekanat/adminaddclassroom"
+                      method=post class="pure-form">
+                    <fieldset class="pure-group">
+                        <input type="number" name="number" class="pure-input-1-2"
+                               placeholder="Numer" required>
+                    </fieldset>
+                    <fieldset class="pure-group">
+                        <input type="number" name="capacity" class="pure-input-1-2"
+                               placeholder="Pojemno¶æ" required>
+                    </fieldset>
+                    Wydzia³:
+                    <c:choose>
+                        <c:when test="${!empty faculties}">
+                            <select name="facultyId">
+                                <c:forEach items="${faculties}" var="faculty"
+                                           varStatus="varStatus">
+                                    <option value="${faculty.id}">${faculty.name}</option>
+                                </c:forEach>
+                            </select>
+                        </c:when>
+                    </c:choose>
+                    <p>
+                    <p>
+                    Typ:
+                    <c:choose>
+                        <c:when test="${!empty types}">
+                            <select name="type">
+                                <c:forEach items="${types}" var="type"
+                                           varStatus="varStatus">
+                                    <option value="${type}">${type}</option>
+                                </c:forEach>
+                            </select>
+                        </c:when>
+                    </c:choose>
+                    <p>
+                    <input type="hidden" name="addToDatabase" value="true">
+                    <button type="submit"
+                            class="pure-button pure-input-1-2 pure-button-primary">Dodaj
+                    </button>
+                </form>
             </center>
         </div>
     </div>
 </div>
-<script>
-    $('[data-toggle="popover"]').popover();
-</script>
 </body>
 </html>

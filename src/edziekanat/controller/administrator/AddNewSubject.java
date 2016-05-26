@@ -1,19 +1,20 @@
 package edziekanat.controller.administrator;
 
-import edziekanat.databasemodel.dao.LecturerDAO;
-import edziekanat.databasemodel.dao.StudentsGroupDAO;
-import edziekanat.databasemodel.dao.SubjectDAO;
-import edziekanat.databasemodel.dto.StudentsGroupDTO;
-import edziekanat.databasemodel.dto.SubjectDTO;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
+
+import edziekanat.databasemodel.dao.LecturerDAO;
+import edziekanat.databasemodel.dao.StudentsGroupDAO;
+import edziekanat.databasemodel.dao.SubjectDAO;
+import edziekanat.databasemodel.dto.StudentsGroupDTO;
+import edziekanat.databasemodel.dto.SubjectDTO;
 
 /**
  * Servlet implementation class AddNewSubject
@@ -41,11 +42,11 @@ public class AddNewSubject extends HttpServlet
 	SubjectDAO subjectDAO = new SubjectDAO();
 
 	SubjectDTO subject = new SubjectDTO();
-	subject.setName(request.getParameter("name").toString());
-	subject.setSemester(Integer.parseInt(request.getParameter("semester").toString()));
-	subject.setECTS(Integer.parseInt(request.getParameter("ECTS").toString()));
+	subject.setName(request.getParameter("name"));
+	subject.setSemester(Integer.parseInt(request.getParameter("semester")));
+	subject.setECTS(Integer.parseInt(request.getParameter("ECTS")));
 	subject.setLecturer(lecturerDAO.getEntity(Integer.parseInt(request.getParameter("lecturerid"))));
-	List<StudentsGroupDTO> studentsgroup = new LinkedList<StudentsGroupDTO>();
+	List<StudentsGroupDTO> studentsgroup = new LinkedList<>();
 	studentsgroup.add(studentsGroupDAO.getEntity(Integer.parseInt(request.getParameter("studentsgroupid"))));
 	subject.setStudents_group(studentsgroup);
 	subjectDAO.insert(subject);

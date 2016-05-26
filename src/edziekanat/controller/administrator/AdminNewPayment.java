@@ -1,18 +1,19 @@
 package edziekanat.controller.administrator;
 
-import edziekanat.bean.LoginBean;
-import edziekanat.databasemodel.dao.AdministratorDAO;
-import edziekanat.databasemodel.dao.PaymentDAO;
-import edziekanat.databasemodel.dao.StudentDAO;
-import edziekanat.databasemodel.dto.PaymentDTO;
+import java.io.IOException;
+import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.Calendar;
+
+import edziekanat.bean.LoginBean;
+import edziekanat.databasemodel.dao.AdministratorDAO;
+import edziekanat.databasemodel.dao.PaymentDAO;
+import edziekanat.databasemodel.dao.StudentDAO;
+import edziekanat.databasemodel.dto.PaymentDTO;
 /**
  * Servlet implementation class AdminNewPayment
  */
@@ -39,9 +40,9 @@ public class AdminNewPayment extends HttpServlet
 	AdministratorDAO administratorDAO = new AdministratorDAO();
 
 	PaymentDTO payment = new PaymentDTO();
-	payment.setTitle(request.getParameter("title").toString());
-	payment.setDescription(request.getParameter("description").toString());
-	payment.setAmount(Float.parseFloat(request.getParameter("amount").toString()));
+	payment.setTitle(request.getParameter("title"));
+	payment.setDescription(request.getParameter("description"));
+	payment.setAmount(Float.parseFloat(request.getParameter("amount")));
 	payment.setIssueDate(Calendar.getInstance().getTime());
 	payment.setStudent(studentDAO.getEntity(Integer.parseInt(request.getParameter("studentid"))));
 	payment.setAdministrator(administratorDAO.getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId()));

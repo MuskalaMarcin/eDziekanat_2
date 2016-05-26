@@ -1,5 +1,18 @@
 package edziekanat.controller.common;
 
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.ListIterator;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.ClassroomDAO;
 import edziekanat.databasemodel.dao.LecturerDAO;
@@ -8,14 +21,6 @@ import edziekanat.databasemodel.dto.ClassroomDTO;
 import edziekanat.databasemodel.dto.LecturerDTO;
 import edziekanat.databasemodel.dto.ReservationRequestDTO;
 import edziekanat.databasemodel.dto.ScheduledClassesDTO;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.*;
 
 /**
  * Created by Marcin Muskala on 21.04.2016.
@@ -34,9 +39,6 @@ public class ClassroomsController extends ParentTimetableController
 	Integer selectedClassroomId = Integer.parseInt(
 			request.getParameter("classroomId") == null ? "-1" : request.getParameter("classroomId"));
 	LoginBean loginBean = ((LoginBean) request.getSession().getAttribute("loginBean"));
-	List<ClassroomDTO> classroomsToSend = classroomDAO.getLecturerClassrooms(loginBean.getPersonId());
-	Collections.sort(classroomsToSend);
-	request.setAttribute("classroomsList", classroomsToSend);
 
 	if (selectedClassroomId == -1)
 	{
@@ -45,28 +47,33 @@ public class ClassroomsController extends ParentTimetableController
 	else
 	{
 	    ClassroomDTO selectedClassroom = classroomDAO.getEntity(selectedClassroomId);
-		if(selectedClassroom.getAvailable()) {
-			List<ScheduledClassesDTO> scheduledClassesList = selectedClassroom.getScheduledClasses();
-			List<ReservationRequestDTO> reservationRequestList = selectedClassroom.getReservation_request();
+	    if (selectedClassroom.getAvailable())
+	    {
+		List<ScheduledClassesDTO> scheduledClassesList = selectedClassroom.getScheduledClasses();
+		List<ReservationRequestDTO> reservationRequestList = selectedClassroom.getReservation_request();
 
-			int selectedWeek = getClassesAndDates(request, scheduledClassesList);
-			filterReservations(reservationRequestList, selectedWeek);
-			setReservations(reservationRequestList, request, selectedWeek);
+		int selectedWeek = getClassesAndDates(request, scheduledClassesList);
+		filterReservations(reservationRequestList, selectedWeek);
+		setReservations(reservationRequestList, request, selectedWeek);
 
-			request.setAttribute("selectedClassroom", selectedClassroom);
-			request.setAttribute("noClassroom", false);
-			request.setAttribute("available",true);
-		}
-		else
-		{
-			request.setAttribute("selectedClassroom", selectedClassroom);
-			request.setAttribute("noClassroom", false);
-			request.setAttribute("available",false);
-		}
+		request.setAttribute("selectedClassroom", selectedClassroom);
+		request.setAttribute("noClassroom", false);
+		request.setAttribute("available", true);
+	    }
+	    else
+	    {
+		request.setAttribute("selectedClassroom", selectedClassroom);
+		request.setAttribute("noClassroom", false);
+		request.setAttribute("available", false);
+	    }
 	}
 
 	if (request.isUserInRole("lecturer"))
 	{
+	    List<ClassroomDTO> classroomsToSend = classroomDAO.getLecturerClassrooms(loginBean.getPersonId());
+	    Collections.sort(classroomsToSend);
+	    request.setAttribute("classroomsList", classroomsToSend);
+
 	    LecturerDAO lecturerDAO = new LecturerDAO();
 	    LecturerDTO lecturerDTO = lecturerDAO.getEntity(loginBean.getPersonId());
 	    request.setAttribute("subjects", lecturerDTO.getSubject());
@@ -76,6 +83,10 @@ public class ClassroomsController extends ParentTimetableController
 	}
 	else if (request.isUserInRole("admin"))
 	{
+	    List<ClassroomDTO> classroomsToSend = classroomDAO.getAllEntities();
+	    Collections.sort(classroomsToSend, (x, y) -> y.getFaculty().getName().compareTo(x.getFaculty().getName()));
+	    request.setAttribute("classroomsList", classroomsToSend);
+
 	    request.getRequestDispatcher("administrator/classrooms.jsp").forward(request, response);
 	}
 

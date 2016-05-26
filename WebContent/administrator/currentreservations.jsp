@@ -35,9 +35,11 @@
                         <button class="linkButton" type="submit">Historia rezerwacji</button>
                     </form>
                 </li>
+                <li class="pure-menu-item"><a
+                        class="pure-menu-link" href="adminaddclassroom">Dodaj salê</a></li>
                 <li class="pure-menu-item">
                     <form action="adminlockclassroom" method="post">
-                        <button class="linkButton" type="submit">Blokuj salê
+                        <button class="linkButton" type="submit">Blokuj/usuñ salê
                         </button>
                     </form>
                 </li>

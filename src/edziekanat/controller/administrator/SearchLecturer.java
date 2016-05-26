@@ -43,8 +43,8 @@ public class SearchLecturer extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	LecturerDAO lecturerDAO = new LecturerDAO();
-	String name = request.getParameter("searchedName").toString();
-	String surname = request.getParameter("searchedSurname").toString();
+	String name = request.getParameter("searchedName");
+	String surname = request.getParameter("searchedSurname");
 
 	List<LecturerDTO> lecturers;
 	if (!name.isEmpty())
