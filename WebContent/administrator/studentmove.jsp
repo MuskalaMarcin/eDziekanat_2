@@ -71,29 +71,29 @@
             <h2>Twój wirtualny dziekanat.</h2>
         </div>
         <div class="content">
-            <h2 class="content-subhead">Dodaj studenta</h2>
+            <h2 class="content-subhead">Przenie¶ studenta</h2>
             <p>
             <p>
                 <center>
-                    <form action="http://localhost:8080/edziekanat/movestudent"
-                          method=post class="pure-form">
-                        Grupa studencka:
-                        <c:choose>
-                        <c:when test="${!empty studentsgroup}">
+            <form action="http://localhost:8080/edziekanat/movestudent"
+                  method=post class="pure-form">
+                Grupa studencka:
+                <c:choose>
+                    <c:when test="${!empty studentsgroup}">
                         <select name="studentsgroupid">
                             <c:forEach items="${studentsgroup}" var="studentsgroup"
                                        varStatus="varStatus">
                                 <option value="${studentsgroup.id}">${studentsgroup.id}</option>
                             </c:forEach>
                         </select>
-                        </c:when>
-                        </c:choose>
-            <input type="hidden" name="studentId" value="${sId}">
-            <input
-                    class="pure-button pure-input-1-2 pure-button-primary"
-                    type="submit" value="Przenie¶">
-                </center>
+                    </c:when>
+                </c:choose>
+                <input type="hidden" name="studentId" value="${sId}">
+                <input
+                        class="pure-button pure-input-1-2 pure-button-primary"
+                        type="submit" value="Przenie¶">
             </form>
+                </center>
         </div>
     </div>
 </div>

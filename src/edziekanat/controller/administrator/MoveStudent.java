@@ -38,17 +38,24 @@ public class MoveStudent extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         StudentDAO studentDAO = new StudentDAO();
+        StudentDTO student = studentDAO.getEntity(Integer.parseInt(request.getParameter("studentId")));
         StudentsGroupDAO studentsGroupDAO = new StudentsGroupDAO();
-
-            StudentDTO student = studentDAO.getEntity(Integer.parseInt(request.getParameter("studentId")));
-            StudentsGroupDTO studentsGroup = studentsGroupDAO
-                    .getEntity(Integer.parseInt(request.getParameter("studentsgroupid")));
-         List<StudentsGroupDTO> list = new ArrayList<>();
-        list.addAll(Arrays.asList(studentsGroup));
-        student.setStudentsGroup(list);
-            studentDAO.update(student);
         try
-        {         request.setAttribute("msgshort", "Przeniesiono studenta");
+        {
+            for(StudentsGroupDTO studentsGroup: student.getStudentsGroup())
+            {
+                studentsGroup.getStudent().remove(student);
+                studentsGroupDAO.update(studentsGroup);
+            }
+            StudentsGroupDTO studentsGroup = studentsGroupDAO
+                        .getEntity(Integer.parseInt(request.getParameter("studentsgroupid")));
+            List<StudentsGroupDTO> list = new ArrayList<>();
+            list.addAll(Arrays.asList(studentsGroup));
+            student.setStudentsGroup(list);
+            studentsGroup.getStudent().add(student);
+            studentDAO.update(student);
+            studentsGroupDAO.update(studentsGroup);
+            request.setAttribute("msgshort", "Przeniesiono studenta");
             request.setAttribute("msglong", "Przeniesiono studenta: " + student.getName()+" "+ student.getSurname());
             request.getRequestDispatcher("common/info.jsp").forward(request, response);
         }
