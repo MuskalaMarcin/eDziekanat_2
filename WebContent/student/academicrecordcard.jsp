@@ -65,6 +65,7 @@
                            varStatus="varStatus">
                     <c:set var="summark" value="0"/>
                     <c:set var="sumects" value="0"/>
+                    <c:set var="studentects" value="0"/>
                     <div class="table-responsive" style="margin-left: 30px; margin-right: 30px; margin-bottom: 20px">
                         <table class="table table-bordered table-hover">
                             <thead class="thead-inverse">
@@ -85,6 +86,9 @@
                                         <c:set var="summark"
                                                value="${summark + enrollment.subject.ECTS * enrollment.mark}"/>
                                         <c:set var="sumects" value="${sumects + enrollment.subject.ECTS}"/>
+                                        <c:if test="${enrollment.mark > 2}">
+                                            <c:set var="studentects" value="${studentects + enrollment.subject.ECTS}"/>
+                                        </c:if>
                                         <tr>
                                             <td>${enrollment.subject.name}</td>
                                             <td>${enrollment.subject.ECTS}</td>
@@ -96,7 +100,7 @@
                                 </c:forEach>
                                 <tr>
                                     <td colspan="2" style="text-align:center">
-                                        Suma punktów ECTS: <c:out value="${sumects}"/>
+                                        Punkty ECTS: <c:out value="${studentects}"/> / <c:out value="${sumects}"/>
                                     </td>
                                     <td colspan="2" style="text-align:center">
                                         <c:set var="average" value="${summark / sumects}"/>
