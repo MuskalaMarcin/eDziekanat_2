@@ -55,82 +55,82 @@
         </div>
         <div class="content">
             <h2 class="content-subhead">Karta przebiegu studiów</h2>
-        </div>
-        <c:choose>
-            <c:when test="${empty transcripts}">
-                <p>Brak wpisów do wy¶wietlenia.</p>
-            </c:when>
-            <c:otherwise>
-                <c:forEach items="${transcripts}" var="transcript"
-                           varStatus="varStatus">
-                    <c:forEach items="${transcriptToSemesterList[transcript]}" var="semester"
+            <c:choose>
+                <c:when test="${empty transcripts}">
+                    <p>Brak wpisów do wy¶wietlenia.</p>
+                </c:when>
+                <c:otherwise>
+                    <c:forEach items="${transcripts}" var="transcript"
                                varStatus="varStatus">
-                        <c:set var="summark" value="0"/>
-                        <c:set var="studentects" value="0"/>
-                        <c:set var="isPassed" value="0"/>
-                        <div class="table-responsive" style="margin-left: 30px; margin-right: 30px; margin-bottom: 20px">
-                            <table class="table table-bordered table-hover">
-                                <thead class="thead-inverse">
-                                <tr>
-                                    <th colspan="5" style="text-align:center">Semestr: ${semester}</th>
-                                </tr>
-                                <tr>
-                                    <th width="25%">Przedmiot</th>
-                                    <th width="25%">Prowadz±cy</th>
-                                    <th width="25%">Liczba punktów ECTS</th>
-                                    <th width="25%">Ocena</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <c:forEach items="${transcript.enrollment}" var="enrollment"
-                                           varStatus="theCount">
-                                    <c:if test="${semester == enrollment.subject.semester}">
-                                        <c:set var="summark"
-                                               value="${summark + enrollment.subject.ECTS * enrollment.mark}"/>
-                                        <c:if test="${enrollment.mark > 2}">
-                                            <c:set var="studentects" value="${studentects + enrollment.subject.ECTS}"/>
-                                        </c:if>
-                                        <tr>
-                                            <td>${enrollment.subject.name}</td>
-                                            <td>${enrollment.subject.lecturer.name}
-                                                    ${enrollment.subject.lecturer.surname}</td>
-                                            <td>${enrollment.subject.ECTS}</td>
-                                            <td>${enrollment.mark}</td>
-                                        </tr>
-                                    </c:if>
-                                </c:forEach>
-                                <tr>
-                                    <td colspan="2" style="text-align:center">
-                                        <c:forEach items="${transcript.passed_semester}" var="passedSemester">
-                                            <c:if test="${passedSemester.semester == semester}">
-                                                <c:set var="isPassed" value="1"/>
+                        <c:forEach items="${transcriptToSemesterList[transcript]}" var="semester"
+                                   varStatus="varStatus">
+                            <c:set var="summark" value="0"/>
+                            <c:set var="studentects" value="0"/>
+                            <c:set var="isPassed" value="0"/>
+                            <div class="table-responsive" style="margin-left: 30px; margin-right: 30px; margin-bottom: 20px">
+                                <table class="table table-bordered table-hover">
+                                    <thead class="thead-inverse">
+                                    <tr>
+                                        <th colspan="5" style="text-align:center">Semestr: ${semester}</th>
+                                    </tr>
+                                    <tr>
+                                        <th width="25%">Przedmiot</th>
+                                        <th width="25%">Prowadz±cy</th>
+                                        <th width="25%">Liczba punktów ECTS</th>
+                                        <th width="25%">Ocena</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${transcript.enrollment}" var="enrollment"
+                                               varStatus="theCount">
+                                        <c:if test="${semester == enrollment.subject.semester}">
+                                            <c:set var="summark"
+                                                   value="${summark + enrollment.subject.ECTS * enrollment.mark}"/>
+                                            <c:if test="${enrollment.mark > 2}">
+                                                <c:set var="studentects" value="${studentects + enrollment.subject.ECTS}"/>
                                             </c:if>
-                                        </c:forEach>
-                                        <c:choose>
-                                            <c:when test="${isPassed == 0}">
-                                                <span class="glyphicon glyphicon-remove"></span> Semester niezaliczony
-                                            </c:when>
-                                            <c:otherwise>
-                                                <span class="glyphicon glyphicon glyphicon-ok"></span> Semester zaliczony
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </td>
-                                    <td colspan="1" style="text-align:center">
-                                        Punkty ECTS: <c:out value="${studentects}"/> / <c:out value="${semesterToSumECTS[semester]}"/>
-                                    </td>
-                                    <td colspan="1" style="text-align:center">
-                                        <c:set var="average" value="${summark / semesterToSumECTS[semester]}"/>
-                                        ¦rednia do dyplomu:
-                                        <fmt:formatNumber value="${average}" maxFractionDigits="2"/>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                                            <tr>
+                                                <td>${enrollment.subject.name}</td>
+                                                <td>${enrollment.subject.lecturer.name}
+                                                        ${enrollment.subject.lecturer.surname}</td>
+                                                <td>${enrollment.subject.ECTS}</td>
+                                                <td>${enrollment.mark}</td>
+                                            </tr>
+                                        </c:if>
+                                    </c:forEach>
+                                    <tr>
+                                        <td colspan="2" style="text-align:center">
+                                            <c:forEach items="${transcript.passed_semester}" var="passedSemester">
+                                                <c:if test="${passedSemester.semester == semester}">
+                                                    <c:set var="isPassed" value="1"/>
+                                                </c:if>
+                                            </c:forEach>
+                                            <c:choose>
+                                                <c:when test="${isPassed == 0}">
+                                                    <span class="glyphicon glyphicon-remove"></span> Semester niezaliczony
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <span class="glyphicon glyphicon glyphicon-ok"></span> Semester zaliczony
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </td>
+                                        <td colspan="1" style="text-align:center">
+                                            Punkty ECTS: <c:out value="${studentects}"/> / <c:out value="${semesterToSumECTS[semester]}"/>
+                                        </td>
+                                        <td colspan="1" style="text-align:center">
+                                            <c:set var="average" value="${summark / semesterToSumECTS[semester]}"/>
+                                            ¦rednia do dyplomu:
+                                            <fmt:formatNumber value="${average}" maxFractionDigits="2"/>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </c:forEach>
                     </c:forEach>
-                </c:forEach>
-            </c:otherwise>
-        </c:choose>
+                </c:otherwise>
+            </c:choose>
+        </div>
     </div>
 </div>
 </body>
