@@ -180,6 +180,15 @@ CREATE TABLE payment
   ) ;
 ALTER TABLE payment ADD CONSTRAINT payment_PK PRIMARY KEY ( id ) ;
 
+CREATE TABLE passed_semester
+  (
+    id        INTEGER NOT NULL ,
+    semester  INTEGER NOT NULL ,
+    dispatch_date DATE NOT NULL ,
+    transcript_id INTEGER NOT NULL
+  )
+ALTER TABLE passed_semester ADD CONSTRAINT passed_semester_PK PRIMARY KEY ( id ) ;
+
 CREATE TABLE reservation_request
   (
     id	INTEGER NOT NULL ,

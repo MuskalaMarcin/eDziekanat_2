@@ -1,7 +1,7 @@
 package edziekanat.controller.administrator;
 
 import java.io.IOException;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.databasemodel.dao.StudentDAO;
-import edziekanat.databasemodel.dto.EnrollmentDTO;
+import edziekanat.databasemodel.dao.SubjectDAO;
 import edziekanat.databasemodel.dto.StudentDTO;
 import edziekanat.databasemodel.dto.SubjectDTO;
 import edziekanat.databasemodel.dto.TranscriptDTO;
@@ -37,34 +37,48 @@ public class AdminStudentEnrollments extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-	List<EnrollmentDTO> enrollmentDTOs = new LinkedList<>();
-	List<Integer> semesterList = new LinkedList<>();
-	List<SubjectDTO> subjectDTOs = new LinkedList<>();
 	StudentDAO studentDAO = new StudentDAO();
-	StudentDTO studentDTO = studentDAO.getEntity(Integer.parseInt(request.getParameter("studentId")));
-	List<TranscriptDTO> transcriptDTOs = studentDTO.getTranscript();
-	for(TranscriptDTO transcriptDTO : transcriptDTOs)
+	SubjectDAO subjectDAO = new SubjectDAO();
+	Integer studentId = Integer.parseInt(request.getParameter("studentId"));
+	StudentDTO studentDTO = studentDAO.getEntity(studentId);
+	List<TranscriptDTO> transcriptDTOs = new LinkedList<>();
+	HashMap<Integer, Integer> semesterToECTS = new HashMap<>();
+	HashMap<TranscriptDTO, List<Integer>> transcriptToSemesterList = new HashMap<>();
+	for (TranscriptDTO transcriptDTO : studentDTO.getTranscript())
 	{
-	    enrollmentDTOs.addAll(transcriptDTO.getEnrollment());
-	}
-	for (EnrollmentDTO enrollmentDTO : enrollmentDTOs)
-	{
-	    if (!semesterList.contains(enrollmentDTO.getSubject().getSemester()))
+	    if (!transcriptDTO.getEnrollment().isEmpty())
 	    {
-		semesterList.add(enrollmentDTO.getSubject().getSemester());
+		transcriptDTOs.add(transcriptDTO);
+	    }
+	    List<Integer> semesterList = new LinkedList<>();
+
+	    for (int i = 1; i <= transcriptDTO.getStudentsGroup().getSemester(); i++)
+	    {
+		int sumEcts = 0;
+		List<SubjectDTO> subjectDTOs = subjectDAO.getStudentsSubjectsFromSemester(studentId, i);
+		if (!subjectDTOs.isEmpty())
+		{
+		    for (SubjectDTO subject : subjectDTOs)
+		    {
+			sumEcts += subject.getECTS();
+		    }
+		    semesterToECTS.put(i, sumEcts);
+		    semesterList.add(i);
+		}
 	    }
 
-	    if (!subjectDTOs.contains(enrollmentDTO.getSubject()))
+	    if (!transcriptDTO.getEnrollment().isEmpty())
 	    {
-		subjectDTOs.add(enrollmentDTO.getSubject());
+		transcriptToSemesterList.put(transcriptDTO, semesterList);
 	    }
 	}
-	Collections.sort(semesterList);
-	request.setAttribute("semesterList", semesterList);
-	request.setAttribute("enrollments", enrollmentDTOs);
-	request.setAttribute("subjects", subjectDTOs);
+
+	request.setAttribute("transcripts", transcriptDTOs);
 	request.setAttribute("student", studentDTO);
+	request.setAttribute("semesterToSumECTS", semesterToECTS);
+	request.setAttribute("transcriptToSemesterList", transcriptToSemesterList);
 	request.getRequestDispatcher("administrator/studentsenrollments.jsp").forward(request, response);
+	subjectDAO.closeEntityManager();
 	studentDAO.closeEntityManager();
     }
 }

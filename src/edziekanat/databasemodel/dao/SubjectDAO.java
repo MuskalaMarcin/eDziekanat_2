@@ -1,12 +1,9 @@
 package edziekanat.databasemodel.dao;
 
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import edziekanat.databasemodel.TableNames;
-import edziekanat.databasemodel.dto.StudentsGroupDTO;
 import edziekanat.databasemodel.dto.SubjectDTO;
 
 /**

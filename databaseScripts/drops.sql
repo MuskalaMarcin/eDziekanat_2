@@ -9,7 +9,8 @@ DROP SEQUENCE learning_materials_id_seq;
 DROP SEQUENCE lecturer_id_seq;  
 DROP SEQUENCE message_id_seq; 
 DROP SEQUENCE news_id_seq; 
-DROP SEQUENCE partial_mark_id_seq; 
+DROP SEQUENCE partial_mark_id_seq;
+DROP SEQUENCE passed_semester_id_seq;
 DROP SEQUENCE payment_id_seq; 
 DROP SEQUENCE reservation_request_id_seq; 
 DROP SEQUENCE scheduled_classes_id_seq; 
@@ -46,6 +47,7 @@ DROP TABLE "application" CASCADE;
 DROP TABLE "application_type" CASCADE;
 DROP TABLE "administrator" CASCADE; 
 DROP TABLE "app_user" CASCADE; 
-DROP TABLE "students_group_subject" CASCADE; 
+DROP TABLE "students_group_subject" CASCADE;
+DROP TABLE "passed_semester" CASCADE;
 
 
