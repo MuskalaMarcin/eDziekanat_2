@@ -79,7 +79,7 @@
                                                     </c:choose>
                                                     <div class="tytul">${varStatus.index + 1 + (currentPage*10)}. ${msg.title }</div>
                                                     <div class="data"><fmt:formatDate pattern="dd.MM.yyyy" value="${msg.dispatchDate}"/></div>
-                                                    <div class="nadawca">${receiverNames[varStatus.index]}</div>
+                                                    <div class="nadawca">${receiverNames[varStatus.index][0]}</div>
                                                 </div>
                                         </h4>
                                     </div>
@@ -99,7 +99,7 @@
                                 </div>
                             </c:forEach>
                         </div>
-			<div style="margin-top: 10px" class="btn-toolbar" role="toolbar">
+			<div style="margin-top: 10px; margin-left: 47%" class="btn-toolbar" role="toolbar">
 				<div class="btn-group" role="group" aria-label="1">
 					<c:forEach begin="1" end="${pagesNumber}" varStatus="loop">
 					<c:choose>

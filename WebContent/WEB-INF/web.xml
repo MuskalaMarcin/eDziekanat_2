@@ -101,6 +101,10 @@
         <jsp-file>/lecturer/subjects.jsp</jsp-file>
     </servlet>
     <servlet>
+        <servlet-name>LecturerGroupMessage</servlet-name>
+        <jsp-file>/lecturer/group_message.jsp</jsp-file>
+    </servlet>
+    <servlet>
         <servlet-name>LecturerLecturers</servlet-name>
         <jsp-file>/lecturer/lecturers.jsp</jsp-file>
     </servlet>
@@ -339,6 +343,10 @@
     <servlet-mapping>
         <servlet-name>LecturerNews</servlet-name>
         <url-pattern>/lecturer/news</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LecturerGroupMessage</servlet-name>
+        <url-pattern>/lecturer/lecturergroupmessage</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AdminReceivedMessages</servlet-name>
@@ -585,6 +593,7 @@
             <url-pattern>/studentmarks/*</url-pattern>
             <url-pattern>/studentenrollments/*</url-pattern>
             <url-pattern>/lecturermydata/*</url-pattern>
+            <url-pattern>/lecturergroupmessage/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>lecturer</role-name>

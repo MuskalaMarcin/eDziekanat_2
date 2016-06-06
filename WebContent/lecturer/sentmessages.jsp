@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-2"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -73,7 +74,7 @@
                                                     </c:choose>
                                                     <div class="tytul">${varStatus.index + 1 + (currentPage*10)}. ${msg.title }</div>
                                                     <div class="data"><fmt:formatDate pattern="dd.MM.yyyy" value="${msg.dispatchDate}"/></div>
-                                                    <div class="nadawca">${receiverNames[varStatus.index]}</div>
+                                                    <div class="nadawca">${receiverNames[varStatus.index][0]}</div>
                                                 </div>
                                         </h4>
                                     </div>
@@ -81,11 +82,49 @@
                                         <div class="panel-body"> ${msg.content}
                                             <div id="deletenews" align="right">
                                                 <c:choose>
-                                                    <c:when test="${empty msg.receiveDate}">Nie dostarczono.</c:when>
-                                                    <c:otherwise>
-                                                        Dostarczono: <fmt:formatDate pattern="dd.MM.yyyy"
-                                                                        value="${msg.receiveDate}" />
-                                                    </c:otherwise>
+													<c:when test="${receiverNames[varStatus.index][1] != null}">
+
+														<button type="button" class="btn btn-primary" data-toggle="popover"
+																data-placement="bottom" data-trigger="focus" data-html="true"
+																title="Status dorêczenia" data-content="
+																<table>
+																<tr><td>Adresat</td><td>Data odebrania</td></tr>
+																<c:forEach items="${receiverNames[varStatus.index]}" var="reciever" varStatus="recieverNum">
+																	<c:set var="msgStatus" value="${fn:split(reciever,':')}"/>
+																	<c:set var="msgStatusRec" value="${fn:split(msgStatus[0],'-')}"/>
+																	<c:choose>
+																		<c:when test="${msgStatus[0].trim().length()>8}">
+																			<tr>
+																			<td style='width: 130px'>
+																			${msgStatusRec[0]}
+																			 </td><td>
+																			 <c:choose>
+																				 <c:when test="${msgStatus[1].trim().equals(\"nie\")}">
+																					<b class='text-danger'>Nie odebrano</b>
+																				 </c:when>
+																				 <c:otherwise>
+																					<b class='text-success'>${msgStatus[1]}</b>
+																				 </c:otherwise>
+																			 </c:choose>
+																			 </td>
+																			 </tr>
+																		 </c:when>
+																	 </c:choose>
+																</c:forEach>
+																</table>
+																">
+																	Status dorêczenia
+																</button>
+													</c:when>
+													<c:otherwise>
+														<c:choose>
+															<c:when test="${empty msg.receiveDate}">Nie dostarczono.</c:when>
+															<c:otherwise>
+																Dostarczono: <fmt:formatDate pattern="dd.MM.yyyy"
+																							 value="${msg.receiveDate}" />
+															</c:otherwise>
+														</c:choose>
+													</c:otherwise>
                                                 </c:choose>
                                             </div>
                                         </div>
@@ -94,7 +133,7 @@
                             </c:forEach>
                         </div>
 
-						<div style="margin-top: 10; margin-left: 47%" class="btn-toolbar" role="toolbar">
+						<div style="margin-top: 10px; margin-left: 47%" class="btn-toolbar" role="toolbar">
 							<div class="btn-group" role="group" aria-label="1">
 								<c:forEach begin="1" end="${pagesNumber}" varStatus="loop">
 								<c:choose>
@@ -116,5 +155,16 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		$('[data-toggle="popover"]').popover();
+
+		$('.popover-dismiss').popover({
+			trigger: 'focus'
+		})
+
+		$('[data-toggle="popover"]').on('click', function (e) {
+			$('[data-toggle="popover"]').not(this).popover('hide');
+		});
+	</script>
 </body>
 </html>
