@@ -51,39 +51,45 @@ public class LecturerGroupMessage extends HttpServlet
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-		if(request.getParameter("subject")!= null) {
-			SubjectDAO subjectDAO = new SubjectDAO();
-			SubjectDTO subject = subjectDAO.getEntity(Integer.parseInt(request.getParameter("subject")));
-			List<StudentsGroupDTO> groups = subject.getStudents_group();
-			request.setAttribute("groups", groups);
-			request.getRequestDispatcher("lecturer/lecturergroupmessage").forward(request, response);
-			subjectDAO.closeEntityManager();
-		}
-		else if(request.getParameter("group") != null)
-		{
-			UserDAO userDAO = new UserDAO();
-			MessageDAO messageDAO = new MessageDAO();
-			StudentsGroupDAO studentsGroupDAO = new StudentsGroupDAO();
-			StudentsGroupDTO studentsGroup = studentsGroupDAO.getEntity(Integer.parseInt(request.getParameter("group")));
-			List<StudentDTO> students = studentsGroup.getStudent();
-			for(StudentDTO student:students) {
-				MessageDTO newMessage = new MessageDTO();
-				newMessage.setDispatchDate(Calendar.getInstance().getTime());
-				newMessage.setReceiver(student.getUser());
-				newMessage.setSender(userDAO.getEntity(((LoginBean) request.getSession().getAttribute("loginBean")).getLogin()));
-				newMessage.setTitle(request.getParameter("msgtitle"));
-				newMessage.setContent(request.getParameter("content"));
-				newMessage.setGroup(studentsGroup);
-				messageDAO.insert(newMessage);
-			}
-			userDAO.closeEntityManager();
-			messageDAO.closeEntityManager();
-			studentsGroupDAO.closeEntityManager();
+	if (request.getParameter("subject") != null)
+	{
+	    SubjectDAO subjectDAO = new SubjectDAO();
+	    SubjectDTO subject = subjectDAO.getEntity(Integer.parseInt(request.getParameter("subject")));
+	    List<StudentsGroupDTO> groups = subject.getStudents_group();
+	    request.setAttribute("groups", groups);
+	    request.getRequestDispatcher("lecturer/lecturergroupmessage").forward(request, response);
+	    subjectDAO.closeEntityManager();
+	}
+	else if (request.getParameter("group") != null)
+	{
+	    UserDAO userDAO = new UserDAO();
+	    MessageDAO messageDAO = new MessageDAO();
+	    StudentsGroupDAO studentsGroupDAO = new StudentsGroupDAO();
+	    StudentsGroupDTO studentsGroup = studentsGroupDAO
+			    .getEntity(Integer.parseInt(request.getParameter("group")));
+	    List<StudentDTO> students = studentsGroup.getStudent();
+	    for (StudentDTO student : students)
+	    {
+		MessageDTO newMessage = new MessageDTO();
+		newMessage.setDispatchDate(Calendar.getInstance().getTime());
+		newMessage.setReceiver(student.getUser());
+		newMessage.setSender(userDAO.getEntity(
+				((LoginBean) request.getSession().getAttribute("loginBean")).getLogin()));
+		newMessage.setTitle(request.getParameter("msgtitle"));
+		newMessage.setContent(request.getParameter("content"));
+		newMessage.setGroup(studentsGroup);
+		messageDAO.insert(newMessage);
+	    }
+	    userDAO.closeEntityManager();
+	    messageDAO.closeEntityManager();
+	    studentsGroupDAO.closeEntityManager();
 
-			request.setAttribute("msgshort", "Wys³ano wiadomo¶æ grupow±");
-			request.setAttribute("msglong", "Twoja wiadomo¶æ grupowa zosta³a wys³ana do wszystkich cz³onków grupy "+request.getParameter("group")+".");
-			request.getRequestDispatcher("common/info.jsp").forward(request, response);
-		}
+	    request.setAttribute("msgshort", "Wys³ano wiadomo¶æ grupow±");
+	    request.setAttribute("msglong",
+			    "Twoja wiadomo¶æ grupowa zosta³a wys³ana do wszystkich cz³onków grupy " + request
+					    .getParameter("group") + ".");
+	    request.getRequestDispatcher("common/info.jsp").forward(request, response);
+	}
     }
 
 }

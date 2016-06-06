@@ -79,7 +79,7 @@
                                                     </c:choose>
                                                     <div class="tytul">${varStatus.index + 1 + (currentPage*10)}. ${msg.title }</div>
                                                     <div class="data"><fmt:formatDate pattern="dd.MM.yyyy" value="${msg.dispatchDate}"/></div>
-                                                    <div class="nadawca">${receiverNames[varStatus.index]}</div>
+                                                    <div class="nadawca">${receiverNames[varStatus.index][0]}</div>
                                                 </div>
                                         </h4>
                                     </div>
