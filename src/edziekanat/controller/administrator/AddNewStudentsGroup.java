@@ -1,17 +1,18 @@
 package edziekanat.controller.administrator;
 
-import edziekanat.databasemodel.dao.CourseDAO;
-import edziekanat.databasemodel.dao.StudentsGroupDAO;
-import edziekanat.databasemodel.dto.CourseDTO;
-import edziekanat.databasemodel.dto.StudentsGroupDTO;
+import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.List;
+
+import edziekanat.databasemodel.dao.CourseDAO;
+import edziekanat.databasemodel.dao.StudentsGroupDAO;
+import edziekanat.databasemodel.dto.CourseDTO;
+import edziekanat.databasemodel.dto.StudentsGroupDTO;
 
 /**
  * Servlet implementation class AddNewStudentsGroup
@@ -40,8 +41,8 @@ public class AddNewStudentsGroup extends HttpServlet
 	StudentsGroupDTO studentsgroup = new StudentsGroupDTO();
 	@SuppressWarnings("unchecked")
 	List<CourseDTO> courses = (List<CourseDTO>) request.getAttribute("courses");
-	studentsgroup.setSemester(Integer.parseInt(request.getParameter("semester").toString()));
-	studentsgroup.setCourse(courseDAO.getEntity(Integer.parseInt(request.getParameter("id").toString())));
+	studentsgroup.setSemester(Integer.parseInt(request.getParameter("semester")));
+	studentsgroup.setCourse(courseDAO.getEntity(Integer.parseInt(request.getParameter("id"))));
 	studentsGroupDAO.insert(studentsgroup);
 	
 	request.setAttribute("msgshort", "Grupa studencka dodana");

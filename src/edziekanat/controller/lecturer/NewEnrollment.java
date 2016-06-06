@@ -50,9 +50,9 @@ public class NewEnrollment extends HttpServlet
 
 	EnrollmentDTO enrollment = new EnrollmentDTO();
 	enrollment.setIssueDate(Calendar.getInstance().getTime());
-	enrollment.setMark(Float.parseFloat(request.getParameter("mark").toString()));
-	enrollment.setSubjectId(subjectDAO.getEntity(Integer.parseInt(request.getParameter("subject").toString())));
-	enrollment.setTranscriptId(transcriptDAO.getEntity(Integer.parseInt(request.getParameter("transcript").toString())));
+	enrollment.setMark(Float.parseFloat(request.getParameter("mark")));
+	enrollment.setSubjectId(subjectDAO.getEntity(Integer.parseInt(request.getParameter("subject"))));
+	enrollment.setTranscriptId(transcriptDAO.getEntity(Integer.parseInt(request.getParameter("transcript"))));
 
 	enrollmentDAO.insert(enrollment);
 
