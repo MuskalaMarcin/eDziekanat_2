@@ -1,4 +1,4 @@
-package edziekanat.controller.student;
+package edziekanat.controller.administrator;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -11,20 +11,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.StudentDAO;
 import edziekanat.databasemodel.dao.SubjectDAO;
 import edziekanat.databasemodel.dto.StudentDTO;
 import edziekanat.databasemodel.dto.SubjectDTO;
 import edziekanat.databasemodel.dto.TranscriptDTO;
 
-@WebServlet("/studentacademicrecordcard")
-public class AcademicRecordCard extends HttpServlet
+@WebServlet("/adminstudentenrollments")
+public class AdminStudentEnrollments extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
     /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+     * response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -32,13 +32,14 @@ public class AcademicRecordCard extends HttpServlet
     }
 
     /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+     * response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	StudentDAO studentDAO = new StudentDAO();
 	SubjectDAO subjectDAO = new SubjectDAO();
-	Integer studentId = ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId();
+	Integer studentId = Integer.parseInt(request.getParameter("studentId"));
 	StudentDTO studentDTO = studentDAO.getEntity(studentId);
 	List<TranscriptDTO> transcriptDTOs = new LinkedList<>();
 	HashMap<Integer, Integer> semesterToECTS = new HashMap<>();
@@ -76,7 +77,7 @@ public class AcademicRecordCard extends HttpServlet
 	request.setAttribute("student", studentDTO);
 	request.setAttribute("semesterToSumECTS", semesterToECTS);
 	request.setAttribute("transcriptToSemesterList", transcriptToSemesterList);
-	request.getRequestDispatcher("student/academicrecordcard.jsp").forward(request, response);
+	request.getRequestDispatcher("administrator/studentsenrollments.jsp").forward(request, response);
 	subjectDAO.closeEntityManager();
 	studentDAO.closeEntityManager();
     }

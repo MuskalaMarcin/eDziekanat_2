@@ -49,6 +49,8 @@ public class TranscriptDTO implements Serializable
     private List<EnrollmentDTO> enrollment;
     @OneToMany(mappedBy = "transcript", fetch = FetchType.LAZY)
     private List<PartialMarkDTO> partial_mark;
+    @OneToMany(mappedBy = "transcript", fetch = FetchType.LAZY)
+    private List<PassedSemesterDTO> passed_semester;
 
     public Integer getId()
     {
@@ -108,5 +110,15 @@ public class TranscriptDTO implements Serializable
     public void setPartial_mark(List<PartialMarkDTO> partial_mark)
     {
         this.partial_mark = partial_mark;
+    }
+
+    public List<PassedSemesterDTO> getPassed_semester()
+    {
+	return passed_semester;
+    }
+
+    public void setPassed_semester(List<PassedSemesterDTO> passed_semester)
+    {
+	this.passed_semester = passed_semester;
     }
 }

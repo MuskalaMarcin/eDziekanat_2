@@ -1,7 +1,7 @@
 package edziekanat.controller.administrator;
 
 import java.io.IOException;
-import java.util.LinkedList;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -71,6 +71,9 @@ public class AdminStudents extends HttpServlet
     private void forwardRequest(HttpServletRequest request, HttpServletResponse response, List<StudentDTO> students)
 		    throws ServletException, IOException
     {
+	Comparator<StudentDTO> bySurname = (x, y) -> x.getSurname().compareTo(y.getSurname());
+	Comparator<StudentDTO> byName = (x, y) -> x.getName().compareTo(y.getName());
+	students.sort(bySurname.thenComparing(byName));
 	request.setAttribute("students", students);
 	request.getRequestDispatcher("administrator/students.jsp").forward(request, response);
     }

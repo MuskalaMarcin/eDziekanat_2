@@ -1136,6 +1136,8 @@ Insert into STUDENTS_GROUP_SUBJECT (STUDENTS_GROUP_ID, SUBJECT_ID) values ('8','
 Insert into STUDENTS_GROUP_SUBJECT (STUDENTS_GROUP_ID, SUBJECT_ID) values ('9','9');
 Insert into STUDENTS_GROUP_SUBJECT (STUDENTS_GROUP_ID, SUBJECT_ID) values ('1','10');
 Insert into STUDENTS_GROUP_SUBJECT (STUDENTS_GROUP_ID, SUBJECT_ID) values ('10','1');
+Insert into STUDENTS_GROUP_SUBJECT (STUDENTS_GROUP_ID, SUBJECT_ID) values ('1','2');
+
 
 Insert into TRANSCRIPT (ID,ISSUE_DATE,STUDENT_ID,STUDENTS_GROUP_ID) values (nextval('transcript_id_seq'), '2013-09-25', '1', '1');
 Insert into TRANSCRIPT (ID,ISSUE_DATE,STUDENT_ID,STUDENTS_GROUP_ID) values (nextval('transcript_id_seq'), '2011-09-25', '2', '2');
@@ -1148,7 +1150,6 @@ Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values 
 Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '2','2013-11-11', '3', '3');
 Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '4.5','2014-07-22', '4', '4');
 Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '5','2012-06-07', '5', '5');
-Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '5','2014-11-10', '6', '1');
 Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '3.5','2014-01-30', '7', '2');
 Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '4.5','2015-02-06', '8', '3');
 Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '4','2014-07-12', '9', '4');
@@ -1158,17 +1159,15 @@ Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values 
 Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '3','2013-01-08', '8', '3');
 Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '5','2012-02-03', '7', '4');
 Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '4.5','2014-06-12', '6', '5');
-Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '5','2013-07-15', '5', '1');
 Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '3.5','2014-08-31', '4', '2');
 Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '2','2014-09-03', '3', '3');
 Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '4','2013-10-12', '2', '4');
 Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '5','2012-11-01', '1', '5');
-Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '5','2013-07-15', '9', '1');
 Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '3.5','2014-08-31', '10', '2');
 Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '2','2014-09-03', '7', '3');
 Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '4','2013-10-12', '8', '4');
 Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '5','2012-11-01', '3', '5');
-Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '5','2013-07-15', '2', '1');
+Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '2','2013-07-15', '2', '1');
 Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '3.5','2014-08-31', '3', '2');
 Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '2','2014-09-03', '5', '3');
 Insert into ENROLLMENT (ID, MARK, ISSUE_DATE, SUBJECT_ID, TRANSCRIPT_ID) values (nextval('enrollment_id_seq'), '4','2013-10-12', '6', '4');
