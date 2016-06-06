@@ -2,9 +2,11 @@ package edziekanat.databasemodel.dao;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import edziekanat.databasemodel.TableNames;
 import edziekanat.databasemodel.dto.CourseDTO;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Data access class used to perform operations on course entities.
@@ -18,7 +20,7 @@ public class CourseDAO extends DAOParentClass<CourseDTO>
 
     /**
      * Method getting one object of Course entity.
-     * 
+     *
      * @param id Integer id value
      * @return CourseDTO object
      */
@@ -26,15 +28,18 @@ public class CourseDAO extends DAOParentClass<CourseDTO>
     {
 	return entityManager.find(CourseDTO.class, id);
     }
-    
+
     /**
      * Method getting courses by name
-     * @param coursename
+     *
+     * @param courseName
      * @return
      */
-    public List<CourseDTO> getCourseByName(String coursename)
+    public List<CourseDTO> getCourseByName(String courseName)
     {
-	return getMultipleEntities("UPPER(name) LIKE '%" + coursename.toUpperCase() + "%'");
+	return getAllEntities().stream()
+			.filter(courseDTO -> StringUtils.equalsIgnoreCase(courseDTO.getName(), courseName))
+			.collect(Collectors.toList());
     }
 
 }
