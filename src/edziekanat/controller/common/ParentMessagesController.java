@@ -56,15 +56,15 @@ public abstract class ParentMessagesController extends HttpServlet
 	    StudentsGroupDTO previousGroup = null;
 	    for (MessageDTO message : msg)
 	    {
-		if (!(message.getTitle().equals(previousTitle) && ObjectUtils
-				.equals(message.getGroup(), previousGroup) && message.getContent()
-				.equals(previousContent)))
-		{
-		    msgSize++;
-		}
-		previousGroup = message.getGroup();
-		previousTitle = message.getTitle();
-		previousContent = message.getContent();
+			if (!(message.getTitle().equals(previousTitle) && ObjectUtils
+					.equals(message.getGroup(), previousGroup) && message.getContent()
+					.equals(previousContent)))
+			{
+				msgSize++;
+			}
+			previousGroup = message.getGroup();
+			previousTitle = message.getTitle();
+			previousContent = message.getContent();
 	    }
 	    int pagesNumber = msgSize / msgPerPages + ((msgSize % msgPerPages > 0) ? 1 : 0);
 
@@ -72,11 +72,11 @@ public abstract class ParentMessagesController extends HttpServlet
 	    Integer requestPage;
 	    if (requestPageString == null)
 	    {
-		requestPage = 0;
+			requestPage = 0;
 	    }
 	    else
 	    {
-		requestPage = Integer.parseInt(requestPageString);
+			requestPage = Integer.parseInt(requestPageString);
 	    }
 	    int lastMsgIndex = (requestPage * msgPerPages) + msgPerPages;
 
@@ -86,19 +86,19 @@ public abstract class ParentMessagesController extends HttpServlet
 	    previousContent = "";
 	    for (MessageDTO message : msg)
 	    {
-		if (msgCounter >= requestPage * msgPerPages && msgCounter <= lastMsgIndex)
-		{
-		    messageDTOs.add(message);
-		}
-		if (!(message.getTitle().equals(previousTitle) && ObjectUtils
-				.equals(message.getGroup(), previousGroup) && message.getContent()
-				.equals(previousContent)))
-		{
-		    msgCounter++;
-		}
-		previousGroup = message.getGroup();
-		previousTitle = message.getTitle();
-		previousContent = message.getContent();
+			if (msgCounter >= requestPage * msgPerPages && msgCounter <= lastMsgIndex)
+			{
+				messageDTOs.add(message);
+			}
+			if (!(message.getTitle().equals(previousTitle) && ObjectUtils
+					.equals(message.getGroup(), previousGroup) && message.getContent()
+					.equals(previousContent)))
+			{
+				msgCounter++;
+			}
+			previousGroup = message.getGroup();
+			previousTitle = message.getTitle();
+			previousContent = message.getContent();
 	    }
 	    request.setAttribute("currentPage", requestPage);
 	    request.setAttribute("pagesNumber", pagesNumber);
