@@ -591,6 +591,8 @@
             <url-pattern>/addlearningmaterials/*</url-pattern>
             <url-pattern>/myapplications/*</url-pattern>
             <url-pattern>/studentmarks/*</url-pattern>
+            <url-pattern>/cancelpartialmark/*</url-pattern>
+            <url-pattern>/cancelenrollment/*</url-pattern>
             <url-pattern>/studentenrollments/*</url-pattern>
             <url-pattern>/lecturermydata/*</url-pattern>
             <url-pattern>/lecturergroupmessage/*</url-pattern>

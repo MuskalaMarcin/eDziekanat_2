@@ -76,7 +76,7 @@ CREATE TABLE course
     faculty_id INTEGER NOT NULL
   ) ;
 ALTER TABLE course ADD CONSTRAINT course_PK PRIMARY KEY ( id ) ;
-ALTER TABLE course ADD CONSTRAINT course__UN UNIQUE ( name , stationary ) ;
+ALTER TABLE course ADD CONSTRAINT course__UN UNIQUE ( name , stationary, faculty_id ) ;
 
 
 CREATE TABLE enrollment

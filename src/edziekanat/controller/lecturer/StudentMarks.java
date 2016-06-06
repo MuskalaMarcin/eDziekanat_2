@@ -1,6 +1,7 @@
 package edziekanat.controller.lecturer;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -48,29 +49,30 @@ public class StudentMarks extends HttpServlet
 	String subjectIdString = request.getParameter("subjectId");
 	Integer studentId = Integer.parseInt(request.getParameter("studentId"));
 
-	List<PartialMarkDTO> partialMarks = new LinkedList<PartialMarkDTO>();
+	List<PartialMarkDTO> partialMarks = new LinkedList<>();
 	if (!subjectIdString.isEmpty())
 	{
 	    Integer subjectId = Integer.parseInt(subjectIdString);
-	    request.setAttribute("subject", subjectDAO.getEntity(subjectId));
-	    partialMarks = new PartialMarkDAO().getStudentMarksFromSubject(subjectId, studentId);
+	    SubjectDTO subjectDTO = subjectDAO.getEntity(subjectId);
+	    request.setAttribute("subject", new LinkedList<>(Arrays.asList(subjectDTO)));
+	    partialMarks = partialMarkDAO.getStudentMarksFromSubject(studentId, subjectId);
+	    request.setAttribute("selectedSubject", true);
 	}
 	else
 	{
 	    List<SubjectDTO> subjectsList = subjectDAO.getStudentAndLecturerSubjects(studentId,
 			    ((LoginBean) request.getSession().getAttribute("loginBean")).getPersonId());
 
-	    for (SubjectDTO subject: subjectsList)
+	    for (SubjectDTO subject : subjectsList)
 	    {
 		partialMarks.addAll(partialMarkDAO.getStudentMarksFromSubject(studentId, subject.getId()));
 	    }
 	    request.setAttribute("subject", subjectsList);
 	}
 
-
 	Collections.sort(partialMarks, (x, y) -> y.getIssueDate().compareTo(x.getIssueDate()));
 	request.setAttribute("partialMarks", partialMarks);
-	request.setAttribute("student",studentDAO.getEntity(studentId));
+	request.setAttribute("student", studentDAO.getEntity(studentId));
 
 	request.getRequestDispatcher("lecturer/studentmarks.jsp").forward(request, response);
 

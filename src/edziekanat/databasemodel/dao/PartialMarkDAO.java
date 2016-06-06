@@ -38,9 +38,8 @@ public class PartialMarkDAO extends DAOParentClass<PartialMarkDTO>
      */
     public List<PartialMarkDTO> getStudentMarksFromSubject(Integer studentId, Integer subjectId)
     {
-	return new StudentDAO().getEntity(studentId).getTranscript().stream().map(transcriptDTO -> getMultipleEntities(
-			"subject_id = '" + subjectId + "' and transcript_id = '" + transcriptDTO.getId() + "'"))
-			.flatMap(partialMarkDTOs -> partialMarkDTOs.stream()).collect(
-					Collectors.toList());
+	return getAllEntities().stream().filter(partialMarkDTO -> partialMarkDTO.getSubject().getId().equals(subjectId)
+			&& partialMarkDTO.getTranscript().getStudent().getId().equals(studentId))
+			.collect(Collectors.toList());
     }
 }

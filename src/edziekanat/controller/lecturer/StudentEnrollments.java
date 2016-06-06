@@ -1,6 +1,7 @@
 package edziekanat.controller.lecturer;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -53,8 +54,9 @@ public class StudentEnrollments extends HttpServlet
 	if (!subjectIdString.isEmpty())
 	{
 	    Integer subjectId = Integer.parseInt(subjectIdString);
-	    request.setAttribute("subject", subjectDAO.getEntity(subjectId));
-	    enrollments = enrollmentDAO.getStudentEnrollmentsFromSubject(subjectId, studentId);
+	    request.setAttribute("subject", new LinkedList<>(Arrays.asList(subjectDAO.getEntity(subjectId))));
+	    enrollments = enrollmentDAO.getStudentEnrollmentsFromSubject(studentId, subjectId);
+	    request.setAttribute("selectedSubject", true);
 	}
 	else
 	{
@@ -63,7 +65,7 @@ public class StudentEnrollments extends HttpServlet
 
 	    for (SubjectDTO subject : subjectsList)
 	    {
-		enrollments.addAll(new EnrollmentDAO().getStudentEnrollmentsFromSubject(studentId, subject.getId()));
+		enrollments.addAll(enrollmentDAO.getStudentEnrollmentsFromSubject(studentId, subject.getId()));
 	    }
 
 	    request.setAttribute("subject", subjectsList);
