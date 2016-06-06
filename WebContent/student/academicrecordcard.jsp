@@ -81,8 +81,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach items="${transcript.enrollment}" var="enrollment"
-                                               varStatus="theCount">
+                                    <c:forEach items="${transcript.enrollment}" var="enrollment" varStatus="theCount">
                                         <c:if test="${semester == enrollment.subject.semester}">
                                             <c:set var="summark"
                                                    value="${summark + enrollment.subject.ECTS * enrollment.mark}"/>

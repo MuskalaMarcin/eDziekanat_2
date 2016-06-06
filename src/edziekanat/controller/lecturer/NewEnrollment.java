@@ -10,9 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edziekanat.databasemodel.dao.EnrollmentDAO;
+import edziekanat.databasemodel.dao.StudentDAO;
 import edziekanat.databasemodel.dao.SubjectDAO;
 import edziekanat.databasemodel.dao.TranscriptDAO;
 import edziekanat.databasemodel.dto.EnrollmentDTO;
+import edziekanat.databasemodel.dto.StudentDTO;
+import edziekanat.databasemodel.dto.SubjectDTO;
+import edziekanat.databasemodel.dto.TranscriptDTO;
 
 /**
  * Servlet used in adding new enrollment to database.
@@ -45,14 +49,20 @@ public class NewEnrollment extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 	EnrollmentDAO enrollmentDAO = new EnrollmentDAO();
+	StudentDAO studentDAO = new StudentDAO();
 	SubjectDAO subjectDAO = new SubjectDAO();
-	TranscriptDAO transcriptDAO = new TranscriptDAO();
+
+	StudentDTO student = studentDAO.getEntity(Integer.parseInt(request.getParameter("studentId")));
+	SubjectDTO subjectDTO = subjectDAO.getEntity(Integer.parseInt(request.getParameter("subject")));
+	TranscriptDTO transcriptDTO = student.getTranscript().stream()
+			.filter(t -> t.getStudentsGroup().getSubject().stream()
+					.filter(s -> s.getId().equals(subjectDTO.getId())).findAny().isPresent()).findAny().get();
 
 	EnrollmentDTO enrollment = new EnrollmentDTO();
 	enrollment.setIssueDate(Calendar.getInstance().getTime());
 	enrollment.setMark(Float.parseFloat(request.getParameter("mark")));
-	enrollment.setSubjectId(subjectDAO.getEntity(Integer.parseInt(request.getParameter("subject"))));
-	enrollment.setTranscriptId(transcriptDAO.getEntity(Integer.parseInt(request.getParameter("transcript"))));
+	enrollment.setSubjectId(subjectDTO);
+	enrollment.setTranscriptId(transcriptDTO);
 
 	enrollmentDAO.insert(enrollment);
 
@@ -60,9 +70,9 @@ public class NewEnrollment extends HttpServlet
 	request.setAttribute("msglong", "Nowy wpis zosta³ dodany");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
+	studentDAO.closeEntityManager();
 	enrollmentDAO.closeEntityManager();
 	subjectDAO.closeEntityManager();
-	transcriptDAO.closeEntityManager();
     }
     
 }

@@ -1,21 +1,19 @@
 package edziekanat.controller.common;
 
-import edziekanat.bean.LoginBean;
 import edziekanat.databasemodel.dao.MessageDAO;
 import edziekanat.databasemodel.dto.MessageDTO;
 import edziekanat.databasemodel.dto.StudentsGroupDTO;
 import edziekanat.databasemodel.dto.UserDTO;
-import org.apache.commons.lang3.ObjectUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -56,15 +54,14 @@ public abstract class ParentMessagesController extends HttpServlet
 	    StudentsGroupDTO previousGroup = null;
 	    for (MessageDTO message : msg)
 	    {
-			if (!(message.getTitle().equals(previousTitle) && ObjectUtils
-					.equals(message.getGroup(), previousGroup) && message.getContent()
-					.equals(previousContent)))
-			{
-				msgSize++;
-			}
-			previousGroup = message.getGroup();
-			previousTitle = message.getTitle();
-			previousContent = message.getContent();
+		if (!(message.getTitle().equals(previousTitle) && Objects.equals(message.getGroup(), previousGroup)
+				&& message.getContent().equals(previousContent)))
+		{
+		    msgSize++;
+		}
+		previousGroup = message.getGroup();
+		previousTitle = message.getTitle();
+		previousContent = message.getContent();
 	    }
 	    int pagesNumber = msgSize / msgPerPages + ((msgSize % msgPerPages > 0) ? 1 : 0);
 
@@ -72,11 +69,11 @@ public abstract class ParentMessagesController extends HttpServlet
 	    Integer requestPage;
 	    if (requestPageString == null)
 	    {
-			requestPage = 0;
+		requestPage = 0;
 	    }
 	    else
 	    {
-			requestPage = Integer.parseInt(requestPageString);
+		requestPage = Integer.parseInt(requestPageString);
 	    }
 	    int lastMsgIndex = (requestPage * msgPerPages) + msgPerPages;
 
@@ -86,19 +83,18 @@ public abstract class ParentMessagesController extends HttpServlet
 	    previousContent = "";
 	    for (MessageDTO message : msg)
 	    {
-			if (msgCounter >= requestPage * msgPerPages && msgCounter <= lastMsgIndex)
-			{
-				messageDTOs.add(message);
-			}
-			if (!(message.getTitle().equals(previousTitle) && ObjectUtils
-					.equals(message.getGroup(), previousGroup) && message.getContent()
-					.equals(previousContent)))
-			{
-				msgCounter++;
-			}
-			previousGroup = message.getGroup();
-			previousTitle = message.getTitle();
-			previousContent = message.getContent();
+		if (msgCounter >= requestPage * msgPerPages && msgCounter <= lastMsgIndex)
+		{
+		    messageDTOs.add(message);
+		}
+		if (!(message.getTitle().equals(previousTitle) && Objects.equals(message.getGroup(), previousGroup)
+				&& message.getContent().equals(previousContent)))
+		{
+		    msgCounter++;
+		}
+		previousGroup = message.getGroup();
+		previousTitle = message.getTitle();
+		previousContent = message.getContent();
 	    }
 	    request.setAttribute("currentPage", requestPage);
 	    request.setAttribute("pagesNumber", pagesNumber);

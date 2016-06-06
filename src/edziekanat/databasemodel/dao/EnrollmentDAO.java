@@ -81,8 +81,7 @@ public class EnrollmentDAO extends DAOParentClass<EnrollmentDTO>
      */
     public List<EnrollmentDTO> getStudentEnrollmentsFromSubject(Integer studentId, Integer subjectId)
     {
-	return new StudentDAO().getEntity(studentId).getTranscript().stream().map(transcriptDTO -> getMultipleEntities(
-			"subject_id = '" + subjectId + "' and transcript_id = '" + transcriptDTO.getId() + "'"))
-			.flatMap(p -> p.stream()).collect(Collectors.toList());
+	return getAllStudentEnrollments(studentId).stream().filter(e -> e.getSubject().getId().equals(subjectId))
+			.collect(Collectors.toList());
     }
 }

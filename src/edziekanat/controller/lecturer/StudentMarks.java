@@ -49,14 +49,13 @@ public class StudentMarks extends HttpServlet
 	String subjectIdString = request.getParameter("subjectId");
 	Integer studentId = Integer.parseInt(request.getParameter("studentId"));
 
-	List<PartialMarkDTO> partialMarks = new LinkedList<PartialMarkDTO>();
+	List<PartialMarkDTO> partialMarks = new LinkedList<>();
 	if (!subjectIdString.isEmpty())
 	{
 	    Integer subjectId = Integer.parseInt(subjectIdString);
 	    SubjectDTO subjectDTO = subjectDAO.getEntity(subjectId);
 	    request.setAttribute("subject", new LinkedList<>(Arrays.asList(subjectDTO)));
-	    partialMarks = partialMarkDAO.getStudentMarksFromSubject(subjectId, studentId);
-	    System.out.println(partialMarks.size());
+	    partialMarks = partialMarkDAO.getStudentMarksFromSubject(studentId, subjectId);
 	    request.setAttribute("selectedSubject", true);
 	}
 	else

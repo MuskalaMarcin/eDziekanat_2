@@ -43,7 +43,6 @@ public class NewPartialMark extends HttpServlet
     {
 	PartialMarkDAO partialMarkDAO = new PartialMarkDAO();
 	SubjectDAO subjectDAO = new SubjectDAO();
-	TranscriptDAO transcriptDAO = new TranscriptDAO();
 	StudentDAO studentDAO = new StudentDAO();
 	StudentDTO student = studentDAO.getEntity(Integer.parseInt(request.getParameter("studentId")));
 	SubjectDTO subjectDTO = subjectDAO.getEntity(Integer.parseInt(request.getParameter("subject")));
@@ -66,7 +65,6 @@ public class NewPartialMark extends HttpServlet
 	studentDAO.closeEntityManager();
 	partialMarkDAO.closeEntityManager();
 	subjectDAO.closeEntityManager();
-	transcriptDAO.closeEntityManager();
     }
 
 }

@@ -8,6 +8,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
     <link rel="stylesheet" href="resources/pure-min.css">
     <link rel="stylesheet" href="resources/styles.css">
+    <link rel="stylesheet" href="resources/css/bootstrap.css">
+    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="resources/css/normalize.css">
+    <script type='text/javascript' src="resources/jquery/jquery-2.2.3.js"></script>
+    <script type='text/javascript' src="resources/js/bootstrap.min.js"></script>
     <title>eDziekanat - Oceny studenta</title>
 </head>
 <body>
@@ -88,8 +94,8 @@
                 <center>Brak ocen do wyświetlenia.</center>
                 </c:when>
                 <c:otherwise>
-                    <table class="pure-table pure-table-bordered">
-                        <thead>
+                    <table style="width: 600px" class="table table-striped table-bordered table-sm">
+                        <thead class="thead-inverse">
                         <tr>
                             <td>Nr</td>
                             <td>Ocena</td>
@@ -106,6 +112,14 @@
                                 <td><fmt:formatDate pattern="dd.MM.yyyy"
                                                     value="${partialMark.issueDate}"/></td>
                                 <td>${partialMark.subject.name}</td>
+                                <td style="width: 85px">
+                                    <form action="cancelpartialmark" method="post">
+                                        <input type="hidden" value="${partialMark.id}" name="partialMarkId"/>
+                                        <button type="submit" class="btn btn-danger btn-md" style="width: 80px">
+                                            <span class="glyphicon glyphicon-remove"></span> Anuluj
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>
