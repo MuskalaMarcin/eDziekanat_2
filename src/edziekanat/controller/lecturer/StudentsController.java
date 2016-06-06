@@ -2,7 +2,6 @@ package edziekanat.controller.lecturer;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -64,7 +63,7 @@ public class StudentsController extends HttpServlet
 		SubjectDAO subjectDAO = new SubjectDAO();
 
 		SubjectDTO subject = subjectDAO
-				.getEntity(Integer.parseInt(request.getParameter("subjectId").toString()));
+				.getEntity(Integer.parseInt(request.getParameter("subjectId")));
 
 		students = subject.getStudents_group().stream().map(StudentsGroupDTO::getStudent)
 				.flatMap(s -> s.stream()).collect(Collectors.toList());

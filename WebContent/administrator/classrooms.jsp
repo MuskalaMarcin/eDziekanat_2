@@ -38,7 +38,7 @@
                             <form action="classrooms" method="post">
                                 <input type="hidden" name="rqweek" value="${selectedWeek - 1}">
                                 <input type="hidden" name="classroomId"
-                                       value="${selectedClassroom.number}">
+                                       value="${selectedClassroom.id}">
                                 <button class="linkButton " type="submit">Poprzedni
                                     tydzieñ
                                 </button>
@@ -53,7 +53,7 @@
                         <li class="pure-menu-item">
                             <form action="classrooms" method="post">
                                 <input type="hidden" name="classroomId"
-                                       value="${selectedClassroom.number}"> <input
+                                       value="${selectedClassroom.id}"> <input
                                     type="hidden" name="rqweek" value="${selectedWeek + 1}">
                                 <button class="linkButton" type="submit">Nastêpny
                                     tydzieñ
@@ -72,9 +72,11 @@
                         </button>
                     </form>
                 </li>
+                <li class="pure-menu-item"><a
+                        class="pure-menu-link" href="adminaddclassroom">Dodaj salê</a></li>
                 <li class="pure-menu-item">
                     <form action="adminlockclassroom" method="post">
-                        <button class="linkButton" type="submit">Blokuj salê
+                        <button class="linkButton" type="submit">Blokuj/usuñ salê
                         </button>
                     </form>
                 </li>
@@ -130,7 +132,7 @@
                             </c:forEach>
                         </select>
                         <button type="submit" class="pure-button pure-button-primary">Wy¶wietl</button>
-                    </center>
+                        </center>
                 </fieldset>
             </form>
             <br> <br>
