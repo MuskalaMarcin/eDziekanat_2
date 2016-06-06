@@ -139,6 +139,10 @@
         <jsp-file>/administrator/newstudent.jsp</jsp-file>
     </servlet>
     <servlet>
+        <servlet-name>AdminMoveStudent</servlet-name>
+        <jsp-file>/administrator/studentmove.jsp</jsp-file>
+    </servlet>
+    <servlet>
         <servlet-name>AdminNewPayment</servlet-name>
         <jsp-file>/administrator/newpayment.jsp</jsp-file>
     </servlet>
@@ -357,6 +361,10 @@
         <url-pattern>/admin/newstudent</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>AdminMoveStudent</servlet-name>
+        <url-pattern>/admin/studentmove</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AdminNewPayment</servlet-name>
         <url-pattern>/admin/newpayment</url-pattern>
     </servlet-mapping>
@@ -516,6 +524,7 @@
             <url-pattern>/adminapplications/*</url-pattern>
             <url-pattern>/admin/newnews/*</url-pattern>
             <url-pattern>/adminaddnews/*</url-pattern>
+            <url-pattern>/deletestudent/*</url-pattern>
             <url-pattern>/adminlockclassroom/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
