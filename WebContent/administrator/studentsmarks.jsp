@@ -98,12 +98,15 @@
                                         <tr>
                                             <td>${subject.name}</td>
                                             <td>
+                                                <c:set var="isComma" value="${false}" />
                                                 <c:forEach items="${partialMarks}" var="partialMark"
                                                            varStatus="status">
                                                     <c:if test="${partialMark.subject.name == subject.name}">
+                                                        <c:if test ="${isComma}">, </c:if>
                                                         ${partialMark.mark}
                                                         <c:set var="summark" value="${summark + partialMark.mark}"/>
                                                         <c:set var="marks" value="${marks + 1}"/>
+                                                        <c:set var="isComma" value="${true}" />
                                                     </c:if>
                                                 </c:forEach>
                                             </td>
