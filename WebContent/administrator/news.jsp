@@ -8,19 +8,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
     <link rel="stylesheet" href="resources/pure-min.css">
     <link rel="stylesheet" href="resources/styles.css">
-    <link rel="stylesheet" href="resources/bootstrap/bootstrap.css">
-    <link rel="stylesheet" href="resources/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="resources/bootstrap/bootstrap-datepicker3.standalone.css">
-    <link rel="stylesheet" href="resources/bootstrap/bootstrap-theme.css">
-    <link rel="stylesheet" href="resources/bootstrap/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="resources/bootstrap/normalize.css">
-    <link rel="stylesheet" href="resources/pure-min.css">
-    <link rel="stylesheet" href="resources/styles.css">
+    <link rel="stylesheet" href="resources/css/bootstrap.css">
+    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="resources/css/normalize.css">
     <script type='text/javascript' src="resources/jquery/jquery-2.2.3.js"></script>
-    <script type='text/javascript' src="resources/bootstrap/bootstrap.js"></script>
-    <script type='text/javascript' src="resources/bootstrap/bootstrap.min.js"></script>
-    <script type='text/javascript' src="resources/bootstrap/bootstrap-datepicker.js"></script>
-    <script type='text/javascript' src="resources/bootstrap/npm.js"></script>
+    <script type='text/javascript' src="resources/js/bootstrap.min.js"></script>
     <title>eDziekanat - Administrator - Ogłoszenia</title>
 </head>
 <body>
@@ -59,8 +52,8 @@
                                               href="#">Ogłoszenia</a></li>
                 <li class="pure-menu-item"><a class="pure-menu-link"
                                               href="admin/newnews">Nowe ogłoszenie</a></li>
-                <li class="pure-menu-item"><a class="pure-menu-link" href="adminmydata">Moje dane</a></li>
-                <li class="pure-menu-item menu-item-divided"><a class="pure-menu-link"
+                <li class="pure-menu-item"><a class="pure-menu-link menu-item-divided" href="adminmydata">Moje dane</a></li>
+                <li class="pure-menu-item"><a class="pure-menu-link"
                                               href="logout">Wyloguj</a></li>
             </ul>
         </div>

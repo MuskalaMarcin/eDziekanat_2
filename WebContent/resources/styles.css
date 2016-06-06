@@ -234,3 +234,7 @@ td#respond {
 	text-align: left;
 	vertical-align: middle;
 }
+
+.newLine {
+    clear:both;
+}
