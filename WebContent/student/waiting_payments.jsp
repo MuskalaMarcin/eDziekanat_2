@@ -21,7 +21,7 @@
 						class="pure-menu-link">Strona g³ówna</a></li>
 					<li class="pure-menu-item"><a href="studenttranscript"
 						class="pure-menu-link">Indeks</a></li>
-                    <li class="pure-menu-item menu-item-divided"><a href="studentacademicrecordcard"
+                    <li class="pure-menu-item"><a href="studentacademicrecordcard"
                         class="pure-menu-link">Karta przebiegu studiów</a></li>
 					<li class="pure-menu-item"><a href="timetable"
 						class="pure-menu-link">Plan zajêæ</a></li>

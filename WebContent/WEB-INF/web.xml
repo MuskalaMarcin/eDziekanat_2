@@ -143,6 +143,10 @@
         <jsp-file>/administrator/newstudent.jsp</jsp-file>
     </servlet>
     <servlet>
+        <servlet-name>AdminMoveStudent</servlet-name>
+        <jsp-file>/administrator/studentmove.jsp</jsp-file>
+    </servlet>
+    <servlet>
         <servlet-name>AdminNewPayment</servlet-name>
         <jsp-file>/administrator/newpayment.jsp</jsp-file>
     </servlet>
@@ -238,6 +242,10 @@
     <servlet>
         <servlet-name>sendreminder</servlet-name>
         <jsp-file>/administrator/send_reminder.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>adminlockclassroom</servlet-name>
+        <jsp-file>/administrator/lockclassroom.jsp</jsp-file>
     </servlet>
     <!-- Servlet mappings -->
     <servlet-mapping>
@@ -361,6 +369,10 @@
         <url-pattern>/admin/newstudent</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>AdminMoveStudent</servlet-name>
+        <url-pattern>/admin/studentmove</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AdminNewPayment</servlet-name>
         <url-pattern>/admin/newpayment</url-pattern>
     </servlet-mapping>
@@ -456,6 +468,10 @@
         <servlet-name>sendreminder</servlet-name>
         <url-pattern>/admin/sendreminder</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminlockclassroom</servlet-name>
+        <url-pattern>/admin/adminlockclassroom</url-pattern>
+    </servlet-mapping>
 
 
     <!-- Security constraints -->
@@ -516,6 +532,8 @@
             <url-pattern>/adminapplications/*</url-pattern>
             <url-pattern>/admin/newnews/*</url-pattern>
             <url-pattern>/adminaddnews/*</url-pattern>
+            <url-pattern>/deletestudent/*</url-pattern>
+            <url-pattern>/adminlockclassroom/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>admin</role-name>

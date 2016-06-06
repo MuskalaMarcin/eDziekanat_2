@@ -62,7 +62,8 @@ CREATE TABLE classroom
     nr         INTEGER NOT NULL ,
     capacity   INTEGER NOT NULL ,
     type       VARCHAR(256) NOT NULL ,
-    faculty_id INTEGER NOT NULL
+    faculty_id INTEGER NOT NULL ,
+    available  BOOLEAN NOT NULL
   ) ;
 ALTER TABLE classroom ADD CONSTRAINT classroom_PK PRIMARY KEY ( id ) ;
 
@@ -179,6 +180,15 @@ CREATE TABLE payment
     administrator_id INTEGER NOT NULL
   ) ;
 ALTER TABLE payment ADD CONSTRAINT payment_PK PRIMARY KEY ( id ) ;
+
+CREATE TABLE passed_semester
+  (
+    id        INTEGER NOT NULL ,
+    semester  INTEGER NOT NULL ,
+    dispatch_date DATE NOT NULL ,
+    transcript_id INTEGER NOT NULL
+  )
+ALTER TABLE passed_semester ADD CONSTRAINT passed_semester_PK PRIMARY KEY ( id ) ;
 
 CREATE TABLE reservation_request
   (

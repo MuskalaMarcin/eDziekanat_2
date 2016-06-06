@@ -45,7 +45,7 @@
                             <form action="classrooms" method="post">
                                 <input type="hidden" name="rqweek" value="${selectedWeek - 1}">
                                 <input type="hidden" name="classroomId"
-                                       value="${selectedClassroom.number}">
+                                       value="${selectedClassroom.id}">
                                 <button class="linkButton " type="submit">Poprzedni
                                     tydzieñ
                                 </button>
@@ -60,7 +60,7 @@
                         <li class="pure-menu-item">
                             <form action="classrooms" method="post">
                                 <input type="hidden" name="classroomId"
-                                       value="${selectedClassroom.number}"> <input
+                                       value="${selectedClassroom.id}"> <input
                                     type="hidden" name="rqweek" value="${selectedWeek + 1}">
                                 <button class="linkButton" type="submit">Nastêpny
                                     tydzieñ
@@ -132,174 +132,181 @@
                     <center>Wybierz salê z powy¿szej listy.</center>
                 </c:when>
                 <c:otherwise>
-                    <table class="table table-striped timetableTable table-bordered">
-                        <thead>
-                        <tr class="info">
-                            <td>Godziny<br></td>
-                            <td>Poniedzia³ek<br> <fmt:formatDate pattern="dd.MM.yyyy" value="${dayDates[0]}"/></td>
-                            <td>Wtorek<br> <fmt:formatDate pattern="dd.MM.yyyy" value="${dayDates[1]}"/></td>
-                            <td>¦roda<br> <fmt:formatDate pattern="dd.MM.yyyy" value="${dayDates[2]}"/></td>
-                            <td>Czwartek<br> <fmt:formatDate pattern="dd.MM.yyyy" value="${dayDates[3]}"/></td>
-                            <td>Pi±tek<br> <fmt:formatDate pattern="dd.MM.yyyy" value="${dayDates[4]}"/></td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <jsp:useBean id="now" class="java.util.Date"/>
-                        <c:forEach begin="0" end="${fn:length(classesStart) - 1}" varStatus="i">
-                            <tr>
-                                <td>
-                                    <fmt:formatDate pattern="H:mm" value="${classesStart[i.index]}"/>
-                                    - <fmt:formatDate pattern="H:mm" value="${classesEnd[i.index]}"/>
-                                </td>
-                                <c:forEach begin="0" end="4" varStatus="j">
-                                    <td>
-                                        <c:choose>
-                                        <c:when test="${rsClasses[j.index][i.index] != null}">
-                                            <a data-toggle="popover" data-trigger="focus" tabindex="0"
-                                               data-placement="auto bottom" data-html="true"
-                                               title="${rsClasses[j.index][i.index].subject.name}"
-                                               data-content="${groups[j.index][i.index]}<br />${courses[j.index][i.index]}<br />${lecturers[j.index][i.index]}">
-                                                    ${rsClasses[j.index][i.index].subject.name}</a>
-                                        </c:when>
-                                        <c:when test="${reservations[j.index][i.index] != null}">
-                                            <a data-toggle="popover" data-trigger="focus" tabindex="0"
-                                               data-placement="auto bottom" data-html="true" title="REZERWACJA"
-                                               data-content="Przedmiot: ${reservations[j.index][i.index].subject.name}<br />
-                                                   Wyk³adowca: ${reservations[j.index][i.index].subject.lecturer.name}
-                                                   ${reservations[j.index][i.index].subject.lecturer.surname}">
-                                                REZERWACJA</a>
-                                        </c:when>
-                                        <c:when test="${dayDates[j.index] gt now}">
-                                        <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
-                                                data-target="#modalWindow_${i.index}_${j.index}">Zarezerwuj
-                                        </button>
-                                        <div class="modal fade" id="modalWindow_${i.index}_${j.index}" role="dialog">
-                                            <div class="modal-dialog" style="width: 700px">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close"
-                                                                data-dismiss="modal">&times;</button>
-                                                        <h4 class="modal-title">Zarezerwuj salê</h4>
+                    <c:choose>
+                        <c:when test="${available == true}">
+                            <table class="table table-striped timetableTable table-bordered">
+                                <thead>
+                                <tr class="info">
+                                    <td>Godziny<br></td>
+                                    <td>Poniedzia³ek<br> <fmt:formatDate pattern="dd.MM.yyyy" value="${dayDates[0]}"/></td>
+                                    <td>Wtorek<br> <fmt:formatDate pattern="dd.MM.yyyy" value="${dayDates[1]}"/></td>
+                                    <td>¦roda<br> <fmt:formatDate pattern="dd.MM.yyyy" value="${dayDates[2]}"/></td>
+                                    <td>Czwartek<br> <fmt:formatDate pattern="dd.MM.yyyy" value="${dayDates[3]}"/></td>
+                                    <td>Pi±tek<br> <fmt:formatDate pattern="dd.MM.yyyy" value="${dayDates[4]}"/></td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <jsp:useBean id="now" class="java.util.Date"/>
+                                <c:forEach begin="0" end="${fn:length(classesStart) - 1}" varStatus="i">
+                                    <tr>
+                                        <td>
+                                            <fmt:formatDate pattern="H:mm" value="${classesStart[i.index]}"/>
+                                            - <fmt:formatDate pattern="H:mm" value="${classesEnd[i.index]}"/>
+                                        </td>
+                                        <c:forEach begin="0" end="4" varStatus="j">
+                                            <td>
+                                                <c:choose>
+                                                <c:when test="${rsClasses[j.index][i.index] != null}">
+                                                    <a data-toggle="popover" data-trigger="focus" tabindex="0"
+                                                       data-placement="auto bottom" data-html="true"
+                                                       title="${rsClasses[j.index][i.index].subject.name}"
+                                                       data-content="${groups[j.index][i.index]}<br />${courses[j.index][i.index]}<br />${lecturers[j.index][i.index]}">
+                                                            ${rsClasses[j.index][i.index].subject.name}</a>
+                                                </c:when>
+                                                <c:when test="${reservations[j.index][i.index] != null}">
+                                                    <a data-toggle="popover" data-trigger="focus" tabindex="0"
+                                                       data-placement="auto bottom" data-html="true" title="REZERWACJA"
+                                                       data-content="Przedmiot: ${reservations[j.index][i.index].subject.name}<br />
+                                                           Wyk³adowca: ${reservations[j.index][i.index].subject.lecturer.name}
+                                                           ${reservations[j.index][i.index].subject.lecturer.surname}">
+                                                        REZERWACJA</a>
+                                                </c:when>
+                                                <c:when test="${dayDates[j.index] gt now}">
+                                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
+                                                        data-target="#modalWindow_${i.index}_${j.index}">Zarezerwuj
+                                                </button>
+                                                <div class="modal fade" id="modalWindow_${i.index}_${j.index}" role="dialog">
+                                                    <div class="modal-dialog" style="width: 700px">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close"
+                                                                        data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">Zarezerwuj salê</h4>
+                                                            </div>
+
+                                                            <form class="form-horizontal" role="form" method="post"
+                                                                  action="reserveclasses">
+                                                                <input type="hidden" name="classroomId"
+                                                                       value="${selectedClassroom.number}">
+                                                                <input type="hidden" name="rqweek"
+                                                                       value="${selectedWeek}">
+                                                                <div class="modal-body">
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-3 control-label"
+                                                                               for="subjectId">Przedmiot</label>
+                                                                        <div class="col-sm-9">
+                                                                            <select class="form-control" id="subjectId"
+                                                                                    name="subjectId">
+                                                                                <c:forEach items="${subjects}"
+                                                                                           var="subject">
+                                                                                    <option value="${subject.id}">${subject.name}</option>
+                                                                                </c:forEach>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-3 control-label"
+                                                                               for="classroomId">Sala</label>
+                                                                        <div class="col-sm-9">
+                                                                            <input type="text" value="${subject.id}"
+                                                                                   hidden name="classroomId">
+                                                                            <input id="classroomId"
+                                                                                   class="form-control" type="text"
+                                                                                   value=" Nr: ${selectedClassroom.number} typ: ${selectedClassroom.type }"
+                                                                                   readonly>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-3 control-label"
+                                                                               for="repeat_${i.index}_${j.index}">Powtarzaj</label>
+                                                                        <div class="col-sm-9">
+                                                                            <select class="form-control" name="repeat"
+                                                                                    id="repeat_${i.index}_${j.index}"
+                                                                                    onchange="showHideEndDate(${i.index}, ${j.index})">
+                                                                                <option value="0">Nie powtarzaj</option>
+                                                                                <option value="1">Co tydzieñ</option>
+                                                                                <option value="2">Co dwa tygodnie
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-3 control-label"
+                                                                               for="startTime">Godzina
+                                                                            rozpoczêcia</label>
+                                                                        <div class="col-sm-9">
+                                                                            <select class="form-control" name="startTime" id="startTime">
+                                                                                <option value="0" <c:if test="${i.index == 0}">selected</c:if>>7:30</option>
+                                                                                <option value="1" <c:if test="${i.index == 1}">selected</c:if>>9:15</option>
+                                                                                <option value="2" <c:if test="${i.index == 2}">selected</c:if>>11:00</option>
+                                                                                <option value="3" <c:if test="${i.index == 3}">selected</c:if>>12:45</option>
+                                                                                <option value="4" <c:if test="${i.index == 4}">selected</c:if>>14:30</option>
+                                                                                <option value="5" <c:if test="${i.index == 5}">selected</c:if>>16:15</option>
+                                                                                <option value="6" <c:if test="${i.index == 6}">selected</c:if>>18:00</option>
+                                                                                <option value="7" <c:if test="${i.index == 7}">selected</c:if>>19:45</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="input-daterange input-group datepickers"
+                                                                         id="datepicker_${i.index}_${j.index}">
+                                                                        <div class="form-group">
+                                                                            <label class="col-sm-3 control-label"
+                                                                                   id="startDateLabel"
+                                                                                   for="startDate_${i.index}_${j.index}">Data
+                                                                                rozpoczêcia </label>
+                                                                            <div class="col-sm-9">
+                                                                                <input id="startDate_${i.index}_${j.index}"
+                                                                                       style="border-radius: 4px; text-align: left"
+                                                                                       type="text"
+                                                                                       value="<fmt:formatDate pattern="dd.MM.yyyy" value="${dayDates[j.index]}"/>"
+                                                                                       class="form-control pure-input-1-2 "
+                                                                                       name="startDate"/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="col-sm-3 control-label"
+                                                                                   id="endDateLabel_${i.index}_${j.index}"
+                                                                                   style="display:none"
+                                                                                   for="endDate_${i.index}_${j.index}">Data
+                                                                                zakoñczenia </label>
+                                                                            <div class=" col-sm-9">
+                                                                                <input id="endDate_${i.index}_${j.index}"
+                                                                                       style="display:none; border-radius: 4px; text-align: left"
+                                                                                       type="text"
+                                                                                       class="form-control pure-input-1-2"
+                                                                                       name="endDate"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default"
+                                                                            data-dismiss="modal">Anuluj
+                                                                    </button>
+                                                                    <button type="submit" class="btn btn-primary">
+                                                                        Wy¶lij
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
                                                     </div>
-
-                                                    <form class="form-horizontal" role="form" method="post"
-                                                          action="reserveclasses">
-                                                        <input type="hidden" name="classroomId"
-                                                               value="${selectedClassroom.number}">
-                                                        <input type="hidden" name="rqweek"
-                                                               value="${selectedWeek}">
-                                                        <div class="modal-body">
-                                                            <div class="form-group">
-                                                                <label class="col-sm-3 control-label"
-                                                                       for="subjectId">Przedmiot</label>
-                                                                <div class="col-sm-9">
-                                                                    <select class="form-control" id="subjectId"
-                                                                            name="subjectId">
-                                                                        <c:forEach items="${subjects}"
-                                                                                   var="subject">
-                                                                            <option value="${subject.id}">${subject.name}</option>
-                                                                        </c:forEach>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label class="col-sm-3 control-label"
-                                                                       for="classroomId">Sala</label>
-                                                                <div class="col-sm-9">
-                                                                    <input type="text" value="${subject.id}"
-                                                                           hidden name="classroomId">
-                                                                    <input id="classroomId"
-                                                                           class="form-control" type="text"
-                                                                           value=" Nr: ${selectedClassroom.number} typ: ${selectedClassroom.type }"
-                                                                           readonly>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label class="col-sm-3 control-label"
-                                                                       for="repeat_${i.index}_${j.index}">Powtarzaj</label>
-                                                                <div class="col-sm-9">
-                                                                    <select class="form-control" name="repeat"
-                                                                            id="repeat_${i.index}_${j.index}"
-                                                                            onchange="showHideEndDate(${i.index}, ${j.index})">
-                                                                        <option value="0">Nie powtarzaj</option>
-                                                                        <option value="1">Co tydzieñ</option>
-                                                                        <option value="2">Co dwa tygodnie
-                                                                        </option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label class="col-sm-3 control-label"
-                                                                       for="startTime">Godzina
-                                                                    rozpoczêcia</label>
-                                                                <div class="col-sm-9">
-                                                                    <select class="form-control" name="startTime" id="startTime">
-                                                                        <option value="0" <c:if test="${i.index == 0}">selected</c:if>>7:30</option>
-                                                                        <option value="1" <c:if test="${i.index == 1}">selected</c:if>>9:15</option>
-                                                                        <option value="2" <c:if test="${i.index == 2}">selected</c:if>>11:00</option>
-                                                                        <option value="3" <c:if test="${i.index == 3}">selected</c:if>>12:45</option>
-                                                                        <option value="4" <c:if test="${i.index == 4}">selected</c:if>>14:30</option>
-                                                                        <option value="5" <c:if test="${i.index == 5}">selected</c:if>>16:15</option>
-                                                                        <option value="6" <c:if test="${i.index == 6}">selected</c:if>>18:00</option>
-                                                                        <option value="7" <c:if test="${i.index == 7}">selected</c:if>>19:45</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="input-daterange input-group datepickers"
-                                                                 id="datepicker_${i.index}_${j.index}">
-                                                                <div class="form-group">
-                                                                    <label class="col-sm-3 control-label"
-                                                                           id="startDateLabel"
-                                                                           for="startDate_${i.index}_${j.index}">Data
-                                                                        rozpoczêcia </label>
-                                                                    <div class="col-sm-9">
-                                                                        <input id="startDate_${i.index}_${j.index}"
-                                                                               style="border-radius: 4px; text-align: left"
-                                                                               type="text"
-                                                                               value="<fmt:formatDate pattern="dd.MM.yyyy" value="${dayDates[j.index]}"/>"
-                                                                               class="form-control pure-input-1-2 "
-                                                                               name="startDate"/>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-sm-3 control-label"
-                                                                           id="endDateLabel_${i.index}_${j.index}"
-                                                                           style="display:none"
-                                                                           for="endDate_${i.index}_${j.index}">Data
-                                                                        zakoñczenia </label>
-                                                                    <div class=" col-sm-9">
-                                                                        <input id="endDate_${i.index}_${j.index}"
-                                                                               style="display:none; border-radius: 4px; text-align: left"
-                                                                               type="text"
-                                                                               class="form-control pure-input-1-2"
-                                                                               name="endDate"/>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default"
-                                                                    data-dismiss="modal">Anuluj
-                                                            </button>
-                                                            <button type="submit" class="btn btn-primary">
-                                                                Wy¶lij
-                                                            </button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            </c:when>
-                                            </c:choose>
-                                    </td>
+                                                    </c:when>
+                                                    </c:choose>
+                                            </td>
+                                        </c:forEach>
+                                    </tr>
                                 </c:forEach>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
+                                </tbody>
+                            </table>
+                        </c:when>
+                        <c:otherwise>
+                            <center>Sala niedostêpna. Wybierz inn±.</center>
+                        </c:otherwise>
+                    </c:choose>
                 </c:otherwise>
             </c:choose>
         </div>

@@ -38,7 +38,7 @@
                             <form action="classrooms" method="post">
                                 <input type="hidden" name="rqweek" value="${selectedWeek - 1}">
                                 <input type="hidden" name="classroomId"
-                                       value="${selectedClassroom.number}">
+                                       value="${selectedClassroom.id}">
                                 <button class="linkButton " type="submit">Poprzedni
                                     tydzieñ
                                 </button>
@@ -53,7 +53,7 @@
                         <li class="pure-menu-item">
                             <form action="classrooms" method="post">
                                 <input type="hidden" name="classroomId"
-                                       value="${selectedClassroom.number}"> <input
+                                       value="${selectedClassroom.id}"> <input
                                     type="hidden" name="rqweek" value="${selectedWeek + 1}">
                                 <button class="linkButton" type="submit">Nastêpny
                                     tydzieñ
@@ -69,6 +69,14 @@
                         <input type="hidden" name="action"
                                value="history">
                         <button class="linkButton" type="submit">Historia rezerwacji
+                        </button>
+                    </form>
+                </li>
+                <li class="pure-menu-item"><a
+                        class="pure-menu-link" href="adminaddclassroom">Dodaj salê</a></li>
+                <li class="pure-menu-item">
+                    <form action="adminlockclassroom" method="post">
+                        <button class="linkButton" type="submit">Blokuj/usuñ salê
                         </button>
                     </form>
                 </li>
@@ -124,63 +132,72 @@
                             </c:forEach>
                         </select>
                         <button type="submit" class="pure-button pure-button-primary">Wy¶wietl</button>
-                    </center>
+                        </center>
                 </fieldset>
             </form>
             <br> <br>
             <c:choose>
-                <c:when test="${emptyWeek == true}">
-                    <center>Plan zajêæ na ${selectedWeek} tydzieñ roku dla
-                        sali ${selectedClassroom.number} jest pusty.
+                <c:when test="${selectedClassroom.available == false}">
+                    <center>
+                    Sala niedostêpna. Proszê wybraæ inn±.
                     </center>
                 </c:when>
-                <c:when test="${noClassroom == true}">
-                    <center>Wybierz salê z powy¿szej listy.</center>
-                </c:when>
                 <c:otherwise>
-                    <table class="table table-striped timetableTable table-bordered">
-                        <thead>
-                        <tr class="info">
-                            <td>Godziny<br></td>
-                            <td>Poniedzia³ek<br> <fmt:formatDate pattern="dd.MM.yyyy" value="${dayDates[0]}"/></td>
-                            <td>Wtorek<br> <fmt:formatDate pattern="dd.MM.yyyy" value="${dayDates[1]}"/></td>
-                            <td>¦roda<br> <fmt:formatDate pattern="dd.MM.yyyy" value="${dayDates[2]}"/></td>
-                            <td>Czwartek<br> <fmt:formatDate pattern="dd.MM.yyyy" value="${dayDates[3]}"/></td>
-                            <td>Pi±tek<br> <fmt:formatDate pattern="dd.MM.yyyy" value="${dayDates[4]}"/></td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach begin="0" end="${fn:length(classesStart) - 1}" varStatus="i">
-                            <tr>
-                                <td>
-                                    <fmt:formatDate pattern="H:mm" value="${classesStart[i.index]}"/>
-                                    - <fmt:formatDate pattern="H:mm" value="${classesEnd[i.index]}"/>
-                                </td>
-                                <c:forEach begin="0" end="4" varStatus="j">
-                                    <td>
-                                        <c:choose>
-                                            <c:when test="${rsClasses[j.index][i.index] != null}">
-                                                <a data-toggle="popover" data-trigger="focus" tabindex="0"
-                                                   data-placement="auto bottom" data-html="true"
-                                                   title="${rsClasses[j.index][i.index].subject.name}"
-                                                   data-content="${groups[j.index][i.index]}<br />${courses[j.index][i.index]}<br />${lecturers[j.index][i.index]}">
-                                                        ${rsClasses[j.index][i.index].subject.name}</a>
-                                            </c:when>
-                                            <c:when test="${reservations[j.index][i.index] != null}">
-                                                <a data-toggle="popover" data-trigger="focus" tabindex="0"
-                                                   data-placement="auto bottom" data-html="true" title="REZERWACJA"
-                                                   data-content="Przedmiot: ${reservations[j.index][i.index].subject.name}<br />
-                                                   Wyk³adowca: ${reservations[j.index][i.index].subject.lecturer.name}
-                                                   ${reservations[j.index][i.index].subject.lecturer.surname}">
-                                                    REZERWACJA</a>
-                                            </c:when>
-                                        </c:choose>
-                                    </td>
+                    <c:choose>
+                        <c:when test="${emptyWeek == true}">
+                            <center>Plan zajêæ na ${selectedWeek} tydzieñ roku dla
+                                sali ${selectedClassroom.number} jest pusty.
+                            </center>
+                        </c:when>
+                        <c:when test="${noClassroom == true}">
+                            <center>Wybierz salê z powy¿szej listy.</center>
+                        </c:when>
+                        <c:otherwise>
+                            <table class="table table-striped timetableTable table-bordered">
+                                <thead>
+                                <tr class="info">
+                                    <td>Godziny<br></td>
+                                    <td>Poniedzia³ek<br> <fmt:formatDate pattern="dd.MM.yyyy" value="${dayDates[0]}"/></td>
+                                    <td>Wtorek<br> <fmt:formatDate pattern="dd.MM.yyyy" value="${dayDates[1]}"/></td>
+                                    <td>¦roda<br> <fmt:formatDate pattern="dd.MM.yyyy" value="${dayDates[2]}"/></td>
+                                    <td>Czwartek<br> <fmt:formatDate pattern="dd.MM.yyyy" value="${dayDates[3]}"/></td>
+                                    <td>Pi±tek<br> <fmt:formatDate pattern="dd.MM.yyyy" value="${dayDates[4]}"/></td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach begin="0" end="${fn:length(classesStart) - 1}" varStatus="i">
+                                    <tr>
+                                        <td>
+                                            <fmt:formatDate pattern="H:mm" value="${classesStart[i.index]}"/>
+                                            - <fmt:formatDate pattern="H:mm" value="${classesEnd[i.index]}"/>
+                                        </td>
+                                        <c:forEach begin="0" end="4" varStatus="j">
+                                            <td>
+                                                <c:choose>
+                                                    <c:when test="${rsClasses[j.index][i.index] != null}">
+                                                        <a data-toggle="popover" data-trigger="focus" tabindex="0"
+                                                           data-placement="auto bottom" data-html="true"
+                                                           title="${rsClasses[j.index][i.index].subject.name}"
+                                                           data-content="${groups[j.index][i.index]}<br />${courses[j.index][i.index]}<br />${lecturers[j.index][i.index]}">
+                                                                ${rsClasses[j.index][i.index].subject.name}</a>
+                                                    </c:when>
+                                                    <c:when test="${reservations[j.index][i.index] != null}">
+                                                        <a data-toggle="popover" data-trigger="focus" tabindex="0"
+                                                           data-placement="auto bottom" data-html="true" title="REZERWACJA"
+                                                           data-content="Przedmiot: ${reservations[j.index][i.index].subject.name}<br />
+                                                           Wyk³adowca: ${reservations[j.index][i.index].subject.lecturer.name}
+                                                           ${reservations[j.index][i.index].subject.lecturer.surname}">
+                                                            REZERWACJA</a>
+                                                    </c:when>
+                                                </c:choose>
+                                            </td>
+                                        </c:forEach>
+                                    </tr>
                                 </c:forEach>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
+                                </tbody>
+                            </table>
+                        </c:otherwise>
+                    </c:choose>
                 </c:otherwise>
             </c:choose>
         </div>

@@ -88,6 +88,13 @@
 													type="submit" value="Wyk³adowca">
 											</form>
 										</td>
+                                        <td width="75px" id="respond">
+                                            <form action="deletesubject" method=post>
+                                                <input type="hidden" name="subjectId" value="${subject.id}"><input
+                                                    class="pure-button pure-input-1-2 pure-button-primary"
+                                                    type="submit" style="background-color: red" value="Usuñ">
+                                            </form>
+                                        </td>
 									</tr>
 								</c:forEach>
 							</table>
