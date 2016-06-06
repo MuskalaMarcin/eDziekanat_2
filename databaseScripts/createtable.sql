@@ -142,7 +142,8 @@ CREATE TABLE message
     dispatch_date DATE NOT NULL ,
     receive_date  DATE ,
     sender_id     VARCHAR(256) NOT NULL ,
-    receiver_id   VARCHAR(256) NOT NULL
+    receiver_id   VARCHAR(256) NOT NULL ,
+    group_id	INTEGER
   ) ;
 ALTER TABLE message ADD CONSTRAINT message_PK PRIMARY KEY ( id ) ;
 
@@ -186,7 +187,7 @@ CREATE TABLE passed_semester
     semester  INTEGER NOT NULL ,
     dispatch_date DATE NOT NULL ,
     transcript_id INTEGER NOT NULL
-  )
+  );
 ALTER TABLE passed_semester ADD CONSTRAINT passed_semester_PK PRIMARY KEY ( id ) ;
 
 CREATE TABLE reservation_request
@@ -344,6 +345,9 @@ ALTER TABLE message ADD CONSTRAINT message_users_FK FOREIGN KEY ( sender_id ) RE
 DELETE CASCADE ;
 
 ALTER TABLE message ADD CONSTRAINT message_users_FKv1 FOREIGN KEY ( receiver_id ) REFERENCES app_user ( login ) ON
+DELETE CASCADE ;
+
+ALTER TABLE message ADD CONSTRAINT message_group_FK FOREIGN KEY ( group_id ) REFERENCES students_group ( id ) ON
 DELETE CASCADE ;
 
 ALTER TABLE news ADD CONSTRAINT news_users_FK FOREIGN KEY ( sender_id ) REFERENCES app_user ( login ) ON

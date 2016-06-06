@@ -50,6 +50,9 @@ public class MessageDTO implements Serializable
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "receiver_id")
     private UserDTO receiver;
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn(name = "group_id")
+    private StudentsGroupDTO group;
 
     public Integer getId()
     {
@@ -120,4 +123,8 @@ public class MessageDTO implements Serializable
     {
 	this.receiver = receiver;
     }
+
+    public StudentsGroupDTO getGroup(){return group;}
+
+    public void setGroup(StudentsGroupDTO group){this.group = group;}
 }
