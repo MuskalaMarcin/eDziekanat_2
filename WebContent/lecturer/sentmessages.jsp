@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-2"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -82,11 +83,38 @@
                                             <div id="deletenews" align="right">
                                                 <c:choose>
 													<c:when test="${receiverNames[varStatus.index][1] != null}">
-														<select >
-															<c:forEach items="${receiverNames[varStatus.index]}" var="reciever" varStatus="recieverNum">
-																<option >${reciever}</option>
-															</c:forEach>
-														</select>
+
+														<button type="button" class="btn btn-primary" data-toggle="popover"
+																data-placement="bottom" data-trigger="focus" data-html="true"
+																title="Status dorêczenia" data-content="
+																<table>
+																<tr><td>Adresat</td><td>Data odebrania</td></tr>
+																<c:forEach items="${receiverNames[varStatus.index]}" var="reciever" varStatus="recieverNum">
+																	<c:set var="msgStatus" value="${fn:split(reciever,':')}"/>
+																	<c:set var="msgStatusRec" value="${fn:split(msgStatus[0],'-')}"/>
+																	<c:choose>
+																		<c:when test="${msgStatus[0].trim().length()>8}">
+																			<tr>
+																			<td style='width: 130px'>
+																			${msgStatusRec[0]}
+																			 </td><td>
+																			 <c:choose>
+																				 <c:when test="${msgStatus[1].trim().equals(\"nie\")}">
+																					<b class='text-danger'>Nie odebrano</b>
+																				 </c:when>
+																				 <c:otherwise>
+																					<b class='text-success'>${msgStatus[1]}</b>
+																				 </c:otherwise>
+																			 </c:choose>
+																			 </td>
+																			 </tr>
+																		 </c:when>
+																	 </c:choose>
+																</c:forEach>
+																</table>
+																">
+																	Status dorêczenia
+																</button>
 													</c:when>
 													<c:otherwise>
 														<c:choose>
@@ -127,5 +155,16 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		$('[data-toggle="popover"]').popover();
+
+		$('.popover-dismiss').popover({
+			trigger: 'focus'
+		})
+
+		$('[data-toggle="popover"]').on('click', function (e) {
+			$('[data-toggle="popover"]').not(this).popover('hide');
+		});
+	</script>
 </body>
 </html>
