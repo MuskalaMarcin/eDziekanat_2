@@ -47,6 +47,7 @@ public class AddNewClassroom extends HttpServlet
 	{
 	    ClassroomDTO classroomDTO = new ClassroomDTO();
 	    Integer classNumber = Integer.parseInt(request.getParameter("number"));
+	    Integer capacity = Integer.parseInt(request.getParameter("capacity"));
 	    FacultyDTO facultyDTO = facultyDAO.getEntity(Integer.parseInt(request.getParameter("facultyId")));
 
 	    if (isNumberAlreadyExistsInFaculty(facultyDTO, classNumber))
@@ -56,10 +57,16 @@ public class AddNewClassroom extends HttpServlet
 				+ " ju¿ istnieje na wydziale: " + facultyDTO.getName());
 		request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	    }
+	    else if (classNumber < 0 || capacity < 0)
+	    {
+		request.setAttribute("errorshort", "B³±d");
+		request.setAttribute("errorlong", "Numer sali i pojemno¶æ musz± byæ liczbami dodatnimi");
+		request.getRequestDispatcher("common/error.jsp").forward(request, response);
+	    }
 	    else
 	    {
 		classroomDTO.setAvailable(true);
-		classroomDTO.setCapacity(Integer.parseInt(request.getParameter("capacity")));
+		classroomDTO.setCapacity(capacity);
 		classroomDTO.setFaculty(facultyDTO);
 		classroomDTO.setType(request.getParameter("type"));
 		classroomDTO.setNumber(classNumber);
@@ -77,8 +84,10 @@ public class AddNewClassroom extends HttpServlet
 
     private boolean isNumberAlreadyExistsInFaculty(FacultyDTO facultyDTO, Integer classroomNumber)
     {
-	for (ClassroomDTO classroomDTO : facultyDTO.getClassroom()) {
-	    if (classroomDTO.getNumber().equals(classroomNumber)) {
+	for (ClassroomDTO classroomDTO : facultyDTO.getClassroom())
+	{
+	    if (classroomDTO.getNumber().equals(classroomNumber))
+	    {
 		return true;
 	    }
 	}

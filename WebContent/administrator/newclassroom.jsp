@@ -93,11 +93,11 @@
                 <form action="http://localhost:8080/edziekanat/adminaddclassroom"
                       method=post class="pure-form">
                     <fieldset class="pure-group">
-                        <input type="number" name="number" class="pure-input-1-2"
+                        <input type="number" name="number" class="pure-input-1-2" min="1"
                                placeholder="Numer" required>
                     </fieldset>
                     <fieldset class="pure-group">
-                        <input type="number" name="capacity" class="pure-input-1-2"
+                        <input type="number" name="capacity" class="pure-input-1-2" min="1"
                                placeholder="Pojemno¶æ" required>
                     </fieldset>
                     Wydzia³:
