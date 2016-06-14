@@ -47,6 +47,7 @@ public class AddNewStudentsGroup extends HttpServlet
 	
 	request.setAttribute("msgshort", "Grupa studencka dodana");
 	request.setAttribute("msglong", "Nowa grupa studencka zosta³a dodana");
+	request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/adminstudentgroups");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
 	studentsGroupDAO.closeEntityManager();

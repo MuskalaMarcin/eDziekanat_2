@@ -58,22 +58,26 @@ public class PasswordController extends HttpServlet {
 
                         request.setAttribute("msgshort", "Zmieniono has³o");
                         request.setAttribute("msglong", "Has³o zosta³o zmienione.");
+                        request.setAttribute("previousUrl", request.getHeader("referer"));
                         request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
                     } else {
                         request.setAttribute("errorshort", "B³±d");
                         request.setAttribute("errorlong", "Minimalna d³ugo¶æ has³a to 5 znaków.");
+                        request.setAttribute("previousUrl", request.getHeader("referer"));
                         request.getRequestDispatcher("common/error.jsp").forward(request, response);
                     }
                 } else {
                     request.setAttribute("errorshort", "B³±d");
                     request.setAttribute("errorlong", "Podano ró¿ne has³a.");
+                    request.setAttribute("previousUrl", request.getHeader("referer"));
                     request.getRequestDispatcher("common/error.jsp").forward(request, response);
                 }
 
             } else {
                 request.setAttribute("errorshort", "B³±d");
                 request.setAttribute("errorlong", "Podano niepoprawne has³o.");
+                request.setAttribute("previousUrl", request.getHeader("referer"));
                 request.getRequestDispatcher("common/error.jsp").forward(request, response);
             }
         }

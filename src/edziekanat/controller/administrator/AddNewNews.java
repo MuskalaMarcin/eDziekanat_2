@@ -45,6 +45,7 @@ public class AddNewNews extends HttpServlet
 
 	request.setAttribute("msgshort", "Dodano og³oszenie.");
 	request.setAttribute("msglong", "Og³oszenie zosta³o dodane do tablicy og³oszeñ.");
+	request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/news");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
 	newsdao.closeEntityManager();

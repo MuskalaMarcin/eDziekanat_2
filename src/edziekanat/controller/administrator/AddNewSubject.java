@@ -57,6 +57,7 @@ public class AddNewSubject extends HttpServlet
 
 	request.setAttribute("msgshort", "Przedmiot dodany");
 	request.setAttribute("msglong", "Nowa przedmiot zosta³ dodany");
+	request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/adminsubjects");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
 	subjectDAO.closeEntityManager();

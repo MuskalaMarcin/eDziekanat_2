@@ -74,6 +74,7 @@ public class AddNewStudent extends HttpServlet
 
 	    request.setAttribute("msgshort", "Student dodany");
 	    request.setAttribute("msglong", "Nowy student zosta³ dodany");
+	    request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/adminstudents");
 	    request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
 	    studentsGroupDAO.closeEntityManager();
@@ -86,6 +87,7 @@ public class AddNewStudent extends HttpServlet
 	    {
 		request.setAttribute("errorshort", "B³±d");
 		request.setAttribute("errorlong", "Login lub email jest ju¿ u¿ywany");
+		request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/adminstudents");
 		request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	    }
 	    else

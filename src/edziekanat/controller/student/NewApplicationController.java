@@ -74,6 +74,7 @@ public class NewApplicationController extends HttpServlet
 	
 	request.setAttribute("msgshort", "Wniosek z³o¿ony");
 	request.setAttribute("msglong", "Twój wniosek zosta³ wys³any");
+    	request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/studentapplications");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
 	studentDAO.closeEntityManager();

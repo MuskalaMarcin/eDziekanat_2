@@ -60,6 +60,7 @@ public class NewPartialMark extends HttpServlet
 
 	request.setAttribute("msgshort", "Ocena dodana");
 	request.setAttribute("msglong", "Nowa ocena zosta³a dodana");
+	request.setAttribute("previousUrl", request.getHeader("referer"));
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
 	studentDAO.closeEntityManager();

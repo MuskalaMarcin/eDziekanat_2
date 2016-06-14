@@ -49,7 +49,8 @@ public class AdminNewPayment extends HttpServlet
 	paymentDAO.insert(payment);
 
 	request.setAttribute("msgshort", "Nale¿no¶æ dodana");
-	request.setAttribute("msglong", "Nowa nalee¿no¶æ zosta³a dodana");
+	request.setAttribute("msglong", "Nowa nale¿no¶æ zosta³a dodana");
+	request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/adminpayments");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
 	paymentDAO.closeEntityManager();

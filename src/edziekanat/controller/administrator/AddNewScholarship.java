@@ -61,11 +61,14 @@ public class AddNewScholarship extends HttpServlet
 	    request.setAttribute("msgshort", "B³±d");
 	    request.setAttribute("msglong",
 		    "Podano b³êdn± datê. Proszê spróbowaæ ponownie.");
+	    request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/adminscholarships");
+	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
 	scholarshipDAO.insert(scholarship);
 	
 	request.setAttribute("msgshort", "Stypendium przyznane");
 	request.setAttribute("msglong", "Stypendium zosta³o przyznane");
+	request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/adminscholarships");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
 	scholarshipDAO.closeEntityManager();

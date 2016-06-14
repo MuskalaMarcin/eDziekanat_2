@@ -88,6 +88,7 @@ public class LecturerGroupMessage extends HttpServlet
 	    request.setAttribute("msglong",
 			    "Twoja wiadomo¶æ grupowa zosta³a wys³ana do wszystkich cz³onków grupy " + request
 					    .getParameter("group") + ".");
+	    request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/sentmessages");
 	    request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	}
     }

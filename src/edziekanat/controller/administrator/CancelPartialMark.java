@@ -27,18 +27,21 @@ public class CancelPartialMark extends HttpServlet
             partialMarkDAO.remove(partialMarkDTO);
             request.setAttribute("msgshort", "Usuniêto ocenê");
             request.setAttribute("msglong", "Ocena zosta³a usuniêta.");
+            request.setAttribute("previousUrl", request.getHeader("referer"));
             request.getRequestDispatcher("common/info.jsp").forward(request, response);
         }
         catch (NumberFormatException e)
         {
             request.setAttribute("errorshort", "B³±d");
             request.setAttribute("errorlong", "Podczas przesy³ania danych wyst±pi³ b³±d.");
+            request.setAttribute("previousUrl", request.getHeader("referer"));
             request.getRequestDispatcher("common/error.jsp").forward(request, response);
         }
         catch (Exception e)
         {
             request.setAttribute("errorshort", "B³±d");
             request.setAttribute("errorlong", "Podczas usuwania oceny wyst±pi³ nieznany b³±d.");
+            request.setAttribute("previousUrl", request.getHeader("referer"));
             request.getRequestDispatcher("common/error.jsp").forward(request, response);
         }
 

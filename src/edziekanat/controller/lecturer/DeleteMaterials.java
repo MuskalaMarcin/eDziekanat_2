@@ -45,6 +45,7 @@ public class DeleteMaterials extends HttpServlet
 	    lmDAO.closeEntityManager();
 	    request.setAttribute("msgshort", "Usuniêto plik");
 	    request.setAttribute("msglong", "Plik " + fileName + " zosta³ usuniêty z bazy danych.");
+	    request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/lecturerlearningmaterials");
 	    request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	}
 	catch (Exception e)
@@ -53,6 +54,7 @@ public class DeleteMaterials extends HttpServlet
 	    request.setAttribute("msgshort", "B³±d");
 	    request.setAttribute("msglong",
 			    "Podczas usuwania twojego pliku " + fileName + " wyst±pi³ nieznany b³±d. Przepraszamy.");
+	    request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/lecturerlearningmaterials");
 	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
 
