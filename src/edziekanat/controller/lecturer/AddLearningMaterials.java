@@ -65,6 +65,7 @@ public class AddLearningMaterials extends HttpServlet
 
 	    request.setAttribute("msgshort", "Dodano plik");
 	    request.setAttribute("msglong", "Nowy plik " + fileName + " zosta³ dodany do bazy danych.");
+	    request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/lecturerlearningmaterials");
 	    request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	}
 	catch (Exception e)
@@ -73,6 +74,7 @@ public class AddLearningMaterials extends HttpServlet
 	    request.setAttribute("msgshort", "B³±d");
 	    request.setAttribute("msglong",
 			    "Podczas dodawania twojego pliku " + fileName + " wystapi³ nieznany b³±d. Przepraszamy.");
+	    request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/lecturerlearningmaterials");
 	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
 

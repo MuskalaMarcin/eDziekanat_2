@@ -38,6 +38,7 @@ public class DeleteClasses extends HttpServlet
 
 	request.setAttribute("msgshort", "Usunięto zajęcia");
 	request.setAttribute("msglong", "Usunięto zaplanowane zajęcia z przedmiotu: " + sc.getSubject().getName());
+	request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/admintimetable");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
 	scDAO.closeEntityManager();

@@ -68,6 +68,7 @@ public class NewEnrollment extends HttpServlet
 
 	request.setAttribute("msgshort", "Wpis dodana");
 	request.setAttribute("msglong", "Nowy wpis zosta³ dodany");
+	request.setAttribute("previousUrl", request.getHeader("referer"));
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
 	studentDAO.closeEntityManager();

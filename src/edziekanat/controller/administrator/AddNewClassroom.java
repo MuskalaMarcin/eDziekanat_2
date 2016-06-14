@@ -55,12 +55,14 @@ public class AddNewClassroom extends HttpServlet
 		request.setAttribute("errorshort", "B³±d");
 		request.setAttribute("errorlong", "Sala o numerze " + classNumber
 				+ " ju¿ istnieje na wydziale: " + facultyDTO.getName());
+		request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/news");
 		request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	    }
 	    else if (classNumber < 0 || capacity < 0)
 	    {
 		request.setAttribute("errorshort", "B³±d");
 		request.setAttribute("errorlong", "Numer sali i pojemno¶æ musz± byæ liczbami dodatnimi");
+		request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/news");
 		request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	    }
 	    else
@@ -75,6 +77,7 @@ public class AddNewClassroom extends HttpServlet
 		request.setAttribute("msgshort", "Dodano salê.");
 		request.setAttribute("msglong", "Sala o numerze " + request.getParameter("number")
 				+ " zosta³a dodana do wydzia³u " + facultyDTO.getName());
+		request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/news");
 		request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	    }
 	}

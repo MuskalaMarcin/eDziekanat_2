@@ -76,6 +76,7 @@ public class AddNewLecturer extends HttpServlet
 
 	    request.setAttribute("msgshort", "Wyk³adowca dodany");
 	    request.setAttribute("msglong", "Nowy wyk³adowca zosta³ dodany");
+	    request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/adminlecturers");
 	    request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
 	    lecturerDAO.closeEntityManager();
@@ -88,6 +89,7 @@ public class AddNewLecturer extends HttpServlet
 	    {
 		request.setAttribute("errorshort", "B³±d");
 		request.setAttribute("errorlong", "Login lub email jest ju¿ u¿ywany");
+		request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/adminlecturers");
 		request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	    }
 	    else

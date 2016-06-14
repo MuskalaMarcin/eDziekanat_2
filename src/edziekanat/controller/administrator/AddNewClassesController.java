@@ -57,6 +57,7 @@ public class AddNewClassesController extends HttpServlet
 	{
 	    request.setAttribute("errorshort", "B³±d");
 	    request.setAttribute("errorlong", "Wyst±pi³ nieznany b³±d podczas parsowania daty. Przepraszamy.");
+	    request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/admintimetable");
 	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
 	if (repeat == 0)
@@ -66,12 +67,14 @@ public class AddNewClassesController extends HttpServlet
 		request.setAttribute("errorshort", "B³±d");
 		request.setAttribute("errorlong",
 				"Sala jest ju¿ zajêta w godzinach które postanowi³e¶ zarezerwowaæ lub grupa ma ju¿ w tych godzinach zajêcia. Spróbuj ponownie.");
+		request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/admintimetable");
 		request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	    }
 	    else
 	    {
 		request.setAttribute("msgshort", "Dodano nowe zajêcia");
 		request.setAttribute("msglong", "Dodano nowe zaplanowane zajêcia z przedmiotu: " + subject.getName());
+		request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/admintimetable");
 		request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	    }
 	}
@@ -87,6 +90,7 @@ public class AddNewClassesController extends HttpServlet
 		request.setAttribute("errorshort", "B³±d");
 		request.setAttribute("errorlong",
 				"W przypadku powtarzajacych siê zajêæ musisz okre¶liæ ich koñcow± datê. Spróbuj ponownie.");
+		request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/admintimetable");
 		request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	    }
 	    if (startDate.after(endDate))
@@ -94,6 +98,7 @@ public class AddNewClassesController extends HttpServlet
 		request.setAttribute("errorshort", "B³±d");
 		request.setAttribute("errorlong",
 				"W przypadku powtarzajacych siê zajêæ data zakoñczenia powtarzania musi byæ póniejsza ni¿ rozpoczêcia. Spróbuj ponownie.");
+		request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/admintimetable");
 		request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	    }
 	    else if (!scheduledClassesDAO.insertNewRepeatedClasses(subject, classroom, repeat, startDate, endDate,
@@ -102,12 +107,14 @@ public class AddNewClassesController extends HttpServlet
 		request.setAttribute("errorshort", "B³±d");
 		request.setAttribute("errorlong",
 				"Sala jest ju¿ zajêta w godzinach które postanowi³e¶ zarezerwowaæ lub grupa ma ju¿ w tych godzinach zajêcia. Spróbuj ponownie.");
+		request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/admintimetable");
 		request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	    }
 	    else
 	    {
 		request.setAttribute("msgshort", "Dodano nowe zajêcia");
 		request.setAttribute("msglong", "Dodano nowe zaplanowane zajêcia z przedmiotu: " + subject.getName());
+		request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/admintimetable");
 		request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
 	    }

@@ -41,6 +41,7 @@ public class DeleteNews extends HttpServlet
 	    request.setAttribute("msgshort", "Usuniêto news");
 	    request.setAttribute("msglong",
 			    "Usuniêto news o tytule: " + news.getTitle());
+	    request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/news");
 	    request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	}
 	catch (Exception e)
@@ -48,6 +49,7 @@ public class DeleteNews extends HttpServlet
 	    request.setAttribute("errorshort", "B³±d");
 	    request.setAttribute("errorlong", "Podczas usuwania newsu"
 			    + " wyst±pi³ nieznany b³±d. Przepraszamy.");
+	    request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/news");
 	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
 

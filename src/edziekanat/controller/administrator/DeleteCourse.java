@@ -41,6 +41,7 @@ public class DeleteCourse extends HttpServlet
 
 	request.setAttribute("msgshort", "Usunięto kierunek");
 	request.setAttribute("msglong", "Usunięto kierunek z wydziału: " + course.getFaculty().getName());
+	request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/admincourses");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
 	courseDAO.closeEntityManager();

@@ -50,6 +50,7 @@ public class ManageApplications extends HttpServlet
 	    request.setAttribute("msgshort", "Zmieniono status wniosku");
 	    request.setAttribute("msglong",
 		    "Status wniosku " + application.getTitle() + " zostal zmieniony na " + application.getStatus());
+	    request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/adminapplications");
 	    request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	}
 	catch (Exception e)
@@ -58,6 +59,7 @@ public class ManageApplications extends HttpServlet
 	    request.setAttribute("msglong",
 		    "Podczas zmiany statusu wniosku " + application.getTitle()
 			    + " wyst±pi³ nieznany b³±d. Przepraszamy.");
+	    request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/adminapplications");
 	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
 	appDao.closeEntityManager();

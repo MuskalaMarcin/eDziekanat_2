@@ -51,6 +51,7 @@ public class SendMessageController extends HttpServlet
 
 	request.setAttribute("msgshort", "Wys³ano wiadomo¶æ");
 	request.setAttribute("msglong", "Twoja wiadomo¶æ zosta³a wys³ana.");
+	request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/sentmessages");
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 
 	messageDAO.closeEntityManager();

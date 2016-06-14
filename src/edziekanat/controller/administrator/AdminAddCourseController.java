@@ -53,6 +53,7 @@ public class AdminAddCourseController extends HttpServlet
 	    {
 		request.setAttribute("errorshort", "B³±d");
 		request.setAttribute("errorlong", "Przedmiot o tej samej nazwie jest ju¿ dodany na tym wydziale.");
+		request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/admincourses");
 		request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	    }
 	    else
@@ -67,6 +68,7 @@ public class AdminAddCourseController extends HttpServlet
 
 		request.setAttribute("msgshort", "Kierunek dodany");
 		request.setAttribute("msglong", "Nowy kierunek zosta³ dodany");
+		request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/admincourses");
 		request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	    }
 	}
@@ -74,6 +76,7 @@ public class AdminAddCourseController extends HttpServlet
 	{
 	    request.setAttribute("errorshort", "B³±d");
 	    request.setAttribute("errorlong", "Podczas przesy³ania danych wyst±pi³ b³±d.");
+	    request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/admincourses");
 	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
 	catch (HibernateException e2)
@@ -81,6 +84,7 @@ public class AdminAddCourseController extends HttpServlet
 	    e2.printStackTrace();
 	    request.setAttribute("errorshort", "B³±d");
 	    request.setAttribute("errorlong", "Podczas zapisu danych do bazy wyst±pi³ b³±d.");
+	    request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/admincourses");
 	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
 

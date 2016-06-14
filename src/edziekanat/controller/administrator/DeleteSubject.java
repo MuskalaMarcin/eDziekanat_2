@@ -49,6 +49,7 @@ public class DeleteSubject extends HttpServlet
 
 	    request.setAttribute("msgshort", "Usuniêto przedmiot");
 	    request.setAttribute("msglong", "Usuniêto przedmiot: " + subDTO.getName());
+	    request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/adminsubjects");
 	    request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	}
 	catch (Exception e)
@@ -56,6 +57,7 @@ public class DeleteSubject extends HttpServlet
 	    request.setAttribute("msgshort", "B³±d");
 	    request.setAttribute("msglong", "Podczas usuwania grupy studenckiej"
 			    + " wyst±pi³ nieznany b³±d. Przepraszamy.");
+	    request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/adminsubjects");
 	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
 

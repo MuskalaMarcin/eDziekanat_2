@@ -39,6 +39,7 @@ public class DeleteStudent extends HttpServlet
             studentDAO.remove(student);
             request.setAttribute("msgshort", "Usuniêto studenta");
             request.setAttribute("msglong", "Usuniêto studenta: " + student.getName()+" "+ student.getSurname());
+            request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/adminstudents");
             request.getRequestDispatcher("common/info.jsp").forward(request, response);
         }
         catch (Exception e)
@@ -46,6 +47,7 @@ public class DeleteStudent extends HttpServlet
             request.setAttribute("msgshort", "B³±d");
             request.setAttribute("msglong", "Podczas usuwania studenta"
                     + " wyst±pi³ nieznany b³±d. Przepraszamy.");
+            request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/adminstudents");
             request.getRequestDispatcher("common/error.jsp").forward(request, response);
         }
         studentDAO.closeEntityManager();

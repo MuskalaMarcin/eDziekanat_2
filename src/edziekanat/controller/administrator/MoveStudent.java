@@ -57,12 +57,14 @@ public class MoveStudent extends HttpServlet
             studentsGroupDAO.update(studentsGroup);
             request.setAttribute("msgshort", "Przeniesiono studenta");
             request.setAttribute("msglong", "Przeniesiono studenta: " + student.getName()+" "+ student.getSurname());
+            request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/adminstudents");
             request.getRequestDispatcher("common/info.jsp").forward(request, response);
         }
         catch (Exception e)
         {
             request.setAttribute("errorshort", "B³±d");
             request.setAttribute("errorlong", "Podczas przenoszenia studenta wyst±pi³ nieznany b³±d. Przepraszamy.");
+            request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/adminstudents");
             request.getRequestDispatcher("common/error.jsp").forward(request, response);
         }
         studentDAO.closeEntityManager();

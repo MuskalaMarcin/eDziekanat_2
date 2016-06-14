@@ -43,6 +43,7 @@ public class AdminConfirmPassedSemester extends HttpServlet
 	passedSemesterDAO.insert(passedSemesterDTO);
 	request.setAttribute("msgshort", "Semester zaliczony");
 	request.setAttribute("msglong", "Semester zosta³ uznany za zaliczony przez studenta");
+	request.setAttribute("previousUrl", request.getHeader("referer"));
 	request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	passedSemesterDAO.closeEntityManager();
 	transcriptDAO.closeEntityManager();

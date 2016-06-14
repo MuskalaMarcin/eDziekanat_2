@@ -48,6 +48,7 @@ public class DeleteLecturer extends HttpServlet
 	    request.setAttribute("msgshort", "Usunięto wykładowcę");
 	    request.setAttribute("msglong",
 		    "Usunięto wykładowcę: " + lecturer.getName() + " " + lecturer.getSurname());
+	    request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/adminlecturers");
 	    request.getRequestDispatcher("common/info.jsp").forward(request, response);
 	}
 	catch (Exception e)
@@ -55,6 +56,7 @@ public class DeleteLecturer extends HttpServlet
 	    request.setAttribute("errorshort", "Błąd");
 	    request.setAttribute("errorlong", "Podczas usuwania wykładowcy"
 		    + " wystąpił nieznany błąd. Przepraszamy.");
+	    request.setAttribute("previousUrl", "http://localhost:8080/edziekanat/adminlecturers");
 	    request.getRequestDispatcher("common/error.jsp").forward(request, response);
 	}
 
